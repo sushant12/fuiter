@@ -1,24 +1,17 @@
-# README
+# Fuitter
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Convert Fb page to website for small businesses.
 
-Things you may want to cover:
+# Pre requisite
 
-* Ruby version
+- Postgresql > 5.2
+- Yarn
+- Nodejs
 
-* System dependencies
+# Installation
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Clone the repo
+- Run `bundle install`
+- Change credentials in database.yml
+- Run `rake db:create && rake db:migrate`
+- Run `foreman start`
