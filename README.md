@@ -4,7 +4,7 @@ Convert Fb page to website for small businesses.
 
 # Pre requisite
 
-- Postgresql > 5.2
+- Postgresql > 9.2
 - Yarn
 - Nodejs
 
