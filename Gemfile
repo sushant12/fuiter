@@ -35,6 +35,8 @@ group :development, :test do
   gem 'bullet'
   gem 'foreman'
   gem 'letter_opener'
+  gem 'awesome_print'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
