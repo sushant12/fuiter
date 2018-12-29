@@ -5,7 +5,6 @@ class CreateSettings < ActiveRecord::Migration[5.2]
       t.jsonb :legal_info
       t.string :domain
       t.timestamps
-      t.references :templates, foreign_key: true, type: :uuid, index: true
     end
   end
 end

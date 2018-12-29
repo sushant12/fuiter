@@ -1,3 +1,3 @@
 class Page < ApplicationRecord
-  belongs_to :template, dependent: :destroy
+  belongs_to :fb_page_template
 end

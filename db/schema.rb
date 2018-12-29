@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_26_144035) do
+ActiveRecord::Schema.define(version: 2018_12_29_065313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "fb_page_templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.jsonb "properties"
+    t.uuid "fb_pages_id"
+    t.uuid "templates_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fb_pages_id"], name: "index_fb_page_templates_on_fb_pages_id"
+    t.index ["templates_id"], name: "index_fb_page_templates_on_templates_id"
+  end
 
   create_table "fb_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "token"
@@ -33,8 +43,8 @@ ActiveRecord::Schema.define(version: 2018_12_26_144035) do
     t.jsonb "seo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "templates_id"
-    t.index ["templates_id"], name: "index_pages_on_templates_id"
+    t.uuid "fb_page_template_id"
+    t.index ["fb_page_template_id"], name: "index_pages_on_fb_page_template_id"
   end
 
   create_table "settings", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -43,18 +53,12 @@ ActiveRecord::Schema.define(version: 2018_12_26_144035) do
     t.string "domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.uuid "templates_id"
-    t.index ["templates_id"], name: "index_settings_on_templates_id"
+    t.uuid "fb_page_template_id"
+    t.index ["fb_page_template_id"], name: "index_settings_on_fb_page_template_id"
   end
 
-  create_table "subscriptions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.decimal "amount", precision: 8, scale: 2
-    t.datetime "due_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.uuid "fb_pages_id"
-    t.index ["fb_pages_id"], name: "index_subscriptions_on_fb_pages_id"
-  end
+# Could not dump table "subscriptions" because of following StandardError
+#   Unknown type 'subscription_type' for column 'category'
 
   create_table "templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -64,17 +68,13 @@ ActiveRecord::Schema.define(version: 2018_12_26_144035) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "email"
-    t.string "name"
-    t.string "image"
-    t.string "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+# Could not dump table "users" because of following StandardError
+#   Unknown type 'user_category' for column 'category'
 
+  add_foreign_key "fb_page_templates", "fb_pages", column: "fb_pages_id"
+  add_foreign_key "fb_page_templates", "templates", column: "templates_id"
   add_foreign_key "fb_pages", "users"
-  add_foreign_key "pages", "templates", column: "templates_id"
-  add_foreign_key "settings", "templates", column: "templates_id"
+  add_foreign_key "pages", "fb_page_templates"
+  add_foreign_key "settings", "fb_page_templates"
   add_foreign_key "subscriptions", "fb_pages", column: "fb_pages_id"
 end
