@@ -5,8 +5,19 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :image
       t.string :token
-      # t.column :status, "ENUM('normal', 'reseller')"
       t.timestamps
     end
+
+    execute <<-SQL
+        CREATE TYPE user_category AS ENUM ('normal', 'reseller', 'admin');
+    SQL
+    add_column :users, :category, :user_category
+  end
+
+  def down
+    remove_column :users, :category
+    execute <<-SQL
+      DROP TYPE user_category;
+    SQL
   end
 end
