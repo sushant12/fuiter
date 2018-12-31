@@ -1,11 +1,16 @@
 module Facebook
   class Page
-    def initialize(token)
-      @graph = Koala::Facebook::API.new(token)
+    def initialize(access_token:, user:)
+      @graph = Koala::Facebook::API.new(access_token)
+      @user = user
     end
 
     def list
       @graph.get_connections("me", "?fields=accounts{category,cover,name,access_token}")
+    end
+
+    def user
+      @user
     end
 
     def get_info
