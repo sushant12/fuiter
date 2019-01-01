@@ -82,7 +82,7 @@ html[xmlns] .slides {display: block;}
 
 /* Direction Nav Slider1 */
 .slider1 .flex-direction-nav {*height: 0;}
-.slider1 .flex-direction-nav a {width: 40px; height: 40px; margin: -20px 0 0 0; display: block; background: url(../img/bg-direction-nav.png) no-repeat 0 0; position: absolute; top: 50%; z-index: 10; cursor: pointer; font-size:0px; text-indent: -20px; opacity: 0.5; -webkit-transition: all .3s ease;}
+.slider1 .flex-direction-nav a {width: 40px; height: 40px; margin: -20px 0 0 0; display: block; background: url(../images/bg-direction-nav.png) no-repeat 0 0; position: absolute; top: 50%; z-index: 10; cursor: pointer; font-size:0px; text-indent: -20px; opacity: 0.5; -webkit-transition: all .3s ease;}
 .slider1 .flex-direction-nav .flex-next {background-position: 100% 0; right: 20px;}
 .slider1 .flex-direction-nav .flex-prev {left: 20px;}
 .slider1:hover .flex-next {opacity: .8; right: 20px;}
@@ -93,7 +93,7 @@ html[xmlns] .slides {display: block;}
 /* Direction Nav Slider2 */
 .slider2  {background:transparent;}
 .slider2 .flex-direction-nav {*height: 0;}
-.slider2 .flex-direction-nav a {width: 34px; height: 34px; margin: -21px 0 0; display: block; background: url(../img/bg-direction-nav-2.png) no-repeat 0 0; position: absolute; top: -23px; z-index: 10; cursor: pointer; text-indent: -2500px; opacity: .8; -webkit-transition: all .3s ease;}
+.slider2 .flex-direction-nav a {width: 34px; height: 34px; margin: -21px 0 0; display: block; background: url(../images/bg-direction-nav-2.png) no-repeat 0 0; position: absolute; top: -23px; z-index: 10; cursor: pointer; text-indent: -2500px; opacity: .8; -webkit-transition: all .3s ease;}
 .slider2 .flex-direction-nav .flex-next {background-position: 100% 0; right: 0px; }
 .slider2 .flex-direction-nav .flex-prev {right: 35px;}
 .slider2:hover .flex-next {opacity: 1;}
