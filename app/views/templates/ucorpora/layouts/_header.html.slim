@@ -1,0 +1,85 @@
+doctype html
+/![if lt IE 7 ] <html class="ie ie6" lang="en"
+/![if IE 7 ] <html class="ie ie7" lang="en"
+/![if IE 8 ] <html class="ie ie8" lang="en"
+/! [if (gte IE 9)|!(IE)]><!
+html.not-ie lang="en" 
+  /! <![endif]
+  /!
+    | ucorpora by freshdesignweb.com
+    | Twitter: https://twitter.com/freshdesignweb
+    | https://www.freshdesignweb.com/ucorpora/
+  head
+    /! Basic Meta Tags
+    meta charset="utf-8" /
+    title Ucorpora Demo
+    meta content=("ucorpora demo - Free Business Corporate HTML Template") name="description" /
+    meta content="ucorpora, ucorpora demo, free, template, corporate, clean, modern, bootstrap, creative, design" name="keywords" /
+    meta content="width=device-width, initial-scale=1.0" name="viewport" /
+    /![if (gte IE 9)|!(IE)]
+      | <meta http-equiv="X-UA-Compatible" content="IE=edge"
+      | <meta http-equiv="Content-Type" content="text/html;charset=utf-8"
+    /! Favicon
+    link href="img/favicon.ico" rel="icon" type="image/png" /
+    /! Styles
+    link href="css/styles.css" rel="stylesheet" /
+    link href="css/bootstrap-override.css" rel="stylesheet" /
+    /! Font Avesome Styles
+    link href="css/font-awesome/font-awesome.css" rel="stylesheet" /
+    /![if IE 7]
+      | <link href="css/font-awesome/font-awesome-ie7.min.css" rel="stylesheet"
+    /! FlexSlider Style
+    link href="css/flexslider.css" media="screen" rel="stylesheet" type="text/css" /
+    /! Internet Explorer condition - HTML5 shim, for IE6-8 support of HTML5 elements
+    /![if lt IE 9]
+      | <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script
+  body
+    header#header
+      .container
+        .row.t-container
+          /! Logo
+          .span3
+            .logo
+              a href="index.htm" 
+                img alt="" src="img/logo-header.png" /
+          .span9
+            .row.space60
+            nav#nav role="navigation" 
+              a href="#nav" title=("Show navigation")  Show navigation
+              a href="#" title=("Hide navigation")  Hide navigation
+              ul.clearfix
+                li.active
+                  a href="index.htm" title=""  Home
+                li
+                  a href="about-us.htm" title=""  About Us
+                li
+                  a href="gallery.htm" title=""  Gallery
+                li
+                  a href="services.htm" title=""  Services
+                li
+                  a href="components.htm" title="" 
+                    span Features
+                  ul
+                    /! Submenu
+                    li
+                      a href="components.htm" title=""  Components
+                    li
+                      a href="blog.htm" title=""  Blog
+                    li
+                      a href="blog-detail.htm" title=""  Blog Detail
+                    li
+                      a href="contact.htm" title=""  Contact
+                  /! End Submenu
+        .row.space40
+        .slider1.flexslider
+          /! Slider
+          ul.slides
+            li
+              img alt="" src="img/slider/1.jpg" /
+            li
+              img alt="" src="img/slider/2.jpg" /
+            li
+              img alt="" src="img/slider/3.jpg" /
+            li
+              img alt="" src="img/slider/4.jpg" /
+        /! Slider End

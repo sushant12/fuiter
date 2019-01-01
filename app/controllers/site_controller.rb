@@ -1,5 +1,8 @@
 class SiteController < ApplicationController
+  layout "templates/ucorpora"
+
   def home
+    render template: "templates/ucorpora/home"
   end
 
   def about

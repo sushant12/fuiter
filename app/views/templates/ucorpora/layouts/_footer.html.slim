@@ -1,0 +1,65 @@
+/! Footer
+footer#footer
+  .container
+    .row
+      .span5
+        h3 Contact Form
+        div
+          form#ajax-form.form-main action="#" method="post" name="ajax-form" 
+            #ajaxsuccess E-mail was successfully sent.
+            #err-name.error Please enter name
+            input#name name="name" onblur=("if(this.value == '') this.value='Name';") onfocus=("if(this.value == 'Name') this.value='';") type="text" value="Name" /
+            #err-email.error Please enter e-mail
+            #err-emailvld.error E-mail is not a valid format
+            input#email name="email" onblur=("if(this.value == '') this.value='E-mail';") onfocus=("if(this.value == 'E-mail') this.value='';") type="text" value="E-mail" /
+            #err-message.error Please enter message
+            textarea#message name="message" onblur=("if(this.value == '') this.value='Message';") onfocus=("if(this.value == 'Message') this.value='';")  Message
+            br/
+            div
+              #err-form.error There was a problem validating the form please check!
+              #err-timedout.error The connection to the server timed out!
+              #err-state.error
+            button#send.btn.f-right
+              | Send Message
+              i.icon-ok
+      .span3.offset3
+        h3 Address
+        | 81 Sunnyvale Street
+        br/
+        | Los Angeles, CA 90185
+        br/
+        | United States
+        br/
+        br/
+        = succeed "+01" do
+          i.icon-phone
+        | 880 555 999
+        br/
+        i.icon-envelope
+        a href="mailto:support@example.com"  support@example.com
+        br/
+        i.icon-home
+        a href="#"  www.example.com
+        .row.space40
+        a.social-network.sn2.behance href="#" 
+        a.social-network.sn2.facebook href="#" 
+        a.social-network.sn2.pinterest href="#" 
+        a.social-network.sn2.flickr href="#" 
+        a.social-network.sn2.dribbble href="#" 
+        a.social-network.sn2.lastfm href="#" 
+        a.social-network.sn2.forrst href="#" 
+        a.social-network.sn2.xing href="#" 
+    .row.space50
+    .row
+      .span6
+        .logo-footer
+          | Design by
+          a href="https://www.freshdesignweb.com"  freshDesignweb
+      .span6.right
+        | \&copy; 2020. All rights reserved.
+/! Footer End
+/! JavaScripts
+script src="js/jquery-1.8.3.min.js" type="text/javascript" 
+script src="js/bootstrap.min.js" type="text/javascript" 
+script src="js/functions.js" type="text/javascript" 
+script defer="" src="js/jquery.flexslider.js" type="text/javascript" 
