@@ -1,7 +1,7 @@
 module Facebook
   class Page
-    def initialize(token)
-      @graph = Koala::Facebook::API.new(token)
+    def initialize(access_token:)
+      @graph = Koala::Facebook::API.new(access_token)
     end
 
     def list
