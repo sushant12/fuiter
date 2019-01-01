@@ -8,7 +8,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '648e261bd1edaf22237d0348e94e6539e6cec98f3851c7d3b665b6555f81d5b20faf89baaf1f8242734da6a140b83c2831c345c9c39f33b83f3e1e477889d5d4'
+  # config.secret_key =  SecureRandom.hex(64)
   
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -289,7 +289,7 @@ Devise.setup do |config|
   # end
   config.omniauth :facebook, ENV["APP_ID"], 
                   ENV["APP_SECRET"], 
-                  callback_url: "http://localhost:3000/users/auth/facebook/callback",
+                  # callback_url: "http://localhost:3000/users/auth/facebook/callback",
                   scope: 'manage_pages'
 
 
