@@ -71,3 +71,5 @@ gem 'sidekiq'
 
 # Slim template generator for rails
 gem 'slim-rails'
+
+gem 'draper'
