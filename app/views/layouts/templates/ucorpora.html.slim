@@ -2,7 +2,8 @@ doctype html
 html.not-ie lang="en" 
   head
     meta charset="utf-8" /
-    title Ucorpora Demo
+    title
+      = @page.content['name']
     = csrf_meta_tags
     = csp_meta_tag
     meta content=("ucorpora demo - Free Business Corporate HTML Template") name="description"
@@ -53,14 +54,9 @@ html.not-ie lang="en"
         .slider1.flexslider
           /! Slider
           ul.slides
-            li
-              img src=(asset_pack_path 'templates/ucorpora/images/slider/1.jpg')
-            li
-              img src=(asset_pack_path 'templates/ucorpora/images/slider/2.jpg')
-            li
-              img src=(asset_pack_path 'templates/ucorpora/images/slider/3.jpg')
-            li
-              img src=(asset_pack_path 'templates/ucorpora/images/slider/4.jpg')
+            - @abc.each do |a|
+              li
+                img src=(a['images'].first['source'])
         /! Slider End
     = yield
     /! Footer
