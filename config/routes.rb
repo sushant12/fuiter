@@ -11,4 +11,6 @@ Rails.application.routes.draw do
   get 'site/:fb_page_id/events', to: 'site#events'
   get 'site/:fb_page_id/gallery', to: 'site#gallery'
   get 'site/:fb_page_id/news', to: 'site#news'
+
+  get '/:fb_page_id/templates', to: 'homes#templates', as: 'templates'
 end
