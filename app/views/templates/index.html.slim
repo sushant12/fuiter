@@ -1,0 +1,9 @@
+h2 User's facebook page
+p Page Name: #{@page.name}
+
+h3 List of templates:
+- @templates.each do |template|
+  p= link_to template.name, site_home_path(@page.id) 
+  p= image_tag(template.image)
+
+p= link_to "Back to home", root_path

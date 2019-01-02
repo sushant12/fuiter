@@ -3,7 +3,7 @@ html.not-ie lang="en"
   head
     meta charset="utf-8" /
     title
-      = @page.content['name']
+      = @page.name
     = csrf_meta_tags
     = csp_meta_tag
     meta content=("ucorpora demo - Free Business Corporate HTML Template") name="description"
@@ -54,9 +54,9 @@ html.not-ie lang="en"
         .slider1.flexslider
           /! Slider
           ul.slides
-            - @abc.each do |a|
+            - @page.cover_images.each do |a|
               li
-                img src=(a['images'].first['source'])
+                img src=(a['source'])
         /! Slider End
     = yield
     /! Footer
@@ -85,11 +85,11 @@ html.not-ie lang="en"
                   i.icon-ok
           .span3.offset3
             h3 Address
-            | 81 Sunnyvale Street
+            = @page.address['city']
             br/
-            | Los Angeles, CA 90185
+            = @page.address['street']
             br/
-            | United States
+            = @page.address['country']
             br/
             br/
             .succeed "+01"
