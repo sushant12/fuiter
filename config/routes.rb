@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   get 'site/:fb_page_id/news', to: 'site#news', as: 'site_news'
 
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
+  get '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
 end
