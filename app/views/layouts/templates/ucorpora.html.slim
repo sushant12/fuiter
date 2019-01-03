@@ -20,7 +20,7 @@ html.not-ie lang="en"
           /! Logo
           .span3
             .logo
-              a href="index.htm"
+              = link_to site_home_path(@page.id)
                 img src=(asset_pack_path 'templates/ucorpora/images/logo-header.png')
           .span9
             .row.space60
@@ -29,34 +29,19 @@ html.not-ie lang="en"
               a href="#" title=("Hide navigation")  Hide navigation
               ul.clearfix
                 li.active
-                  a href="index.htm" title=""  Home
+                  = link_to 'Home', site_home_path(@page.id)
                 li
-                  a href="about-us.htm" title=""  About Us
+                  = link_to 'About', site_about_path(@page.id)
                 li
-                  a href="gallery.htm" title=""  Gallery
+                  = link_to 'News', site_news_path(@page.id)
                 li
-                  a href="services.htm" title=""  Services
+                  = link_to 'Events', site_events_path(@page.id)
                 li
-                  a href="components.htm" title="" 
-                    span Features
-                  ul
-                    /! Submenu
-                    li
-                      a href="components.htm" title=""  Components
-                    li
-                      a href="blog.htm" title=""  Blog
-                    li
-                      a href="blog-detail.htm" title=""  Blog Detail
-                    li
-                      a href="contact.htm" title=""  Contact
-                  /! End Submenu
+                  = link_to 'Gallery', site_gallery_path(@page.id)
+                li
+                  = link_to 'Contact', site_contact_path(@page.id)
         .row.space40
-        .slider1.flexslider
-          /! Slider
-          ul.slides
-            - @page.cover_images.each do |a|
-              li
-                img src=(a['source'])
+        = yield :slider
         /! Slider End
     = yield
     /! Footer
