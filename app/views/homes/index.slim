@@ -1,7 +1,7 @@
 h2 This is index 
 
 - if user_signed_in?
-  = link_to 'Logout', destroy_user_session_path, method: :delete
+  = link_to 'Logout', destroy_user_session_path
 
 p Email Address: #{current_user[:email]}
 h3 List of pages:

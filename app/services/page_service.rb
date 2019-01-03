@@ -1,17 +1,20 @@
 class PageService < ApplicationService
 
   def initialize(access_token:, user:)
-    @pages = Facebook::Page.new(
+    @fb = Facebook::Page.new(
       access_token: access_token
     )
-    @user = user
+    @current_user = user
   end
 
   def call
-    data= @pages.list
-    user_id = @user.id
-    data['accounts']['data'].each do |element|
-        FbPage.create(fb_page_id: element['id'], name: element['name'], token: element['access_token'], user_id: user_id)
+    pages = @fb.list
+    pages['accounts']['data'].each do |page|
+      fb_page = Facebook::Page.new(
+        access_token: element['access_token']
+      )
+      content = fb_page.get_info
+      @current_user.fb_pages.create!(fb_page_id: page['id'], name: page['name'], token: page['access_token'], content: content)
     end
   end
 end

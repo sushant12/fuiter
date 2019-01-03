@@ -11,11 +11,6 @@ class HomesController < ApplicationController
     @pages = current_user.fb_pages
   end
 
-  def templates
-    @page = current_user.fb_pages.find_by(id: params[:fb_page_id])
-    @templates = Template.all
-  end
-
   private
 
   def fb_page_exits
