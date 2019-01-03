@@ -1,0 +1,24 @@
+section#titlebar
+  /! Container
+  .container
+    .eight.columns
+      h3.left About
+    .eight.columns
+      nav#breadcrumbs
+        ul
+          li You are here:
+          li
+            a href="#"  Home
+          li About
+  /! Container / End
+/! Content
+#content
+  .container
+    .row
+      .span12
+        h4 Who We Are?
+        p
+          = @page.about
+        p
+          = @page.description
+        .row.space50

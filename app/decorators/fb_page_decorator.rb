@@ -58,6 +58,10 @@ class FbPageDecorator < Draper::Decorator
     end
   end
 
+  def description
+    object.content['description']
+  end
+
   private
 
   def photos(album_id)
