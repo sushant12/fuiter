@@ -4,6 +4,9 @@ h2 This is index
   = link_to 'Logout', destroy_user_session_path
 
 p Email Address: #{current_user[:email]}
+
+= button_to 'Sync', homes_sync_path, method: :get
+
 h3 List of pages:
 - @pages.each do |page|
   p= link_to page.name, templates_path(page)
