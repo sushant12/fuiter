@@ -18,12 +18,12 @@ ActiveRecord::Schema.define(version: 2018_12_30_070956) do
 
   create_table "fb_page_templates", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "properties"
-    t.uuid "fb_pages_id"
-    t.uuid "templates_id"
+    t.uuid "fb_page_id"
+    t.uuid "template_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["fb_pages_id"], name: "index_fb_page_templates_on_fb_pages_id"
-    t.index ["templates_id"], name: "index_fb_page_templates_on_templates_id"
+    t.index ["fb_page_id"], name: "index_fb_page_templates_on_fb_page_id"
+    t.index ["template_id"], name: "index_fb_page_templates_on_template_id"
   end
 
   create_table "fb_pages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -73,8 +73,8 @@ ActiveRecord::Schema.define(version: 2018_12_30_070956) do
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_category' for column 'category'
 
-  add_foreign_key "fb_page_templates", "fb_pages", column: "fb_pages_id"
-  add_foreign_key "fb_page_templates", "templates", column: "templates_id"
+  add_foreign_key "fb_page_templates", "fb_pages"
+  add_foreign_key "fb_page_templates", "templates"
   add_foreign_key "fb_pages", "users"
   add_foreign_key "pages", "fb_page_templates"
   add_foreign_key "settings", "fb_page_templates"

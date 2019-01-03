@@ -1,39 +1,40 @@
 class SiteController < ApplicationController
-  layout "templates/ucorpora"
+  layout :template_layout
+  before_action :set_fb_page
 
   def home
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
     # render json: @page.content
-    render template: "templates/ucorpora/home"
+    render template: "#{template_layout}/home"
   end
 
   def about
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
-    # render json: @page.content
-    render template: "templates/ucorpora/about"
+    render template: "#{template_layout}/about"
   end
 
   def contact
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
-    # render json: @page.content
-    render template: "templates/ucorpora/contact"
+    render template: "#{template_layout}/contact"
   end
 
   def events
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
-    # render json: @page.content
-    render template: "templates/ucorpora/events"
+    render template: "#{template_layout}/events"
   end
 
   def gallery
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
-    # render json: @page.content
-    render template: "templates/ucorpora/gallery"
+    render template: "#{template_layout}/gallery"
   end
 
   def news
+    render template: "#{template_layout}/news"
+  end
+
+  private
+
+  def set_fb_page
     @page = FbPage.find_by(id: params[:fb_page_id]).decorate
-    # render json: @page.content
-    render template: "templates/ucorpora/news"
+  end
+
+  def template_layout
+    name = @page.fb_page_template.template.name
+    "templates/#{name}"
   end
 end
