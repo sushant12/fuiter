@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   post '/homes/sync', to: 'homes#sync', as: 'homes_sync'
 
-  get '/editor/design/:fb_page_id', to: 'editor#design'
+  get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
   get '/editor/page/:fb_page_id', to: 'editor#page'
   get '/editor/setting/:fb_page_id', to: 'editor#setting'
 
