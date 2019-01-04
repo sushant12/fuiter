@@ -12,11 +12,11 @@ class HomesController < ApplicationController
   end
 
   def sync
-    SyncFbPage.call(
+    PageService.call(
       access_token: current_user.token,
       user: current_user,
     )
-    redirect_to action: "index"
+    redirect_to root_path
   end
 
   private

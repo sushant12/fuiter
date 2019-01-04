@@ -3,7 +3,7 @@ p Page Name: #{@page.name}
 
 h3 List of templates:
 - @templates.each do |template|
-  p= link_to template.name, choose_template_path(@page.id, template.id) 
+  p= button_to template.name, choose_template_path(@page.id, template.id) 
   p= image_tag(template.image)
 
 p= link_to "Back to home", root_path

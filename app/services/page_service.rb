@@ -8,13 +8,17 @@ class PageService < ApplicationService
   end
 
   def call
-    pages = @fb.list
-    pages['accounts']['data'].each do |page|
-      fb_page = Facebook::Page.new(
-        access_token: page['access_token']
+    accounts = @fb.list
+    accounts['accounts']['data'].each do |account|
+      page = Facebook::Page.new(
+        access_token: account['access_token']
       )
-      content = fb_page.get_info
-      @current_user.fb_pages.create!(fb_page_id: page['id'], name: page['name'], token: page['access_token'], content: content)
+      content = page.get_info
+      fb_page = @current_user.fb_pages.find_or_initialize_by(fb_page_id: account['id']) 
+      fb_page.name = account['name']
+      fb_page.token = account['access_token'] 
+      fb_page.content = content
+      fb_page.save! 
     end
   end
 end
