@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   root to: 'homes#index'
-  
+  post '/homes/sync', to: 'homes#sync', as: 'homes_sync'
+
   get '/editor/design/:fb_page_id', to: 'editor#design'
   get '/editor/page/:fb_page_id', to: 'editor#page'
   get '/editor/setting/:fb_page_id', to: 'editor#setting'
@@ -15,5 +16,5 @@ Rails.application.routes.draw do
   get 'site/:fb_page_id/news', to: 'site#news', as: 'site_news'
 
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
-  get '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
+  post '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
 end
