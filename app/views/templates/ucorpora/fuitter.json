@@ -1,4 +1,10 @@
 {
   "name": "ucorpora",
-  "image": "https://via.placeholder.com/300"
+  "image": "https://via.placeholder.com/300",
+  "properties": {
+    "slider": [
+      {"source": "https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis"}, 
+      {"source": "https://via.placeholder.com/728x90.png"}
+    ]
+  }
 }
