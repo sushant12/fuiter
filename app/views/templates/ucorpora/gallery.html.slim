@@ -1,0 +1,33 @@
+section#titlebar
+  /! Container
+  .container
+    .eight.columns
+      h3.left Gallery
+    .eight.columns
+      nav#breadcrumbs
+        ul
+          li You are here:
+          li
+            a href="#"  Home
+          li Gallery
+  /! Container / End
+/! Content
+#content
+  .container
+    .row
+      .span12
+        .row
+          .span12
+            section#portfolio-items.row
+              ul.portfolio
+                - @page.albums.each do |album|
+                  li
+                    article.span3.project data-tags="photography" 
+                      a href="#" 
+                      .square-1
+                        .img-container
+                          = image_tag album[album.keys[0]]
+                          img alt="" src="img/gallery/01.jpg" /
+                          .img-bg-icon
+                        h3 
+                          = album.keys[0]

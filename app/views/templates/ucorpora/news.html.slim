@@ -1,0 +1,32 @@
+    section#titlebar
+      /! Container
+      .container
+        .eight.columns
+          h3.left Blogs
+        .eight.columns
+          nav#breadcrumbs
+            ul
+              li You are here:
+              li
+                a href="#"  Home
+              li Blogs
+      /! Container / End
+    /! Content
+    #content
+      .container
+        .row
+          .span12
+            h3 &nbsp;
+          .span9
+            /! Blog Item
+            - @page.posts.each do |post|
+              .row
+                .span8
+                  - if post["image"]
+                    = image_tag post["image"] 
+                  .row
+                    .span8.post-d-info
+                      p
+                        = post['message']
+              /! Blog Item End
+              .row.space40

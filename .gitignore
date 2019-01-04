@@ -30,3 +30,7 @@
 /node_modules
 yarn-debug.log*
 .yarn-integrity
+
+erd.pdf
+/config/database.yml
+.env

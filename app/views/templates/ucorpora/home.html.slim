@@ -1,0 +1,15 @@
+= content_for :slider do
+  .slider1.flexslider
+    ul.slides
+      - @page.cover_images.each do |a|
+        li
+          img src=(a['source'])
+#content
+  .container
+    .f-center
+      .head-info
+        = @page.content['description']
+    .row.space40
+    .space50
+
+
