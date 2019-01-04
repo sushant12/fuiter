@@ -6,9 +6,9 @@ class TemplatesController < ApplicationController
   end
 
   def choose
-    FbPageTemplate.find_or_create_by(fb_page_id: params[:fb_page_id]) do |page_template|
-      page_template.template_id = params[:template_id]
-    end
+    template = FbPageTemplate.find_or_initialize_by(fb_page_id: params[:fb_page_id])
+    template.template_id = params[:template_id]
+    template.save!
     redirect_to site_home_path(params[:fb_page_id])
   end
 end

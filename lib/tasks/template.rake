@@ -2,15 +2,15 @@ namespace :templates do
   desc "add local template info into db"
   task sync: :environment do
     base_dir = Rails.root.join("app","views","templates")
-    templates = Dir.children(base_dir)
-    templates.each do |template|
-      next unless File.directory? template
-      config = "#{base_dir}/#{template}/fuitter.json"
+    Dir.chdir(base_dir)
+    Dir.glob('*').each do |dir| 
+      next unless File.directory? dir
+      config = "#{base_dir}/#{dir}/fuitter.json"
       metadata = JSON.parse(File.read(config))
-      Template.find_or_create_by!(name: metadata["name"]) do |t|
-        t.name = metadata["name"]
-        t.image = metadata["image"]
-      end
+      t = Template.find_or_initialize_by(name: metadata["name"])
+      t.name = metadata["name"]
+      t.image = metadata["image"]
+      t.save!
     rescue => e
       puts "=========="
       puts e.message
