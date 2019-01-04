@@ -14,9 +14,13 @@ class FbPageDecorator < Draper::Decorator
     albums = object.content['albums']['data'].select do |album|
       album['name'] == "Cover Photos"
     end
-    albums.first["photos"]["data"].map do |img|
-      img["images"].first
-    end unless albums.empty?
+    if albums.empty?
+      object.fb_page_template.template.properties["slider"]
+    else
+      albums.first["photos"]["data"].map do |img|
+        img["images"].first
+      end
+    end
   end
 
   def name

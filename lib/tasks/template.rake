@@ -10,6 +10,7 @@ namespace :templates do
       t = Template.find_or_initialize_by(name: metadata["name"])
       t.name = metadata["name"]
       t.image = metadata["image"]
+      t.properties = metadata["properties"]
       t.save!
     rescue => e
       puts "=========="

@@ -1,9 +1,9 @@
 = content_for :slider do
   .slider1.flexslider
     ul.slides
-      - @page.cover_images.each do |a|
+      - @page.cover_images.each do |image|
         li
-          img src=(a['source'])
+          img src=(image['source'])
 #content
   .container
     .f-center
