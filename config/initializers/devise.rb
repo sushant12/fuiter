@@ -289,7 +289,7 @@ Devise.setup do |config|
   # end
   config.omniauth :facebook, ENV["APP_ID"], 
                   ENV["APP_SECRET"], 
-                  callback_url: "http://localhost:3000/users/auth/facebook/callback",
+                  callback_url: ENV["CALLBACK_URL"]
                   scope: 'manage_pages, email'
 
 end
