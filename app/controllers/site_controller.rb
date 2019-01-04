@@ -27,6 +27,10 @@ class SiteController < ApplicationController
     render template: "#{template_layout}/news"
   end
 
+  def send_contact_message
+    
+  end
+
   private
 
   def set_fb_page

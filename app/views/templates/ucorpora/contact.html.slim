@@ -14,37 +14,17 @@
     /! Content
     #content
       .container
-        .row
-          .span12
-            h2 Get in touch
-          .span6
-            h3 Tabs
-            /! Tabs
-            .tabbable
-              ul.nav.nav-tabs
-                li.active
-                  a data-toggle="tab" href="#tab1"  Section 1
-                li
-                  a data-toggle="tab" href="#tab2"  Section 2
-                li
-                  a data-toggle="tab" href="#tab3"  Section 3
-              .tab-content
-                #tab1.tab-pane.active
-                  h3 I'm in Section 1
-                  p Ut wisi enim ad minim veniam, quis nostrud exeinim et.Pie wafer wypas candy canes toffee. Co adipisicing elit, lit in voluptah uveere velit aliquet.Pie wafer wypas candy canes toffee. Co adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer posuere erat a ante venenatis dapibus posuerci tation ullamcorper susc nostrudexerci tation ullamcoramcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendinim veniam, quis nostrud exerci tation ullamcorper suscipit lobrerit in vul
-                #tab2.tab-pane
-                  h3 I'm in Section 2
-                  p Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcinim veniam, quis nostrud exerci tation ullamcorper t lobortis nisl ut alisequat. Duis autem vel einim veniam, quis nostrud exerinim veniam, quis nostrud exerci tation ullamcorper suscipit lobci tation ullamcorper suscipit lobum iriure dolor in hendruis aute irure dolor in reprehenderit in voluptah ultricies vehat a ante veere velit aliquet.Pie wafer wypas candy canes toffee. Co adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer posuere erat a ante venenatis dapibus posuerit in vul
-                #tab3.tab-pane
-                  h3 I'm in Section 3
-                  p Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea coiipit lobmmodo consequat. Duis autem vel eum iriure dolor in hendrerit in vinim veniam, quis nostrud einim veniam, quis nostrud exeruis aute irure dolor in reprehenderit in voluptah ultricies vehat a ante veere velit aliquet.Pie wafer wypas candy canes toffee. Co adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer posuere erat a ante venenatis dapibus posuci tation ullamcorper suscipit lobxerci tation ullamcorper suscipit lobul
-            /! Tabs End
-          .span6
-            h3 Content
-            p
-              | Porta montes montes vel nunc cras porttitor mid elementum dictumst dignissim dapibus urna ac, enia, magna dictumst odio, a tincidunt rhoncus massa in in risus nunc augue pham? Aenean, urna, magna dictumst odio massa in in risus nunc augue phasellus mattis mid elementum dictumst dignissim dapibus urna ac, enim?
-            p
-              | Porttitor! Aenean, urna, magna dictumst odio, a tingue phasellus mattis mid elementum dictumst dignissim dapibucidunt rhoncus massa in in risus nunc augue phasellus mattis Aenean, urna, magna dictumst odio massa in in risus nunc augue phasellus mattis mid elementum dictumst dignissim dapibus.
-            p
-              | Tingue phasellus mattis mid elementum dictumst dignissim dapibucidunt rhoncus massa in in risus nunc augue phasellus mattis Aenean, urna, magna dictumst odio massa in in risus nunc augue phasellus mattis mid elementum dictumst dignissim dapibus.
-          .row.space40
+        .col-md-5
+          .form-area
+            form role="form" method="post" action=(site_contact_post_path @page.id) 
+              br style="clear:both" /
+              h3 style=("margin-bottom: 25px; text-align: center;")  Contact Form
+              .form-group
+                input#name.form-control name="name" placeholder="Name" required="" type="text" /
+              .form-group
+                input#email.form-control name="email" placeholder="Email" required="" type="text" /
+              .form-group
+                input#subject.form-control name="subject" placeholder="Subject" required="" type="text" /
+              .form-group
+                textarea#message.form-control maxlength="140" placeholder="Message" rows="7" type="textarea" 
+              button#submit.btn.btn-primary.pull-right name="submit" type="button"  Submit Form
