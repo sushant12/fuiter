@@ -27,6 +27,11 @@ class SiteController < ApplicationController
     render template: "#{template_layout}/news"
   end
 
+  def photo_albums
+    @album_id = params[:album_id]
+    render template: "#{template_layout}/photos"
+  end
+
   private
 
   def set_fb_page

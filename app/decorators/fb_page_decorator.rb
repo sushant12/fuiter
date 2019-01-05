@@ -9,14 +9,25 @@ class FbPageDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
+  def menu
+    object.fb_page_template.pages.map do |page|
+      {
+        "name" => page.title,
+        "uri" => page.uri
+      }
+    end
+  end
   def cover_images
     albums = object.content['albums']['data'].select do |album|
       album['name'] == "Cover Photos"
     end
-    albums.first["photos"]["data"].map do |img|
-      img["images"].first
-    end unless albums.empty?
+    if albums.empty?
+      object.fb_page_template.template.properties["slider"]
+    else
+      albums.first["photos"]["data"].map do |img|
+        img["images"].first
+      end
+    end
   end
 
   def name
@@ -30,7 +41,9 @@ class FbPageDecorator < Draper::Decorator
   def albums
     object.content['albums']['data'].map do |album|
       {
-        album["name"] => photos(album['id']).first.first['source'] 
+        "album_photos" => photos(album['id']).first.first['source'],
+        "album_id" => album['id'],
+        "album_name" => album['name']
       }
     end
   end
@@ -61,8 +74,6 @@ class FbPageDecorator < Draper::Decorator
   def description
     object.content['description']
   end
-
-  private
 
   def photos(album_id)
     albums = object.content['albums']['data'].select do |album|
