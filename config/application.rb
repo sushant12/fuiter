@@ -27,6 +27,9 @@ module Fuitter
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.eager_load_paths << "#{Rails.root}/lib"
+
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|
@@ -35,6 +38,15 @@ module Fuitter
       g.assets  false
       g.helper false
       g.stylesheets false
+    end
+
+    config.autoload_paths += %W[#{config.root}/app/workers]
+    config.after_initialize do |app|
+      app.config.paths.add 'app/presenters', eager_load: true
+    end
+
+    Raven.configure do |config|
+      config.current_environment = 'production'
     end
   end
 end

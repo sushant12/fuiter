@@ -73,3 +73,5 @@ gem 'sidekiq'
 gem 'slim-rails'
 
 gem 'draper'
+
+gem 'sentry-raven'
