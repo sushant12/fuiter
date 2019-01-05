@@ -27,8 +27,9 @@ class SiteController < ApplicationController
     render template: "#{template_layout}/news"
   end
 
-  def send_contact_message
-    
+  def photo_albums
+    @album_id = params[:album_id]
+    render template: "#{template_layout}/photos"
   end
 
   private

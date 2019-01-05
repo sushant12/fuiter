@@ -23,11 +23,12 @@ section#titlebar
                 - @page.albums.each do |album|
                   li
                     article.span3.project data-tags="photography" 
-                      a href="#" 
-                      .square-1
-                        .img-container
-                          = image_tag album[album.keys[0]]
-                          img alt="" src="img/gallery/01.jpg" /
-                          .img-bg-icon
-                        h3 
-                          = album.keys[0]
+                      a href="#"
+                      = link_to site_photo_albums_path(@page.id, album['album_id']) do
+                        .square-1
+                          .img-container
+                            = image_tag album[album.keys[0]]
+                            img alt="" src="img/gallery/01.jpg" /
+                            .img-bg-icon
+                          h3 
+                            = album.keys[0]

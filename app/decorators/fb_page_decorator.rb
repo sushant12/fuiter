@@ -41,7 +41,8 @@ class FbPageDecorator < Draper::Decorator
   def albums
     object.content['albums']['data'].map do |album|
       {
-        album["name"] => photos(album['id']).first.first['source'] 
+        album["name"] => photos(album['id']).first.first['source'],
+        "album_id" => album['id']
       }
     end
   end
@@ -72,8 +73,6 @@ class FbPageDecorator < Draper::Decorator
   def description
     object.content['description']
   end
-
-  private
 
   def photos(album_id)
     albums = object.content['albums']['data'].select do |album|
