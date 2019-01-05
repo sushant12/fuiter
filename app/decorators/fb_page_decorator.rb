@@ -9,7 +9,14 @@ class FbPageDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
-
+  def menu
+    object.fb_page_template.pages.map do |page|
+      {
+        "name" => page.title,
+        "uri" => page.uri
+      }
+    end
+  end
   def cover_images
     albums = object.content['albums']['data'].select do |album|
       album['name'] == "Cover Photos"

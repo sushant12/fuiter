@@ -28,18 +28,9 @@ html.not-ie lang="en"
               a href="#nav" title=("Show navigation")  Show navigation
               a href="#" title=("Hide navigation")  Hide navigation
               ul.clearfix
-                li.active
-                  = link_to 'Home', site_home_path(@page.id)
-                li
-                  = link_to 'About', site_about_path(@page.id)
-                li
-                  = link_to 'News', site_news_path(@page.id)
-                li
-                  = link_to 'Events', site_events_path(@page.id)
-                li
-                  = link_to 'Gallery', site_gallery_path(@page.id)
-                li
-                  = link_to 'Contact', site_contact_path(@page.id)
+                - @page.menu.each do |menu|
+                  li
+                    = link_to menu["name"], self.send("site_#{menu['uri']}_path", @page.id)
         .row.space40
         = yield :slider
         /! Slider End

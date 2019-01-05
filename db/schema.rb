@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_30_070956) do
+ActiveRecord::Schema.define(version: 2019_01_04_105809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2018_12_30_070956) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.uuid "fb_page_template_id"
+    t.string "uri"
     t.index ["fb_page_template_id"], name: "index_pages_on_fb_page_template_id"
   end
 
