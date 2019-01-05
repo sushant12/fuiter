@@ -4,7 +4,7 @@ class HomesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if fb_page_exits
+    if fb_page_exist
       PageService.call(
         access_token: current_user.token,
         user: current_user
@@ -23,7 +23,7 @@ class HomesController < ApplicationController
 
   private
 
-  def fb_page_exits
+  def fb_page_exist
     current_user.token && current_user.fb_pages.empty?
   end
 end

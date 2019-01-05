@@ -52,22 +52,22 @@ RSpec.describe FbPageDecorator do
   end
 
   it 'lists albums' do
-    expect(fb_page.decorate.albums).to eq([{ 'album_photos' =>
+    expect(fb_page.decorate.albums).to eq([{ 'preview' =>
      'https://scontent.xx.fbcdn.net/v/t1.0-9/48275487_1175204329298695_443191920018063360_o.jpg?_nc_cat=103&_nc_ht=scontent.xx&oh=15d7a7f9edcd2b8de216163a3df50087&oe=5CC1AE08',
-                                             'album_id' => '672955136190286',
-                                             'album_name' => 'Timeline Photos' },
-                                           { 'album_photos' =>
+                                             'id' => '672955136190286',
+                                             'name' => 'Timeline Photos' },
+                                           { 'preview' =>
                                              'https://scontent.xx.fbcdn.net/v/t1.0-9/33751444_1020287098123753_953617842203262976_n.jpg?_nc_cat=109&_nc_ht=scontent.xx&oh=4086b041a778680c2c778566abb43d74&oe=5C91CCE8',
-                                             'album_id' => '951034215049042',
-                                             'album_name' => 'Mobile Uploads' },
-                                           { 'album_photos' =>
+                                             'id' => '951034215049042',
+                                             'name' => 'Mobile Uploads' },
+                                           { 'preview' =>
                                              'https://scontent.xx.fbcdn.net/v/t1.0-9/19399410_843374869148311_8437031694114250167_n.png?_nc_cat=103&_nc_ht=scontent.xx&oh=4b65240fbb5cdb516e6c2eb51fa0823c&oe=5C8F6D79',
-                                             'album_id' => '672819546203845',
-                                             'album_name' => 'Cover Photos' },
-                                           { 'album_photos' =>
+                                             'id' => '672819546203845',
+                                             'name' => 'Cover Photos' },
+                                           { 'preview' =>
                                              'https://scontent.xx.fbcdn.net/v/t1.0-9/19247687_843344279151370_2153541186379091213_n.png?_nc_cat=100&_nc_ht=scontent.xx&oh=f59d31045fed6a4c5c49d64df90c83e6&oe=5CCCF77B',
-                                             'album_id' => '672830826202717',
-                                             'album_name' => 'Profile Pictures' }])
+                                             'id' => '672830826202717',
+                                             'name' => 'Profile Pictures' }])
   end
 
   it 'returns about section of fb page' do
