@@ -20,12 +20,12 @@ section#titlebar
           .span12
             section#portfolio-items.row
               ul.portfolio
-                - @page.photos(@album_id)[0].each do |album|
+                - @page.photos(@album_id).each do |album|
                   li
                     article.span3.project data-tags="photography" 
                       a href="#" 
                       .square-1
                         .img-container
-                          = image_tag album["source"]
+                          = image_tag album.first["source"]
                           img alt="" src="img/gallery/01.jpg" /
                           .img-bg-icon           
