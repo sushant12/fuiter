@@ -61,4 +61,7 @@ Rails.application.configure do
     Bullet.bullet_logger = true
     Bullet.console = true
   end
+
+  config.autoload_paths += %W(#{config.root}/lib)
+  config.autoload_paths += Dir["#{config.root}/lib/**/"]
 end
