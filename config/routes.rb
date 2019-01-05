@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   root to: 'homes#index'
   post '/homes/sync', to: 'homes#sync', as: 'homes_sync'
 
-  get '/editor/design/:fb_page_id', to: 'editor#design'
+  get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
   get '/editor/page/:fb_page_id', to: 'editor#page'
   get '/editor/setting/:fb_page_id', to: 'editor#setting'
 
@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   post 'site/:fb_page_id/contact', to: 'site#send_contact_message', as: 'site_contact_post'
   get 'site/:fb_page_id/events', to: 'site#events', as: 'site_events'
   get 'site/:fb_page_id/gallery', to: 'site#gallery', as: 'site_gallery'
+  get '/site/:fb_page_id/gallery/:album_id', to: 'site#photo_albums', as: 'site_photo_albums'
+
   get 'site/:fb_page_id/news', to: 'site#news', as: 'site_news'
 
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
   post '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
+
 end
