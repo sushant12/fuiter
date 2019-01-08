@@ -38,6 +38,11 @@ group :development, :test do
   gem 'letter_opener'
   gem 'awesome_print'
   gem 'rspec-rails', '~> 3.8'
+
+  # Simplecov is a code coverage analysis tool for Ruby
+  gem 'simplecov'
+
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -73,3 +78,5 @@ gem 'sidekiq'
 gem 'slim-rails'
 
 gem 'draper'
+
+gem 'sentry-raven'

@@ -34,3 +34,4 @@ yarn-debug.log*
 erd.pdf
 /config/database.yml
 .env
+coverage
