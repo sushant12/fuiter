@@ -41,6 +41,8 @@ group :development, :test do
 
   # Simplecov is a code coverage analysis tool for Ruby
   gem 'simplecov'
+
+  gem 'factory_bot_rails'
 end
 
 group :development do

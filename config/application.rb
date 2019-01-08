@@ -39,11 +39,6 @@ module Fuitter
       g.stylesheets false
     end
 
-    config.autoload_paths += %W[#{config.root}/app/workers]
-    config.after_initialize do |app|
-      app.config.paths.add 'app/presenters', eager_load: true
-    end
-
     Raven.configure do |config|
       config.current_environment = 'production'
     end
