@@ -11,7 +11,7 @@ module Facebook
     end
 
     def get_info
-      @graph.get_connections('me', '?fields=picture{url},about,bio,company_overview,contact_address,current_location,description,description_html,founded,general_info,access_token,location,mission,name,albums{description,name,count,photo_count,photos{images}},posts{created_time,description,full_picture,id,link,message,name,source,type,attachments{description,title,url}},events{cover,description,end_time,event_times,name,place,start_time,ticket_uri}')
+      @graph.get_connections('me', '?fields=picture{url},about,bio,company_overview,contact_address,current_location,description,description_html,founded,general_info,access_token,location,mission,name,albums.limit(99){description,name,count,photo_count,photos.limit(99){images}},posts.limit(99){created_time,description,full_picture,id,link,message,name,source,type,attachments{description,title,url}},events{cover,description,end_time,event_times,name,place,start_time,ticket_uri}')
     end
   end
 end
