@@ -43,6 +43,11 @@ group :development, :test do
   gem 'simplecov'
 
   gem 'factory_bot_rails'
+
+  gem 'rubocop-rspec'
+  
+  # clears database after each tests
+  gem 'database_cleaner'
 end
 
 group :development do

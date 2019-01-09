@@ -17,6 +17,7 @@ class FbPageDecorator < Draper::Decorator
       }
     end
   end
+
   def cover_images
     albums = object.content['albums']['data'].select do |album|
       album['name'] == "Cover Photos"

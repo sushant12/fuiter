@@ -39,6 +39,9 @@ module Fuitter
       g.stylesheets false
     end
 
+    config.active_record.dump_schema_after_migration = true
+    config.active_record.schema_format = :sql
+
     Raven.configure do |config|
       config.current_environment = 'production'
     end
