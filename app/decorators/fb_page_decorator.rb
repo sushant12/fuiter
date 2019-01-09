@@ -38,7 +38,10 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def address
-    object.content['location']
+    {
+      "city" => object.content['location']['city'],
+      "country" => object.content['location']['country']
+    }
   end
 
   def albums
@@ -56,10 +59,14 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def posts
-    object.content['feed']['data'].map do |feed|
+    object.content['posts']['data'].map do |posts|
       {
-        'message' => feed['message'],
-        'image' => feed['full_picture']
+        'message' => posts['message'],
+        'image' => posts['full_picture'],
+        'created_at' => posts["created_time"].try(:to_date).to_s,
+        'name' => posts["name"],
+        'description' => posts['description'],
+        'video' => posts['source']
       }
     end
   end
