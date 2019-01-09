@@ -321,12 +321,9 @@ DEPENDENCIES
   rails (~> 5.2.2)
   rails-erd
   rspec-rails (~> 3.8)
-<<<<<<< HEAD
   rubocop-rspec
   sentry-raven
-=======
   rubocop
->>>>>>> integration of rubocup
   sidekiq
   simplecov
   slim-rails
