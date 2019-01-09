@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :page do
-    title { "Home" }
-    uri { "home" }
+    title { 'Home' }
+    uri { 'home' }
   end
 end

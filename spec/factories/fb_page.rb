@@ -3,6 +3,6 @@
 FactoryBot.define do
   factory :fb_page do
     status { 1 }
-    name { "test" }
+    name { 'test' }
   end
 end

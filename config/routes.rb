@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'homes#index'
   post '/homes/sync', to: 'homes#sync', as: 'homes_sync'
@@ -20,5 +22,4 @@ Rails.application.routes.draw do
 
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
   post '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
-
 end

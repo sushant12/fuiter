@@ -1,26 +1,28 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :auth_hash, class: OmniAuth::AuthHash do
     initialize_with do
-      OmniAuth::AuthHash.new({
+      OmniAuth::AuthHash.new(
         provider: provider,
         uid: uid,
         info: {
           email: email
         },
         credentials: {
-          token: "testtoken234tsdf"
+          token: 'testtoken234tsdf'
         }
-      })
+      )
     end
 
     trait :facebook do
-      provider "facebook"
+      provider { 'facebook' }
       sequence(:uid)
-      email "testuser@facebook.com"
+      email { 'testuser@facebook.com' }
     end
 
     trait :does_not_persist do
-      email ""
+      email { '' }
     end
   end
 end
