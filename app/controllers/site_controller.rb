@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SiteController < ApplicationController
   layout :template_layout
   before_action :set_fb_page
