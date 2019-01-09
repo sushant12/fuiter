@@ -24,11 +24,11 @@ section#titlebar
                   li
                     article.span3.project data-tags="photography" 
                       a href="#"
-                      = link_to site_photo_albums_path(@page.id, album['album_id']) do
+                      = link_to site_photo_albums_path(@page.id, album['id']) do
                         .square-1
                           .img-container
-                            = image_tag album["album_photos"]
+                            = image_tag album["preview"]
                             img alt="" src="img/gallery/01.jpg" /
                             .img-bg-icon
                           h3 
-                            = album['album_name']
+                            = album['name']
