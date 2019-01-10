@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-class HomesController < ApplicationController
+class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if fb_page_exist
+    if current_user.fb_pages.empty?
       PageService.call(
         access_token: current_user.token,
         user: current_user
@@ -19,11 +19,5 @@ class HomesController < ApplicationController
       user: current_user
     )
     redirect_to root_path
-  end
-
-  private
-
-  def fb_page_exist
-    current_user.token && current_user.fb_pages.empty?
   end
 end

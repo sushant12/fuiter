@@ -39,8 +39,8 @@ class FbPageDecorator < Draper::Decorator
 
   def address
     {
-      "city" => object.content['location']['city'],
-      "country" => object.content['location']['country']
+      'city' => object.content['location']['city'],
+      'country' => object.content['location']['country']
     }
   end
 
@@ -63,8 +63,8 @@ class FbPageDecorator < Draper::Decorator
       {
         'message' => posts['message'],
         'image' => posts['full_picture'],
-        'created_at' => posts["created_time"].try(:to_date).to_s,
-        'name' => posts["name"],
+        'created_at' => posts['created_time'].try(:to_date).to_s,
+        'name' => posts['name'],
         'description' => posts['description'],
         'video' => posts['source']
       }
