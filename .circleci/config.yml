@@ -1,0 +1,48 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/fuitter
+    docker:
+      - image: sushantbajracharya/ruby-node:latest
+        environment:
+          PGHOST: localhost
+          PGUSER: fuitter
+          RAILS_ENV: test
+      - image: postgres:9.6
+        environment:
+          POSTGRES_USER: fuitter
+          POSTGRES_DB: fuitter_test
+          POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: fuitter-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: fuitter-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # setup database.yml file
+      - run:
+          name: cp database.yml.sample
+          command: cp config/database.yml.sample config/database.yml
+
+      # Setup the database
+      - run:
+          name: Setup DB 
+          command: bundle exec rake db:setup
+
+      # Run the tests
+      - run: bundle exec rake
