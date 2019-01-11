@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddNameToFbPage < ActiveRecord::Migration[5.2]
   def change
     add_column :fb_pages, :name, :string

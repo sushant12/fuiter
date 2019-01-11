@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FbPageDecorator < Draper::Decorator
   delegate_all
 
@@ -12,20 +14,21 @@ class FbPageDecorator < Draper::Decorator
   def menu
     object.fb_page_template.pages.map do |page|
       {
-        "name" => page.title,
-        "uri" => page.uri
+        'name' => page.title,
+        'uri' => page.uri
       }
     end
   end
+
   def cover_images
     albums = object.content['albums']['data'].select do |album|
-      album['name'] == "Cover Photos"
+      album['name'] == 'Cover Photos'
     end
     if albums.empty?
-      object.fb_page_template.template.properties["slider"]
+      object.fb_page_template.template.properties['slider']
     else
-      albums.first["photos"]["data"].map do |img|
-        img["images"].first
+      albums.first['photos']['data'].map do |img|
+        img['images'].first
       end
     end
   end
@@ -35,15 +38,18 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def address
-    object.content['location']
+    {
+      'city' => object.content['location']['city'],
+      'country' => object.content['location']['country']
+    }
   end
 
   def albums
     object.content['albums']['data'].map do |album|
       {
-        "album_photos" => photos(album['id']).first.first['source'],
-        "album_id" => album['id'],
-        "album_name" => album['name']
+        'preview' => photos(album['id']).first.first['source'],
+        'id' => album['id'],
+        'name' => album['name']
       }
     end
   end
@@ -53,10 +59,14 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def posts
-    object.content['feed']['data'].map do |feed|
+    object.content['posts']['data'].map do |posts|
       {
-        "message" => feed['message'],
-        "image" => feed['full_picture']
+        'message' => posts['message'],
+        'image' => posts['full_picture'],
+        'created_at' => posts['created_time'].try(:to_date).to_s,
+        'name' => posts['name'],
+        'description' => posts['description'],
+        'video' => posts['source']
       }
     end
   end
@@ -64,9 +74,9 @@ class FbPageDecorator < Draper::Decorator
   def events
     object.content['events']['data'].map do |event|
       {
-        "name" => event['name'],
-        "location" => event['place'],
-        "details" => event['description']
+        'name' => event['name'],
+        'location' => event['place'],
+        'details' => event['description']
       }
     end
   end
@@ -77,10 +87,10 @@ class FbPageDecorator < Draper::Decorator
 
   def photos(album_id)
     albums = object.content['albums']['data'].select do |album|
-      album["id"] == album_id
+      album['id'] == album_id
     end
     albums.first['photos']['data'].map do |photo|
-      photo["images"]
+      photo['images']
     end
   end
 end

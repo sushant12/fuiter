@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FbPageTemplate < ApplicationRecord
   belongs_to :fb_page
   belongs_to :template

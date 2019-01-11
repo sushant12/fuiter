@@ -1,15 +1,17 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
-require "rails"
+require 'rails'
 # Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-require "action_cable/engine"
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'active_storage/engine'
+require 'action_controller/railtie'
+require 'action_mailer/railtie'
+require 'action_view/railtie'
+require 'action_cable/engine'
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 
@@ -34,15 +36,13 @@ module Fuitter
     config.generators do |g|
       g.template_engine :slim
       g.test_framework  false
-      g.assets  false
+      g.assets false
       g.helper false
       g.stylesheets false
     end
 
-    config.autoload_paths += %W[#{config.root}/app/workers]
-    config.after_initialize do |app|
-      app.config.paths.add 'app/presenters', eager_load: true
-    end
+    config.active_record.dump_schema_after_migration = true
+    config.active_record.schema_format = :sql
 
     Raven.configure do |config|
       config.current_environment = 'production'
