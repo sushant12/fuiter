@@ -1,5 +1,6 @@
 h2 User's facebook page
 p Page Name: #{@page.name}
+p= link_to "Contact Us", site_contact_path(@page.id)
 
 h3 List of templates:
 - @templates.each do |template|
