@@ -17,6 +17,12 @@ class SiteController < ApplicationController
     render template: "#{template_layout}/contact"
   end
 
+  def send_contact_message
+    @user_query = params[:contact]
+    ContactMailer.notify_user(@user_query).deliver
+    ContactMailer.notify_admin(@user_query).deliver
+  end
+
   def events
     render template: "#{template_layout}/events"
   end
