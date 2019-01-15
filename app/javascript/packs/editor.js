@@ -15,14 +15,15 @@
 import Vue from 'vue/dist/vue.esm'
 import Editor from '../views/editor'
 import Preview from '../components/iframe'
-
+import DeviceSelection from '../components/deviceSelection'
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#editor',
 
-    components: { 
-      Preview, 
+    components: {
+      Preview,
       Editor,
+      DeviceSelection,
     }
   })
 })
