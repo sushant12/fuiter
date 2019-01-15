@@ -11,9 +11,8 @@ html.not-ie lang="en"
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
-    link href="css/bootstrap-override.css" rel="stylesheet" /
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" /
-  body
+  body data-template="#{@template['properties'].to_json}"
     header#header
       .container
         .row.t-container

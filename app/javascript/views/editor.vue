@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       color: {
-        hex: '#194d33',
+        hex: '',
       },
       font: '',
       logo: '',
@@ -78,26 +78,20 @@ export default {
         color: this.color['hex'] || '',
         logo: this.logo || '',
         title: this.title || '',
-        template_id: this.template.template_id,
+        id: this.template.id,
         fb_page_id: this.template.fb_page_id
       };
-    EditorServices.updateProperties(this.tmpl)
+      EditorServices.updateProperties(this.tmpl);
     }
 
   },
   mounted() {
     if(!_.isNil(this.template['properties'])){
+      const that = this;
       this.font = this.template['properties']['font'];
       this.color = this.template['properties']['color'];
       this.logo = this.template['properties']['logo'];
       this.title = this.template['properties']['title'];
-
-      const body = document.getElementById('frame').contentDocument.body;
-      body.style.fontFamily = this.font;
-      const colorClass = body.getElementsByClassName("fuitter-color");
-      _.each(colorClass, (el) => {
-        el.style.color = this.color;
-      });
     }
   },
   components: {

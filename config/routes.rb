@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'site/:fb_page_id/news', to: 'site#news', as: 'site_news'
 
-  put '/:fb_page_id/templates/:template_id/properties', to: 'templates#properties', as: 'properties'
+  put '/:fb_page_id/templates/:id/properties', to: 'templates#properties', as: 'properties'
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
   post '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
 end

@@ -23,10 +23,10 @@ class TemplatesController < ApplicationController
     redirect_to editor_design_path(params[:fb_page_id])
   end
   def properties
-    template_properties =  FbPageTemplate.find_by(fb_page_id: params[:fb_page_id])
+    template_properties =  FbPageTemplate.find(params[:id])
     template_properties.properties = params[:template][:properties]
     template_properties.save!
-    redirect_to editor_design_path(params[:fb_page_id])
+    render json: {message: "Success"} 
   end
 
 end
