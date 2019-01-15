@@ -37,7 +37,6 @@ export default {
       font: '',
       logo: '',
       title: '',
-      tmpl: {},
       selectedFont: null,
       fonts: [
           'Arial',
@@ -73,21 +72,19 @@ export default {
       this.updateProperty();
     },
     updateProperty() {
-      this.tmpl = {
+      EditorServices.updateProperties({
         font: this.selectedFont || '',
         color: this.color['hex'] || '',
         logo: this.logo || '',
         title: this.title || '',
         id: this.template.id,
         fb_page_id: this.template.fb_page_id
-      };
-      EditorServices.updateProperties(this.tmpl);
+      });
     }
 
   },
   mounted() {
     if(!_.isNil(this.template['properties'])){
-      const that = this;
       this.font = this.template['properties']['font'];
       this.color = this.template['properties']['color'];
       this.logo = this.template['properties']['logo'];

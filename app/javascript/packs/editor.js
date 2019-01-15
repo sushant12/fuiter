@@ -15,7 +15,7 @@
 import Vue from 'vue/dist/vue.esm'
 import Editor from '../views/editor'
 import Preview from '../components/iframe'
-import DeviceSelection from '../components/deviceSelection'
+import EditorHeader from '../components/editorHeader'
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#editor',
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     components: {
       Preview,
       Editor,
-      DeviceSelection,
+      EditorHeader,
     }
   })
 })

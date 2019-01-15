@@ -1,32 +1,6 @@
 <template>
-  <div>
-    <nav class="navbar is-black" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <a class="navbar-item" href="#">
-          <h1>Site Title</h1>
-        </a>
-
-        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a class="navbar-item">
-            Home
-          </a>
-
-          <a class="navbar-item">
-            Documentation
-          </a> 
-        </div>
-      </div>
-    </nav> 
-    <div class="site-preview">
-      <iframe :src="iframeSrc" scrolling="yes" frameborder="0" id="frame" allowfullscreen></iframe>
-    </div>
+  <div class="site-preview">
+    <iframe :src="iframeSrc" scrolling="yes" frameborder="0" id="frame" allowfullscreen></iframe>
   </div>
 </template>
 

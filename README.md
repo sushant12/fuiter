@@ -44,5 +44,11 @@ You need to link your files to your html so you need to create another directory
 
 # Save Template
 
-You need to run `rake templates:sync` to list your templates in the web ui.s  
+You need to run `rake templates:sync` to list your templates in the web ui.
+
+# Custom Fuitter Class
+
+When you use the editor to change the font color it will look for `fuitter-color` . It only updates the color if it finds that class.
+
+
 

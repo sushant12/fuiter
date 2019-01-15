@@ -210,12 +210,12 @@ $(window).load(function() {
 
 $(window).load(function() {
   // change site property depending upong the <body data-template>
-  var body = document.getElementsByTagName('body')[0];
-  var template = JSON.parse(body.dataset.template);
-  var fuitterColor = body.getElementsByClassName("fuitter-color");
-  for (let item of fuitterColor) {
-    item.style.color = template['color'];
-  }
+  // var body = document.getElementsByTagName('body')[0];
+  // var template = JSON.parse(body.dataset.template);
+  // var fuitterColor = body.getElementsByClassName("fuitter-color");
+  // for (let item of fuitterColor) {
+  //   item.style.color = template['color'];
+  // }
 
 });
 
