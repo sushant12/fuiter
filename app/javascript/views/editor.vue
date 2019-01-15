@@ -114,6 +114,7 @@ export default {
     z-index: 1;
     top: 0;
     left: 0;
+    margin-top: 3.25rem; 
     background-color: #4c5764;
   }
   @media screen and (max-height: 450px) {
