@@ -1,0 +1,7 @@
+javascript:
+  var body = document.getElementsByTagName('body')[0];
+  var template = JSON.parse(body.dataset.template);
+  var fuitterColor = body.getElementsByClassName("fuitter-color");
+  for (let item of fuitterColor) {
+    item.style.color = template['color'];
+  }

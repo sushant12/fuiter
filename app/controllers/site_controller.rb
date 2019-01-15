@@ -44,6 +44,7 @@ class SiteController < ApplicationController
 
   def set_fb_page
     @page = FbPage.find_by(id: params[:fb_page_id]).decorate
+    @template = @page.fb_page_template
   end
 
   def template_layout

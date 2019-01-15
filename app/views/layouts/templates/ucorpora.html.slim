@@ -11,9 +11,8 @@ html.not-ie lang="en"
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
-    link href="css/bootstrap-override.css" rel="stylesheet" /
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" /
-  body
+  body data-template="#{@template['properties'].to_json}"
     header#header
       .container
         .row.t-container
@@ -24,7 +23,7 @@ html.not-ie lang="en"
                 img src=(asset_pack_path 'templates/ucorpora/images/logo-header.png')
           .span9
             .row.space60
-            nav#nav role="navigation" 
+            nav.fuitter-color#nav role="navigation" 
               a href="#nav" title=("Show navigation")  Show navigation
               a href="#" title=("Hide navigation")  Hide navigation
               ul.clearfix
@@ -94,6 +93,7 @@ html.not-ie lang="en"
             | \&copy; 2020. All rights reserved.
     /! Footer End
     /! JavaScripts
+    = render 'shared/template'
     script src="https://code.jquery.com/jquery-1.8.3.min.js" type="text/javascript" 
     script src="https://stackpath.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js" type="text/javascript" 
     = javascript_pack_tag "templates/ucorpora/ucorpora"

@@ -10,3 +10,4 @@
 console.log('Hello World from Webpacker')
 
 import "../styles/application.css";
+import "bulma/bulma";
