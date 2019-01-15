@@ -7,6 +7,7 @@ AllCops:
     - 'node_modules/**/*'
     - 'public/**/*'
     - 'bin/**/*'
+    - 'spec/**/*'
 
 Bundler/OrderedGems:
   Enabled: false
@@ -17,8 +18,3 @@ Style/Documentation:
 Metrics/LineLength:
   Max: 120
   IgnoredPatterns: ['(\A|\s)#']
-  Exclude:
-    - spec/**/*
-Metrics/BlockLength:
-  Exclude:
-    - spec/**/*

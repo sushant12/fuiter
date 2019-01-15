@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class TemplatesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   def index
     @page = current_user.fb_pages.find_by(id: params[:fb_page_id])
     @templates = Template.all
@@ -21,4 +22,11 @@ class TemplatesController < ApplicationController
     template.save!
     redirect_to editor_design_path(params[:fb_page_id])
   end
+  def properties
+    template_properties =  FbPageTemplate.find(params[:id])
+    template_properties.properties = params[:template][:properties]
+    template_properties.save!
+    render json: {message: "Success"} 
+  end
+
 end

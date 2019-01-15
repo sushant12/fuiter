@@ -1,2 +1,7 @@
-div.h_iframe
-  iframe[src= "#{request.base_url}/site/#{@fb_page_id}/home" scrolling="yes" frameborder="0" allowfullscreen]
+#editor
+  <editor-header></editor-header>
+  <preview :url="#{site_home_url(@fb_page_id).to_json}"></preview>
+  <editor :template="#{@template.to_json}"></editor>
+
+= stylesheet_pack_tag 'editor'
+= javascript_pack_tag 'editor'

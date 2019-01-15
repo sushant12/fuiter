@@ -74,9 +74,14 @@ class FbPageDecorator < Draper::Decorator
   def events
     object.content['events']['data'].map do |event|
       {
+        'image' => event['cover']['source'],
         'name' => event['name'],
         'location' => event['place'],
-        'details' => event['description']
+        'description' => event['description'],
+        'date' => event['start_time'].to_date,
+        'start_time' => event['start_time'].to_time.strftime("%I:%M %p"),
+        'end_time' => event['end_time'].to_time.strftime("%I:%M %p"),
+        'event_times' => event["event_times"],
       }
     end
   end
