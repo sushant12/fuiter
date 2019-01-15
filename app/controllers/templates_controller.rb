@@ -25,8 +25,8 @@ class TemplatesController < ApplicationController
   def properties
     template_properties =  FbPageTemplate.find(params[:id])
     template_properties.properties = params[:template][:properties]
+    template_properties.logo = params[:template][:logo]
     template_properties.save!
     render json: {message: "Success"} 
   end
-
 end

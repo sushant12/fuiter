@@ -21,15 +21,15 @@ export default {
 
 <style scoped>
   .site-preview{
-  overflow: hidden;
-  position: absolute;
-  /* height: 100%; */
-  left: 250px;
-  right: 0px;
-  top: 0px;
-  bottom: 0px;
-  margin-top: 3.25rem;
-  /* z-index: 1; */
+    overflow: hidden;
+    position: absolute;
+    /* height: 100%; */
+    left: 250px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    margin-top: 3.25rem;
+    /* z-index: 1; */
 }
 
 .site-preview iframe {
