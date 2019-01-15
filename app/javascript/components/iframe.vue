@@ -1,5 +1,5 @@
 <template>
-  <div id="site_preview">
+  <div class="site-preview">
     <iframe :src="iframeSrc" scrolling="yes" frameborder="0" id="frame" allowfullscreen></iframe>
   </div>
 </template>
@@ -20,5 +20,22 @@ export default {
 </script>
 
 <style scoped>
+  .site-preview{
+  overflow: hidden;
+  position: absolute;
+  /* height: 100%; */
+  left: 250px;
+  right: 0px;
+  top: 0px;
+  bottom: 0px;
+  /* z-index: 1; */
+}
 
+.site-preview iframe {
+  position: absolute;
+  top:0;
+  left:0;
+  height: 100%;
+  width: 100%;
+}
 </style>
