@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar">
-    font Color: <input type="text" v-model="color" @focusout='changeColor'> <br>
+    <chrome-picker v-model="color" @input="changeColor"></chrome-picker>
     font family: <input type="text" v-model="font" @focusout='changeFont'> <br>
     site title: <input type="text" v-model="font" @focusout='changeTitle'> <br>
   </div>
@@ -8,12 +8,15 @@
 
 <script>
 import _ from 'lodash';
+import { Chrome } from 'vue-color';
 
 export default {
   props: ['template'],
   data() {
     return {
-      color: '',
+      color: {
+        hex: '#194d33',
+      },
       font: '',
       logo: '',
       title: '',
@@ -22,7 +25,7 @@ export default {
   },
   methods: {
     changeColor(e){
-      const color = e.target.value;
+      const color = this.color['hex'];
       const frame = document.getElementById('frame').contentDocument.body;
       const colorClass = frame.getElementsByClassName("fuitter-color");
       _.each(colorClass, (el) => {
@@ -46,7 +49,7 @@ export default {
         logo: this.logo,
         title: this.title
       };
-    }
+    },
 
   },
   mounted() {
@@ -63,6 +66,9 @@ export default {
         el.style.color = this.color;
       });
     }
+  },
+  components: {
+    'chrome-picker': Chrome,
   }
 };
 </script>
