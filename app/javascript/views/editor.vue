@@ -28,7 +28,7 @@ import EditorServices from '../services/index.js';
 import { Chrome } from 'vue-color';
 
 export default {
-  props: ['template','fbPageId'],
+  props: ['template'],
   data() {
     return {
       color: {
@@ -78,19 +78,19 @@ export default {
         color: this.color['hex'] || '',
         logo: this.logo || '',
         title: this.title || '',
-        template_id: this.template.id,
-        fb_page_id: this.fbPageId
+        template_id: this.template.template_id,
+        fb_page_id: this.template.fb_page_id
       };
     EditorServices.updateProperties(this.tmpl)
     }
 
   },
   mounted() {
-    if(!_.isNil(this.template)){
-      this.font = this.template['font'];
-      this.color = this.template['color'];
-      this.logo = this.template['logo'];
-      this.title = this.template['title'];
+    if(!_.isNil(this.template['properties'])){
+      this.font = this.template['properties']['font'];
+      this.color = this.template['properties']['color'];
+      this.logo = this.template['properties']['logo'];
+      this.title = this.template['properties']['title'];
 
       const body = document.getElementById('frame').contentDocument.body;
       body.style.fontFamily = this.font;
