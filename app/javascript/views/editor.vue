@@ -18,6 +18,7 @@
           {{font}}
         </option>
       </select>
+      <hr />
       <div class="field">
         <div class="file is-info has-name is-boxed">
           <label class="file-label">
@@ -132,7 +133,7 @@ export default {
     background-color: #4c5764;
     overflow-y: scroll;
   }
-  @media screen and (max-height: 1000px) {
+  @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
   }
@@ -141,5 +142,6 @@ export default {
   }
   .sideContent{
     margin: 10px;
+    overflow: hidden;
   }
 </style>
