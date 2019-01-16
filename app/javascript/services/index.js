@@ -1,18 +1,8 @@
 import axios from 'axios';
 
 const EditorServices = {
-  updateProperties(params) {
-    axios.put(`/${params.fb_page_id}/templates/${params.id}/properties`, 
-    { 
-      template: {
-        properties: { 
-          font: params.font,
-          color: params.color,
-          logo: params.logo,
-          title: params.title
-        } 
-      }
-    })
+  updateProperties(params, template_id, fb_page_id) {
+    axios.put(`/${fb_page_id}/templates/${template_id}/properties`, params)
     .then(function (response) {
       console.log(response);
     })

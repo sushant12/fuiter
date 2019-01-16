@@ -5,4 +5,6 @@ class FbPageTemplate < ApplicationRecord
   belongs_to :template
   has_many :pages, dependent: :destroy
   has_one :setting, dependent: :destroy
+
+  mount_uploader :logo, LogoUploader
 end
