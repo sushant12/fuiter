@@ -9,5 +9,6 @@
 
 console.log('Hello World from Webpacker')
 
-import "../styles/application.css";
 import "bulma/bulma";
+import "../styles/application.css";
+import "../styles/dashboard.scss";

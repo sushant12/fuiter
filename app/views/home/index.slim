@@ -1,12 +1,136 @@
-h2 This is index 
+/ h2 This is index 
 
-- if user_signed_in?
-  = link_to 'Logout', destroy_user_session_path
+/ - if user_signed_in?
+/   = link_to 'Logout', destroy_user_session_path
 
-p Email Address: #{current_user[:email]}
+/ p Email Address: #{current_user[:email]}
 
-= button_to 'Sync', home_sync_path
+/ = button_to 'Sync', home_sync_path
 
-h3 List of pages:
-- @pages.each do |page|
-  p= link_to page.name, templates_path(page)
+/ h3 List of pages:
+/ - @pages.each do |page|
+/   p= link_to page.name, templates_path(page)
+#dashboard-wrapper.columns
+  .column
+  .content.column.is-11
+    /! Dashboard Wrapper
+    .dashboard-wrapper
+      .columns
+        .column
+          /! Main content
+          #main-dashboard.section-wrapper
+            /! Dashboard content
+            #widgets-layout.columns.dashboard-columns.is-multiline
+              /! Support tickets widget
+              .column.is-6.is-hidden-mobile
+                .flex-card.light-bordered.light-raised.card-overflow
+                  h3.card-heading.is-bordered.has-icon
+                    span Facebook Pages
+                  .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
+                    .button
+                      i.material-icons more_vert
+                    .dropdown-menu.is-text-bigger role="menu" 
+                      .dropdown-content
+                        a.dropdown-item
+                          i.sl.sl-icon-refresh
+                          span
+                            span Reload
+                            span Reload widget data
+                        a.dropdown-item href="#" 
+                          i.sl.sl-icon-pencil
+                          span
+                            span Settings
+                            span Edit widget settings
+                        .dropdown-divider
+                        a.dropdown-item href="#" 
+                          i.sl.sl-icon-bell
+                          span
+                            span Notifications
+                            span Notify me of changes
+                        .dropdown-divider
+                        a.dropdown-item
+                          i.sl.sl-icon-trash
+                          span
+                            span Delete
+                            span Delete this widget
+                  table.table.hire-table
+                    thead
+                      tr
+                        th.has-text-centered.muted-text
+                          /! <i class="sl sl-icon-camera"></i
+                        th Page
+                        th Status
+                        th Actions
+                    tbody
+                      tr
+                        td
+                          img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
+                        td
+                          a Terry Daniels
+                        td
+                          span.tag.squared.is-secondary in progress
+                        td.has-text-centered
+                          i.fa.fa-search
+                          | \
+                          i.fa.fa-edit
+              /! Support tickets widget
+              /! User table widget
+              .column.is-6.is-hidden-mobile
+                .flex-card.light-bordered.light-raised.card-overflow
+                  h3.card-heading.is-bordered.has-icon
+                    span Published Pages
+                  .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
+                    .button
+                      i.material-icons more_vert
+                    .dropdown-menu.is-text-bigger role="menu" 
+                      .dropdown-content
+                        a.dropdown-item
+                          i.sl.sl-icon-refresh
+                          span
+                            span Reload
+                            span Reload widget data
+                        a.dropdown-item href="#" 
+                          i.sl.sl-icon-pencil
+                          span
+                            span Settings
+                            span Edit widget settings
+                        .dropdown-divider
+                        a.dropdown-item href="#" 
+                          i.sl.sl-icon-bell
+                          span
+                            span Notifications
+                            span Notify me of changes
+                        .dropdown-divider
+                        a.dropdown-item
+                          i.sl.sl-icon-trash
+                          span
+                            span Delete
+                            span Delete this widget
+                  table.table.hire-table
+                    thead
+                      tr
+                        th.has-text-centered.muted-text
+                          /! <i class="sl sl-icon-camera"></i
+                        th Page
+                        th Status
+                        th Actions
+                    tbody
+                      tr
+                        td
+                          img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
+                        td
+                          a Terry Daniels
+                        td
+                          span.tag.squared.is-success Online
+                          span.tag.squared.is-danger Expired
+                        td.has-text-centered
+                          i.fa.fa-search
+                          | \
+                          i.fa.fa-edit
+              /! /User table widget
+            /! /Dashboard content
+          /! /Main content
+        /! /Main view
+    /! /Dashboard Wrapper
+  .column
+
