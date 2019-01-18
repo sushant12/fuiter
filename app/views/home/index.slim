@@ -1,19 +1,15 @@
-/ h2 This is index 
 
-/ - if user_signed_in?
-/   = link_to 'Logout', destroy_user_session_path
 
-/ p Email Address: #{current_user[:email]}
 
 / = button_to 'Sync', home_sync_path
-
-/ h3 List of pages:
-/ - @pages.each do |page|
-/   p= link_to page.name, templates_path(page)
+= render 'shared/dashboard/navbar'
+= render 'shared/dashboard/sidebar'
 #dashboard-wrapper.columns
   .column
   .content.column.is-11
     /! Dashboard Wrapper
+    br
+    = button_to 'Sync', home_sync_path, class: "button is-info is-rounded is-outlined"
     .dashboard-wrapper
       .columns
         .column
@@ -28,7 +24,7 @@
                     span Facebook Pages
                   .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
                     .button
-                      i.material-icons more_vert
+                      i.fa.fa-ellipsis-v
                     .dropdown-menu.is-text-bigger role="menu" 
                       .dropdown-content
                         a.dropdown-item
@@ -61,18 +57,18 @@
                         th Page
                         th Status
                         th Actions
-                    tbody
-                      tr
-                        td
-                          img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
-                        td
-                          a Terry Daniels
-                        td
-                          span.tag.squared.is-secondary in progress
-                        td.has-text-centered
-                          i.fa.fa-search
-                          | \
-                          i.fa.fa-edit
+                    - @pages.each do |page|
+                      tbody
+                        tr
+                          td
+                            img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
+                          td
+                            = page.name
+                          td
+                            span.tag.squared.is-secondary in progress
+                          td.has-text-centered
+                            = link_to "Edit", templates_path(page)
+                            span.i.fa.fa-edit style=("margin-left: 10px;")
               /! Support tickets widget
               /! User table widget
               .column.is-6.is-hidden-mobile
@@ -81,7 +77,7 @@
                     span Published Pages
                   .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
                     .button
-                      i.material-icons more_vert
+                      i.fa.fa-ellipsis-v
                     .dropdown-menu.is-text-bigger role="menu" 
                       .dropdown-content
                         a.dropdown-item
@@ -114,19 +110,19 @@
                         th Page
                         th Status
                         th Actions
-                    tbody
-                      tr
-                        td
-                          img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
-                        td
-                          a Terry Daniels
-                        td
-                          span.tag.squared.is-success Online
-                          span.tag.squared.is-danger Expired
-                        td.has-text-centered
-                          i.fa.fa-search
-                          | \
-                          i.fa.fa-edit
+                    - @pages.each do |page|
+                      tbody
+                        tr
+                          td
+                            img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
+                          td
+                            = page.name
+                          td
+                            span.tag.squared.is-success Online
+                            span.tag.squared.is-danger Expired
+                          td.has-text-centered
+                            = link_to "Edit", templates_path(page)
+                            span.i.fa.fa-edit style=("margin-left: 10px;")
               /! /User table widget
             /! /Dashboard content
           /! /Main content

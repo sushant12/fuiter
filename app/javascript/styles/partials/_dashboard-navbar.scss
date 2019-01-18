@@ -38,8 +38,27 @@ nav.dashboard-nav {
     //fluid container
     .container.is-fluid {
         margin: 0;
+        color: red;
         // height: 65px;
+        .column a {
+            color: #f4f6fb; 
+        }
     }
+
+    .navbar-link {
+      background: #2f363d !important;
+    }
+
+    .navbar-dropdown {
+      background: #2f363d !important;
+      width: 80%;
+
+      &:hover {
+        color: red !important;
+      }
+    }
+
+    
 
     //Brand
     .navbar-brand {
@@ -213,7 +232,7 @@ nav.dashboard-nav {
     }
 
     .navbar-subnav {
-        height: 65px;
+        // height: 65px;
         display: flex;
 
         .is-subnav {
@@ -332,6 +351,19 @@ nav.dashboard-nav {
         .dropOut ul {
             margin-left: 0 !important;
         }
+    }
+
+    .navbar-item.has-dropdown.is-hoverable {
+      .navbar-link {
+        img {
+          border: 1px solid #ddd;
+          border-radius: 1px;
+          padding: 2px;
+          width: 35px;
+          height: 50px;
+          margin-right: 10px;
+        }
+      }
     }
 
     //nav items
