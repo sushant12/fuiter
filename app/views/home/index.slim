@@ -18,37 +18,10 @@
             /! Dashboard content
             #widgets-layout.columns.dashboard-columns.is-multiline
               /! Support tickets widget
-              .column.is-6.is-hidden-mobile
+              .column.is-12
                 .flex-card.light-bordered.light-raised.card-overflow
                   h3.card-heading.is-bordered.has-icon
                     span Facebook Pages
-                  .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
-                    .button
-                      i.fa.fa-ellipsis-v
-                    .dropdown-menu.is-text-bigger role="menu" 
-                      .dropdown-content
-                        a.dropdown-item
-                          i.sl.sl-icon-refresh
-                          span
-                            span Reload
-                            span Reload widget data
-                        a.dropdown-item href="#" 
-                          i.sl.sl-icon-pencil
-                          span
-                            span Settings
-                            span Edit widget settings
-                        .dropdown-divider
-                        a.dropdown-item href="#" 
-                          i.sl.sl-icon-bell
-                          span
-                            span Notifications
-                            span Notify me of changes
-                        .dropdown-divider
-                        a.dropdown-item
-                          i.sl.sl-icon-trash
-                          span
-                            span Delete
-                            span Delete this widget
                   table.table.hire-table
                     thead
                       tr
@@ -61,72 +34,18 @@
                       tbody
                         tr
                           td
-                            img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
+                            img alt="" src=(page.image)
                           td
                             = page.name
                           td
-                            span.tag.squared.is-secondary in progress
+                            span class=(["tag","squared", "is-#{page.state}"])
+                              = page.status
                           td.has-text-centered
-                            = link_to "Edit", templates_path(page)
-                            span.i.fa.fa-edit style=("margin-left: 10px;")
-              /! Support tickets widget
-              /! User table widget
-              .column.is-6.is-hidden-mobile
-                .flex-card.light-bordered.light-raised.card-overflow
-                  h3.card-heading.is-bordered.has-icon
-                    span Published Pages
-                  .dropdown.is-right.dropdown-trigger.styled-dropdown.is-round
-                    .button
-                      i.fa.fa-ellipsis-v
-                    .dropdown-menu.is-text-bigger role="menu" 
-                      .dropdown-content
-                        a.dropdown-item
-                          i.sl.sl-icon-refresh
-                          span
-                            span Reload
-                            span Reload widget data
-                        a.dropdown-item href="#" 
-                          i.sl.sl-icon-pencil
-                          span
-                            span Settings
-                            span Edit widget settings
-                        .dropdown-divider
-                        a.dropdown-item href="#" 
-                          i.sl.sl-icon-bell
-                          span
-                            span Notifications
-                            span Notify me of changes
-                        .dropdown-divider
-                        a.dropdown-item
-                          i.sl.sl-icon-trash
-                          span
-                            span Delete
-                            span Delete this widget
-                  table.table.hire-table
-                    thead
-                      tr
-                        th.has-text-centered.muted-text
-                          /! <i class="sl sl-icon-camera"></i
-                        th Page
-                        th Status
-                        th Actions
-                    - @pages.each do |page|
-                      tbody
-                        tr
-                          td
-                            img alt="" data-demo-src="assets/images/avatars/terry.jpg" src="https://via.placeholder.com/250x250" /
-                          td
-                            = page.name
-                          td
-                            span.tag.squared.is-success Online
-                            span.tag.squared.is-danger Expired
-                          td.has-text-centered
-                            = link_to "Edit", templates_path(page)
-                            span.i.fa.fa-edit style=("margin-left: 10px;")
-              /! /User table widget
-            /! /Dashboard content
-          /! /Main content
-        /! /Main view
-    /! /Dashboard Wrapper
+                            - unless page.state == ""
+                              = link_to site_home_path(page), {title: 'Preview Website'} do
+                                span.i.fa.fa-eye style=("margin-left: 10px;")
+
+                            = link_to templates_path(page), {title: 'Edit Website'} do
+                              span.i.fa.fa-edit style=("margin-left: 10px;")
   .column
 

@@ -10,7 +10,7 @@ class HomeController < ApplicationController
         user: current_user
       )
     end
-    @pages = current_user.fb_pages
+    @pages = HomeDecorator.decorate_collection(current_user.fb_pages)
   end
 
   def sync

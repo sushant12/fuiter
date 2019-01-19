@@ -11,6 +11,7 @@ class FbPageDecorator < Draper::Decorator
   #       object.created_at.strftime("%a %m/%d/%y")
   #     end
   #   end
+
   def menu
     object.fb_page_template.pages.map do |page|
       {
