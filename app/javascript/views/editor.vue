@@ -123,15 +123,14 @@ export default {
 
 <style scoped>
   .sidenav {
-    height: 574px;
+    height: 100%;
     width: 250px;
-    position: absolute;
+    position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
     margin-top: 3.25rem; 
     background-color: #4c5764;
-    overflow-y: scroll;
   }
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
@@ -142,6 +141,5 @@ export default {
   }
   .sideContent{
     margin: 10px;
-    overflow: hidden;
   }
 </style>

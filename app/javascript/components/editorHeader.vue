@@ -39,18 +39,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-  .icon-link{
-    padding-left: 20px;
-    color: #999999;
-  }
-  .main-navbar{
-    height: 3.3rem;
-    
-    background-color: #434d58; 
-  }
-  .device-selections{
-    margin-left: 50%;
-    padding-top: 15px; 
-  }
-</style>
