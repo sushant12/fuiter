@@ -12,6 +12,9 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'action_cable/engine'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
+
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
 

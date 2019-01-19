@@ -1,13 +1,19 @@
 <template>
   <div class="device-selections">
-    <span data-device="monitor" class="demo-device-icon-monitor is-active">
-      <a><input type="button" name="monitor" value="monitor" @click="updateResolution('monitor')"></a>
+    <span data-device="monitor">
+      <a name="monitor" value="monitor" @click="updateResolution('monitor')">
+        <i class="fa fa-desktop fa-2x"></i>
+      </a>
     </span>
-    <span data-device="tablet" class="demo-device-icon-tablet">
-      <a><input type="button" name="tablet" value="tablet" @click="updateResolution('tablet')"></a>
+    <span data-device="tablet">
+      <a name="tablet" value="tablet" @click="updateResolution('tablet')">
+        <i class="fa fa-tablet fa-2x"></i>
+      </a>
     </span>
-    <span data-device="phone" class="demo-device-icon-phone">
-      <a><input type="button" name="phone" value="phone" @click="updateResolution('phone')"></a>
+    <span data-device="phone">
+      <a name="phone" value="phone" @click="updateResolution('phone')">
+        <i class="fa fa-tablet fa-2x"></i>
+      </a>
     </span>
   </div>
 </template>

@@ -1,7 +1,4 @@
 #editor
-  <editor-header></editor-header>
+  = render 'shared/editor/navbar'
   <preview :url="#{site_home_url(@fb_page_id).to_json}"></preview>
   <editor :template="#{@template.to_json}"></editor>
-
-= stylesheet_pack_tag 'editor'
-= javascript_pack_tag 'editor'
