@@ -37,6 +37,17 @@ COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
 
 
 --
+-- Name: fb_page_status; Type: TYPE; Schema: public; Owner: -
+--
+
+CREATE TYPE public.fb_page_status AS ENUM (
+    'online',
+    'in progress',
+    'expired'
+);
+
+
+--
 -- Name: subscription_type; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -96,13 +107,13 @@ CREATE TABLE public.fb_pages (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     token character varying,
     content jsonb,
-    status boolean DEFAULT false,
     sub_domain character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     user_id uuid,
     name character varying,
-    fb_page_id character varying
+    fb_page_id character varying,
+    status public.fb_page_status
 );
 
 
@@ -289,6 +300,13 @@ CREATE INDEX index_fb_page_templates_on_template_id ON public.fb_page_templates 
 
 
 --
+-- Name: index_fb_pages_on_status; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_fb_pages_on_status ON public.fb_pages USING btree (status);
+
+
+--
 -- Name: index_fb_pages_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -398,6 +416,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181230044059'),
 ('20181230070956'),
 ('20190104105809'),
-('20190116064224');
+('20190116064224'),
+('20190119103402');
 
 

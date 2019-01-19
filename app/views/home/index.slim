@@ -1,12 +1,51 @@
-h2 This is index 
 
-- if user_signed_in?
-  = link_to 'Logout', destroy_user_session_path
 
-p Email Address: #{current_user[:email]}
 
-= button_to 'Sync', home_sync_path
+/ = button_to 'Sync', home_sync_path
+= render 'shared/dashboard/navbar'
+= render 'shared/dashboard/sidebar'
+#dashboard-wrapper.columns
+  .column
+  .content.column.is-11
+    /! Dashboard Wrapper
+    br
+    = button_to 'Sync', home_sync_path, class: "button is-info is-rounded is-outlined"
+    .dashboard-wrapper
+      .columns
+        .column
+          /! Main content
+          #main-dashboard.section-wrapper
+            /! Dashboard content
+            #widgets-layout.columns.dashboard-columns.is-multiline
+              /! Support tickets widget
+              .column.is-12
+                .flex-card.light-bordered.light-raised.card-overflow
+                  h3.card-heading.is-bordered.has-icon
+                    span Facebook Pages
+                  table.table.hire-table
+                    thead
+                      tr
+                        th.has-text-centered.muted-text
+                          /! <i class="sl sl-icon-camera"></i
+                        th Page
+                        th Status
+                        th Actions
+                    - @pages.each do |page|
+                      tbody
+                        tr
+                          td
+                            img alt="" src=(page.image)
+                          td
+                            = page.name
+                          td
+                            span class=(["tag","squared", "is-#{page.state}"])
+                              = page.status
+                          td.has-text-centered
+                            - unless page.state == ""
+                              = link_to site_home_path(page), {title: 'Preview Website'} do
+                                span.i.fa.fa-eye style=("margin-left: 10px;")
 
-h3 List of pages:
-- @pages.each do |page|
-  p= link_to page.name, templates_path(page)
+                            = link_to templates_path(page), {title: 'Edit Website'} do
+                              span.i.fa.fa-edit style=("margin-left: 10px;")
+  .column
+

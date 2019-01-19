@@ -17,11 +17,13 @@ class TemplatesController < ApplicationController
                        { title: 'Contact', uri: 'contact' },
                        { title: 'News', uri: 'news' }
                      ])
+      tmpl.fb_page.update(status: 'in progress')
     end
     template.template_id = params[:template_id]
     template.save!
     redirect_to editor_design_path(params[:fb_page_id])
   end
+  
   def properties
     template_properties =  FbPageTemplate.find(params[:id])
     template_properties.properties = params[:template][:properties]

@@ -1,0 +1,15 @@
+nav.navbar.dashboard-nav.has-shadow
+  .container.is-fluid.columns
+    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")  Fuitter
+    .column.is-6
+    .column.is-3
+      - if user_signed_in?
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            = image_tag("#{current_user.image}")
+            = current_user.name
+          .navbar-dropdown
+            .navbar-item
+              = link_to  'Message Us'
+            .navbar-item
+              = link_to 'Logout', destroy_user_session_path

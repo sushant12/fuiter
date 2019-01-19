@@ -12,6 +12,7 @@
     "vue-template-compiler": "^2.5.21"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "2.11.2",
+    "jquery": "2.2.4"
   }
 }
