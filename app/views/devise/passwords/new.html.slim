@@ -1,11 +1,49 @@
-h2
-  | Forgot your password?
-= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .actions
-    = f.submit "Send me reset password instructions"
-= render "devise/shared/links"
+/ = form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+/   = devise_error_messages!
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .actions
+/     = f.submit "Send me reset password instructions"
+/ = render "devise/shared/links"
+
+
+.login-wrapper.columns.is-gapless
+  .column.is-7
+    .hero.is-fullheight
+      .hero-heading
+        .section.has-text-centered
+          .title Fuitter
+        .has-text-centered
+          .subtitle Forgot your password?
+          p Login to manage your clients
+      .hero-body
+        .container
+          .columns
+            .column
+            .column.is-5
+              form
+                #recover-form.login-form.animated.preFadeInLeft.fadeInLeft
+                  .field.pb-10
+                    .control
+                      input.input.is-large placeholder=("Email address") type="text" /
+                  p.control.login
+                    button.button.button-cta.info-btn.btn-align-lg.btn-outlined.is-bold.is-fullwidth.rounded.raised.no-lh Reset password
+              #back-to-login.section.forgot-password.animated.preFadeInLeft.fadeInLeft
+                p.has-text-centered
+                  = link_to "Back to Log in", new_session_path(resource_name)
+            .column
+  .column.login-column.is-5.hero-banner
+    .hero.is-fullheight.is-theme-info.is-relative
+      .columns.has-text-centered
+        .column
+          h2.title.light-text User Login
+          .mt-30.has-text-centered
+            - resource_class.omniauth_providers.each do |provider|
+              = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
+          .mt-20.has-text-centered
+            p.light-text
+              | Don't worry. We will never post to your Facebook profile or page.
+              | Pagevamp will not modify your Facebook Page in any way.
+      img.login-city alt="" src=(asset_pack_path 'images/illustrations/city.svg')

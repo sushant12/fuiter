@@ -1,24 +1,63 @@
-h2
-  | Sign up
-= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = devise_error_messages!
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    - if @minimum_password_length
-      em
-        | (
-        = @minimum_password_length
-        |  characters minimum)
-    br
-    = f.password_field :password, autocomplete: "new-password"
-  .field
-    = f.label :password_confirmation
-    br
-    = f.password_field :password_confirmation, autocomplete: "new-password"
-  .actions
-    = f.submit "Sign up"
-= render "devise/shared/links"
+/ = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+/   = devise_error_messages!
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .field
+/     = f.label :password
+/     - if @minimum_password_length
+/       em
+/         | (
+/         = @minimum_password_length
+/         |  characters minimum)
+/     br
+/     = f.password_field :password, autocomplete: "new-password"
+/   .field
+/     = f.label :password_confirmation
+/     br
+/     = f.password_field :password_confirmation, autocomplete: "new-password"
+/   .actions
+/     = f.submit "Sign up"
+/ = render "devise/shared/links"
+
+
+.login-wrapper.columns.is-gapless
+  .column.is-7
+    .hero.is-fullheight
+      .hero-heading
+        .section.intro-section.has-text-centered
+          h2.title Fuitter
+          #signup-intro.intro-text.has-text-centered.animated.preFadeInLeft.fadeInLeft
+            .subtitle Become a Partner
+            p Just a few more details to help us know you better
+      .hero-body
+        #signup-form.container
+          .columns
+            .column.is-8.is-offset-2
+              form
+                .login-form.animated.preFadeInLeft.fadeInLeft
+                  .field.pb-10
+                    .control
+                      input.input.is-large placeholder=("Full name *") type="text" /
+                  .field.pb-10
+                    .control
+                      input.input.is-large placeholder=("Email address *") type="email" /
+                  .field.pb-10
+                    .control
+                      input.input.is-large placeholder=("Password *") type="password" /
+                  p.control.login
+                    button.button.button-cta.info-btn.btn-align-lg.btn-outlined.is-bold.is-fullwidth.rounded.raised.no-lh Sign up                                                      
+  .column.login-column.is-5.is-hidden-mobile.hero-banner
+    .hero.signup-hero.is-fullheight.is-theme-primary.is-relative
+      .columns.has-text-centered
+        .column
+          .facebook_signup
+            - resource_class.omniauth_providers.each do |provider|
+              = link_to "Sign up with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
+          .already
+            span Already have an account ?
+            = link_to "Log in", new_session_path(resource_name), class: "button btn-align btn-outlined is-bold light-btn rounded"                           
+          img.login-city alt="" src=(asset_pack_path 'images/illustrations/city.svg')                   
+          
+          
