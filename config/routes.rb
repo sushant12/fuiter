@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   root to: 'home#index'
-  post '/home/sync', to: 'home#sync', as: 'home_sync'
+  post '/home/sync/:id', to: 'home#sync', as: 'sync_page'
 
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
   get '/editor/page/:fb_page_id', to: 'editor#page'

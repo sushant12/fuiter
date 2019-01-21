@@ -18,6 +18,7 @@ class TemplatesController < ApplicationController
                        { title: 'News', uri: 'news' }
                      ])
       tmpl.fb_page.update(status: 'in progress')
+      Facebook::PageDetailService.call(tmpl.fb_page.token)
     end
     template.template_id = params[:template_id]
     template.save!

@@ -9,7 +9,7 @@
   .content.column.is-11
     /! Dashboard Wrapper
     br
-    = button_to 'Sync', home_sync_path, class: "button is-info is-rounded is-outlined"
+    /! button_to 'Sync', home_sync_path, class: "button is-info is-rounded is-outlined"
     .dashboard-wrapper
       .columns
         .column
@@ -34,7 +34,7 @@
                       tbody
                         tr
                           td
-                            img alt="" src=(page.image)
+                            img alt="" src=(page.picture)
                           td
                             = page.name
                           td

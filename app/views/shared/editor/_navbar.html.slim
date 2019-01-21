@@ -7,7 +7,7 @@ nav.navbar.dashboard-nav.has-shadow
     .column.is-4
       a Visit Website
       a.button.is-primary.is-rounded.is-outlined Upgrade
-      a.button.is-info.is-rounded.is-outlined
+      = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
         span.icon
           i.fa.fa-refresh
         span Sync
