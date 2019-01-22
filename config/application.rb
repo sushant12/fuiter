@@ -47,8 +47,10 @@ module Fuitter
     config.active_record.dump_schema_after_migration = true
     config.active_record.schema_format = :sql
 
+    config.filter_parameters << :password
+    
     Raven.configure do |config|
-      config.current_environment = 'production'
+      config.dsn = ENV['SENTRY_DSN']
     end
   end
 end
