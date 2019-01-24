@@ -1,19 +1,40 @@
-nav.navbar.dashboard-nav.has-shadow
-  .container.is-fluid.columns
-    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")  Fuitter
-    .column.is-6
-    .column.is-3
-      - if user_signed_in?
-        .navbar-item.has-dropdown.dropdown.is-hoverable
-          .dropdown-trigger
-            a aria-controls="dropdown-menu" aria-haspopup="true" 
-              a.navbar-link
-                = image_tag("#{current_user.image}")
-                = current_user.name
-          .dropdown-menu role="menu"
-            .navbar-dropdown style=("border: 0px !important")
-              .navbar-item.dropdown-item
-                = link_to  'Message Us'
-              .navbar-item.dropdown-item
-                = link_to 'Logout', destroy_user_session_path
+/ nav.navbar.dashboard-nav.has-shadow
+/   .container.is-fluid.columns
+/     .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")  Fuitter
+/     .column.is-6
+/     .column.is-3
+/       - if user_signed_in?
+/         .navbar-item.has-dropdown.dropdown.is-hoverable
+/           .dropdown-trigger
+/             a aria-controls="dropdown-menu" aria-haspopup="true" 
+/               a.navbar-link
+/                 = image_tag("#{current_user.image}")
+/                 = current_user.name
+/           .dropdown-menu role="menu"
+/             .navbar-dropdown style=("border: 0px !important")
+/               .navbar-item.dropdown-item
+/                 = link_to  'Message Us'
+/               .navbar-item.dropdown-item
+/                 = link_to 'Logout', destroy_user_session_path
+nav.navbar.has-shadow aria-label=("main navigation") role="navigation" 
+  .navbar-brand
+    a.navbar-item
+      h1 Fuitter
+    .navbar-burger.burger onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');" 
+      span
+      span 
+      span 
+  #navbarBasicExample.navbar-menu
+    - if user_signed_in?
+      .navbar-end
+        .navbar-item.has-dropdown.is-hoverable
+          a.navbar-link
+            = image_tag("#{current_user.image}")
+            = current_user.name
+          .navbar-dropdown
+            a.navbar-item
+              = link_to  'Message Us'
+            hr.navbar-divider/
+            a.navbar-item
+              = link_to 'Logout', destroy_user_session_path
                   
