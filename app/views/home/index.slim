@@ -2,6 +2,9 @@
 
 
 / = button_to 'Sync', home_sync_path
+- content_for :title do
+  |  Fuitter | Dashboard
+
 = render 'shared/dashboard/navbar'
 .columns.is-fullheight
   .column.is-2.is-sidebar-menu
@@ -19,7 +22,7 @@
                 .column.is-12
                   .flex-card.light-bordered.light-raised.card-overflow
                     h3.card-heading.is-bordered.has-icon
-                      span Facebook Pages
+                      span Your Pages
                     table.table.hire-table
                       thead
                         tr
