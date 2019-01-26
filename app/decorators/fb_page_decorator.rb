@@ -22,80 +22,80 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def cover_images
-    albums = object.content['albums']['data'].select do |album|
+    albums = object.content.dig('albums', 'data').select do |album|
       album['name'] == 'Cover Photos'
     end
     if albums.empty?
-      object.fb_page_template.template.properties['slider']
+      object.fb_page_template.template.properties.dig('slider')
     else
-      albums.first['photos']['data'].map do |img|
+      albums.first.dig('photos', 'data').map do |img|
         img['images'].first
       end
     end
   end
 
   def name
-    object.content['name']
+    object.content.dig('name')
   end
 
   def address
     {
-      'city' => object.content['location']['city'],
-      'country' => object.content['location']['country']
+      'city' => object.content.dig('location', 'city'),
+      'country' => object.content.dig('location', 'country')
     }
   end
 
   def albums
-    object.content['albums']['data'].map do |album|
+    object.content.dig('albums', 'data').map do |album|
       {
-        'preview' => photos(album['id']).first.first['source'],
-        'id' => album['id'],
-        'name' => album['name']
+        'preview' => photos(album.dig('id')).first.first.dig('source'),
+        'id' => album.dig('id'),
+        'name' => album.dig('name')
       }
     end
   end
 
   def about
-    object.content['about']
+    object.content.dig('about')
   end
 
   def posts
-    object.content['posts']['data'].map do |posts|
+    object.content.dig('posts', 'data').map do |posts|
       {
-        'message' => posts['message'],
-        'image' => posts['full_picture'],
-        'created_at' => posts['created_time'].try(:to_date).to_s,
-        'name' => posts['name'],
-        'description' => posts['description'],
-        'video' => posts['source']
+        'message' => posts.dig('message'),
+        'image' => posts.dig('full_picture'),
+        'created_at' => posts.dig('created_time').to_date.to_s,
+        'name' => posts.dig('name'),
+        'description' => posts.dig('description'),
+        'video' => posts.dig('source')
       }
     end
   end
 
   def events
-    object.content['events']['data'].map do |event|
+    object.content.dig('events', 'data').map do |event|
       {
-        'image' => event['cover']['source'],
-        'name' => event['name'],
-        'location' => event['place'],
-        'description' => event['description'],
+        'image' => event.dig('cover', 'source'),
+        'name' => event.dig('name'),
+        'location' => event.dig('place'),
+        'description' => event.dig('description'),
         'date' => event['start_time'].to_date,
         'start_time' => event['start_time'].to_time.strftime("%I:%M %p"),
         'end_time' => event['end_time'].to_time.strftime("%I:%M %p"),
-        'event_times' => event["event_times"],
+        'event_times' => event.dig("event_times"),
       }
     end
   end
 
   def description
-    object.content['description']
+    object.content.dig('description')
   end
 
   def photos(album_id)
-    albums = object.content['albums']['data'].select do |album|
+    albums = object.content.dig('albums', 'data').select do |album|
       album['id'] == album_id
     end
-    albums.first['photos']['data'].map do |photo|
+    albums.first.dig('photos', 'data').map do |photo|
       photo['images']
     end
   end
