@@ -41,7 +41,6 @@
                             td.has-text-centered
                               - unless page.state == ""
                                 = link_to site_home_path(page), {title: 'Preview Website'} do
-                                  span.i.fa.fa-eye style=("margin-left: 10px;")
                               = link_to templates_path(page), {title: 'Edit Website'} do
-                                span.i.fa.fa-edit style=("margin-left: 10px;")
+                                span.i.fa.fa-edit
 
