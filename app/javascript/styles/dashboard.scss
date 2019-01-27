@@ -16,47 +16,53 @@ TABLE OF CONTENTS
 0. CSS Imports
 ========================================================================== */
 
-@import "partials/colors";
+// @import "partials/colors";
+@import 'partials/layout-colors';
 @import "partials/dashboard";
-@import "partials/pageloader";
+@import "partials/layout-hero";
+@import "partials/layout-sections";
+@import 'partials/layout-utils';
+// @import "partials/pageloader";
+@import 'partials/layout-navbar';
 @import "partials/tabs";
 @import "partials/dropdowns";
 @import "partials/buttons";
-@import "partials/animations";
+// @import "partials/animations";
 @import "partials/cards";
 @import "partials/forms";
 @import "partials/accordion";
 @import "partials/dialogs";
 @import "partials/labels";
 @import "partials/lists";
-@import "partials/tables";
-@import "partials/messages";
+// @import "partials/tables";
+// @import "partials/messages";
 @import "partials/dashboard-layout";
 @import "partials/dashboard-sidebar";
-@import "partials/dashboard-navbar";
-@import "partials/dashboard-right-sidebar";
-@import "partials/dashboard-feed";
-@import "partials/dashboard-widgets";
-@import "partials/dashboard-charts";
-@import "partials/dashboard-documents";
-@import "partials/dashboard-projects";
-@import "partials/dashboard-contacts";
-@import "partials/dashboard-kanban";
-@import "partials/dashboard-deal";
-@import "partials/dashboard-forum";
-@import "partials/dashboard-support";
-@import "partials/dashboard-datatables";
-@import "partials/dashboard-utils";
+// @import "partials/dashboard-navbar";
+// @import "partials/dashboard-right-sidebar";
+// @import "partials/dashboard-feed";
+// @import "partials/dashboard-widgets";
+// @import "partials/dashboard-charts";
+// @import "partials/dashboard-documents";
+// @import "partials/dashboard-projects";
+// @import "partials/dashboard-contacts";
+// @import "partials/dashboard-kanban";
+// @import "partials/dashboard-deal";
+// @import "partials/dashboard-forum";
+// @import "partials/dashboard-support";
+// @import "partials/dashboard-datatables";
+// @import "partials/dashboard-utils";
 @import "partials/helpers";
-@import "partials/quickview";
-@import "partials/timeline";
-@import "partials/switch";
-@import "partials/extensions-checkboxes";
-@import "partials/dashboard-responsive";
+// @import "partials/quickview";
+// @import "partials/timeline";
+// @import "partials/switch";
+// @import "partials/extensions-checkboxes";
+// @import "partials/dashboard-responsive";
 @import "partials/pages-auth";
 @import "partials/columns";
-@import "partials/layout-hero";
-@import "partials/layout-sections";
+@import "partials/components-tables";
+
+@import 'partials/layout-responsive';
 
 /* ==========================================================================
 1. Resets and base setup

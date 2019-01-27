@@ -1,20 +1,19 @@
-section.hero.is-fullheight
-  .hero-body.dashboard_sidebar
-    .container
-      ul.menu-list
-        li
-          a.parent-link href="#"
-            i.fa.fa-th-large
-            span Sites
-        li
-          a.parent-link href="#" 
-            i.fa.fa-line-chart 
-            span Performance
-        li
-          a.parent-link href="#" 
-            i.fa.fa-money 
-            span Billing
-        li
-          a.parent-link href="#" 
-            i.fa.fa-newspaper-o 
-            span Newletter
+nav.child-menu.is-dark.is-sidebar-translated
+  .child-menu-inner
+    ul#dashboard-menu.sidebar-menu.is-active.animated
+      li.have-children
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
+          i.fa.fa-th-large 
+          | Pages
+      li.have-children
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'stats' ? 'active' : ''}" } do 
+          i.fa.fa-line-chart 
+          | Statistics
+      li.have-children
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'billing' ? 'active' : ''}" } do
+          i.fa.fa-money 
+          | Billing
+      li.have-children
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'newsletter' ? 'active' : ''}" } do
+          i.fa.fa-newspaper-o 
+          | Newsletter

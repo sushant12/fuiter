@@ -8,13 +8,19 @@
         padding-left: 30px;
     }
 }
-.hero {
-    margin-top: -25px;    
+
+.active {
+  background-color: #414a56;
+  padding: 20px 25px;
+  text-decoration: none;
+  color: #fff;
 }
 
-section.hero{
-    background-color: #434d58;
+#dashboard-menu > li > a > i {
+  color: #f4f6fb; 
+  padding:0px 10px;
 }
+
 //Child menu (slides when a main menu item is clicked)
 .child-menu {
     background:$secondary;
