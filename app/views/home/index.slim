@@ -41,7 +41,7 @@
                             td
                               span class=(["tag","squared", "is-#{page.state}"])
                                 = page.status
-                            td.has-text-centered
+                            td
                               - unless page.state == ""
                                 = link_to site_home_path(page), {title: 'Preview Website'} do
                               = link_to templates_path(page), {title: 'Edit Website'} do
