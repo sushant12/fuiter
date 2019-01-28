@@ -1,21 +1,51 @@
-nav.navbar.has-shadow.dashboard-nav
-  .container.is-fluid.columns
-    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")
-      a href="/" Fuitter
-    .column.is-2
-    .column.is-3.is-hidden-touch
-      <editor-header></editor-header>
-    .column.is-4.is-hidden-mobile
-      .columns
-        .column
-          a Visit Website
-        .column
-          a.button.is-primary.is-rounded.is-outlined Upgrade
-        .column
-          = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
-            span.icon
-              i.fa.fa-refresh
-            span Sync
+/ nav.navbar.has-shadow.dashboard-nav
+/   .container.is-fluid.columns
+/     .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")
+/       a href="/" Fuitter
+/     .column.is-2
+/     .column.is-3.is-hidden-touch
+/       <editor-header></editor-header>
+/     .column.is-4.is-hidden-mobile
+/       .columns
+/         .column
+/           a Visit Website
+/         .column
+/           a.button.is-primary.is-rounded.is-outlined Upgrade
+/         .column
+/           = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
+/             span.icon
+/               i.fa.fa-refresh
+/             span Sync
+nav.navbar.navbar-wrapper.is-solid.is-static.navbar-inverse.is-reverse
+  .container
+    .navbar-brand
+      a.navbar-item href=(root_url) 
+        img alt="" src="assets/images/logos/bulkit-purple.svg" /
+        | Fuitter
+      .custom-burger data-target="" 
+        a.responsive-btn href="javascript:void(0);" 
+          span.menu-toggle
+            span.icon-box-toggle
+              span.rotate
+                i.icon-line-top
+                i.icon-line-center
+                i.icon-line-bottom
+    .navbar-menu
+      .navbar-start
+      .navbar-end
+        .navbar-item
+          .mobile-drop.is-hidden-desktop
+            = link_to sync_page_path(params[:fb_page_id]), {class: "navbar-item is-slide"} do
+                | Sync
+          .navbar-item.is-hidden-mobile.is-hidden-tablet-only
+            = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
+              | Upgrade
+            = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
+              span.icon
+                i.fa.fa-refresh
+              span Sync
+
+                    
 
 = stylesheet_pack_tag 'editor'
 = javascript_pack_tag 'editor'

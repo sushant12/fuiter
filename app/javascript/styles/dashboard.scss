@@ -17,6 +17,16 @@ TABLE OF CONTENTS
 ========================================================================== */
 
 // @import "partials/colors";
+// @import "../../../node_modules/bulma/sass/utilities/_all";
+// @import "../../../node_modules/bulma/sass/base/_all";
+// @import "../../../node_modules/bulma/sass/elements/_all";
+// @import "../../../node_modules/bulma/sass/components/_all";
+// @import "../../../node_modules/bulma/sass/grid/_all";
+// @import "../../../node_modules/bulma/sass/layout/_all";
+// $tablet: 769px;
+// $desktop: 800px !default;
+// $navbar-breakpoint: $tablet;
+// @import "../../../node_modules/bulma/bulma";
 @import 'partials/layout-colors';
 @import "partials/dashboard";
 @import "partials/layout-hero";
