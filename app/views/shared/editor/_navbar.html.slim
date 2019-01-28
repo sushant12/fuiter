@@ -1,16 +1,24 @@
-nav.navbar.dashboard-nav.has-shadow
+nav.navbar.has-shadow.dashboard-nav
   .container.is-fluid.columns
-    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")  Fuitter
+    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")
+      a href="/" Fuitter
     .column.is-2
-    .column.is-3
+    .column.is-3.is-hidden-touch
       <editor-header></editor-header>
-    .column.is-4
-      a Visit Website
-      a.button.is-primary.is-rounded.is-outlined Upgrade
-      a.button.is-info.is-rounded.is-outlined
-        span.icon
-          i.fa.fa-refresh
-        span Sync
+    .column.is-4.is-hidden-mobile
+      .columns
+        .column
+          a Visit Website
+        .column
+          a.button.is-primary.is-rounded.is-outlined Upgrade
+        .column
+          = button_to sync_page_path(params[:fb_page_id]) ,{ class: "button is-info is-rounded is-outlined" } do
+            span.icon
+              i.fa.fa-refresh
+            span Sync
 
 = stylesheet_pack_tag 'editor'
 = javascript_pack_tag 'editor'
+
+          
+                  

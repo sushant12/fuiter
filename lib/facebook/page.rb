@@ -2,16 +2,16 @@
 
 module Facebook
   class Page
-    def initialize(access_token:)
+    def initialize(access_token)
       @graph = Koala::Facebook::API.new(access_token)
     end
 
     def list
-      @graph.get_connections('me', '?fields=accounts{category,cover,name,access_token}')
+      @graph.get_connections('me', '?fields=accounts{category,name,access_token,picture{url}}')
     end
 
     def get_info
-      @graph.get_connections('me', '?fields=picture{url},about,bio,company_overview,contact_address,current_location,description,description_html,founded,general_info,access_token,location,mission,name,albums.limit(99){description,name,count,photo_count,photos.limit(99){images}},posts.limit(99){created_time,description,full_picture,id,link,message,name,source,type,attachments{description,title,url}},events{cover,description,end_time,event_times,name,place,start_time,ticket_uri}')
+      @graph.get_connections('me', '?fields=id,about,bio,company_overview,contact_address,current_location,description,description_html,founded,general_info,access_token,location,mission,name,albums.limit(99){description,name,count,photo_count,photos.limit(99){images}},posts.limit(99){created_time,description,full_picture,id,link,message,name,source,type,attachments{description,title,url}},events{cover,description,end_time,event_times,name,place,start_time,ticket_uri}')
     end
   end
 end

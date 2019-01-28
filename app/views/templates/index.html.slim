@@ -1,9 +1,24 @@
-h2 User's facebook page
-p Page Name: #{@page.name}
+- content_for :title do
+  |  Fuitter | Templates
 
-h3 List of templates:
-- @templates.each do |template|
-  p= button_to template.name, choose_template_path(@page.id, template.id) 
-  p= image_tag(template.image)
+= render 'shared/dashboard/navbar'
+section.section.is-medium
+  .container
+    .columns.is-multiline
+      - @templates.each do |template|
+        .column.is-4
+          .card.ressource-card
+            .card-image
+              figure.image.is-4by3.zoomIn
+                = image_tag(template.image)
+            .card-content
+              .media
+                .media-content
+                  .columns.is-vcentered.is-mobile
+                    .column
+                      = template.name.capitalize
+                    .column
+                      .has-text-right
+                        = button_to choose_template_path(@page.id, template.id), {class: "button btn-align primary-btn btn-outlined rounded"} do
+                          | Select
 
-p= link_to "Back to home", root_path

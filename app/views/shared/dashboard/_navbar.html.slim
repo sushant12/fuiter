@@ -1,15 +1,31 @@
-nav.navbar.dashboard-nav.has-shadow
-  .container.is-fluid.columns
-    .column.is-3 style=("color: #f4f6fb; font-weight: bold; font-size: 20px; margin-left: 20px;")  Fuitter
-    .column.is-6
-    .column.is-3
-      - if user_signed_in?
-        .navbar-item.has-dropdown.is-hoverable
-          a.navbar-link
-            = image_tag("#{current_user.image}")
-            = current_user.name
-          .navbar-dropdown
-            .navbar-item
-              = link_to  'Message Us'
-            .navbar-item
-              = link_to 'Logout', destroy_user_session_path
+nav.navbar.navbar-wrapper.is-solid.is-static.navbar-inverse.is-reverse
+  .container
+    .navbar-brand
+      a.navbar-item href=(root_url) 
+        img alt="" src="assets/images/logos/bulkit-purple.svg" /
+        | Fuitter
+      .custom-burger data-target="" 
+        a.responsive-btn href="javascript:void(0);" 
+          span.menu-toggle
+            span.icon-box-toggle
+              span.rotate
+                i.icon-line-top
+                i.icon-line-center
+                i.icon-line-bottom
+    .navbar-menu
+      .navbar-start
+      .navbar-end
+        .navbar-item
+          .mobile-drop.is-hidden-desktop
+            = link_to destroy_user_session_path, {class: "navbar-item is-slide"} do
+                | Logout
+          .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
+            a.navbar-link href="javascript:void(0);" 
+              = image_tag(current_user.image)
+              | &nbsp
+              = truncate current_user.name, length: 15
+            .navbar-dropdown.is-boxed.is-medium
+              = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
+                | Logout
+
+                    

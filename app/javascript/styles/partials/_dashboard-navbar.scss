@@ -27,16 +27,16 @@ TABLE OF CONTENTS
 //Dashboard Navbar
 nav.dashboard-nav {
     // margin-left: 250px;
-    position: fixed;
-    width: 100%;
-    right: 0;
-    left: 0;
+    // position: fixed;
+    // width: 100%;
+    // right: 0;
+    // left: 0;
     // max-width: calc(100% - 250px);
     background-color: #434d58;
     border-bottom: 1px solid $fade-grey;
 
     //fluid container
-    .container.is-fluid {
+    .container.is-fluid{
         margin: 0;
         color: red;
         // height: 65px;
@@ -44,14 +44,21 @@ nav.dashboard-nav {
             color: #f4f6fb; 
         }
     }
-
+    .navbar-burger{
+        color: white !important;
+    }
     .navbar-link {
       background: #2f363d !important;
+      color: #f4f6fb;
     }
 
     .navbar-dropdown {
+        .navbar-item a {
+            color: #f4f6fb; 
+        }
       background: #2f363d !important;
       width: 80%;
+      color: #f4f6fb;
 
       &:hover {
         color: red !important;
@@ -59,11 +66,15 @@ nav.dashboard-nav {
     }
 
     
+    
 
     //Brand
     .navbar-brand {
         .hamburger-btn {
             margin-left: auto;
+        }
+        .navbar-item a {
+            color: #f4f6fb; 
         }
 
         .menu-toggle {

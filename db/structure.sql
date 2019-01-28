@@ -99,7 +99,9 @@ CREATE TABLE public.fb_pages (
     user_id uuid,
     name character varying,
     fb_page_id character varying,
-    status public.fb_page_status
+    status public.fb_page_status,
+    category character varying,
+    picture character varying
 );
 
 
@@ -403,6 +405,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181230070956'),
 ('20190104105809'),
 ('20190116064224'),
-('20190119103402');
+('20190119103402'),
+('20190121153950');
 
 

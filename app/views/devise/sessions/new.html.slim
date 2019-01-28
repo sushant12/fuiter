@@ -1,18 +1,69 @@
-h2
-  | Log in
-= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  .field
-    = f.label :email
-    br
-    = f.email_field :email, autofocus: true, autocomplete: "email"
-  .field
-    = f.label :password
-    br
-    = f.password_field :password, autocomplete: "current-password"
-  - if devise_mapping.rememberable?
-    .field
-      = f.check_box :remember_me
-      = f.label :remember_me
-  .actions
-    = f.submit "Log in"
-= render "devise/shared/links"
+- content_for :title do
+  |  Fuitter | Log In
+
+/ = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+/   .field
+/     = f.label :email
+/     br
+/     = f.email_field :email, autofocus: true, autocomplete: "email"
+/   .field
+/     = f.label :password
+/     br
+/     = f.password_field :password, autocomplete: "current-password"
+/   - if devise_mapping.rememberable?
+/     .field
+/       = f.check_box :remember_me
+/       = f.label :remember_me
+/   .actions
+/     = f.submit "Log in"
+
+
+.login-wrapper.columns.is-gapless
+  .column.is-7
+    .hero.is-fullheight
+      .hero-heading
+        .section.has-text-centered
+          .title Fuitter
+        .has-text-centered
+          .subtitle Welcome to Fuitter Partner Dashboard
+          p Login to manage your clients
+      .hero-body
+        .container
+          .columns
+            .column
+            .column.is-5
+              form
+                #signin-form.login-form.animated.preFadeInLeft.fadeInLeft
+                = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+                  .field.pb-10
+                    .control
+                      / = f.email_field :email, autofocus: true, autocomplete: "email"
+                      input.input.is-large placeholder="Email" type="text" /
+                  .field.pb-10
+                    .control
+                      / = f.password_field :password, autocomplete: "current-password"
+                      input.input.is-large placeholder="Password" type="text" /
+                  / - if devise_mapping.rememberable?
+                  /   .field.pb-10
+                  /     = f.check_box :remember_me
+                  /     = f.label :remember_me
+                  p.control.login
+                    / = f.submit "Log in"
+                    button.button.button-cta.info-btn.btn-align-lg.btn-outlined.is-bold.is-fullwidth.rounded.raised.no-lh Log in
+              #recover.section.forgot-password.animated.preFadeInLeft.fadeInLeft
+                p.has-text-centered
+                  = render "devise/shared/links"        
+            .column
+  .column.login-column.is-5.hero-banner
+    .hero.is-fullheight.is-theme-info.is-relative
+      .columns.has-text-centered
+        .column
+          h2.title.light-text User Login
+          .mt-30.has-text-centered
+            - resource_class.omniauth_providers.each do |provider|
+              = link_to "Sign up with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
+          .mt-20.has-text-centered
+            p.light-text
+              | Don't worry. We will never post to your Facebook profile or page.
+              | Pagevamp will not modify your Facebook Page in any way.
+      img.login-city alt="" src=(asset_pack_path 'images/illustrations/city.svg')

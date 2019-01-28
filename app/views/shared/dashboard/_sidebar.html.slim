@@ -2,22 +2,18 @@ nav.child-menu.is-dark.is-sidebar-translated
   .child-menu-inner
     ul#dashboard-menu.sidebar-menu.is-active.animated
       li.have-children
-        a.parent-link href="#" 
-          i.fa.fa-th-large style=("color: #f4f6fb; padding:0px 10px;") 
-          | Sites
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
+          i.fa.fa-th-large 
+          | Pages
       li.have-children
-        a.parent-link href="#" 
-          i.fa.fa-line-chart style=("color: #f4f6fb; padding:0px 10px;") 
-          | Performance
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'stats' ? 'active' : ''}" } do 
+          i.fa.fa-line-chart 
+          | Statistics
       li.have-children
-        a.parent-link href="#" 
-          i.fa.fa-shopping-cart style=("color: #f4f6fb; padding:0px 10px;") 
-          | Ecommerce
-      li.have-children
-        a.parent-link href="#" 
-          i.fa.fa-money style=("color: #f4f6fb; padding:0px 10px;") 
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'billing' ? 'active' : ''}" } do
+          i.fa.fa-money 
           | Billing
       li.have-children
-        a.parent-link href="#" 
-          i.fa.fa-newspaper-o style=("color: #f4f6fb; padding:0px 10px;") 
-          | Newslatter
+        = link_to root_path, { class: "parent-link #{controller.action_name == 'newsletter' ? 'active' : ''}" } do
+          i.fa.fa-newspaper-o 
+          | Newsletter

@@ -21,9 +21,4 @@ class HomeDecorator < ApplicationDecorator
         ""
       end
   end
-
-  def image
-    self['content']['picture']['data']['url']
-  end
-
 end

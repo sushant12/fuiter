@@ -12,3 +12,6 @@ console.log('Hello World from Webpacker')
 import "bulma/bulma";
 import "../styles/application.css";
 import "../styles/dashboard.scss";
+import "../scripts/main.js";
+require.context('../images', true);
+require.context('../fonts', true)
