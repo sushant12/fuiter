@@ -10,6 +10,7 @@
 console.log('Hello World from Webpacker')
 
 import "bulma/bulma";
+// import 'bulma-helpers/css/bulma-helpers.min.css';
 import "../styles/application.css";
 import "../styles/dashboard.scss";
 import "../scripts/main.js";

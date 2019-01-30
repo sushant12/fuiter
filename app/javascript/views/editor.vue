@@ -1,5 +1,10 @@
 <template>
-  <div class="sidenav">
+  <div>
+    <editor-nav></editor-nav>
+    <editor-sidebar></editor-sidebar>
+    <editor-preview></editor-preview>
+  </div>
+  <!-- <div class="sidenav">
     <div class = "sideContent">
       <p class="p-label">Pick Color</p>
         <chrome-picker v-model="color" @input="changeColor">
@@ -38,14 +43,16 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script>
 import _ from 'lodash';
 import EditorServices from '../services/index.js';
 import { Chrome } from 'vue-color';
-
+import EditorNav from '../components/editorNav';
+import EditorSidebar from '../components/editorSidebar';
+import EditorPreview from '../components/editorPreview';
 export default {
   props: ['template'],
   data() {
@@ -117,12 +124,15 @@ export default {
   },
   components: {
     'chrome-picker': Chrome,
+    'editor-nav': EditorNav,
+    'editor-sidebar': EditorSidebar,
+    'editor-preview': EditorPreview,
   }
 };
 </script>
 
 <style scoped>
-  .sidenav {
+/*  .sidenav {
     height: 100%;
     width: 250px;
     position: fixed;
@@ -141,5 +151,5 @@ export default {
   }
   .sideContent{
     margin: 10px;
-  }
+  }*/
 </style>
