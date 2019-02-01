@@ -1,9 +1,8 @@
-nav.navbar.navbar-wrapper.is-solid.is-static.navbar-inverse.is-reverse
+nav.navbar.navbar-wrapper.is-solid.navbar-inverse.is-reverse
   .container
     .navbar-brand
       a.navbar-item href=(root_url) 
-        img alt="" src="assets/images/logos/bulkit-purple.svg" /
-        | Fuitter
+        img alt="" src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg"
       .custom-burger data-target="" 
         a.responsive-btn href="javascript:void(0);" 
           span.menu-toggle
@@ -27,5 +26,3 @@ nav.navbar.navbar-wrapper.is-solid.is-static.navbar-inverse.is-reverse
             .navbar-dropdown.is-boxed.is-medium
               = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
                 | Logout
-
-                    

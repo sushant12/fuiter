@@ -29,11 +29,7 @@
                          = page.status
                       td
                         - unless page.state == ""
-                          = link_to site_home_path(page), {title: 'Preview Website'} do
-                            span.i.fa.fa-eye
+                          = link_to 'View', site_home_path(page), class: 'button is-primary is-small'
                         | &nbsp 
-                        = link_to templates_path(page), {title: 'Edit Website'} do
-                          span.i.fa.fa-edit
-
+                        = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
   .column
-

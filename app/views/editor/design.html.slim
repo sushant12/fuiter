@@ -2,7 +2,11 @@
   |  Fuitter | Design
 
 #editor
-  = render 'shared/editor/navbar'
-  <editor :template="#{@template.to_json}"></editor>
+  <editor-nav :sync="#{sync_page_url(@fb_page_id).to_json}" :preview="#{site_home_url(@fb_page_id).to_json}"></editor-nav>
+  <editor-sidebar :template="#{@template.to_json}"></editor-sidebar>
+  / <editor :template="#{@template.to_json}"></editor>
   <preview :url="#{site_home_url(@fb_page_id).to_json}"></preview>
+
+= stylesheet_pack_tag 'editor'
+= javascript_pack_tag 'editor'
   
