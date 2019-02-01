@@ -9,6 +9,16 @@ const EditorServices = {
     .catch(function (error) {
       console.log(error);
     });
+  },
+
+  fbSync(url){
+    axios.post(url,'', {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
+      .then((response) => {
+        document.getElementById('frame').contentWindow.location.reload();
+      })
+      .catch((error) => {
+        console.log(error);
+      })
   }
   
 }
