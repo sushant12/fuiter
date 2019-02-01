@@ -2,7 +2,7 @@
   <nav class="navbar navbar-wrapper is-solid navbar-inverse is-reverse">
     <div class="container">
       <div class="navbar-brand">
-        <a class="navbar-item" href="http://localhost:3000/">
+        <a class="navbar-item" :href="url">
           <img alt="" src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg">
         </a>
         <div class="custom-burger" data-target="">
@@ -57,7 +57,7 @@
 import EditorServices from '../services/index.js';
 
 export default {
-  props: ['sync', 'goLive', 'preview'], 
+  props: ['sync', 'goLive', 'preview', 'url'], 
   methods: {
     updateResolution(type) {
       const frame = document.getElementById("frame");
