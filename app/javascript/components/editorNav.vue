@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-wrapper is-solid is-static navbar-inverse is-reverse">
+  <nav class="navbar navbar-wrapper is-solid navbar-inverse is-reverse">
     <div class="container">
       <div class="navbar-brand">
         <a class="navbar-item" href="http://localhost:3000/">
@@ -38,13 +38,13 @@
               <a class="navbar-item is-slide" href="/users/sign_out">Sync</a>
             </div>
             <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-              <a class="button warning-btn btn-outlined rounded">Preview</a>
+              <a :href="preview" class="button warning-btn btn-outlined rounded" target="__BLANK">Preview</a>
             </div>
             <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-              <a class="button primary-btn btn-outlined rounded">Sync</a>
+              <a @click="fbSync" class="button primary-btn btn-outlined rounded">Sync</a>
             </div>
             <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-              <a class="button success-btn btn-outlined rounded">Go Live</a>
+              <a href="goLive" class="button success-btn btn-outlined rounded">Go Live</a>
             </div>
           </div>
         </div>
@@ -53,7 +53,11 @@
   </nav>
 </template>
 <script>
+
+import EditorServices from '../services/index.js';
+
 export default {
+  props: ['sync', 'goLive', 'preview'], 
   methods: {
     updateResolution(type) {
       const frame = document.getElementById("frame");
@@ -70,6 +74,9 @@ export default {
         default:
           frame.style.width = "1920px";
       }
+    },
+    fbSync() {
+      EditorServices.fbSync(this.sync);
     },
   },
 };

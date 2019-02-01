@@ -2,11 +2,6 @@
 
 class ApplicationController < ActionController::Base
   before_action :set_raven_context
-  # before_action :current_user
-
-  # def current_user
-  #   User.first
-  # end
 
   private
 
