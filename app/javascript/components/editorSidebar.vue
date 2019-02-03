@@ -15,7 +15,7 @@
   </div>
   <div v-else>
     <keep-alive>
-      <component v-bind:is="currentMenu" @clicked-main-menu='resetMenu'></component>
+      <component v-bind:is="currentMenu" @clicked-main-menu='resetMenu' :template="template"></component>
     </keep-alive>
   </div>
 </nav>
@@ -25,6 +25,7 @@ import Design from './editorMenu/design.vue';
 import Page from './editorMenu/page.vue';
 
 export default {
+  props: ['template'],
   data() {
     return {
       showParentMenu: true,

@@ -21,13 +21,15 @@ jQuery(document).ready(function($) {
 /* --------------------------------------------------------	
 	 Tooltips
    --------------------------------------------------------	*/	
-
-	(function() {
-    $('body').tooltip({
-        delay: { show: 300, hide: 0 },
-        selector: '[data-toggle=tooltip]:not([disabled])'
-    });
-  })(); 
+	jQuery(document).ready(function($) {
+		(function() {
+			$('body').tooltip({
+					delay: { show: 300, hide: 0 },
+					selector: '[data-toggle=tooltip]:not([disabled])'
+			});
+		})();
+	});
+	
    
 /* --------------------------------------------------------	
 	 Responsive Navigation
