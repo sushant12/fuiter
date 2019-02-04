@@ -15,8 +15,8 @@ class FbPageDecorator < Draper::Decorator
   def menu
     object.fb_page_template.pages.map do |page|
       {
-        'name' => page.title,
-        'uri' => page.uri
+        'name' => page['title'],
+        'uri' => page['uri']
       }
     end
   end

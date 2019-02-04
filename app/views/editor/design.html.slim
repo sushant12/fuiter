@@ -3,7 +3,7 @@
 
 #editor
   <editor-nav :sync="#{sync_page_url(@fb_page_id).to_json}" :preview="#{site_home_url(@fb_page_id).to_json}" :url="#{root_url.to_json}"></editor-nav>
-  <editor-sidebar :template="#{@template.to_json}"></editor-sidebar>
+  <editor-sidebar :template="#{@template.to_json.to_json}" :fb_page_id="#{@fb_page_id.to_json}"></editor-sidebar>
   <preview :url="#{site_home_url(@fb_page_id).to_json}"></preview>
 
 = stylesheet_pack_tag 'editor'
