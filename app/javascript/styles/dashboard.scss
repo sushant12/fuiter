@@ -133,3 +133,13 @@ body {
     font-weight: bold;
     src: url("../fonts/text/nexa/NexaBold.woff") format("woff"), url("../fonts/text/nexa/NexaBold.ttf") format("truetype");
 }
+
+.fa {
+    color: #fff;
+}
+
+.navbar-start {
+    flex-grow: 1; 
+    justify-content: center;
+}
+

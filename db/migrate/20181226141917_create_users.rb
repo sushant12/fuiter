@@ -13,7 +13,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
     execute <<-SQL
         CREATE TYPE user_category AS ENUM ('normal', 'reseller', 'admin');
     SQL
-    add_column :users, :category, :user_category
+    add_column :users, :category, :user_category, default: 'normal'
   end
 
   def down

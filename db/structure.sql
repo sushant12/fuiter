@@ -186,7 +186,7 @@ CREATE TABLE public.users (
     token character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    category public.user_category,
+    category public.user_category DEFAULT 'normal'::public.user_category,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,

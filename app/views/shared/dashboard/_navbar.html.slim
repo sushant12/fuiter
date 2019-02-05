@@ -1,28 +1,27 @@
 nav.navbar.navbar-wrapper.is-solid.navbar-inverse.is-reverse
-  .container
-    .navbar-brand
-      a.navbar-item href=(root_url) 
-        img alt="" src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg"
-      .custom-burger data-target="" 
-        a.responsive-btn href="javascript:void(0);" 
-          span.menu-toggle
-            span.icon-box-toggle
-              span.rotate
-                i.icon-line-top
-                i.icon-line-center
-                i.icon-line-bottom
-    .navbar-menu
-      .navbar-start
-      .navbar-end
-        .navbar-item
-          .mobile-drop.is-hidden-desktop
-            = link_to destroy_user_session_path, {class: "navbar-item is-slide"} do
-                | Logout
-          .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
-            a.navbar-link href="javascript:void(0);" 
-              = image_tag(current_user.image)
-              | &nbsp
-              = truncate current_user.name, length: 15
-            .navbar-dropdown.is-boxed.is-medium
-              = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
-                | Logout
+  .navbar-brand
+    a.navbar-item href=(root_url) 
+      img alt="" src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg"
+    .custom-burger data-target="" 
+      a.responsive-btn href="javascript:void(0);" 
+        span.menu-toggle
+          span.icon-box-toggle
+            span.rotate
+              i.icon-line-top
+              i.icon-line-center
+              i.icon-line-bottom
+  .navbar-menu
+    .navbar-start
+    .navbar-end
+      .navbar-item
+        .mobile-drop.is-hidden-desktop
+          = link_to destroy_user_session_path, {class: "navbar-item is-slide"} do
+              | Logout
+        .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
+          a.navbar-link href="javascript:void(0);" 
+            = image_tag(current_user.image)
+            | &nbsp
+            = truncate current_user.name, length: 15
+          .navbar-dropdown.is-boxed.is-medium
+            = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
+              | Logout
