@@ -2,7 +2,7 @@ section#titlebar
   /! Container
   .container
     .eight.columns
-      h3.left Contact
+      h3.left.fuitter-color Contact
     .eight.columns
       nav#breadcrumbs
         ul
@@ -15,7 +15,7 @@ section#titlebar
 #content
   .container
     .offset4
-      .form-area
+      .form-area.fuitter-color
         = form_for :contact, url: site_contact_post_path(@page.id), method: :post do |f|
           h3 Contact Form
           = f.label :name

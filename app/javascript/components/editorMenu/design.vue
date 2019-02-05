@@ -51,7 +51,6 @@ export default {
       color: {
         hex: '',
       },
-      font: '',
       logo: '',
       title: '',
       selectedFont: null,
@@ -93,8 +92,9 @@ export default {
     },
     changeTitle(e) {
       const title = e.target.value;
-      const frame = document.getElementById('frame').contentDocument.head;
-      frame.title = title;
+      const frame = document.getElementById('frame').contentDocument;
+      const titleClass = frame.getElementById('fuitter-title');
+      titleClass.innerHTML = title;
       this.updateProperty();
     },
     updateProperty() {
@@ -110,7 +110,7 @@ export default {
   },
   mounted() {
     if(!_.isNil(this.template['properties'])){
-      this.font = this.template['properties']['font'];
+      this.selectedFont = this.template['properties']['font'];
       this.color = this.template['properties']['color'];
       this.logo = this.template['logo'];
       this.title = this.template['properties']['title'];
