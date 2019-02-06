@@ -12,23 +12,11 @@ const EditorServices = {
   },
 
   fbSync(url){
-    axios.post(url,'', {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
-      .then((response) => {
-        document.getElementById('frame').contentWindow.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    return axios.post(url,'', {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
   },
 
   updateMenu(fb_page_id, params) {
-    axios.put(`/editor/page/${fb_page_id}`, { "menu": params}, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    return axios.put(`/editor/page/${fb_page_id}`, { "menu": params}, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
   }
 }
 

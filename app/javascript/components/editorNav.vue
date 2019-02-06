@@ -110,7 +110,10 @@ export default {
       }
     },
     fbSync() {
-      EditorServices.fbSync(this.sync);
+      EditorServices.fbSync(this.sync)
+      .then((response) => {
+        document.getElementById('frame').contentWindow.location.reload();
+      });
     },
   },
 };

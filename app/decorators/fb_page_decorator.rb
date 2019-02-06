@@ -14,10 +14,19 @@ class FbPageDecorator < Draper::Decorator
 
   def menu
     object.fb_page_template.pages.map do |page|
+      nested = page['nested'].map do |nest|
+        {
+          'name' => nest['title'],
+          'uri' => nest['uri'],
+        }
+      end
+
       {
         'name' => page['title'],
-        'uri' => page['uri']
+        'uri' => page['uri'],
+        'nested' => nested
       }
+
     end
   end
 

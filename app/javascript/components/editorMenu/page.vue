@@ -31,7 +31,10 @@ export default {
   },
   methods: {
     updateMenu() {
-      EditorServices.updateMenu(this.fb_page_id,this.menus);
+      EditorServices.updateMenu(this.fb_page_id,this.menus)
+        .then((resp) => {
+          document.getElementById('frame').contentWindow.location.reload();
+        });
     },
   },
 
