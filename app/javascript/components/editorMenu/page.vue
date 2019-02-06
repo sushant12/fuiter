@@ -39,7 +39,7 @@ export default {
   },
 
   created() {
-    _.each(JSON.parse(this.template).pages, (page) => {
+    _.each(this.template.pages, (page) => {
       this.menus.push(page);
     });
   },
