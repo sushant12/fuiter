@@ -12,7 +12,7 @@ html.not-ie lang="en"
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" /
-  body data-template="#{@template['properties'].to_json}"
+  body data-template="#{@template.to_json}"
     header#header
       .container
         .row.t-container
@@ -20,7 +20,9 @@ html.not-ie lang="en"
           .span3
             .logo
               = link_to site_home_path(@page.id)
-                img src=(asset_pack_path 'templates/ucorpora/images/logo-header.png')
+                img id="fuitter-logo" src=(asset_pack_path 'templates/ucorpora/images/logo-header.png')
+              #fuitter-title
+                | Title
           .span9
             .row.space60
             nav.fuitter-color#nav role="navigation" 
@@ -30,6 +32,12 @@ html.not-ie lang="en"
                 - @page.menu.each do |menu|
                   li
                     = link_to menu["name"], self.send("site_#{menu['uri']}_path", @page.id)
+                    - unless menu['nested'].empty?
+                      ul
+                        - menu['nested'].each do |sub_menu|
+                          li
+                            = link_to sub_menu["name"], self.send("site_#{sub_menu['uri']}_path", @page.id)
+
         .row.space40
         = yield :slider
         /! Slider End

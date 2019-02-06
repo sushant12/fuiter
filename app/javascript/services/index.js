@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const EditorServices = {
   updateProperties(params, template_id, fb_page_id) {
-    axios.put(`/${fb_page_id}/templates/${template_id}/properties`, params)
+    axios.put(`/${fb_page_id}/templates/${template_id}/properties`, params, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
     .then(function (response) {
       console.log(response);
     })
@@ -12,15 +12,12 @@ const EditorServices = {
   },
 
   fbSync(url){
-    axios.post(url,'', {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
-      .then((response) => {
-        document.getElementById('frame').contentWindow.location.reload();
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    return axios.post(url,'', {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
+  },
+
+  updateMenu(fb_page_id, params) {
+    return axios.put(`/editor/page/${fb_page_id}`, { "menu": params}, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
   }
-  
 }
 
 export default EditorServices;
