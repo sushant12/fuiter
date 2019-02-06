@@ -141,4 +141,8 @@ export default {
   color: #e13a3a;
 }
 
+.fa {
+  color: black;
+}
+
 </style>
