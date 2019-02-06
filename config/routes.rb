@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post '/home/sync/:id', to: 'home#sync', as: 'sync_page'
 
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
-  get '/editor/page/:fb_page_id', to: 'editor#page'
+  put '/editor/page/:fb_page_id', to: 'editor#page'
   get '/editor/setting/:fb_page_id', to: 'editor#setting'
 
   get 'site/:fb_page_id/home', to: 'site#home', as: 'site_home'

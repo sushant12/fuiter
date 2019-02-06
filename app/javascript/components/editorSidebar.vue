@@ -6,7 +6,7 @@
         <a class="parent-link active" @click="showMenu('Design')">Design</a>
       </li>
       <li class="have-children">
-        <a class="parent-link " @click="showMenu('Pages')">Pages</a>
+        <a class="parent-link " @click="showMenu('Page')">Pages</a>
       </li>
       <li class="have-children">
         <a class="parent-link " href="/">Settings</a>
@@ -15,7 +15,12 @@
   </div>
   <div v-else>
     <keep-alive>
-      <component v-bind:is="currentMenu" @clicked-main-menu='resetMenu' :template="template"></component>
+      <component 
+      v-bind:is="currentMenu"
+      @clicked-main-menu='resetMenu'
+      :template='template'
+      :fb_page_id='fb_page_id'>
+      </component>
     </keep-alive>
   </div>
 </nav>
@@ -25,7 +30,7 @@ import Design from './editorMenu/design.vue';
 import Page from './editorMenu/page.vue';
 
 export default {
-  props: ['template'],
+  props: ['template', 'pages', 'fb_page_id'],
   data() {
     return {
       showParentMenu: true,
