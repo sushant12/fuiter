@@ -88,6 +88,6 @@ gem 'slim-rails'
 gem 'draper'
 
 gem 'sentry-raven'
-
+gem 'ancestry'
 # used for file/image uploads
 gem 'carrierwave'

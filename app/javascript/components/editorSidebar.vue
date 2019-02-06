@@ -19,6 +19,7 @@
       v-bind:is="currentMenu"
       @clicked-main-menu='resetMenu'
       :template='template'
+      :pages='pages'
       :fb_page_id='fb_page_id'>
       </component>
     </keep-alive>

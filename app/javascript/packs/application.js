@@ -16,5 +16,6 @@ import 'bulma-tooltip';
 import "../styles/application.css";
 import "../styles/dashboard.scss";
 import "../scripts/main.js";
+import "../scripts/modal.js";
 require.context('../images', true);
 require.context('../fonts', true)

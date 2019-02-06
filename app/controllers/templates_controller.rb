@@ -11,14 +11,14 @@ class TemplatesController < ApplicationController
 
   def choose
     template = FbPageTemplate.find_or_initialize_by(fb_page_id: params[:fb_page_id]) do |tmpl|
-      tmpl.pages = [
-                     { title: 'Home', uri: 'home', position: 1, nested: [] },
-                     { title: 'About', uri: 'about', position: 2, nested: [] },
-                     { title: 'Events', uri: 'events', position: 3, nested: [] },
-                     { title: 'Gallery', uri: 'gallery', position: 4, nested: [] },
-                     { title: 'Contact', uri: 'contact', position: 5, nested: [] },
-                     { title: 'News', uri: 'news', position: 6, nested: [] }
-                  ]
+      tmpl.pages.new([
+                       { title: 'Home', position: 1, uri: 'home' },
+                       { title: 'About', position: 2, uri: 'about' },
+                       { title: 'Events', position: 3, uri: 'events' },
+                       { title: 'Gallery', position: 4, uri: 'gallery' },
+                       { title: 'Contact', position: 5,uri: 'contact' },
+                       { title: 'News',position: 6, uri: 'news' }
+                     ])
       tmpl.fb_page.update(status: 'in progress')
       Facebook::PageDetailService.call(tmpl.fb_page.token)
     end
