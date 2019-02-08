@@ -24,11 +24,24 @@ class EditorController < ApplicationController
     end
   end
 
-  def setting; end
+  def create_setting
+    editor_setting = Setting.find_or_initialize_by(fb_page_template_id: params[:fb_page_template_id])
+    editor_setting.attributes = setting_param
+    editor_setting.save!
+  end
+
+  def show_setting
+    editor_setting = Setting.find_by(fb_page_template_id: params[:fb_page_template_id])
+    render json: editor_setting
+  end
 
   private
 
   def page_param
     params.permit(menu: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri, nested: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri]])
+  end
+
+  def setting_param
+    params.require(:editor).permit(:domain, :legal_info, :fb_page_template_id, socail_media: {})
   end
 end

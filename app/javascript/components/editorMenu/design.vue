@@ -178,7 +178,7 @@ export default {
   }
 };
 </script>
-<style>
+<style scoped>
 #inner-menu{
   margin: 10px;
 }
