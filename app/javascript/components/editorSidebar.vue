@@ -53,3 +53,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .child-menu-inner {
+    height: 550px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+</style>
+
