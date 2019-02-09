@@ -5,7 +5,13 @@ javascript:
   var fuitterTitle = document.getElementById("fuitter-title");
   var fuitterLogo = document.getElementById("fuitter-logo");
   
-  body.style.fontFamily = template['properties']['font']
+  if(template['properties'] !== null) {
+    body.style.fontFamily = template['properties']['font']
+    fuitterTitle.innerHTML = template['properties']['title'];
+    for (let item of fuitterColor) {
+      item.style.color = template['properties']['color'];
+    }
+  }
   
   const URL = window.location.protocol+ '//' + window.location.host;
 
@@ -14,10 +20,7 @@ javascript:
     fuitterLogo.style.maxHeight = '75px'
     fuitterLogo.style.maxWidth = 'auto'
   }
-  fuitterTitle.innerHTML = template['properties']['title'];
-  for (let item of fuitterColor) {
-    item.style.color = template['properties']['color'];
-  }
+  
  
   
   

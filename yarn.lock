@@ -1158,6 +1158,11 @@ bulma-helpers@^0.3.6:
   resolved "https://registry.yarnpkg.com/bulma-helpers/-/bulma-helpers-0.3.6.tgz#d6eddc59e9a3e20dd03d061bbb69ce333c5c1f28"
   integrity sha512-i5ihHGk9iOPRAMVpijfAfjWPLXHiLBDODXMCPIuA0g885bScZekeDpvsfvHF2uH09KNhFLipTNz6Msj1Dx2GKg==
 
+bulma-tooltip@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/bulma-tooltip/-/bulma-tooltip-2.0.2.tgz#cf0bf5ad2dc75492cbcbd4816e1a005314dc90ac"
+  integrity sha512-xsqWeWV7tsUn3uH04SqJeP7/CyC1RaDVIyVzr4/sIO3friIIOi7L6jc5g7qUwDxuBQl72yH/yRPuefpXoQ4hWg==
+
 bulma@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/bulma/-/bulma-0.7.2.tgz#8e944377b74c7926558830d38d8e19eaf49f5fb6"
