@@ -7,11 +7,6 @@ class EditorController < ApplicationController
     @fb_page_id = params[:fb_page_id]
     @template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
     @pages = Page.list_pages(@template)
-    # @pages = @template.pages.order(:position).select do |page|
-    #   if page.parent.nil?
-    #     page['nested'] = page.children
-    #   end
-    # end
   end
 
   def page

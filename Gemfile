@@ -88,6 +88,9 @@ gem 'slim-rails'
 gem 'draper'
 
 gem 'sentry-raven'
+
+# Organise ActiveRecord model into a tree structure
 gem 'ancestry'
+
 # used for file/image uploads
 gem 'carrierwave'

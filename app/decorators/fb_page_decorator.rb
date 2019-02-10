@@ -5,12 +5,6 @@ class FbPageDecorator < Draper::Decorator
 
   def menu
      Page.list_pages(object.fb_page_template)
-     # .pages.order(:position).map do |page|
-     #  {
-     #    'name' => page.title,
-     #    'uri' => page.uri
-     #  }
-    # end
   end
 
   def cover_images
