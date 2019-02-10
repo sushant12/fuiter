@@ -6,13 +6,22 @@ class EditorController < ApplicationController
   def design
     @fb_page_id = params[:fb_page_id]
     @template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
+    @pages = Page.list_pages(@template)
   end
 
   def page
-    @fb_page_id = params[:fb_page_id]
-    fb_page_template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
-    fb_page_template.pages = page_param[:menu]
-    fb_page_template.save!
+    # loop thru menu and set menu's parent id(ancestry) to nil in first loop
+    # if menu have nested property then assign parent id for them  
+    page_param[:menu].each_with_index do |menu, index|
+      parent = Page.find menu[:id]
+      parent.update_attributes(position: index, parent: nil)
+      unless menu[:nested].empty?
+        menu[:nested].each_with_index do |sub_menu, index|
+          page = Page.find sub_menu[:id]
+          page.update_attributes!(position: index, parent: parent) 
+        end
+      end
+    end
   end
 
   def setting; end

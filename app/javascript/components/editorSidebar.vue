@@ -19,6 +19,7 @@
       v-bind:is="currentMenu"
       @clicked-main-menu='resetMenu'
       :template='template'
+      :pages='pages'
       :fb_page_id='fb_page_id'>
       </component>
     </keep-alive>
@@ -53,3 +54,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+  .child-menu-inner {
+    height: 550px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-right: 5px;
+  }
+</style>
+

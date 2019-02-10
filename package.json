@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "bulma": "^0.7.2",
     "bulma-helpers": "^0.3.6",
+    "bulma-tooltip": "^2.0.2",
     "jquery": "2.2.4",
     "lodash": "^4.17.11",
     "vue": "^2.5.21",
