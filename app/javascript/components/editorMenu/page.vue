@@ -1,9 +1,10 @@
 <template>
   <div class="component-example">
+    <a @click="mainMenu">Go back</a>
       <VueNestable
+      v-if="hideSetting"
       v-model="menus"
       :max-depth="2"
-      key-prop="position"
       children-prop="nested"
       @change="updateMenu()"
     >
@@ -12,8 +13,14 @@
           <i class="fa fa-bars" />
         </VueNestableHandle>
         <span>{{ item.title }}</span>
+        <a @click="pageSeo(item)">SEO</a>
       </template>
     </VueNestable>
+    <div v-else>
+      <textarea v-model="metaTags"></textarea>
+      <textarea v-model="metaDescription"></textarea>
+      <button @click="saveSeo()">Save</button>
+    </div>
   </div>
 </template>
 
@@ -23,13 +30,27 @@ import { VueNestable, VueNestableHandle } from 'vue-nestable';
 import _ from 'lodash';
 
 export default {
-  props: ['template', 'fb_page_id'],
+  props: ['template', 'fb_page_id', 'pages'],
   data() {
     return {
       menus: [],
+      metaTags: '',
+      metaDescription: '',
+      hideSetting: true,
+      selectedPage: '',
     };
   },
   methods: {
+    pageSeo(page){
+      this.hideSetting = false;
+      this.selectedPage = page;
+    },
+    saveSeo(){
+      // this.sele
+    },
+    mainMenu() {
+     this.$emit('clicked-main-menu', ''); 
+    },
     updateMenu() {
       EditorServices.updateMenu(this.fb_page_id,this.menus)
         .then((resp) => {
@@ -39,7 +60,7 @@ export default {
   },
 
   created() {
-    _.each(this.template.pages, (page) => {
+    _.each(this.pages, (page) => {
       this.menus.push(page);
     });
   },

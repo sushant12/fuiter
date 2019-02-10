@@ -7,25 +7,26 @@ RSpec.describe FbPageDecorator do
   let(:template)         { create :template                                                                       }
   let(:fb_page)          { create :fb_page, content: JSON.parse(file_fixture('page.json').read), user_id: user.id }
   let(:fb_page_template) { create :fb_page_template, fb_page_id: fb_page.id, template_id: template.id             }
+  let(:page)             { create :page, fb_page_template_id: fb_page_template.id                                 }
+
   let(:no_album_fb_page) { create :fb_page, content: JSON.parse(file_fixture('no_album_page.json').read), user_id: user.id }
   let(:no_album_fb_page_template) { create :fb_page_template, fb_page_id: no_album_fb_page.id, template_id: template.id }
+  let(:no_album_page)             { create :page, fb_page_template_id: no_album_fb_page_template.id                     }
 
   before do
     user
     template
     fb_page
     fb_page_template
+    page
     no_album_fb_page
     no_album_fb_page_template
+    no_album_page
   end
 
+
   it 'prints menu' do
-    menu = [{"name"=>"About", "uri"=>"about", "nested"=>[{"name"=>"Events", "uri"=>"events"}]},
- {"name"=>"Contact", "uri"=>"contact", "nested"=>[]},
- {"name"=>"Home", "uri"=>"home", "nested"=>[]},
- {"name"=>"News", "uri"=>"news", "nested"=>[]},
- {"name"=>"Gallery", "uri"=>"gallery", "nested"=>[]}]
-    expect(fb_page.decorate.menu).to eq(menu)
+    expect(fb_page.decorate.menu.first.title).to eq('Home')
   end
 
   it 'returns fb cover images' do

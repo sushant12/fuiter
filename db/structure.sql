@@ -132,7 +132,8 @@ CREATE TABLE public.pages (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     fb_page_template_id uuid,
-    uri character varying
+    uri character varying,
+    ancestry character varying
 );
 
 
@@ -364,6 +365,13 @@ CREATE INDEX index_fb_pages_on_user_id ON public.fb_pages USING btree (user_id);
 
 
 --
+-- Name: index_pages_on_ancestry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_pages_on_ancestry ON public.pages USING btree (ancestry);
+
+
+--
 -- Name: index_pages_on_fb_page_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -485,6 +493,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190119103402'),
 ('20190121153950'),
 ('20190203075130'),
-('20190204134700');
+('20190204134700'),
+('20190210043740');
 
 
