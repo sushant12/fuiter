@@ -9,7 +9,7 @@
         <a class="parent-link " @click="showMenu('Page')">Pages</a>
       </li>
       <li class="have-children">
-        <a class="parent-link " href="/">Settings</a>
+        <a class="parent-link " @click="showMenu('Setting')">Settings</a>
       </li>
     </ul>
   </div>
@@ -29,6 +29,7 @@
 <script>
 import Design from './editorMenu/design.vue';
 import Page from './editorMenu/page.vue';
+import Setting from './editorMenu/setting.vue';
 
 export default {
   props: ['template', 'pages', 'fb_page_id'],
@@ -51,6 +52,7 @@ export default {
   components: {
     Design,
     Page,
+    Setting,
   },
 };
 </script>

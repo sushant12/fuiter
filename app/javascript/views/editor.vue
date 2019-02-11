@@ -62,7 +62,7 @@ export default {
   methods: {
   },
   mounted() {
-    debugger
+    
   },
   components: {
     'editor-nav': EditorNav,

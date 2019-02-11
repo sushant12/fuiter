@@ -17,6 +17,20 @@ const EditorServices = {
 
   updateMenu(fb_page_id, params) {
     return axios.put(`/editor/page/${fb_page_id}`, { "menu": params}, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
+  },
+
+  updateSetting(fb_page_id, params) {
+    axios.post(`/editor/setting/${fb_page_id}`, params, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }})
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  },
+
+  showSetting(fb_page_template_id) {
+    return axios.get(`/editor/setting/${fb_page_template_id}`, {headers: { 'X-CSRF-Token': document.getElementsByTagName('meta')['csrf-token'].getAttribute("content") }});
   }
 }
 
