@@ -8,7 +8,8 @@ Rails.application.routes.draw do
 
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
   put '/editor/page/:fb_page_id', to: 'editor#page'
-  get '/editor/setting/:fb_page_id', to: 'editor#setting'
+  post '/editor/setting/:fb_page_id', to: 'editor#create_setting', as: 'editor_create_setting'
+  get '/editor/setting/:fb_page_template_id', to: 'editor#show_setting', as: 'editor_show_setting'
 
   get 'site/:fb_page_id/home', to: 'site#home', as: 'site_home'
   get 'site/:fb_page_id/about', to: 'site#about', as: 'site_about'
