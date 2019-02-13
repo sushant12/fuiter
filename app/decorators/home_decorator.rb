@@ -9,6 +9,10 @@ class HomeDecorator < ApplicationDecorator
   #     end
   #   end
 
+  def facebook_page_id
+    object.content.dig('id')
+  end
+
   def state
     case self.status
       when "online"
