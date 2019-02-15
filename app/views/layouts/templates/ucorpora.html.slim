@@ -6,8 +6,8 @@ html.not-ie lang="en"
       = @page.name
     = csrf_meta_tags
     = csp_meta_tag
-    meta content=("ucorpora demo - Free Business Corporate HTML Template") name="description"
-    meta content="ucorpora, ucorpora demo, free, template, corporate, clean, modern, bootstrap, creative, design" name="keywords" /
+    meta content=(@seo.dig('metaDescription') if @seo) name="description"
+    meta content=(@seo.dig('metaTags') if @seo) name="keywords" /
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
