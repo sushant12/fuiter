@@ -1,5 +1,6 @@
-class HomeDecorator < ApplicationDecorator
+class PageDecorator < ApplicationDecorator
   delegate_all
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
@@ -9,20 +10,4 @@ class HomeDecorator < ApplicationDecorator
   #     end
   #   end
 
-  def facebook_page_id
-    object.content.dig('id')
-  end
-
-  def state
-    case self.status
-      when "online"
-        "success"
-      when "in progress"
-        "info"
-      when "expired"
-        "danger"
-      else
-        ""
-      end
-  end
 end
