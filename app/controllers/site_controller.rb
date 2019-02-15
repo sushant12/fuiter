@@ -5,15 +5,17 @@ class SiteController < ApplicationController
   before_action :set_fb_page
 
   def home
-    # render json: @page.content
+    set_seo
     render template: "#{template_layout}/home"
   end
 
   def about
+    set_seo
     render template: "#{template_layout}/about"
   end
 
   def contact
+    set_seo
     render template: "#{template_layout}/contact"
   end
 
@@ -24,14 +26,17 @@ class SiteController < ApplicationController
   end
 
   def events
+    set_seo
     render template: "#{template_layout}/events"
   end
 
   def gallery
+    set_seo
     render template: "#{template_layout}/gallery"
   end
 
   def news
+    set_seo
     render template: "#{template_layout}/news"
   end
 
@@ -45,6 +50,14 @@ class SiteController < ApplicationController
   def set_fb_page
     @page = FbPage.find_by(id: params[:fb_page_id]).decorate
     @template = @page.fb_page_template
+  end
+
+  def set_seo
+    current_action = caller[0][/`.*'/][1..-2]
+    page = @page.fb_page_template.pages.find do |menu| 
+      menu.uri == current_action
+    end
+    @seo = page.seo
   end
 
   def template_layout
