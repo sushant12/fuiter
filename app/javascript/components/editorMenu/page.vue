@@ -14,6 +14,7 @@
         </VueNestableHandle>
         <span>{{ item.title }}</span>
         <a @click="pageSeo(item)">SEO</a>
+        <a @click="pageSetting(item)">Settings</a>
       </template>
     </VueNestable>
     <div v-else>
@@ -30,7 +31,7 @@
 import EditorServices from '../../services/index';
 import { VueNestable, VueNestableHandle } from 'vue-nestable';
 import SEO from './page/seo.vue';
-// import PageSettings from 'page/settings.vue';
+import PageSettings from './page/settings.vue';
 import _ from 'lodash';
 
 export default {
@@ -47,6 +48,11 @@ export default {
     pageSeo(page){
       this.showPage = false;
       this.pageOption = 'SEO';
+      this.pageId = page.id;
+    },
+    pageSetting(page){
+      this.showPage = false;
+      this.pageOption = 'PageSettings';
       this.pageId = page.id;
     },
     mainMenu() {
@@ -69,6 +75,7 @@ export default {
     VueNestable,
     VueNestableHandle,
     SEO,
+    PageSettings,
   },
 };
 </script>
