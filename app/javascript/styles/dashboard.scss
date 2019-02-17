@@ -27,13 +27,13 @@ TABLE OF CONTENTS
 // $desktop: 800px !default;
 // $navbar-breakpoint: $tablet;
 // @import "../../../node_modules/bulma/bulma";
-@import 'partials/layout-colors';
+@import "partials/layout-colors";
 @import "partials/dashboard";
 @import "partials/layout-hero";
 @import "partials/layout-sections";
-@import 'partials/layout-utils';
+@import "partials/layout-utils";
 // @import "partials/pageloader";
-@import 'partials/layout-navbar';
+@import "partials/layout-navbar";
 @import "partials/tabs";
 @import "partials/dropdowns";
 @import "partials/buttons";
@@ -72,74 +72,124 @@ TABLE OF CONTENTS
 @import "partials/columns";
 @import "partials/components-tables";
 
-@import 'partials/layout-responsive';
+@import "partials/layout-responsive";
 
 /* ==========================================================================
 1. Resets and base setup
 ========================================================================== */
 
 .no-touch .scrollable.hover {
-    overflow-y: hidden;
+  overflow-y: hidden;
 }
 
 .no-touch .scrollable.hover:hover {
-    overflow-y: auto;
-    overflow: visible;
-}
-
-a {
-    color: $secondary;
-
-    &:hover {
-        color: $accent;
-        text-decoration: none;
-    }
-
-    &:focus {
-        text-decoration: none;
-    }
+  overflow-y: auto;
+  overflow: visible;
 }
 
 nav {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 
-nav ul, nav li {
-    outline: 0;
-    margin: 0;
-    padding: 0;
+nav ul,
+nav li {
+  outline: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    font-family: 'Montserrat', sans-serif;
-    overflow: hidden !important;
-    background-color: $dashboard-grey;
-    margin: 0 !important;
-    height: 100% !important;
+  // font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  font-family: "Montserrat", sans-serif;
+  overflow: hidden !important;
+  background-color: $dashboard-grey;
+  margin: 0 !important;
+  height: 100% !important;
 }
 
 @font-face {
-    font-family: 'Nexa Light';
-    src: url("../fonts/text/nexa/NexaLight.woff") format("woff"), url("../fonts/text/nexa/NexaLight.ttf") format("truetype");
+  font-family: "Nexa Light";
+  src: url("../fonts/text/nexa/NexaLight.woff") format("woff"),
+    url("../fonts/text/nexa/NexaLight.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: 'Nexa Bold';
-    font-weight: bold;
-    src: url("../fonts/text/nexa/NexaBold.woff") format("woff"), url("../fonts/text/nexa/NexaBold.ttf") format("truetype");
+  font-family: "Nexa Bold";
+  font-weight: bold;
+  src: url("../fonts/text/nexa/NexaBold.woff") format("woff"),
+    url("../fonts/text/nexa/NexaBold.ttf") format("truetype");
 }
 
 .fa {
-    color: #fff;
+  color: $grey-6;
 }
 
 .navbar-start {
-    flex-grow: 1; 
-    justify-content: center;
+  flex-grow: 1;
+  justify-content: center;
 }
+// custom
+.main-contain-area {
+  margin-top: 100px;
+  // width: 80%;
+  margin-left: 3%;
+  // background-color: white;
+  .thead {
+    // margin-top: 85px;
+    // margin-left: 20px;
+    // margin-right: 20px;
+    // background-color: $sidebar;
+    background-color: darken($table-white, 10%);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid darkgrey;
+    color: $icon-grey;
+    font-size: x-large;
+    font-family: fantasy;
+  }
+  .dash-data {
+    background-color: $table-white;
+    display: flex;
+    align-items: center;
+    img {
+      border-radius: 50%;
+    }
+    .text {
+      color: $icon-grey;
 
+      font-size: x-large;
+      font-family: fantasy;
+    }
+    .condn {
+      // padding-right: 0;
+      // background-color: blue;
+      @media screen and (min-width: 800px) {
+        // background-color: pink;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      @media screen and (max-width: 800px) {
+        // background-color: pink;
+        padding-left: 0;
+      }
+    }
+  }
+  .dash-data:hover {
+    background-color: darken($table-white, 10%);
+  }
+}
+@media screen and (max-width: 700px) {
+  .main-contain-area > .dash-data > .condn {
+    background-color: pink;
+  }
+}
+.sidebar-modi {
+  // background-color: $sidebar;
+  // height: 100vh;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
