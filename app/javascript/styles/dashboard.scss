@@ -164,11 +164,27 @@ body {
       font-size: x-large;
       font-family: fantasy;
     }
-    .cond {
+    .condn {
+      // padding-right: 0;
+      // background-color: blue;
+      @media screen and (min-width: 800px) {
+        // background-color: pink;
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      @media screen and (max-width: 800px) {
+        // background-color: pink;
+        padding-left: 0;
+      }
     }
   }
   .dash-data:hover {
     background-color: darken($table-white, 10%);
+  }
+}
+@media screen and (max-width: 700px) {
+  .main-contain-area > .dash-data > .condn {
+    background-color: pink;
   }
 }
 .sidebar-modi {

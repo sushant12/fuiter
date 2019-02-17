@@ -23,7 +23,7 @@
           = page.name
         .column.is-1.condn
           - unless page.state == ""
-            = link_to 'View', site_home_path(page), class: 'button is-primary is-small'
+            = link_to 'View', site_home_path(page), class: 'button conditional is-primary is-small'
         .column.is-1
           = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
 
