@@ -14,9 +14,22 @@ nav.navbar.navbar-wrapper.is-solid.navbar-inverse.is-reverse
     .navbar-start
     .navbar-end
       .navbar-item
-        .mobile-drop.is-hidden-desktop
-          = link_to destroy_user_session_path, {class: "navbar-item is-slide"} do
-              | Logout
+        .mobile-drop.is-hidden-desktop.is-12
+          = link_to root_path, { class: "mobile-menu parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
+            i.sl.sl-icon-grid 
+            | Dashboard
+          = link_to root_path, { class: "mobile-menu parent-link #{controller.action_name == 'stats' ? 'active' : ''}" } do  
+            i.sl.sl-icon-graph
+            | Statistics
+          = link_to root_path, { class: "mobile-menu parent-link #{controller.action_name == 'billing' ? 'active' : ''}" } do
+            i.sl.sl-icon-briefcase
+            | Billing
+          = link_to root_path, { class: "mobile-menu parent-link #{controller.action_name == 'newsletter' ? 'active' : ''}" } do 
+            i.sl.sl-icon-docs
+            | Newsletter
+          = link_to destroy_user_session_path, {class: "mobile-menu "} do
+            i.sl.sl-icon-lock 
+            | Logout
         .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
           a.navbar-link href="javascript:void(0);" 
             = image_tag(current_user.image)
