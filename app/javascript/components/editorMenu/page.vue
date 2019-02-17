@@ -2,7 +2,7 @@
   <div class="component-example">
     <a @click="mainMenu">Go back</a>
       <VueNestable
-      v-if="hideSetting"
+      v-if="showPage"
       v-model="menus"
       :max-depth="2"
       children-prop="nested"
@@ -17,9 +17,11 @@
       </template>
     </VueNestable>
     <div v-else>
-      <textarea v-model="metaTags"></textarea>
-      <textarea v-model="metaDescription"></textarea>
-      <button @click="saveSeo()">Save</button>
+      <component 
+      v-bind:is="pageOption"
+      :pageId='pageId'
+      >
+      </component>
     </div>
   </div>
 </template>
@@ -27,6 +29,8 @@
 <script>
 import EditorServices from '../../services/index';
 import { VueNestable, VueNestableHandle } from 'vue-nestable';
+import SEO from './page/seo.vue';
+// import PageSettings from 'page/settings.vue';
 import _ from 'lodash';
 
 export default {
@@ -34,19 +38,16 @@ export default {
   data() {
     return {
       menus: [],
-      metaTags: '',
-      metaDescription: '',
-      hideSetting: true,
-      selectedPage: '',
+      showPage: true,
+      pageOption: '',
+      pageId: '',
     };
   },
   methods: {
     pageSeo(page){
-      this.hideSetting = false;
-      this.selectedPage = page;
-    },
-    saveSeo(){
-      // this.sele
+      this.showPage = false;
+      this.pageOption = 'SEO';
+      this.pageId = page.id;
     },
     mainMenu() {
      this.$emit('clicked-main-menu', ''); 
@@ -66,7 +67,8 @@ export default {
   },
   components: {
     VueNestable,
-    VueNestableHandle
+    VueNestableHandle,
+    SEO,
   },
 };
 </script>
