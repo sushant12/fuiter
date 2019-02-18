@@ -134,9 +134,28 @@ body {
 }
 // custom
 .main-contain-area {
-  margin-top: 100px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow-x: auto;
   // width: 80%;
-  margin-left: 3%;
+  justify-items: center;
+  // display: flex;
+  @media screen and (min-width: 768px) {
+    // background-color: pink;
+    margin-top: 100px;
+
+    flex-basis: 85%;
+    padding-left: 3%;
+    padding-right: 3%;
+    // flex-direction: row-reverse;
+  }
+  @media screen and (max-width: 768px) {
+    // background-color: pink;
+    margin-top: 75px;
+
+    flex-basis: 100%;
+    // padding-left: 0;
+  }
   // background-color: white;
   .thead {
     // margin-top: 85px;
@@ -147,34 +166,77 @@ body {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid darkgrey;
-    color: $icon-grey;
+    color: darken($icon-grey, 20%);
     font-size: x-large;
-    font-family: fantasy;
+    font-family: sans-serif;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    height: 75px;
+    @media screen and (max-width: 768px) {
+      // background-color: pink;
+      font-size: large;
+      height: 50px;
+    }
+    .logo {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 10%;
+    }
+    .name {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 50%;
+    }
+    .view .edit {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 50%;
+    }
   }
   .dash-data {
+    padding: 5px 5px;
     background-color: $table-white;
     display: flex;
     align-items: center;
+    .data-logo {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 10%;
+    }
     img {
       border-radius: 50%;
+      margin-left: 20px;
     }
     .text {
-      color: $icon-grey;
-
-      font-size: x-large;
-      font-family: fantasy;
-    }
-    .condn {
-      // padding-right: 0;
-      // background-color: blue;
-      @media screen and (min-width: 800px) {
-        // background-color: pink;
-        display: flex;
-        flex-direction: row-reverse;
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 60%;
+      color: darken($icon-grey, 20%);
+      padding-left: 3rem;
+      font-size: large;
+      font-family: sans-serif;
+      @media screen and (max-width: 768px) {
+        font-size: medium;
       }
-      @media screen and (max-width: 800px) {
-        // background-color: pink;
+    }
+
+    .condn {
+      flex-shrink: 0;
+      flex-grow: 0;
+      flex-basis: 15%;
+      @media screen and (min-width: 768px) {
+        display: flex;
+        justify-content: flex-end;
+        margin-right: 1rem;
+      }
+      @media screen and (max-width: 768px) {
         padding-left: 0;
+      }
+      .data-edit {
+        flex-shrink: 0;
+        flex-grow: 0;
+        flex-basis: 15%;
       }
     }
   }
@@ -183,13 +245,25 @@ body {
   }
 }
 @media screen and (max-width: 700px) {
-  .main-contain-area > .dash-data > .condn {
-    background-color: pink;
-  }
+  // .main-contain-area > .dash-data > .condn {
+  //   background-color: pink;
+  // }
 }
 .sidebar-modi {
   // background-color: $sidebar;
   // height: 100vh;
   margin-bottom: 0;
   padding-bottom: 0;
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: 15%;
+  height: 100vh;
 }
+// @media screen and (max-width: 768px) {
+//   .dash-data > .text {
+//     color: darken($icon-grey, 20%);
+
+//     font-size: normal;
+//     font-family: sans-serif;
+//   }
+// }

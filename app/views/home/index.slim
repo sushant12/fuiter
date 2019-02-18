@@ -2,67 +2,27 @@
   |  Fuitter | Dashboard
 
 = render 'shared/dashboard/navbar'
-.columns
-  .column.is-2.is-hidden-mobile.sidebar-modi
+.grid-flex style= "display:flex;position:fixed;width:100vw;"
+  .is-hidden-mobile.sidebar-modi 
     = render 'shared/dashboard/sidebar'
-  .column.is-9.is-mobile.main-contain-area
+  .is-mobile.main-contain-area
     / .columns.is-half.is-centered.is-mobile.is-half.table-head 
-    .columns.is-centered.main-content-area.thead.is-mobile
-      .column.is-mobile.is-1
-      .column.is-mobile.is-9
+    .is-centered.main-content-area.thead.is-mobile
+      .is-mobile.logo
+      .is-mobile.name 
         | Name
-      / .column
+      .is-mobile.view 
       /   | Status
-      .column.is-mobile.is-2
+      .is-mobile.edit 
         |Actions
     - @pages.each do |page|
-      .columns.is-multiline.is-mobile.dash-data
-        .column.is-1
+      .is-mobile.dash-data 
+        .is-mobile.data-logo 
           img src=(page.picture)
-        .column.is-9.text
+        .is-mobile.text
           = page.name
-        .column.is-1.condn
+        .is-mobile.condn
           - unless page.state == ""
             = link_to 'View', site_home_path(page), class: 'button conditional is-primary is-small'
-        .column.is-1
+        .is-mobile.data-edit
           = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
-
-
-    /  #main-dashboard.section-wrapper
-      .columns.dashboard-columns
-        / table.responsive-table.is-primary.is-mobile
-        table.is-mobile
-
-
-/ #dashboard-wrapper.columns.level
-/   .column.is-2
-/   .content.column.is-10
-/     .dashboard-wrapper
-/       .columns
-/         .column
-/           #main-dashboard.section-wrapper
-/             .columns.dashboard-columns
-/               / table.responsive-table.is-primary.is-mobile
-/               table.is-mobile
-
-/                 tbody
-/                   tr
-/                     th
-/                     th Name
-/                     th Status
-/                     th Actions
-/                   - @pages.each do |page|
-/                     tr
-/                       td 
-/                         img src=(page.picture)
-/                       td
-/                         = page.name 
-/                       td
-/                         span class=(["tag","squared", "is-#{page.state}"])
-/                          = page.status
-/                       td
-/                         - unless page.state == ""
-/                           = link_to 'View', site_home_path(page), class: 'button is-primary is-small'
-/                         | &nbsp 
-/                         = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
-/   .column
