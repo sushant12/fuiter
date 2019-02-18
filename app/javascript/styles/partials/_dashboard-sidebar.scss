@@ -22,13 +22,13 @@
   background: $sidebar;
   height: 100%;
   // border-right: 1px solid #e5e5e5;
-  position: fixed;
+  position: sticky;
   top: 0;
   margin-top: 74px;
   bottom: 0;
   // transform: translateX(-251px);
   // // left:80px;
-  width: 280px;
+  // width: 100%;
   // overflow: hidden;
   // -webkit-transition: all 0.3s;
   // transition: all 0.3s;
