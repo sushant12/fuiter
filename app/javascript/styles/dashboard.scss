@@ -134,64 +134,70 @@ body {
 }
 // custom
 .main-contain-area {
+  padding: 3rem;
   flex-shrink: 0;
   flex-grow: 0;
-  overflow-x: auto;
+  overflow-y: scroll;
+  height: 100vh;
+  padding-bottom: 150px;
   // width: 80%;
   justify-items: center;
+  margin-top: 75px;
+  box-shadow: 2px 2px 2px grey;
+  flex-basis: 85%;
   // display: flex;
-  @media screen and (min-width: 768px) {
+  @media (max-width: 768px) {
     // background-color: pink;
-    margin-top: 100px;
+    flex-basis: 100%;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
 
-    flex-basis: 85%;
-    padding-left: 3%;
-    padding-right: 3%;
+    margin-top: 35px;
+
     // flex-direction: row-reverse;
   }
-  @media screen and (max-width: 768px) {
-    // background-color: pink;
-    margin-top: 75px;
-
+  @media (min-width: 768px) and (max-width: 1100px) {
     flex-basis: 100%;
-    // padding-left: 0;
+    margin-top: 40px;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
+
   // background-color: white;
   .thead {
-    // margin-top: 85px;
-    // margin-left: 20px;
-    // margin-right: 20px;
-    // background-color: $sidebar;
     background-color: darken($table-white, 10%);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: 1px solid darkgrey;
-    color: darken($icon-grey, 20%);
+    color: black;
     font-size: x-large;
     font-family: sans-serif;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     font-weight: bold;
     height: 75px;
     @media screen and (max-width: 768px) {
-      // background-color: pink;
       font-size: large;
       height: 50px;
-    }
-    .logo {
-      flex-shrink: 0;
-      flex-grow: 0;
-      flex-basis: 10%;
     }
     .name {
       flex-shrink: 0;
       flex-grow: 0;
-      flex-basis: 50%;
+
+      padding-left: 2rem;
+      @media screen and (max-width: 768px) {
+        padding-left: 0.4rem;
+      }
     }
-    .view .edit {
+    .view,
+    .edit {
       flex-shrink: 0;
       flex-grow: 0;
-      flex-basis: 50%;
+      padding-right: 2rem;
+      @media screen and (max-width: 768px) {
+        padding-right: 1.5rem;
+      }
     }
   }
   .dash-data {
@@ -207,47 +213,64 @@ body {
     img {
       border-radius: 50%;
       margin-left: 20px;
+      @media screen and (max-width: 768px) {
+        margin-left: 0;
+      }
     }
     .text {
       flex-shrink: 0;
       flex-grow: 0;
-      flex-basis: 60%;
-      color: darken($icon-grey, 20%);
+      flex-basis: 70%;
+      color: black;
       padding-left: 3rem;
       font-size: large;
       font-family: sans-serif;
       @media screen and (max-width: 768px) {
-        font-size: medium;
+        flex-basis: 60%;
+        padding-left: 1.5rem;
+        font-size: small;
       }
     }
 
     .condn {
       flex-shrink: 0;
       flex-grow: 0;
-      flex-basis: 15%;
-      @media screen and (min-width: 768px) {
-        display: flex;
-        justify-content: flex-end;
-        margin-right: 1rem;
+      display: flex;
+      justify-content: flex-end;
+      flex-basis: 20%;
+      font-size: small;
+      a:first-child {
+        margin-right: 2rem;
       }
+      padding-right: 1rem;
+
       @media screen and (max-width: 768px) {
-        padding-left: 0;
+        flex-basis: 30%;
+        padding: 0;
+        margin-left: 0;
+        a:first-child {
+          margin-right: 0.2rem;
+        }
       }
-      .data-edit {
-        flex-shrink: 0;
-        flex-grow: 0;
-        flex-basis: 15%;
+    }
+    .condn-single {
+      flex-shrink: 0;
+      flex-grow: 0;
+      display: flex;
+      justify-content: flex-end;
+      flex-basis: 20%;
+      font-size: small;
+      padding: 0 3rem;
+      margin-left: 2rem;
+      @media screen and (max-width: 768px) {
+        flex-basis: 30%;
+        padding: 0;
+        margin-left: 0;
       }
     }
   }
-  .dash-data:hover {
-    background-color: darken($table-white, 10%);
-  }
 }
 @media screen and (max-width: 700px) {
-  // .main-contain-area > .dash-data > .condn {
-  //   background-color: pink;
-  // }
 }
 .sidebar-modi {
   // background-color: $sidebar;
@@ -259,11 +282,8 @@ body {
   flex-basis: 15%;
   height: 100vh;
 }
-// @media screen and (max-width: 768px) {
-//   .dash-data > .text {
-//     color: darken($icon-grey, 20%);
-
-//     font-size: normal;
-//     font-family: sans-serif;
-//   }
-// }
+@media (max-width: 1100px) {
+  .sidebar-modi {
+    display: none;
+  }
+}
