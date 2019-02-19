@@ -6,7 +6,7 @@
       <h6>Connecting to social services enables you to push or pull data, and allow visitors to connect with you via those services.</h6>
       <h6>Add social sites URL</h6>
       <div class="control" v-for="(option, index) in social" :key="index">
-        <input class="input" type="text" v-model="option.name">
+        <input class="input" type="text" v-model="option.name" :placeholder="option.placeholder">
       </div>
       <button class="button is-info" @click="updateSetting">Save</button>      
     </div>
@@ -20,10 +20,10 @@ export default {
   data() {
     return {
       social: [
-        { name: '' },
-        { name: '' },
-        { name: '' },
-        { name: '' },
+        { name: '', placeholder: 'Facebook URL' },
+        { name: '', placeholder: 'LinkedIn URL' },
+        { name: '', placeholder: 'Twitter URL' },
+        { name: '', placeholder: 'Youtube URL' },
       ],
     }
   },
@@ -32,18 +32,23 @@ export default {
       this.$emit('clicked-setting-menu', ''); 
     },
     updateSetting() {
+      this.social.forEach((item, index) => {
+        delete item.placeholder
+      });
       EditorServices.updateSetting(this.fb_page_id, {
         socail_media: { social: this.social },
         fb_page_template_id: this.template.id       
+      }).then((resp) => {
+        document.getElementById('frame').contentWindow.location.reload();
       });
       this.clear();
     },
     clear() {
       this.social = [
-        { name: '' },
-        { name: '' },
-        { name: '' },
-        { name: '' },
+        { name: '', placeholder: 'Facebook URL' },
+        { name: '', placeholder: 'LinkedIn URL' },
+        { name: '', placeholder: 'Twitter URL' },
+        { name: '', placeholder: 'Youtube URL' },
       ]
     }
   },

@@ -21,13 +21,7 @@ const EditorServices = {
   },
 
   updateSetting(fb_page_id, params) {
-    axios.post(`/editor/setting/${fb_page_id}`, params, {headers: { 'X-CSRF-Token': csrfToken }})
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+    return axios.post(`/editor/setting/${fb_page_id}`, params, {headers: { 'X-CSRF-Token': csrfToken }})
   },
 
   showSetting(fb_page_template_id) {
