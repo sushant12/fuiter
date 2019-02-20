@@ -21,6 +21,6 @@ class PagesController < ApplicationController
   end
 
   def page_param
-    params.permit(seo: [:metaTags, :metaDescription])
+    params.permit(:title, seo: [:metaTags, :metaDescription], setting: [description: [:value, :enable]])
   end
 end
