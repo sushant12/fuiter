@@ -6,13 +6,9 @@
   .is-hidden-mobile.sidebar-modi 
     = render 'shared/dashboard/sidebar'
   .is-mobile.main-contain-area
-    / .columns.is-half.is-centered.is-mobile.is-half.table-head 
     .is-centered.main-content-area.thead.is-mobile
-      .is-mobile.logo
       .is-mobile.name 
         | Name
-      .is-mobile.view 
-      /   | Status
       .is-mobile.edit 
         |Actions
     - @pages.each do |page|
@@ -21,8 +17,11 @@
           img src=(page.picture)
         .is-mobile.text
           = page.name
-        .is-mobile.condn
-          - unless page.state == ""
+        
+        - unless page.state == ""
+          .is-mobile.condn
             = link_to 'View', site_home_path(page), class: 'button conditional is-primary is-small'
-        .is-mobile.data-edit
-          = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
+            = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
+        - else
+          .is-mobile.condn-single
+            = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
