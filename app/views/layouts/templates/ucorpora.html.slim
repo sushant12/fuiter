@@ -83,7 +83,7 @@ html.not-ie lang="en"
             a href="#"  www.example.com
             .row.space40
             - if @editor_setting&.socail_media.present?
-              - @editor_setting.socail_media['social'].each do |url|
+              - @editor_setting.template_social_icons.each do |url|
                 - if url['name'].include? "facebook"
                   a.social-network.sn2.facebook href="#{url['name']}" target="_blank"
                 - elsif url['name'].include? "linked"
@@ -92,8 +92,10 @@ html.not-ie lang="en"
                   a.social-network.sn2.twitter href="#{url['name']}" target="_blank"
                 - elsif url['name'].include? "youtube"
                   a.social-network.sn2.youtube href="#{url['name']}" target="_blank"
+                - elsif url['name'].include? "instagram"
+                  a.social-network.sn2.instagram href="#{url['name']}" target="_blank"
                 - else
-                  a.social-network.sn2.xing href="#{url['name']}" target="_blank"
+                  span
             - else
               span No social media added
         .row.space50

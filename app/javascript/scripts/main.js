@@ -4,7 +4,7 @@
 Website core JS file
 ========================================================================== */
 
-$(document).ready(function($){
+jQuery(document).ready(function($){
 
     "use strict";
     //Disable sidebar links in development
