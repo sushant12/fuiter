@@ -24,6 +24,7 @@ export default {
         { name: '', placeholder: 'LinkedIn URL' },
         { name: '', placeholder: 'Twitter URL' },
         { name: '', placeholder: 'Youtube URL' },
+        { name: '', placeholder: 'Instagram URL' },
       ],
     }
   },
@@ -40,24 +41,25 @@ export default {
         fb_page_template_id: this.template.id       
       }).then((resp) => {
         document.getElementById('frame').contentWindow.location.reload();
+        this.addPlaceholder(resp.data);
       });
-      this.clear();
     },
-    clear() {
-      this.social = [
-        { name: '', placeholder: 'Facebook URL' },
-        { name: '', placeholder: 'LinkedIn URL' },
-        { name: '', placeholder: 'Twitter URL' },
-        { name: '', placeholder: 'Youtube URL' },
-      ]
+    addPlaceholder(settingData) {
+      if (!_.isNil(settingData)) {
+        this.social = settingData.socail_media.social;
+        this.social[0].placeholder = "Facebook URL";
+        this.social[1].placeholder = "LinkedIn URL";
+        this.social[2].placeholder = "Twitter URL";
+        this.social[3].placeholder = "Youtube URL";
+        this.social[4].placeholder = "Instagram URL";
+      }
     }
   },
   created() {
     EditorServices.showSetting(this.template.id)
       .then((res) => {
-        const settingData = res.data;
-        this.social = settingData.socail_media.social;
-      });
+        this.addPlaceholder(res.data);
+      })
   },
 }
 </script>

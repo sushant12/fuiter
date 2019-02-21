@@ -28,6 +28,7 @@ class EditorController < ApplicationController
     editor_setting = Setting.find_or_initialize_by(fb_page_template_id: params[:fb_page_template_id])
     editor_setting.attributes = setting_param
     editor_setting.save!
+    render json: editor_setting
   end
 
   def show_setting
