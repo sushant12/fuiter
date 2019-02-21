@@ -43,31 +43,27 @@
         </div>
       </div>
     </div>
-  </div> -->
+  </div>-->
 </template>
 
 <script>
 // import _ from 'lodash';
 // import EditorServices from '../services/index.js';
 // import { Chrome } from 'vue-color';
-import EditorNav from '../components/editorNav';
-import EditorSidebar from '../components/editorSidebar';
-import EditorPreview from '../components/editorPreview';
+import EditorNav from "../components/editorNav";
+import EditorSidebar from "../components/editorSidebar";
+import EditorPreview from "../components/editorPreview";
 export default {
-  props: ['template'],
+  props: ["template"],
   data() {
-    return {
-    };
+    return {};
   },
-  methods: {
-  },
-  mounted() {
-    
-  },
+  methods: {},
+  mounted() {},
   components: {
-    'editor-nav': EditorNav,
-    'editor-sidebar': EditorSidebar,
-    'editor-preview': EditorPreview,
+    "editor-nav": EditorNav,
+    "editor-sidebar": EditorSidebar,
+    "editor-preview": EditorPreview
   }
 };
 </script>
