@@ -74,6 +74,9 @@ export default {
   position: fixed;
   width: 250px;
   background-color: #373751;
+  /* @media screen and (min-width: 768) {
+    background-color: red;
+  } */
 }
 </style>
 
