@@ -10,7 +10,6 @@ class PagesController < ApplicationController
   end
 
   def update
-    binding.pry
     @page.remove_about_image! if params[:about_image] == ''
     @page.update_attributes(page_param)
     render json: @page

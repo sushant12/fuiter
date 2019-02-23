@@ -9,10 +9,13 @@
 
   <div v-else-if="page.uri === 'contact'">
     <input type="text" v-model="pageData['title']" name="title">
-    <input type="checkbox" name="true"> Show map?
-    <input type="email" name="email">
-    <input type="text" name="location">
-    <input type="number" name="contact">
+    <input type="checkbox" value="true" v-model="map_enable"> Show map?
+    <input type="checkbox" value="true" v-model="email_enable">
+    <input type="email" name="email" v-model="email">
+    <input type="checkbox" value="true" v-model="location_enable"> Show map?
+    <input type="text" name="location" v-model="location">
+    <input type="checkbox" value="true" v-model="contact_enable"> Show map?
+    <input type="number" name="contact" v-model="contact">
     <button @click="savePageSetting()">Save</button>
   </div>
 
@@ -92,6 +95,13 @@ props: ['pageId'],
           }
         }
       },
+      email: '',
+      location: '',
+      contact: '',
+      email_enable: '',
+      location_enable: '',
+      contact_enable: '',
+      map_enable: '',
     };
   },
   methods: {
@@ -108,6 +118,7 @@ props: ['pageId'],
       this.pageData['setting']['image']['enable'] = false;
     },
     savePageSetting() {
+      const that = this;
       const formData = new FormData();
       formData.append('title', this.pageData['title']);
       formData.append('about_image', this.aboutImage);
@@ -118,6 +129,15 @@ props: ['pageId'],
 
       EditorService.savePage(this.pageId,formData)
         .then(() => {
+          EditorService.saveFbPageTemplate(this.pageId, {
+            email: that.email,
+            location: that.location,
+            contact: that.contact,
+            email_enable: that.email_enable,
+            location_enable: that.location_enable,
+            contact_enable: that.contact_enable,
+            map_enable: that.map_enable,
+          });
           document.getElementById('frame').contentWindow.location.reload();
         });
     },
@@ -138,7 +158,17 @@ props: ['pageId'],
       that.pageData['setting']['description']['enable'] = data.setting['description']['enable'];
       that.pageData['setting']['image']['enable'] = data.setting['image']['enable'];
       that.aboutImage = data.about_image.url
-    })
+    });
+    EditorService.getFbPageTemplate(this.pageId)
+      .then(({data}) => {
+        that.email = data.email;
+        that.location = data.location;
+        that.contact = data.contact;
+        that.email_enable = data.email_enable;
+        that.location_enable = data.location_enable;
+        that.contact_enable = data.contact_enable,
+        that.map_enable = data.map_enable;
+      });
   },
   components: {
     PictureInput

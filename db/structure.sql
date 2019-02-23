@@ -96,7 +96,14 @@ CREATE TABLE public.fb_page_templates (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     logo character varying,
-    pages jsonb
+    pages jsonb,
+    email character varying,
+    location character varying,
+    contact character varying,
+    email_enable boolean,
+    location_enable boolean,
+    contact_enable boolean,
+    map_enable boolean
 );
 
 
@@ -498,6 +505,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190204134700'),
 ('20190210043740'),
 ('20190216083432'),
-('20190223052352');
+('20190223052352'),
+('20190223083718');
 
 
