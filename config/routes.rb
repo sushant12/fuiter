@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
+  resources :fb_page_template, only: [:show, :update]
   post '/home/sync/:id', to: 'home#sync', as: 'sync_page'
 
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'

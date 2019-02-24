@@ -1,10 +1,10 @@
 <template>
   <nav class="navbar navbar-wrapper is-solid navbar-inverse is-reverse">
     <div class="navbar-brand">
-      <a class="navbar-item" :href="url">
-        <img alt="" src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg">
+      <a class="navbar-item brand-logo" :href="url">
+        <img alt src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg">
       </a>
-      <div class="custom-burger" data-target="">
+      <div class="custom-burger" data-target>
         <a class="responsive-btn" href="javascript:void(0);">
           <span class="menu-toggle">
             <span class="icon-box-toggle">
@@ -44,12 +44,19 @@
       </div>
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="mobile-drop is-hidden-desktop">
+          <div
+            class="mobile-drop is-hidden-desktop"
+            style="display:flex; justify-content:flex-end;"
+          >
             <a class="navbar-item is-slide" href="/users/sign_out">Go Live</a>
             <a class="navbar-item is-slide" href="/users/sign_out">Sync</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-            <a :href="preview" class="button warning-btn btn-outlined rounded" target="__BLANK">Preview</a>
+            <a
+              :href="preview"
+              class="button warning-btn btn-outlined rounded"
+              target="__BLANK"
+            >Preview</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
             <a @click="fbSync" class="button primary-btn btn-outlined rounded">Sync</a>
@@ -63,16 +70,15 @@
   </nav>
 </template>
 <script>
-
-import EditorServices from '../services/index.js';
+import EditorServices from "../services/index.js";
 
 export default {
-  props: ['sync', 'goLive', 'preview', 'url'], 
+  props: ["sync", "goLive", "preview", "url"],
   methods: {
     updateResolution(type) {
       const frame = document.getElementById("frame");
-      switch(type) {
-        case 'monitor':
+      switch (type) {
+        case "monitor":
           frame.style.width = "1200px";
           frame.style.left = "50%";
           frame.style.margin = "0 0 0 -600px";
@@ -83,7 +89,7 @@ export default {
           frame.style.height = "880px";
           frame.style.borderRadius = "1px";
           break;
-        case 'tablet':
+        case "tablet":
           frame.style.width = "991px";
           frame.style.left = "50%";
           frame.style.margin = "30px 0 0 -496px";
@@ -94,7 +100,7 @@ export default {
           frame.style.height = "880px";
           frame.style.borderRadius = "25px 25px 25px 25px";
           break;
-        case 'phone':
+        case "phone":
           frame.style.width = "360px";
           frame.style.left = "50%";
           frame.style.margin = "30px 0 0 -180px";
@@ -110,11 +116,22 @@ export default {
       }
     },
     fbSync() {
-      EditorServices.fbSync(this.sync)
-      .then((response) => {
-        document.getElementById('frame').contentWindow.location.reload();
+      EditorServices.fbSync(this.sync).then(response => {
+        document.getElementById("frame").contentWindow.location.reload();
       });
-    },
-  },
+    }
+  }
 };
 </script>
+<style scoped>
+.brand-logo {
+  width: 336px;
+}
+.navbar-start {
+  display: flex;
+  justify-content: center;
+}
+.navbar-start a span a .fa {
+  color: white;
+}
+</style>

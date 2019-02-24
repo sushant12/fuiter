@@ -96,7 +96,14 @@ CREATE TABLE public.fb_page_templates (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     logo character varying,
-    pages jsonb
+    pages jsonb,
+    email character varying,
+    location character varying,
+    contact character varying,
+    email_enable boolean,
+    location_enable boolean,
+    contact_enable boolean,
+    map_enable boolean
 );
 
 
@@ -133,7 +140,9 @@ CREATE TABLE public.pages (
     updated_at timestamp without time zone NOT NULL,
     fb_page_template_id uuid,
     uri character varying,
-    ancestry character varying
+    ancestry character varying,
+    setting jsonb,
+    about_image character varying
 );
 
 
@@ -234,7 +243,7 @@ CREATE TABLE public.users (
     token character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    category public.user_category,
+    category public.user_category DEFAULT 'normal'::public.user_category,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -494,6 +503,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190121153950'),
 ('20190203075130'),
 ('20190204134700'),
-('20190210043740');
+('20190210043740'),
+('20190216083432'),
+('20190223052352'),
+('20190223083718');
 
 

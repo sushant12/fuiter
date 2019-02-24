@@ -10,6 +10,7 @@ class PagesController < ApplicationController
   end
 
   def update
+    @page.remove_about_image! if params[:about_image] == ''
     @page.update_attributes(page_param)
     render json: @page
   end
@@ -21,6 +22,6 @@ class PagesController < ApplicationController
   end
 
   def page_param
-    params.permit(seo: [:metaTags, :metaDescription])
+    params.permit(:title, :about_image, seo: [:metaTags, :metaDescription], setting: [description: [:value, :enable], image: [:enable]])
   end
 end
