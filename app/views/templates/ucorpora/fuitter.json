@@ -2,9 +2,120 @@
   "name": "ucorpora",
   "image": "https://via.placeholder.com/300",
   "properties": {
-    "slider": [
-      {"source": "https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis"}, 
-      {"source": "https://via.placeholder.com/728x90.png"}
+    "slider": [{
+        "source": "https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis"
+      },
+      {
+        "source": "https://via.placeholder.com/728x90.png"
+      }
+    ],
+    "pages": [{
+        "title": "Home",
+        "position": 0,
+        "uri": "home",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "description": {
+            "value": "",
+            "enable": ""
+          }
+        }
+      },
+      {
+        "title": "About",
+        "position": 1,
+        "uri": "about",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "image": [{
+              "facebook": "",
+              "value": "",
+              "enable": true
+            },
+            {
+              "custom": "",
+              "value": "",
+              "enable": false
+            }
+          ],
+          "detail": [{
+              "facebook": "",
+              "value": "",
+              "enable": true
+            },
+            {
+              "custom": "",
+              "value": "",
+              "enable": false
+            }
+          ]
+        }
+      },
+      {
+        "title": "Contact",
+        "uri": "contact",
+        "position": 2,
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "map": {
+            "show": false
+          },
+          "detail": {
+            "email": {
+              "value": "",
+              "enable": ""
+            },
+            "location": {
+              "value": "",
+              "enable": ""
+            },
+            "contact": {
+              "value": "",
+              "enable": ""
+            }
+          }
+
+        }
+      },
+      {
+        "title": "Events",
+        "position": 3,
+        "uri": "events",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      },
+      {
+        "title": "Gallery",
+        "position": 4,
+        "uri": "gallery",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      },
+      {
+        "title": "News",
+        "position": 5,
+        "uri": "news",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      }
     ]
   }
 }
