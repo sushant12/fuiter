@@ -42,7 +42,12 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def about
-    object.content.dig('about')
+    abt = object.fb_page_template.pages.where("uri = 'about'").first
+    if abt.setting.dig('description', 'enable')
+      abt.setting.dig('description', 'value')
+    else
+      object.content.dig('about')
+    end
   end
 
   def posts
@@ -50,7 +55,7 @@ class FbPageDecorator < Draper::Decorator
       {
         'message' => posts.dig('message'),
         'image' => posts.dig('full_picture'),
-        'created_at' => posts.dig('created_time').to_date.to_s,
+        'created_at' => posts.dig('created_time')&.to_date.to_s,
         'name' => posts.dig('name'),
         'description' => posts.dig('description'),
         'video' => posts.dig('source')
@@ -74,7 +79,12 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def description
-    object.content.dig('description')
+    home = object.fb_page_template.pages.where("uri = 'home'").first
+    if home.setting.dig('description', 'enable')
+      home.setting.dig('description', 'value')
+    else
+      object.content.dig('description')
+    end
   end
 
   def photos(album_id)

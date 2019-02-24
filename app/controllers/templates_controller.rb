@@ -10,8 +10,8 @@ class TemplatesController < ApplicationController
 
   def choose
     template = FbPageTemplate.find_or_initialize_by(fb_page_id: params[:fb_page_id]) do |tmpl|
-      tmpl.pages.new(template_properties['pages'])
       template_properties = Template.find(params[:template_id]).properties
+      tmpl.pages.new(template_properties['pages'])
       tmpl.fb_page.update(status: 'in progress')
       Facebook::PageDetailService.call(tmpl.fb_page.token)
     end
