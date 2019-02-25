@@ -1,9 +1,32 @@
 <template>
   <nav class="navbar navbar-wrapper is-solid navbar-inverse is-reverse">
     <div class="navbar-brand">
-      <a class="navbar-item brand-logo" :href="url">
+      <a class="navbar-item brand-logo editor-bulkit-logo" :href="url">
         <img alt src="https://bulkitv2.cssninja.io/agency/assets/images/logos/bulkit-white.svg">
       </a>
+      <div class="tab-only">
+        <a class="navbar-item">
+          <span data-device="monitor">
+            <a name="monitor" value="monitor" @click="updateResolution('monitor')">
+              <i class="fa fa-desktop fa-2x"></i>
+            </a>
+          </span>
+        </a>
+        <a class="navbar-item">
+          <span data-device="tablet">
+            <a name="tablet" value="tablet" @click="updateResolution('tablet')">
+              <i class="fa fa-tablet fa-2x"></i>
+            </a>
+          </span>
+        </a>
+        <a class="navbar-item">
+          <span data-device="phone">
+            <a name="phone" value="phone" @click="updateResolution('phone')">
+              <i class="fa fa-mobile fa-2x"></i>
+            </a>
+          </span>
+        </a>
+      </div>
       <div class="custom-burger" data-target>
         <a class="responsive-btn" href="javascript:void(0);">
           <span class="menu-toggle">
@@ -50,6 +73,7 @@
           >
             <a class="navbar-item is-slide" href="/users/sign_out">Go Live</a>
             <a class="navbar-item is-slide" href="/users/sign_out">Sync</a>
+            <a class="navbar-item is-slide" href="/users/sign_out">preview</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
             <a
@@ -124,14 +148,68 @@ export default {
 };
 </script>
 <style scoped>
-.brand-logo {
+/* .brand-logo {
   width: 336px;
-}
+} */
 .navbar-start {
   display: flex;
   justify-content: center;
 }
 .navbar-start a span a .fa {
   color: white;
+}
+</style>
+<style>
+.editor-bulkit-logo {
+  width: 336px;
+}
+.tab-only {
+  display: none;
+}
+@media screen and (max-width: 1088px) {
+  .tab-only {
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    width: 100%;
+    margin-right: 10%;
+  }
+  .tab-only a span a .fa {
+    color: white;
+  }
+  .editor-bulkit-logo {
+    width: 141px;
+  }
+  #editor .navbar-wrapper .navbar-brand .custom-burger {
+    display: flex;
+  }
+  #editor .navbar-wrapper .navbar-menu .navbar-start {
+    display: none;
+  }
+  #editor .navbar-wrapper .navbar-menu .navbar-end .navbar-item .mobile-drop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  .tab-only {
+    display: none;
+    /* flex-flow: row;
+    justify-content: center; */
+  }
+  .navbar-start {
+    display: none;
+  }
+  /* .tab-only a span a .fa {
+    color: white;
+  }
+  .editor-bulkit-logo {
+    width: 141px;
+  }
+  #editor .navbar-wrapper .navbar-brand .custom-burger {
+    display: flex;
+  } */
 }
 </style>
