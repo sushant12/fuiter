@@ -96,7 +96,6 @@ CREATE TABLE public.fb_page_templates (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     logo character varying,
-    pages jsonb,
     email character varying,
     location character varying,
     contact character varying,
@@ -171,38 +170,6 @@ CREATE TABLE public.settings (
 
 
 --
--- Name: sub_pages; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.sub_pages (
-    id bigint NOT NULL,
-    sub_page_id uuid,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    page_id uuid
-);
-
-
---
--- Name: sub_pages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.sub_pages_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sub_pages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.sub_pages_id_seq OWNED BY public.sub_pages.id;
-
-
---
 -- Name: subscriptions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -259,13 +226,6 @@ CREATE TABLE public.users (
 
 
 --
--- Name: sub_pages id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sub_pages ALTER COLUMN id SET DEFAULT nextval('public.sub_pages_id_seq'::regclass);
-
-
---
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -311,14 +271,6 @@ ALTER TABLE ONLY public.schema_migrations
 
 ALTER TABLE ONLY public.settings
     ADD CONSTRAINT settings_pkey PRIMARY KEY (id);
-
-
---
--- Name: sub_pages sub_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sub_pages
-    ADD CONSTRAINT sub_pages_pkey PRIMARY KEY (id);
 
 
 --
@@ -395,13 +347,6 @@ CREATE INDEX index_settings_on_fb_page_template_id ON public.settings USING btre
 
 
 --
--- Name: index_sub_pages_on_page_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_sub_pages_on_page_id ON public.sub_pages USING btree (page_id);
-
-
---
 -- Name: index_subscriptions_on_fb_pages_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -428,14 +373,6 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 ALTER TABLE ONLY public.fb_page_templates
     ADD CONSTRAINT fk_rails_06be5d9913 FOREIGN KEY (template_id) REFERENCES public.templates(id);
-
-
---
--- Name: sub_pages fk_rails_097fee6255; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.sub_pages
-    ADD CONSTRAINT fk_rails_097fee6255 FOREIGN KEY (page_id) REFERENCES public.pages(id);
 
 
 --
@@ -501,8 +438,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190116064224'),
 ('20190119103402'),
 ('20190121153950'),
-('20190203075130'),
-('20190204134700'),
 ('20190210043740'),
 ('20190216083432'),
 ('20190223052352'),

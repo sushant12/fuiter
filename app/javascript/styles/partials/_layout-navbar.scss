@@ -142,7 +142,8 @@ TABLE OF CONTENTS
   .navbar-item {
     &.is-menu {
       &:hover {
-        background: #e8e8e8 !important;
+        // background: #e8e8e8 !important;
+        color: $green;
         i,
         span {
           color: $secondary !important;
