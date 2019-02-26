@@ -1,55 +1,62 @@
 <template>
   <section>
-    <p class="menu-label" @click="settingMenu">&larr; Back</p>
-    <div class="field">      
+    <a @click="settingMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
+    <div class="field">
       <h1 class="subtitle">Social</h1>
       <h6>Connecting to social services enables you to push or pull data, and allow visitors to connect with you via those services.</h6>
       <h6>Add social sites URL</h6>
       <div class="control" v-for="(option, index) in social" :key="index">
         <div class="columns">
           <div class="column is-1">
-            <i :class="option.icon" />
+            <i :class="option.icon"/>
           </div>
           <div class="column">
-            <input class="input" type="text" v-model="option.name" :placeholder="option.placeholder">
+            <input
+              class="input"
+              type="text"
+              v-model="option.name"
+              :placeholder="option.placeholder"
+            >
           </div>
         </div>
       </div>
-      <button class="button is-info" @click="updateSetting">Save</button>      
+      <button class="button is-info" @click="updateSetting">Save</button>
     </div>
   </section>
 </template>
 
 <script>
-import EditorServices from '../../services/index.js';
-export default { 
-  props: ['fb_page_id', 'template'],
+import EditorServices from "../../services/index.js";
+export default {
+  props: ["fb_page_id", "template"],
   data() {
     return {
       social: [
-        { name: '', placeholder: 'Facebook URL', icon: 'fa fa-facebook' },
-        { name: '', placeholder: 'LinkedIn URL', icon: 'fa fa-linkedin' },
-        { name: '', placeholder: 'Twitter URL', icon: 'fa fa-twitter' },
-        { name: '', placeholder: 'Youtube URL', icon: 'fa fa-youtube' },
-        { name: '', placeholder: 'Instagram URL', icon: 'fa fa-instagram' },
-        { name: '', placeholder: 'Pinterest URL', icon: 'fa fa-pinterest' },
-      ],
-    }
+        { name: "", placeholder: "Facebook URL", icon: "fa fa-facebook" },
+        { name: "", placeholder: "LinkedIn URL", icon: "fa fa-linkedin" },
+        { name: "", placeholder: "Twitter URL", icon: "fa fa-twitter" },
+        { name: "", placeholder: "Youtube URL", icon: "fa fa-youtube" },
+        { name: "", placeholder: "Instagram URL", icon: "fa fa-instagram" },
+        { name: "", placeholder: "Pinterest URL", icon: "fa fa-pinterest" }
+      ]
+    };
   },
   methods: {
     settingMenu() {
-      this.$emit('clicked-setting-menu', ''); 
+      this.$emit("clicked-setting-menu", "");
     },
     updateSetting() {
       this.social.forEach((item, index) => {
-        delete item.placeholder
-        delete item.icon
+        delete item.placeholder;
+        delete item.icon;
       });
       EditorServices.updateSetting(this.fb_page_id, {
         socail_media: { social: this.social },
-        fb_page_template_id: this.template.id       
-      }).then((resp) => {
-        document.getElementById('frame').contentWindow.location.reload();
+        fb_page_template_id: this.template.id
+      }).then(resp => {
+        document.getElementById("frame").contentWindow.location.reload();
         this.addPlaceholder(resp.data);
         this.addSocialIcon(resp.data);
       });
@@ -78,13 +85,12 @@ export default {
     }
   },
   created() {
-    EditorServices.showSetting(this.template.id)
-      .then((res) => {
-        this.addPlaceholder(res.data);
-        this.addSocialIcon(res.data);
-      })
-  },
-}
+    EditorServices.showSetting(this.template.id).then(res => {
+      this.addPlaceholder(res.data);
+      this.addSocialIcon(res.data);
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -108,6 +114,22 @@ input {
 }
 i {
   color: #fff;
+}
+.back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 </style>
 

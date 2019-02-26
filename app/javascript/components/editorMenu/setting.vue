@@ -51,6 +51,8 @@
   margin-right: 10px;
   color: #818a97;
   font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 .settings-list li {
   position: relative;
