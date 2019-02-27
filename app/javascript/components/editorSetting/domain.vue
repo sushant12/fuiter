@@ -1,29 +1,32 @@
 <template>
   <section>
-    <p class="menu-label" @click="settingMenu">&larr; Back</p>
-    <div class="field">      
-      <h1 class="subtitle">Domains</h1>            
-      <h6>A domain name is the web address where your website is hosted (For example, yourbusiness.com)</h6>            
+    <a @click="settingMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
+    <!-- <p class="menu-label" @click="settingMenu">&larr; Back</p> -->
+    <div class="field">
+      <h1 class="subtitle">Domains</h1>
+      <h6>A domain name is the web address where your website is hosted (For example, yourbusiness.com)</h6>
       <input class="input" type="text" v-model="domainName" placeholder="example.fuitter.com">
-      <h6>Your website is published at the domain above</h6>            
-      <button class="button is-info" @click="updateSetting">Custom URL</button>      
+      <h6>Your website is published at the domain above</h6>
+      <button class="button is-info" @click="updateSetting">Custom URL</button>
     </div>
   </section>
 </template>
 
 <script>
-import EditorServices from '../../services/index.js';
+import EditorServices from "../../services/index.js";
 
 export default {
-  props: ['fb_page_id', 'template'],
+  props: ["fb_page_id", "template"],
   data() {
     return {
-      domainName: '',
-    }
+      domainName: ""
+    };
   },
   methods: {
     settingMenu() {
-      this.$emit('clicked-setting-menu', ''); 
+      this.$emit("clicked-setting-menu", "");
     },
     updateSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
@@ -33,17 +36,16 @@ export default {
       this.clear();
     },
     clear() {
-      this.domainName = '';
+      this.domainName = "";
     }
   },
   created() {
-    EditorServices.showSetting(this.template.id)
-      .then((res) => {
-        const settingData = res.data;
-        this.domainName = settingData.domain;
-      });
-  },
-}
+    EditorServices.showSetting(this.template.id).then(res => {
+      const settingData = res.data;
+      this.domainName = settingData.domain;
+    });
+  }
+};
 </script>
 
 <style scoped>
@@ -58,6 +60,22 @@ export default {
 h6 {
   font-size: 13px;
   margin: 14px 0;
+}
+.back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 </style>
 

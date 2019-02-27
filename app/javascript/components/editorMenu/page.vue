@@ -1,7 +1,9 @@
 <template>
   <div class="component-example">
-    <a @click="mainMenu">Go back</a>
-      <VueNestable
+    <a @click="mainMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
+    <VueNestable
       v-if="showPage"
       v-model="menus"
       :max-depth="2"
@@ -10,7 +12,7 @@
     >
       <template slot-scope="{ item }">
         <VueNestableHandle :item="item">
-          <i class="fa fa-bars" />
+          <i class="fa fa-bars"/>
         </VueNestableHandle>
         <span>{{ item.title }}</span>
         <a @click="pageSeo(item)">SEO</a>
@@ -18,56 +20,51 @@
       </template>
     </VueNestable>
     <div v-else>
-      <component 
-      v-bind:is="pageOption"
-      :pageId='pageId'
-      >
-      </component>
+      <component v-bind:is="pageOption" :pageId="pageId"></component>
     </div>
   </div>
 </template>
 
 <script>
-import EditorServices from '../../services/index';
-import { VueNestable, VueNestableHandle } from 'vue-nestable';
-import SEO from './page/seo.vue';
-import PageSettings from './page/settings.vue';
-import _ from 'lodash';
+import EditorServices from "../../services/index";
+import { VueNestable, VueNestableHandle } from "vue-nestable";
+import SEO from "./page/seo.vue";
+import PageSettings from "./page/settings.vue";
+import _ from "lodash";
 
 export default {
-  props: ['template', 'fb_page_id', 'pages'],
+  props: ["template", "fb_page_id", "pages"],
   data() {
     return {
       menus: [],
       showPage: true,
-      pageOption: '',
-      pageId: '',
+      pageOption: "",
+      pageId: ""
     };
   },
   methods: {
-    pageSeo(page){
+    pageSeo(page) {
       this.showPage = false;
-      this.pageOption = 'SEO';
+      this.pageOption = "SEO";
       this.pageId = page.id;
     },
-    pageSetting(page){
+    pageSetting(page) {
       this.showPage = false;
-      this.pageOption = 'PageSettings';
+      this.pageOption = "PageSettings";
       this.pageId = page.id;
     },
     mainMenu() {
-     this.$emit('clicked-main-menu', ''); 
+      this.$emit("clicked-main-menu", "");
     },
     updateMenu() {
-      EditorServices.updateMenu(this.fb_page_id,this.menus)
-        .then((resp) => {
-          document.getElementById('frame').contentWindow.location.reload();
-        });
-    },
+      EditorServices.updateMenu(this.fb_page_id, this.menus).then(resp => {
+        document.getElementById("frame").contentWindow.location.reload();
+      });
+    }
   },
 
   created() {
-    _.each(this.pages, (page) => {
+    _.each(this.pages, page => {
       this.menus.push(page);
     });
   },
@@ -75,8 +72,8 @@ export default {
     VueNestable,
     VueNestableHandle,
     SEO,
-    PageSettings,
-  },
+    PageSettings
+  }
 };
 </script>
 
@@ -88,14 +85,64 @@ export default {
   position: relative;
   border-radius: 4px;
   box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1);
-  background-color: white;
+  background-color: transparent;
   color: #49494d;
-  padding: 1em;
+  /* padding: 1em; */
   flex: 1;
-  margin: 1em;
+  /* margin: 1em; */
   overflow: hidden;
+  width: 250px;
+}
+.component-example .back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.component-example .back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.component-example .back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+.nestable-item {
+  position: relative;
+  padding: 20px 25px;
+}
+.nestable-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #818a97;
+}
+.nestable-item-content .nestable-handle [draggable="true"] {
+  padding-right: 1%;
+}
+.nestable-item-content a {
+  color: #818a97;
+}
+.nestable-item-content .nestable-handle i {
+  color: #818a97;
+  font-size: 1.1rem;
+}
+.nestable-list li:hover {
+  background-color: black;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
+.nestable-list li .nestable-item-content a:hover {
+  color: #00b289;
+}
+.nestable-list li .nestable-item-content .nestable-handle i:hover {
+  color: #00b289;
+  cursor: all-scroll;
+}
+/* 
 .nestable {
   position: relative;
 }
@@ -118,11 +165,9 @@ export default {
 .nestable-item .nestable-list,
 .nestable-item-copy .nestable-list {
   margin-top: 10px;
-}
-.nestable-item {
-  position: relative;
-}
-.nestable-item.is-dragging .nestable-list {
+} */
+
+/* .nestable-item.is-dragging .nestable-list {
   pointer-events: none;
 }
 .nestable-item.is-dragging * {
@@ -130,7 +175,7 @@ export default {
   filter: alpha(opacity=0);
 }
 .nestable-item.is-dragging:before {
-  content: ' ';
+  content: " ";
   position: absolute;
   top: 0;
   left: 0;
@@ -173,6 +218,5 @@ export default {
 
 .fa {
   color: black;
-}
-
+} */
 </style>
