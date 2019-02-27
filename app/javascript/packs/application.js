@@ -16,5 +16,6 @@ import 'bulma-tooltip';
 import "../styles/application.css";
 import "../styles/dashboard.scss";
 import "../scripts/main.js";
+import "vue-wysiwyg/dist/vueWysiwyg.css";
 require.context('../images', true);
 require.context('../fonts', true)
