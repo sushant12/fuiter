@@ -5,6 +5,7 @@ class EditorController < ApplicationController
   
   def design
     @fb_page_id = params[:fb_page_id]
+    @fb_page_name = FbPage.find_by(id: @fb_page_id).name
     @template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
     @pages = Page.list_pages(@template)
   end
@@ -43,6 +44,6 @@ class EditorController < ApplicationController
   end
 
   def setting_param
-    params.require(:editor).permit(:domain, :legal_info, :fb_page_template_id, socail_media: {})
+    params.require(:editor).permit(:domain, :fb_page_template_id, socail_media: {}, legal_info: {})
   end
 end
