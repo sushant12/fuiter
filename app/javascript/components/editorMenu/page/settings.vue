@@ -1,145 +1,150 @@
 <template>
-  <div v-if="page.uri === 'home'" class="page-setting">
-    <h6>Rename the current page name</h6>
-    <input type="text" v-model="pageData['title']" name="title">
-    <h6>add description</h6>
-    <div class="row-radio">
-      <input
-        type="radio"
-        value="false"
-        v-model="pageData['setting']['description']['enable']"
-        @click="hideDescription()"
-      >
-      <span>from facebook</span>
+  <section>
+    <a @click="pageMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
+    <div v-if="page.uri === 'home'" class="page-setting">
+      <h6>Rename the current page name</h6>
+      <input type="text" v-model="pageData['title']" name="title">
+      <h6>add description</h6>
+      <div class="row-radio">
+        <input
+          type="radio"
+          value="false"
+          v-model="pageData['setting']['description']['enable']"
+          @click="hideDescription()"
+        >
+        <span>from facebook</span>
+      </div>
+      <div>
+        <input
+          type="radio"
+          value="true"
+          v-model="pageData['setting']['description']['enable']"
+          @click="showDescription()"
+        >
+        <span>compile own</span>
+      </div>
+
+      <textarea
+        rows="6"
+        v-if="pageData['setting']['description']['enable'] === 'true'"
+        v-model="pageData['setting']['description']['value']"
+      ></textarea>
+      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
-    <div>
-      <input
-        type="radio"
-        value="true"
-        v-model="pageData['setting']['description']['enable']"
-        @click="showDescription()"
-      >
-      <span>compile own</span>
+    <!--  -->
+    <div v-else-if="page.uri === 'contact'" class="page-setting">
+      <h6>Rename the current page name</h6>
+      <input type="text" v-model="pageData['title']" name="title">
+      <div>
+        <input type="checkbox" value="true" v-model="map_enable">
+        <span>enable map?</span>
+      </div>
+      <div>
+        <input type="checkbox" value="true" v-model="email_enable">
+        <span>enable email?</span>
+      </div>
+      <input type="email" name="email" v-model="email">
+      <div>
+        <input type="checkbox" value="true" v-model="location_enable">
+        <span>Show address?</span>
+      </div>
+      <input type="text" name="location" v-model="location">
+      <div>
+        <input type="checkbox" value="true" v-model="contact_enable">
+        <span>Show contact?</span>
+      </div>
+      <input type="number" name="contact" v-model="contact">
+      <button @click="savePageSetting()" class="button is-info">Save</button>
+    </div>
+    <!--  -->
+    <div v-else-if="page.uri === 'about'" class="page-setting">
+      <h6>Rename the current menu name</h6>
+      <input type="text" v-model="pageData['title']" name="title">
+      <h6>choose image</h6>
+      <div>
+        <input
+          type="radio"
+          name="image"
+          value="false"
+          v-model="pageData['setting']['image']['enable']"
+          @click="hideImage()"
+        >
+        <span>from facebook</span>
+      </div>
+      <div>
+        <input
+          type="radio"
+          name="image"
+          value="true"
+          v-model="pageData['setting']['image']['enable']"
+          @click="showImage()"
+        >
+        <span>custom image</span>
+      </div>
+      <picture-input
+        v-if="pageData['setting']['image']['enable'] == 'true'"
+        ref="pictureInput"
+        @change="onChanged"
+        @remove="onRemoved"
+        width="200"
+        height="200"
+        margin="16"
+        accept="image/jpeg, image/png"
+        size="10"
+        :prefill="aboutImage"
+        :removable="true"
+        button-class="btn"
+        :custom-strings="{
+            upload: '<h1>Bummer!</h1>',
+            drag: 'Drag a 😺 GIF or GTFO'
+          }"
+      ></picture-input>
+      <h6>choose description</h6>
+      <div>
+        <input
+          type="radio"
+          value="false"
+          v-model="pageData['setting']['description']['enable']"
+          @click="hideDescription()"
+        >
+        <span>from facebook</span>
+      </div>
+      <div>
+        <input
+          type="radio"
+          value="true"
+          v-model="pageData['setting']['description']['enable']"
+          @click="showDescription()"
+        >
+        <span>custom description</span>
+      </div>
+
+      <textarea
+        rows="5"
+        v-if="pageData['setting']['description']['enable'] === 'true'"
+        v-model="pageData['setting']['description']['value']"
+      ></textarea>
+      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
 
-    <textarea
-      rows="6"
-      v-if="pageData['setting']['description']['enable'] === 'true'"
-      v-model="pageData['setting']['description']['value']"
-    ></textarea>
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
-  <!--  -->
-  <div v-else-if="page.uri === 'contact'" class="page-setting">
-    <h6>Rename the current page name</h6>
-    <input type="text" v-model="pageData['title']" name="title">
-    <div>
-      <input type="checkbox" value="true" v-model="map_enable">
-      <span>enable map?</span>
+    <div v-else-if="page.uri === 'events'" class="page-setting">
+      <h6>Rename the current menu name</h6>
+      <input type="text" name="title" v-model="pageData['title']">
+      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
-    <div>
-      <input type="checkbox" value="true" v-model="email_enable">
-      <span>enable email?</span>
+    <div v-else-if="page.uri === 'gallery'" class="page-setting">
+      <h6>Rename the current menu name</h6>
+      <input type="text" name="title" v-model="pageData['title']">
+      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
-    <input type="email" name="email" v-model="email">
-    <div>
-      <input type="checkbox" value="true" v-model="location_enable">
-      <span>Show address?</span>
+    <div v-else-if="page.uri === 'news'" class="page-setting">
+      <h6>Rename the current menu name</h6>
+      <input type="text" v-model="pageData['title']" name="title">
+      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
-    <input type="text" name="location" v-model="location">
-    <div>
-      <input type="checkbox" value="true" v-model="contact_enable">
-      <span>Show contact?</span>
-    </div>
-    <input type="number" name="contact" v-model="contact">
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
-  <!--  -->
-  <div v-else-if="page.uri === 'about'" class="page-setting">
-    <h6>Rename the current menu name</h6>
-    <input type="text" v-model="pageData['title']" name="title">
-    <h6>choose image</h6>
-    <div>
-      <input
-        type="radio"
-        name="image"
-        value="false"
-        v-model="pageData['setting']['image']['enable']"
-        @click="hideImage()"
-      >
-      <span>from facebook</span>
-    </div>
-    <div>
-      <input
-        type="radio"
-        name="image"
-        value="true"
-        v-model="pageData['setting']['image']['enable']"
-        @click="showImage()"
-      >
-      <span>custom image</span>
-    </div>
-    <picture-input
-      v-if="pageData['setting']['image']['enable'] == 'true'"
-      ref="pictureInput"
-      @change="onChanged"
-      @remove="onRemoved"
-      width="200"
-      height="200"
-      margin="16"
-      accept="image/jpeg, image/png"
-      size="10"
-      :prefill="aboutImage"
-      :removable="true"
-      button-class="btn"
-      :custom-strings="{
-          upload: '<h1>Bummer!</h1>',
-          drag: 'Drag a 😺 GIF or GTFO'
-        }"
-    ></picture-input>
-    <h6>choose description</h6>
-    <div>
-      <input
-        type="radio"
-        value="false"
-        v-model="pageData['setting']['description']['enable']"
-        @click="hideDescription()"
-      >
-      <span>from facebook</span>
-    </div>
-    <div>
-      <input
-        type="radio"
-        value="true"
-        v-model="pageData['setting']['description']['enable']"
-        @click="showDescription()"
-      >
-      <span>custom description</span>
-    </div>
-
-    <textarea
-      rows="5"
-      v-if="pageData['setting']['description']['enable'] === 'true'"
-      v-model="pageData['setting']['description']['value']"
-    ></textarea>
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
-
-  <div v-else-if="page.uri === 'events'" class="page-setting">
-    <h6>Rename the current menu name</h6>
-    <input type="text" name="title" v-model="pageData['title']">
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
-  <div v-else-if="page.uri === 'gallery'" class="page-setting">
-    <h6>Rename the current menu name</h6>
-    <input type="text" name="title" v-model="pageData['title']">
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
-  <div v-else-if="page.uri === 'news'" class="page-setting">
-    <h6>Rename the current menu name</h6>
-    <input type="text" v-model="pageData['title']" name="title">
-    <button @click="savePageSetting()" class="button is-info">Save</button>
-  </div>
+  </section>
 </template>
 <script>
 import _ from "lodash";
@@ -223,8 +228,11 @@ export default {
       this.aboutImage = this.$refs.pictureInput.file;
     },
     onRemoved() {
-      this.aboutImage = "";
-    }
+      this.aboutImage = '';
+    },
+    pageMenu() {
+      this.$emit("clicked-page-menu", "");
+    },
   },
   created() {
     const that = this;
