@@ -84,9 +84,11 @@ import Social from "../editorSetting/social.vue";
 
 export default {
   props: ["fb_page_id", "template"],
+
   data() {
     return {
       showParentMenu: true,
+
       currentMenu: ""
     };
   },

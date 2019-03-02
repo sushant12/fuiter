@@ -12,7 +12,7 @@
     >
       <template slot-scope="{ item }">
         <VueNestableHandle :item="item">
-          <i class="fa fa-bars"/>
+          <i class="fa fa-arrows"/>
         </VueNestableHandle>
         <span>{{ item.title }}</span>
         <a @click="pageSeo(item)">
@@ -81,6 +81,8 @@ export default {
 };
 </script>
 
+
+
 <style>
 /*
 * Style for nestable
@@ -96,6 +98,7 @@ export default {
   /* margin: 1em; */
   overflow: hidden;
   width: 250px;
+  height: 100vh;
 }
 .component-example .back {
   padding: 20px 25px;
@@ -116,15 +119,18 @@ export default {
 .nestable-item {
   position: relative;
   padding: 20px 25px;
-  border: 1px dashed white;
+  color: #ededed;
+  /* border: 1px dashed white; */
   width: 99%;
-  margin-top: 0.2rem;
+  margin-top: 0.8rem;
+  box-shadow: 2px 2px 10px black;
+  background-color: #3d3453;
 }
 .nestable-item-content {
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  color: #818a97;
+  color: #ededed;
 }
 .nestable-item-content span {
   display: flex;
@@ -164,7 +170,7 @@ export default {
   cursor: grabbing;
 }
 
-.nestable-list li .nestable-item-content a:hover {
+.nestable-list li .nestable-item-content a i:hover {
   color: #00b289;
 }
 .nestable-list li .nestable-item-content .nestable-handle i:hover {
@@ -230,8 +236,8 @@ export default {
   /* top: 0;
   left: 0;
   padding: 0; */
-
-  background-color: purple;
+  box-shadow: 2px 2px 10px black;
+  background-color: whitesmoke;
   padding: 20px 25px;
 }
 .nestable-drag-layer > .nestable-list span {
