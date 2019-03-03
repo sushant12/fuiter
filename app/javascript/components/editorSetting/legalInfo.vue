@@ -6,9 +6,9 @@
     <div class="field">
       <h1 class="subtitle">Legal Information</h1>
       <h6>Terms and Conditions</h6>
-      <wysiwyg v-model="termsCondition" /> 
+      <wysiwyg v-model="termsCondition"/>
       <h6>Privacy Policy</h6>
-      <wysiwyg v-model="privacyPolicy" />
+      <wysiwyg v-model="privacyPolicy"/>
       <button class="button is-info" @click="updateSetting">Save Info</button>
     </div>
   </section>
@@ -16,68 +16,106 @@
 
 <script>
 import _ from "lodash";
-import EditorServices from '../../services/index.js';
+import EditorServices from "../../services/index.js";
 
 export default {
-  props: ['fb_page_id', 'template', 'fb_page_name', 'domain'],
+  props: ["fb_page_id", "template", "fb_page_name", "domain"],
   data() {
     return {
       termsCondition: `<p class="pad-10">Terms of Service</p>                       
           <p class="pad-10"><b>1. Terms</b></p>
-          <p>By accessing the website at ${this.domain}, you are agreeing to be bound by these terms of 
+          <p>By accessing the website at ${
+            this.domain
+          }, you are agreeing to be bound by these terms of 
           service, all applicable laws and regulations, and agree that you are responsible for compliance with any 
           applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing 
           his site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
           <p class="pad-10"><b>2. Use License</b></p>
           <p>a. Permission is granted to temporarily download one copy of the materials (information or software) on 
-          ${this.fb_page_name}'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a 
+          ${
+            this.fb_page_name
+          }'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a 
           transfer of title, and under this license you may not:
           <ul>
             <li>1. modify or copy the materials;</li>
             <li>2. use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
-            <li>3. attempt to decompile or reverse engineer any software contained on ${this.fb_page_name}'s website;</li>
+            <li>3. attempt to decompile or reverse engineer any software contained on ${
+              this.fb_page_name
+            }'s website;</li>
             <li>4. remove any copyright or other proprietary notations from the materials; or</li>
             <li>5. transfer the materials to another person or 'mirror' the materials on any other server.</li>
           </ul>
           <p class="pad-10">b. This license shall automatically terminate if you violate any of these restrictions and may be terminated 
-          by ${this.fb_page_name} at any time. Upon terminating your viewing of these materials or upon the termination of this license, 
+          by ${
+            this.fb_page_name
+          } at any time. Upon terminating your viewing of these materials or upon the termination of this license, 
           you must destroy any downloaded materials in your possession whether in electronic or printed format.</p>
           <p class="pad-10"><b>3. Disclaimer</b></p>
-          <p>a. The materials on ${this.fb_page_name}'s website are provided on an 'as is' basis. ${this.fb_page_name} makes no warranties, expressed 
+          <p>a. The materials on ${
+            this.fb_page_name
+          }'s website are provided on an 'as is' basis. ${
+        this.fb_page_name
+      } makes no warranties, expressed 
           or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties 
           or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property 
           or other violation of rights.</p>
-          <p class="pad-10">b. Further, ${this.fb_page_name} does not warrant or make any representations concerning the accuracy, likely results, or reliability 
+          <p class="pad-10">b. Further, ${
+            this.fb_page_name
+          } does not warrant or make any representations concerning the accuracy, likely results, or reliability 
           of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
           <p class="pad-10"><b>4. Limitations</b></p>
-          <p>In no event shall ${this.fb_page_name} or its suppliers be liable for any damages (including, without limitation, damages for loss of data 
-          or profit, or due to business interruption) arising out of the use or inability to use the materials on ${this.fb_page_name}'s website, 
-          even if ${this.fb_page_name} or a ${this.fb_page_name} authorized representative has been notified orally or in writing of the possibility 
+          <p>In no event shall ${
+            this.fb_page_name
+          } or its suppliers be liable for any damages (including, without limitation, damages for loss of data 
+          or profit, or due to business interruption) arising out of the use or inability to use the materials on ${
+            this.fb_page_name
+          }'s website, 
+          even if ${this.fb_page_name} or a ${
+        this.fb_page_name
+      } authorized representative has been notified orally or in writing of the possibility 
           of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of 
           liability for consequential or incidental damages, these limitations may not apply to you.</p>
           <p class="pad-10"><b>5. Accuracy of materials</b></p>
-          <p>The materials appearing on ${this.fb_page_name}'s website could include technical, typographical, or photographic errors. 
-          ${this.fb_page_name} does not warrant that any of the materials on its website are accurate, complete or current. ${this.fb_page_name} may make changes to the
-          materials contained on its website at any time without notice. However ${this.fb_page_name} does not make any commitment 
+          <p>The materials appearing on ${
+            this.fb_page_name
+          }'s website could include technical, typographical, or photographic errors. 
+          ${
+            this.fb_page_name
+          } does not warrant that any of the materials on its website are accurate, complete or current. ${
+        this.fb_page_name
+      } may make changes to the
+          materials contained on its website at any time without notice. However ${
+            this.fb_page_name
+          } does not make any commitment 
           to update the materials.</p>
           <p class="pad-10"><b>6. Links</b></p>
-          <p>${this.fb_page_name} has not reviewed all of the sites linked to its website and is not responsible for the contents of 
-          any such linked site. The inclusion of any link does not imply endorsement by ${this.fb_page_name} of the site. Use of any such 
+          <p>${
+            this.fb_page_name
+          } has not reviewed all of the sites linked to its website and is not responsible for the contents of 
+          any such linked site. The inclusion of any link does not imply endorsement by ${
+            this.fb_page_name
+          } of the site. Use of any such 
           linked website is at the user's own risk.</p>
           <p class="pad-10"><b>7. Modifications</b></p>
-          <p>${this.fb_page_name} may revise these terms of service for its website at any time without notice. By using this website 
+          <p>${
+            this.fb_page_name
+          } may revise these terms of service for its website at any time without notice. By using this website 
           you are agreeing to be bound by the then current version of these terms of service.</p>
           <p class="pad-10"><b>8. Governing Law</b></p>
           <p>These terms and conditions are governed by and construed in accordance with the laws of United States and 
           you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>`,
       privacyPolicy: `<h1>${this.fb_page_name} Privacy Policy</h1>
-          <p class="pad-10">${this.fb_page_name} (the “Company”) is committed to protecting the privacy of its users. This Privacy Policy (“Privacy 
+          <p class="pad-10">${
+            this.fb_page_name
+          } (the “Company”) is committed to protecting the privacy of its users. This Privacy Policy (“Privacy 
           Policy”) is designed to help you understand what information we gather, how we use it, what we do to protect 
           it, and to assist you in making informed decisions when using our Service. Unless otherwise indicated below, 
           this Privacy Policy applies to any website that references this Privacy Policy, any Company website, as well 
           as any data the Company may collect across partnered and unaffiliated sites.</p>
           <p class="pad-10">For purposes of this Agreement, “Service” refers to the Company’s service which can be accessed via our 
-          website at ${this.domain} or through our mobile application. The terms “we,” “us,” and “our” 
+          website at ${
+            this.domain
+          } or through our mobile application. The terms “we,” “us,” and “our” 
           refer to the Company. “You” refers to you, as a user of Service.</p>
           <p class="pad-10"><b>i. CONSENT</b></p>
           <p>By accessing our Service, you accept our Privacy Policy and Terms of Use, and you consent to our collection,
@@ -188,8 +226,8 @@ export default {
           <p class="pad-10"><b>xii. CONTACT US & WITHDRAWING CONSENT</b></p>
           <p>If you have any questions regarding this Privacy Policy or the practices of this Site, or wish to withdraw 
           your consent for the continued collection, use or disclosure of your Personal Information, please contact us 
-          by sending an email to.</p>`,
-    }
+          by sending an email to.</p>`
+    };
   },
   methods: {
     settingMenu() {
@@ -197,23 +235,25 @@ export default {
     },
     updateSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
-        legal_info: { terms_condition: this.termsCondition, privacy_policy: this.privacyPolicy },   
+        legal_info: {
+          terms_condition: this.termsCondition,
+          privacy_policy: this.privacyPolicy
+        },
         fb_page_template_id: this.template.id
       });
-    },    
+    }
   },
-  created() {    
-    EditorServices.showSetting(this.template.id)
-    .then((res) => {      
+  created() {
+    EditorServices.showSetting(this.template.id).then(res => {
       if (!_.isNil(res.data)) {
         const settingData = res.data;
         this.domain = settingData.domain;
         this.termsCondition = settingData.legal_info.terms_condition;
         this.privacyPolicy = settingData.legal_info.privacy_policy;
       }
-    })
+    });
   }
-}
+};
 </script>
 
 <style>
@@ -232,13 +272,40 @@ h6 {
   font-size: 13px;
   margin: 14px 0;
 }
+.editr {
+  position: relative;
+  height: 232px;
+}
+/* .editr--content a {
+} */
 .editr--content {
   height: 200px;
   overflow: scroll;
   font-size: 12px;
+  position: static;
+  width: 360px;
 }
 .pad-10 {
   padding-top: 10px;
+}
+.back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+#menu-list {
+  width: 100%;
 }
 </style>
 

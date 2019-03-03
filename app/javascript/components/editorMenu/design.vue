@@ -1,6 +1,8 @@
 <template>
   <div class="child-menu-inner" id="inner-menu">
-    <a @click="mainMenu">Go back</a>
+    <a @click="mainMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
     <br>
     <span class="p-label">Color</span>
     <span class="font-icon tooltip is-tooltip-right" data-tooltip="Select color of texts">
@@ -10,7 +12,6 @@
       <p class="p-inner-label">Suggested Colors</p>
       <compact-picker v-model="color" @input="changeColor" :palette="palette"></compact-picker>
       <div class="custom">
-        <span class="label-color">Select a custom color</span>
         <span class="palette">
           <div class="dropdown is-hoverable">
             <div class="dropdown-trigger">
@@ -23,6 +24,7 @@
             </div>
           </div>
         </span>
+        <span class="label-color palette">Select a custom color</span>
       </div>
     </div>
     <span class="p-label">Site Title</span>
@@ -187,7 +189,7 @@ export default {
 </script>
 <style scoped>
 #inner-menu {
-  padding: 0 10px;
+  padding: 0 4px;
 }
 .label-color {
   color: #8c9caf;
@@ -209,13 +211,7 @@ export default {
   padding: 10px;
   width: 200px;
 }
-.vc-compact-color-item {
-  border: 2px solid #6f8092;
-  width: 25px;
-  height: 25px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
+
 .p-label {
   color: #c6cdd4;
 }
@@ -228,6 +224,9 @@ export default {
 }
 #icon {
   color: #9a9a9a;
+}
+#blah {
+  width: 100%;
 }
 .title-button {
   width: 100%;
@@ -262,13 +261,48 @@ input.input {
 .choose-file {
   background: #13a1ee;
   border: none;
-  padding: 8px 35px;
+  padding: 8px 0;
   color: #fff;
   font-size: 14px;
   margin-bottom: 10px;
   line-height: 1;
+  text-align: center;
 }
 .file-upload {
   padding: 10px;
+  margin: 0;
+}
+.file-label {
+  width: 100%;
+}
+</style>
+<style>
+.vc-chrome {
+  transform: translate(-8px, -10px);
+}
+.vc-compact-color-item {
+  /* border: 2px solid #6f8092; */
+  width: 25px;
+  height: 25px;
+  margin-right: 4px;
+  margin-bottom: 10px;
+  border: 1.5px solid white;
+  border-radius: 4px;
+}
+.back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
 }
 </style>

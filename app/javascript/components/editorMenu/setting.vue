@@ -11,7 +11,7 @@
             Domains
           </a>
         </li>
-        <li>
+        <li class="legal-info-btn">
           <a @click="showSettingMenu('LegalInformation')">
             <i class="fa fa-balance-scale"/>
             Legal Information
@@ -30,11 +30,11 @@
         <component
           v-bind:is="currentMenu"
           @clicked-setting-menu="resetSetting"
-          :fb_page_id='fb_page_id'
-          :template='template'
-          :fb_page_name='fb_page_name'
-          :domain='domain'>
-        </component>
+          :fb_page_id="fb_page_id"
+          :template="template"
+          :fb_page_name="fb_page_name"
+          :domain="domain"
+        ></component>
       </keep-alive>
     </div>
   </aside>
@@ -48,6 +48,9 @@
 .settings .back:hover {
   color: #00b289;
   background-color: black;
+}
+.legal-info-btn {
+  width: 250px;
 }
 .settings .back i {
   margin-right: 10px;
@@ -78,22 +81,25 @@
 .settings-list li:hover i {
   color: #00b289;
 }
+#menu-list {
+  width: 100%;
+}
 </style>
 <script>
 import _ from "lodash";
-import EditorServices from '../../services/index.js';
-import Domain from '../editorSetting/domain.vue';
-import LegalInformation from '../editorSetting/legalInfo.vue';
-import Social from '../editorSetting/social.vue';
+import EditorServices from "../../services/index.js";
+import Domain from "../editorSetting/domain.vue";
+import LegalInformation from "../editorSetting/legalInfo.vue";
+import Social from "../editorSetting/social.vue";
 
 export default {
-  props: ['fb_page_id', 'template', 'fb_page_name'],
+  props: ["fb_page_id", "template", "fb_page_name"],
   data() {
     return {
       showParentMenu: true,
-      currentMenu: '',
-      domain: 'example.fuitter.com',
-    }
+      currentMenu: "",
+      domain: "example.fuitter.com"
+    };
   },
   methods: {
     mainMenu() {
@@ -101,26 +107,25 @@ export default {
     },
     showSettingMenu(settingMenu) {
       const sidebar = document.getElementById("menu-list");
-      sidebar.style.width = "420px";
+      // sidebar.style.width = "420px";
       this.showParentMenu = false;
-      frame.style.left = '10%';
+      frame.style.left = "10%";
       this.currentMenu = settingMenu;
     },
     resetSetting() {
       this.showParentMenu = true;
       this.currentMenu = "";
-      frame.style.left = '0%';
+      frame.style.left = "0%";
     }
   },
   created() {
-    EditorServices.showSetting(this.template.id)
-    .then((res) => {
+    EditorServices.showSetting(this.template.id).then(res => {
       if (!_.isNil(res.data)) {
         if (!_.isNil(res.data.domain)) {
           this.domain = res.data.domain;
         }
       }
-    })
+    });
   },
   components: {
     Domain,

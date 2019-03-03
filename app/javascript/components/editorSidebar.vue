@@ -79,5 +79,8 @@ export default {
     background-color: red;
   } */
 }
+#menu-list {
+  width: 100%;
+}
 </style>
 

@@ -52,6 +52,7 @@ export default {
 .field {
   color: #fff;
   margin: 20px 15px;
+  width: 280px;
 }
 .subtitle {
   color: #fff;
@@ -60,6 +61,7 @@ export default {
 h6 {
   font-size: 13px;
   margin: 14px 0;
+  text-align: justify;
 }
 .back {
   padding: 20px 25px;
