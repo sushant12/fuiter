@@ -1,5 +1,5 @@
 <template>
-  <nav class="child-menu is-sidebar-translated">
+  <nav class="child-menu is-sidebar-translated" id="menu-list">
     <div v-if="showParentMenu" class="child-menu-inner">
       <ul class="sidebar-menu is-active animated" id="dashboard-menu">
         <li class="have-children">
@@ -30,6 +30,7 @@
           :template="template"
           :pages="pages"
           :fb_page_id="fb_page_id"
+          :fb_page_name="fb_page_name"
         ></component>
       </keep-alive>
     </div>
@@ -41,7 +42,7 @@ import Page from "./editorMenu/page.vue";
 import Setting from "./editorMenu/setting.vue";
 
 export default {
-  props: ["template", "pages", "fb_page_id"],
+  props: ["template", "pages", "fb_page_id", "fb_page_name"],
   data() {
     return {
       showParentMenu: true,
@@ -77,6 +78,9 @@ export default {
   /* @media screen and (min-width: 768) {
     background-color: red;
   } */
+}
+#menu-list {
+  width: 100%;
 }
 </style>
 

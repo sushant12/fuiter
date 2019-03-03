@@ -8,18 +8,13 @@
       <h6>Connecting to social services enables you to push or pull data, and allow visitors to connect with you via those services.</h6>
       <h6>Add social sites URL</h6>
       <div class="control" v-for="(option, index) in social" :key="index">
-        <div class="columns">
-          <div class="column is-1">
-            <i :class="option.icon"/>
-          </div>
-          <div class="column">
-            <input
-              class="input"
-              type="text"
-              v-model="option.name"
-              :placeholder="option.placeholder"
-            >
-          </div>
+        <div class="social-link-list">
+          <!-- <div class="social-icon"> -->
+          <i :class="option.icon"/>
+          <!-- </div> -->
+          <!-- <div class="social-link"> -->
+          <input class="input" type="text" v-model="option.name" :placeholder="option.placeholder">
+          <!-- </div> -->
         </div>
       </div>
       <button class="button is-info" @click="updateSetting">Save</button>
@@ -95,6 +90,16 @@ export default {
 
 <style scoped>
 .field {
+  width: 280px;
+}
+h6 {
+  text-align: justify;
+}
+.social-link-list {
+  display: flex;
+  flex-flow: row;
+}
+.field {
   color: #fff;
   margin: 20px 15px;
 }
@@ -108,12 +113,14 @@ h6 {
 }
 input {
   margin-bottom: 10px;
+  margin-left: 20px;
 }
 .column.is-1 {
   width: 2%;
 }
 i {
   color: #fff;
+  width: 15px;
 }
 .back {
   padding: 20px 25px;
