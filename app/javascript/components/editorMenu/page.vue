@@ -12,11 +12,15 @@
     >
       <template slot-scope="{ item }">
         <VueNestableHandle :item="item">
-          <i class="fa fa-bars"/>
+          <i class="fa fa-arrows"/>
         </VueNestableHandle>
         <span>{{ item.title }}</span>
-        <a @click="pageSeo(item)">SEO</a>
-        <a @click="pageSetting(item)">Settings</a>
+        <a @click="pageSeo(item)">
+          <i class="fa fa-search-plus" title="SEO"/>
+        </a>
+        <a @click="pageSetting(item)">
+          <i class="fa fa-cog" title="Settings"/>
+        </a>
       </template>
     </VueNestable>
     <div v-else>
@@ -77,6 +81,8 @@ export default {
 };
 </script>
 
+
+
 <style>
 /*
 * Style for nestable
@@ -92,6 +98,7 @@ export default {
   /* margin: 1em; */
   overflow: hidden;
   width: 250px;
+  height: 100vh;
 }
 .component-example .back {
   padding: 20px 25px;
@@ -112,18 +119,46 @@ export default {
 .nestable-item {
   position: relative;
   padding: 20px 25px;
+  color: #ededed;
+  /* border: 1px dashed white; */
+  width: 99%;
+  margin-top: 0.8rem;
+  box-shadow: 2px 2px 10px black;
+  background-color: #3d3453;
 }
 .nestable-item-content {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
+  color: #ededed;
+}
+.nestable-item-content span {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: flex-start;
+  flex-basis: 50%;
   color: #818a97;
+  padding-left: 10px;
 }
 .nestable-item-content .nestable-handle [draggable="true"] {
   padding-right: 1%;
 }
 .nestable-item-content a {
   color: #818a97;
+}
+.nestable-item-content {
+  color: #818a97;
+}
+.nestable-item-content a:first-of-type {
+  color: #818a97;
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 40%;
+  padding-right: 10px;
+}
+.nestable-item-content .nestable-handle i {
+  color: #818a97;
+  font-size: 1.1rem;
 }
 .nestable-item-content .nestable-handle i {
   color: #818a97;
@@ -135,7 +170,7 @@ export default {
   cursor: grabbing;
 }
 
-.nestable-list li .nestable-item-content a:hover {
+.nestable-list li .nestable-item-content a i:hover {
   color: #00b289;
 }
 .nestable-list li .nestable-item-content .nestable-handle i:hover {
@@ -169,7 +204,7 @@ export default {
 
 /* .nestable-item.is-dragging .nestable-list {
   pointer-events: none;
-}
+} */
 .nestable-item.is-dragging * {
   opacity: 0;
   filter: alpha(opacity=0);
@@ -188,18 +223,33 @@ export default {
 }
 .nestable-drag-layer {
   position: fixed;
-  top: 0;
+  top: -80px;
   left: 0;
   z-index: 100;
   pointer-events: none;
+  background-color: black;
 }
 .nestable-drag-layer > .nestable-list {
   position: absolute;
-  top: 0;
+  /* margin-top: -20px; */
+  /* transform: translate(-50%, -50%); */
+  /* top: 0;
   left: 0;
-  padding: 0;
-  background-color: rgba(106, 127, 233, 0.274);
+  padding: 0; */
+  box-shadow: 2px 2px 10px black;
+  background-color: whitesmoke;
+  padding: 20px 25px;
 }
+.nestable-drag-layer > .nestable-list span {
+  color: #00b289;
+}
+.nestable-drag-layer > .nestable-list a {
+  color: #00b289;
+}
+.nestable-drag-layer > .nestable-list i {
+  color: #00b289;
+}
+/* 
 .nestable [draggable="true"] {
   cursor: move;
 }

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class EditorController < ApplicationController
   before_action :authenticate_user!
   
