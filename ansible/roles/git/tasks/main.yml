@@ -1,0 +1,15 @@
+---
+  - name: Install git
+    become: yes
+    apt:
+      pkg:
+        - git
+      state: present
+  - name: Setup git email and name
+    git_config:
+      name="{{ item.name }}"
+      scope=global
+      value="{{ item.value }}"
+    with_items:
+        - {name: "user.name", value: "sushant12"}
+        - {name: "user.email", value: "sussyoung9@gmail.com"}

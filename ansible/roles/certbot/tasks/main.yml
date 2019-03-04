@@ -1,0 +1,20 @@
+---
+  - name: Add Certbot universe
+    become: yes
+    shell: >
+      add-apt-repository universe
+
+  - name: Add Certbot ppa
+    become: yes
+    apt_repository:
+      repo: ppa:certbot/certbot
+      state: present
+
+  - name: Install certbot
+    become: yes
+    apt:
+      update_cache: yes
+      pkg:
+        - certbot 
+        - python-certbot-nginx 
+      state: present

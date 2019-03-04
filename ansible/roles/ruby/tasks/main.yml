@@ -1,0 +1,36 @@
+---
+  - name: setup plugins dir
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: >
+      mkdir -p ~/.rbenv/plugins
+      
+  - name: rbenv | clone ruby-build repo
+    become: yes
+    become_user: deploy
+    become_method: su
+    git: 
+      repo: https://github.com/rbenv/ruby-build.git 
+      dest: ~/.rbenv/plugins/ruby-build
+
+  - name: rbenv | check ruby 2.5.3 installed
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell:  ~/.rbenv/bin/rbenv versions | grep 2.5.3
+    register: ruby_installed
+    ignore_errors: yes
+
+  - name: rbenv | install ruby
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: RUBY_CONFIGURE_OPTS=--with-jemalloc ~/.rbenv/bin/rbenv install 2.5.3
+    when: ruby_installed is failed
+
+  - name: rbenv | set global ruby version
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: ~/.rbenv/bin/rbenv global 2.5.3

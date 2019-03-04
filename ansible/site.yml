@@ -1,0 +1,14 @@
+---
+- hosts: fuitter-staging
+  remote_user: vagrant
+  roles:
+    # - common
+    # - nginx
+    # - certbot
+    # - monit
+    # - postgresql
+    # - git
+    # - user
+    - rbenv
+    - ruby
+    - nodejs

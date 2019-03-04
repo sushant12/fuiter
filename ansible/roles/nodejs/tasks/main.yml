@@ -1,0 +1,18 @@
+---
+  - name: Install nvm
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: >
+      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.34.0/install.sh | bash
+    args:
+      creates: "~/.nvm/nvm.sh"
+  - name: Install nodejs
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: '. ~/.nvm/nvm.sh && nvm install node'
+    args:
+      creates: "~/.nvm/versions/node"
+      chdir: "~"
+      executable: /bin/bash
