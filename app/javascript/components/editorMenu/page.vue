@@ -1,30 +1,34 @@
 <template>
   <div class="component-example">
-    <a @click="mainMenu" class="back">
-      <i class="fa fa-arrow-circle-left"/>Go back
-    </a>
-    <VueNestable
-      v-if="showPage"
-      v-model="menus"
-      :max-depth="2"
-      children-prop="nested"
-      @change="updateMenu()"
-    >
-      <template slot-scope="{ item }">
-        <VueNestableHandle :item="item">
-          <i class="fa fa-arrows"/>
-        </VueNestableHandle>
-        <span>{{ item.title }}</span>
-        <a @click="pageSeo(item)">
-          <i class="fa fa-search-plus" title="SEO"/>
-        </a>
-        <a @click="pageSetting(item)">
-          <i class="fa fa-cog" title="Settings"/>
-        </a>
-      </template>
-    </VueNestable>
+    <div v-if="showPage">
+      <a @click="mainMenu" class="back">
+        <i class="fa fa-arrow-circle-left"/>Go back
+      </a>
+      <VueNestable
+        v-model="menus"
+        :max-depth="2"
+        children-prop="nested"
+        @change="updateMenu()"
+      >
+        <template slot-scope="{ item }">
+          <VueNestableHandle :item="item">
+            <i class="fa fa-arrows"/>
+          </VueNestableHandle>
+          <span>{{ item.title }}</span>
+          <a @click="pageSeo(item)">
+            <i class="fa fa-search-plus" title="SEO"/>
+          </a>
+          <a @click="pageSetting(item)">
+            <i class="fa fa-cog" title="Settings"/>
+          </a>
+        </template>
+      </VueNestable>
+    </div>
     <div v-else>
-      <component v-bind:is="pageOption" :pageId="pageId"></component>
+      <component v-bind:is="pageOption"
+                :pageId="pageId"
+                @clicked-page-menu="resetPage"
+                ></component>
     </div>
   </div>
 </template>
@@ -43,7 +47,7 @@ export default {
       menus: [],
       showPage: true,
       pageOption: "",
-      pageId: ""
+      pageId: "",
     };
   },
   methods: {
@@ -64,6 +68,10 @@ export default {
       EditorServices.updateMenu(this.fb_page_id, this.menus).then(resp => {
         document.getElementById("frame").contentWindow.location.reload();
       });
+    },
+    resetPage() {
+      this.showPage = true;
+      this.pageOption = "";
     }
   },
 

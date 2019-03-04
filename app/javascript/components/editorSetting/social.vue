@@ -30,11 +30,12 @@ export default {
     return {
       social: [
         { name: "", placeholder: "Facebook URL", icon: "fa fa-facebook" },
-        { name: "", placeholder: "LinkedIn URL", icon: "fa fa-linkedin" },
-        { name: "", placeholder: "Twitter URL", icon: "fa fa-twitter" },
-        { name: "", placeholder: "Youtube URL", icon: "fa fa-youtube" },
         { name: "", placeholder: "Instagram URL", icon: "fa fa-instagram" },
-        { name: "", placeholder: "Pinterest URL", icon: "fa fa-pinterest" }
+        { name: "", placeholder: "Youtube URL", icon: "fa fa-youtube" },
+        { name: "", placeholder: "Twitter URL", icon: "fa fa-twitter" },
+        { name: "", placeholder: "LinkedIn URL", icon: "fa fa-linkedin" },
+        { name: "", placeholder: "Pinterest URL", icon: "fa fa-pinterest" },
+        { name: "", placeholder: "Yelp URL", icon: "fa fa-yelp" }
       ]
     };
   },
@@ -60,22 +61,24 @@ export default {
       if (!_.isNil(settingData)) {
         this.social = settingData.socail_media.social;
         this.social[0].placeholder = "Facebook URL";
-        this.social[1].placeholder = "LinkedIn URL";
-        this.social[2].placeholder = "Twitter URL";
-        this.social[3].placeholder = "Youtube URL";
-        this.social[4].placeholder = "Instagram URL";
+        this.social[1].placeholder = "Instagram URL";
+        this.social[2].placeholder = "Youtube URL";
+        this.social[3].placeholder = "Twitter URL";
+        this.social[4].placeholder = "Linkedin URL";
         this.social[5].placeholder = "Pinterest URL";
+        this.social[6].placeholder = "Yelp URL";
       }
     },
     addSocialIcon(settingData) {
       if (!_.isNil(settingData)) {
         this.social = settingData.socail_media.social;
         this.social[0].icon = "fa fa-facebook";
-        this.social[1].icon = "fa fa-linkedin";
-        this.social[2].icon = "fa fa-twitter";
-        this.social[3].icon = "fa fa-youtube";
-        this.social[4].icon = "fa fa-instagram";
+        this.social[1].icon = "fa fa-instagram";
+        this.social[2].icon = "fa fa-youtube";
+        this.social[3].icon = "fa fa-twitter";
+        this.social[4].icon = "fa fa-linkedin";
         this.social[5].icon = "fa fa-pinterest";
+        this.social[6].icon = "fa fa-yelp";
       }
     }
   },

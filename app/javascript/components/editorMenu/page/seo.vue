@@ -1,5 +1,8 @@
 <template>
   <div>
+    <a @click="pageMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
     <textarea rows="8" v-model="metaTags"></textarea>
     <textarea rows="8" v-model="metaDescription"></textarea>
     <button class="button is-info" @click="saveSeo()">Save</button>
@@ -26,7 +29,10 @@ export default {
         }
       };
       EditorService.savePage(this.pageId, seo);
-    }
+    },
+    pageMenu() {
+      this.$emit("clicked-page-menu", "");
+    },
   },
   mounted() {
     EditorService.getPage(this.pageId).then(({ data }) => {
