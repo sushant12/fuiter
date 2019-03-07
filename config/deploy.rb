@@ -1,14 +1,14 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "pageroo"
+set :application, "fwitter"
 set :repo_url, "git@bitbucket.org:suss_buzz/fuitter.git"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 set :branch, :'f-85'
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/home/deploy/pageroo"
+set :deploy_to, "/home/deploy/fwitter"
 
 # Default value for :format is :airbrussh.
 # set :format, :airbrussh
@@ -45,7 +45,7 @@ set :rbenv_ruby, '2.5.3'
 # set :nvm_node, 'v10.7.0'
 
 # files we want symlinking to specific entries in shared
-set :linked_files, %w[config/database.yml  config/master.key .env]
+set :linked_files, %w[config/database.yml config/master.key .env]
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system]

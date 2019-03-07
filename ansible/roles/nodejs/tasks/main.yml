@@ -11,8 +11,21 @@
     become: yes
     become_user: deploy
     become_method: su
-    shell: '. ~/.nvm/nvm.sh && nvm install node'
+    shell: '. ~/.nvm/nvm.sh && nvm install 10.7.0'
     args:
-      creates: "~/.nvm/versions/node"
-      chdir: "~"
+      # creates: "~/.nvm/versions/node"
+      # chdir: "~"
       executable: /bin/bash
+
+  - name: Use nodejs
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: |
+      . ~/.nvm/nvm.sh && nvm alias default 10.7.0
+    args:
+      executable: /bin/bash
+    environment:
+      BASH_ENV: "/home/deploy/.bashrc"
+  #   register: vagrant
+  # - debug: var=vagrant.stdout_lines

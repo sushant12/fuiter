@@ -29,5 +29,5 @@
         - vim 
         - tmux
         - python-psycopg2
-        - libjemalloc-dev  
+        - libjemalloc-dev
       state: present

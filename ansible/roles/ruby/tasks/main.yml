@@ -34,3 +34,15 @@
     become_user: deploy
     become_method: su
     shell: ~/.rbenv/bin/rbenv global 2.5.3
+  - name: Install bundler
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: |
+      bash -ic 'gem install bundler -v 1.17.3'
+    args:
+      executable: /bin/bash
+    environment:
+      BASH_ENV: "/home/deploy/.bashrc"
+  #   register: vagrant
+  # - debug: var=vagrant.stdout_lines
