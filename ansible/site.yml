@@ -1,0 +1,14 @@
+---
+- hosts: fwitter
+  remote_user: root
+  roles:
+    - common
+    - nginx
+    - certbot
+    - monit
+    - postgresql
+    - git
+    # - user
+    - rbenv
+    - ruby
+    - nodejs

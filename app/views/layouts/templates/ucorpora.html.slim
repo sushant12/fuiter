@@ -67,17 +67,16 @@ html.not-ie lang="en"
                   i.icon-ok
           .span3.offset3
             h3 Address
-            = @page.address['city']
-            br/
-            = @page.address['country']
+            = @page.address['address']
             br/
             br/
             .succeed "+01"
               i.icon-phone
-            | 880 555 999
+            = @page.address['phone']
             br/
             i.icon-envelope
-            a href="mailto:support@example.com"  support@example.com
+            a href="mailto:support@example.com"
+              = @page.address['email']
             br/
             i.icon-home
             a href="#"  www.example.com
@@ -100,8 +99,6 @@ html.not-ie lang="en"
                   a.social-network.sn2.yelp href="#{url['name']}" target="_blank"
                 - else
                   span
-            - else
-              span No social media added
         .row.space50
         .row
           .span6

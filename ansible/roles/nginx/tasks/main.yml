@@ -1,0 +1,14 @@
+---
+  - name: Add Nginx ppa
+    become: yes
+    apt_repository:
+      repo: ppa:nginx/stable
+      update_cache: yes
+      state: present
+
+  - name: Install Nginx
+    become: yes
+    apt:
+      pkg:
+        - nginx
+      state: present

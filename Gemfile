@@ -21,6 +21,7 @@ gem 'webpacker'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 group :development, :test do
+  gem 'scout_apm'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
 
@@ -64,6 +65,12 @@ group :development do
 
   # Used to generate a diagram based on your application's Active Record models
   gem 'rails-erd'
+  gem "capistrano", "~> 3.10", require: false
+  gem "capistrano-rails", "~> 1.3", require: false
+  gem 'capistrano3-puma', require: false
+  gem 'capistrano-rbenv', '~> 2.1',require: false
+  gem 'capistrano-bundler', '~> 1.5', require: false
+  # gem 'capistrano-nvm', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

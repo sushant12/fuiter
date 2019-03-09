@@ -1,0 +1,4 @@
+---
+  - name: Install monit
+    become: yes
+    shell: yes '' | apt-get install monit

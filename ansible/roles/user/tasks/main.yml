@@ -1,0 +1,20 @@
+---
+  - name: Creating deploy user
+    become: yes
+    become_user: root
+    user:
+      name: deploy
+      append: yes
+      password: $6$rounds=656000$iO7Q9L6/w8dUUQVf$rmtnxrQ15TGAfG5ODxQ/WGyEpTwk.vD1W.UtedmOlo9YNkrIwapYMjmKmteEnUJmRYucgUVxXUQy7gtenpLmw0
+      groups:
+        - sudo
+      create_home: yes
+  - name: "Enable passwordless sudo"
+    become: yes
+    become_user: root
+    lineinfile:
+      dest: "/etc/sudoers" # path: in version 2.3
+      state: "present"
+      regexp: "^#includedir /etc/sudoers.d"
+      line: "deploy ALL=(ALL:ALL) NOPASSWD: ALL"
+      validate: 'visudo -cf %s'
