@@ -4,9 +4,9 @@
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
     <div v-if="page.uri === 'home'" class="page-setting">
-      <h6>Rename the current page name</h6>
+      <h6>Title</h6>
       <input type="text" v-model="pageData['title']" name="title">
-      <h6>add description</h6>
+      <h6>Description</h6>
       <div class="row-radio">
         <input
           type="radio"
@@ -14,7 +14,7 @@
           v-model="pageData['setting']['description']['enable']"
           @click="hideDescription()"
         >
-        <span>from facebook</span>
+        <span>Default(Facebook Description)</span>
       </div>
       <div>
         <input
@@ -23,7 +23,7 @@
           v-model="pageData['setting']['description']['enable']"
           @click="showDescription()"
         >
-        <span>compile own</span>
+        <span>Custom</span>
       </div>
 
       <textarea
@@ -31,38 +31,36 @@
         v-if="pageData['setting']['description']['enable'] === 'true'"
         v-model="pageData['setting']['description']['value']"
       ></textarea>
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
     <!--  -->
     <div v-else-if="page.uri === 'contact'" class="page-setting">
-      <h6>Rename the current page name</h6>
+      <h6>Title</h6>
       <input type="text" v-model="pageData['title']" name="title">
       <div>
         <input type="checkbox" value="true" v-model="map_enable">
-        <span>enable map?</span>
+        <span>Show map?</span>
       </div>
       <div>
         <input type="checkbox" value="true" v-model="email_enable">
-        <span>enable email?</span>
+        <span>Display email?</span>
       </div>
       <input type="email" name="email" v-model="email">
       <div>
         <input type="checkbox" value="true" v-model="location_enable">
-        <span>Show address?</span>
+        <span>Display address?</span>
       </div>
       <input type="text" name="location" v-model="location">
       <div>
         <input type="checkbox" value="true" v-model="contact_enable">
-        <span>Show contact?</span>
+        <span>Display contact?</span>
       </div>
       <input type="number" name="contact" v-model="contact">
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
     <!--  -->
     <div v-else-if="page.uri === 'about'" class="page-setting">
-      <h6>Rename the current menu name</h6>
+      <h6>Title</h6>
       <input type="text" v-model="pageData['title']" name="title">
-      <h6>choose image</h6>
+      <h6>Main image</h6>
       <div>
         <input
           type="radio"
@@ -71,7 +69,7 @@
           v-model="pageData['setting']['image']['enable']"
           @click="hideImage()"
         >
-        <span>from facebook</span>
+        <span>Default(Facebook Profile Picture)</span>
       </div>
       <div>
         <input
@@ -81,7 +79,7 @@
           v-model="pageData['setting']['image']['enable']"
           @click="showImage()"
         >
-        <span>custom image</span>
+        <span>Upload Image</span>
       </div>
       <picture-input
         v-if="pageData['setting']['image']['enable'] == 'true'"
@@ -101,7 +99,7 @@
             drag: 'Drag a 😺 GIF or GTFO'
           }"
       ></picture-input>
-      <h6>choose description</h6>
+      <h6>Description</h6>
       <div>
         <input
           type="radio"
@@ -109,7 +107,7 @@
           v-model="pageData['setting']['description']['enable']"
           @click="hideDescription()"
         >
-        <span>from facebook</span>
+        <span>Default(Facebook Description)</span>
       </div>
       <div>
         <input
@@ -118,7 +116,7 @@
           v-model="pageData['setting']['description']['enable']"
           @click="showDescription()"
         >
-        <span>custom description</span>
+        <span>Custom</span>
       </div>
 
       <textarea
@@ -126,24 +124,21 @@
         v-if="pageData['setting']['description']['enable'] === 'true'"
         v-model="pageData['setting']['description']['value']"
       ></textarea>
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
 
     <div v-else-if="page.uri === 'events'" class="page-setting">
       <h6>Rename the current menu name</h6>
       <input type="text" name="title" v-model="pageData['title']">
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
     <div v-else-if="page.uri === 'gallery'" class="page-setting">
       <h6>Rename the current menu name</h6>
       <input type="text" name="title" v-model="pageData['title']">
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
     <div v-else-if="page.uri === 'news'" class="page-setting">
       <h6>Rename the current menu name</h6>
       <input type="text" v-model="pageData['title']" name="title">
-      <button @click="savePageSetting()" class="button is-info">Save</button>
     </div>
+    <button @click="savePageSetting()" class="button is-info">Save</button>
   </section>
 </template>
 <script>
@@ -220,8 +215,9 @@ export default {
           location_enable: that.location_enable,
           contact_enable: that.contact_enable,
           map_enable: that.map_enable
+        }).then(() => {
+          document.getElementById("frame").contentWindow.location.reload();
         });
-        document.getElementById("frame").contentWindow.location.reload();
       });
     },
     onChanged() {

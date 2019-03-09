@@ -3,7 +3,9 @@
     <a @click="pageMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
+    Meta Keywords (Separated by commas ",") 
     <textarea rows="8" v-model="metaTags"></textarea>
+    Meta Descriptions
     <textarea rows="8" v-model="metaDescription"></textarea>
     <button class="button is-info" @click="saveSeo()">Save</button>
   </div>
