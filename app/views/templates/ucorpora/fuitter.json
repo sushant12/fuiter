@@ -20,7 +20,7 @@
         "setting": {
           "description": {
             "value": "",
-            "enable": ""
+            "enable": false
           }
         }
       },
@@ -33,28 +33,14 @@
           "metaDescription": ""
         },
         "setting": {
-          "image": [{
-              "facebook": "",
+          "image": {
               "value": "",
-              "enable": true
+              "enable": false
             },
-            {
-              "custom": "",
+          "detail": {
               "value": "",
               "enable": false
             }
-          ],
-          "detail": [{
-              "facebook": "",
-              "value": "",
-              "enable": true
-            },
-            {
-              "custom": "",
-              "value": "",
-              "enable": false
-            }
-          ]
         }
       },
       {
@@ -72,15 +58,15 @@
           "detail": {
             "email": {
               "value": "",
-              "enable": ""
+              "enable": false
             },
             "location": {
               "value": "",
-              "enable": ""
+              "enable": false
             },
             "contact": {
               "value": "",
-              "enable": ""
+              "enable": false
             }
           }
 

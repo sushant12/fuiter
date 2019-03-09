@@ -1,0 +1,33 @@
+---
+  - name: Update cache
+    become: yes
+    ignore_errors: true
+    apt:
+      update_cache: yes
+      upgrade: yes
+      
+  - name: Install Common Softwares
+    become: yes
+    apt:
+      pkg:
+        - software-properties-common
+        - autoconf 
+        - bison 
+        - build-essential 
+        - libssl-dev 
+        - libyaml-dev 
+        - libreadline6-dev 
+        - zlib1g-dev 
+        - libncurses5-dev 
+        - libffi-dev 
+        - libgdbm-dev
+        - gcc
+        - curl
+        - wget
+        - unzip
+        - htop
+        - vim 
+        - tmux
+        - python-psycopg2
+        - libjemalloc-dev
+      state: present

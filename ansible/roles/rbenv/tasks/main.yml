@@ -1,0 +1,21 @@
+---
+  - name: Install rbenv
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: "curl -fsSL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash"
+    ignore_errors: true
+  - name: Add rbenv to path
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: |
+      echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+      echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+  - name: Source Rbenv
+    become: yes
+    become_user: deploy
+    become_method: su
+    shell: '. ~/.bashrc'
+    args:
+      executable: /bin/bash

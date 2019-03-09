@@ -18,3 +18,7 @@ html lang="en"
     = yield
 
     = javascript_pack_tag 'application'
+
+    - if Rails.env.production?
+      = render 'layouts/hotjar'
+      = render 'layouts/analytics'

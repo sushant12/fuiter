@@ -1,0 +1,25 @@
+---
+  - name: Install Postgresql
+    become: yes
+    apt:
+      pkg:
+        - postgresql
+        - postgresql-contrib
+        - libpq-dev
+      update_cache: true
+      state: present
+  - name: Create database user
+    become: yes
+    become_user: postgres
+    postgresql_user: 
+      user: fwitter 
+      password: 5AvVL7z_)2rvE=!V
+      encrypted: yes
+      role_attr_flags: SUPERUSER
+      state: present
+  - name: Create database
+    become: yes
+    become_user: postgres
+    postgresql_db: 
+      name: fwitter 
+      owner: fwitter
