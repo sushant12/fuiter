@@ -17,11 +17,10 @@
           img src=(page.picture)
         .is-mobile.text
           = page.name
-        
         - unless page.state == ""
           .is-mobile.condn
             = link_to 'View', site_home_path(page), class: 'button conditional is-primary is-small'
-            = link_to 'Edit', templates_path(page), class: 'button is-primary is-small'
+            = link_to 'Edit', editor_design_path(page.id), class: 'button is-primary is-small'
         - else
           .is-mobile.condn-single
             = link_to 'Start', templates_path(page), class: 'button is-primary is-small'
