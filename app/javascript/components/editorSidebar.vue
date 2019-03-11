@@ -31,6 +31,7 @@
           :pages="pages"
           :fb_page_id="fb_page_id"
           :fb_page_name="fb_page_name"
+          :templates_url="templates_url"
         ></component>
       </keep-alive>
     </div>
@@ -42,7 +43,7 @@ import Page from "./editorMenu/page.vue";
 import Setting from "./editorMenu/setting.vue";
 
 export default {
-  props: ["template", "pages", "fb_page_id", "fb_page_name"],
+  props: ["template", "pages", "fb_page_id", "fb_page_name", "templates_url"],
   data() {
     return {
       showParentMenu: true,
