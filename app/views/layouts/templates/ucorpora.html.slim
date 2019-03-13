@@ -80,7 +80,7 @@ html.not-ie lang="en"
             br/
             i.icon-home
             a href="#"  www.example.com
-            .row.space40
+            .row.space20
             - if @editor_setting&.socail_media.present?
               - @editor_setting.template_social_icons.each do |url|
                 - if url['name'].include? "facebook"
@@ -99,6 +99,15 @@ html.not-ie lang="en"
                   a.social-network.sn2.yelp href="#{url['name']}" target="_blank"
                 - else
                   span
+            - else
+              span No social media added
+            .row.space20
+            - if @editor_setting&.legal_info.present?
+              = link_to 'Terms & Conditions', site_terms_condition_path(@page), target: '_blank'
+              br/
+              = link_to 'Privacy Policy', site_privacy_policy_path(@page), target: '_blank'
+            - else
+              span No legal information added
         .row.space50
         .row
           .span6
