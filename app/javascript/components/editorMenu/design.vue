@@ -25,9 +25,9 @@
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
               <chrome-picker v-model="color" @input="changeColor"></chrome-picker>
             </div>
+            &nbsp;<span class="label-color palette">Select a custom color</span>
           </div>
         </span>
-        <span class="label-color palette">Select a custom color</span>
       </div>
     </div>
     <span class="p-label">Site Title</span>
