@@ -8,9 +8,9 @@
   .is-mobile.main-contain-area
     .is-centered.main-content-area.thead.is-mobile
       .is-mobile.name 
-        | Name
-      .is-mobile.edit 
-        |Actions
+        | your facebook pages
+      / .is-mobile.edit 
+      /   |Actions
     - @pages.each do |page|
       .is-mobile.dash-data 
         .is-mobile.data-logo 
@@ -24,3 +24,7 @@
         - else
           .is-mobile.condn-single
             = link_to 'Start', templates_path(page), class: 'button is-primary is-small'
+      .is-mobile.info-status
+        .notch-active
+          i.fa.fa-check-square
+          | publishded

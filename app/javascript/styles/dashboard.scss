@@ -116,7 +116,10 @@ body {
   src: url("../fonts/text/nexa/NexaLight.woff") format("woff"),
     url("../fonts/text/nexa/NexaLight.ttf") format("truetype");
 }
-
+@font-face {
+  font-family: "campton";
+  src: url("../fonts/Campton-BoldDEMO.ttf") format("truetype");
+}
 @font-face {
   font-family: "Nexa Bold";
   font-weight: bold;
@@ -165,16 +168,18 @@ body {
 
   // background-color: white;
   .thead {
-    background-color: darken($table-white, 10%);
+    // background-color: darken($table-white, 10%);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    border-bottom: 1px solid darkgrey;
+    // border-bottom: 1px solid darkgrey;
     color: black;
-    font-size: x-large;
+    font-size: 2rem;
     font-family: sans-serif;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    text-transform: uppercase;
+    font-family: "campton";
     font-weight: bold;
     height: 75px;
     @media screen and (max-width: 768px) {
@@ -202,29 +207,32 @@ body {
   }
   .dash-data {
     padding: 5px 5px;
-    background-color: $table-white;
+    background-color: darken(white, 10%);
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
+    border-radius: 20px;
     .data-logo {
       flex-shrink: 0;
       flex-grow: 0;
       flex-basis: 10%;
-    }
-    img {
-      border-radius: 50%;
-      margin-left: 20px;
-      @media screen and (max-width: 768px) {
-        margin-left: 0;
+      img {
+        border-radius: 50%;
+        margin-left: 20px;
+        @media screen and (max-width: 768px) {
+          margin-left: 0;
+        }
       }
     }
+
     .text {
       flex-shrink: 0;
       flex-grow: 0;
       flex-basis: 70%;
-      color: black;
+      color: darken(white, 80%);
       padding-left: 3rem;
-      font-size: large;
-      font-family: sans-serif;
+      font-size: 1.5rem;
+      font-family: "campton";
       @media screen and (max-width: 768px) {
         flex-basis: 60%;
         padding-left: 1.5rem;
@@ -252,6 +260,10 @@ body {
           margin-right: 0.2rem;
         }
       }
+      .is-primary {
+        background-color: #00b289;
+        border-radius: 10px;
+      }
     }
     .condn-single {
       flex-shrink: 0;
@@ -266,6 +278,27 @@ body {
         flex-basis: 30%;
         padding: 0;
         margin-left: 0;
+      }
+      .is-primary {
+        background-color: #00b289;
+        border-radius: 10px;
+      }
+    }
+  }
+  .info-status {
+    display: flex;
+    justify-content: center;
+    flex-basis: 100%;
+    height: 30px;
+    transform: translateY(-77px);
+    .notch-active {
+      background-color: #00b289;
+      border-radius: 0 0 10px 10px;
+      padding: 1px 10px;
+      color: white;
+      .fa {
+        margin-right: 10px;
+        color: white;
       }
     }
   }
