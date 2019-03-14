@@ -13,7 +13,7 @@ nav.child-menu.is-sidebar-translated
         = link_to root_path, { class: "parent-link #{controller.action_name == 'billing' ? 'active' : ''}" } do
           i.fa.fa-money 
           | Billing
-      li.have-children
-        = link_to root_path, { class: "parent-link #{controller.action_name == 'newsletter' ? 'active' : ''}" } do
-          i.fa.fa-newspaper-o 
-          | Newsletter
+      / li.have-children
+      /   = link_to root_path, { class: "parent-link #{controller.action_name == 'newsletter' ? 'active' : ''}" } do
+      /     i.fa.fa-newspaper-o 
+      /     | Newsletter

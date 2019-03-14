@@ -3,6 +3,9 @@
     <a @click="mainMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
+    <a class="button" :href="templates_url">
+      Choose templates
+    </a>
     <br>
     <span class="p-label">Color</span>
     <span class="font-icon tooltip is-tooltip-right" data-tooltip="Select color of texts">
@@ -22,9 +25,9 @@
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
               <chrome-picker v-model="color" @input="changeColor"></chrome-picker>
             </div>
+            &nbsp;<span class="label-color palette">Select a custom color</span>
           </div>
         </span>
-        <span class="label-color palette">Select a custom color</span>
       </div>
     </div>
     <span class="p-label">Site Title</span>
@@ -90,7 +93,7 @@ import { Chrome, Compact } from "vue-color";
 import EditorServices from "../../services/index.js";
 import FontServices from "../../services/googleFont.js";
 export default {
-  props: ["template"],
+  props: ["template", "templates_url"],
   data() {
     return {
       image: "http://placehold.it/180",
