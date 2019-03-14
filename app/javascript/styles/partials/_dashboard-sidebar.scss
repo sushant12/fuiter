@@ -115,23 +115,27 @@
     color: white;
   }
   .sidebar-menu li a {
+    font-family: "campton";
+    font-size: 1.2rem;
     padding: 20px 25px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: $icon-grey; ////
+    color: darken(white, 2%);
     i {
       color: $icon-grey; ////
+      display: none;
     }
     &.active {
-      background-color: darken($sidebar, 10%);
+      // background-color: darken($sidebar, 10%);
       padding: 20px 25px;
       text-decoration: none;
-      color: $green;
+      color: darken(white, 2%);
       i {
         color: $green;
       }
+      border-left: 4px solid $green;
     }
   }
   .sidebar-menu li a:hover {
@@ -139,7 +143,7 @@
     // background-color: darken($sidebar, 5%);
     padding: 20px 25px;
     text-decoration: none;
-    color: $green;
+    // color: $green;
     i {
       color: $green;
     }
