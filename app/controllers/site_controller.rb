@@ -45,6 +45,16 @@ class SiteController < ApplicationController
     render template: "#{template_layout}/photos"
   end
 
+  def terms_condition
+    @page_setting = find_setting
+    render template: "#{template_layout}/terms_condition"
+  end
+
+  def privacy_policy
+    @page_setting = find_setting
+    render template: "#{template_layout}/privacy_policy"
+  end
+
   private
 
   def set_fb_page

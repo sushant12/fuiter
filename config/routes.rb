@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   get 'site/:fb_page_id/events', to: 'site#events', as: 'site_events'
   get 'site/:fb_page_id/gallery', to: 'site#gallery', as: 'site_gallery'
   get '/site/:fb_page_id/gallery/:album_id', to: 'site#photo_albums', as: 'site_photo_albums'
+  get '/site/:fb_page_id/privacy_policy', to: 'site#privacy_policy', as: 'site_privacy_policy'
+  get '/site/:fb_page_id/terms_condition', to: 'site#terms_condition', as: 'site_terms_condition'
 
   get 'site/:fb_page_id/news', to: 'site#news', as: 'site_news'
 
