@@ -11,12 +11,29 @@
             Domains
           </a>
         </li>
-        <li class="legal-info-btn">
+        <!-- <li class="legal-info-btn">
           <a @click="showSettingMenu('LegalInformation')">
             <i class="fa fa-balance-scale"/>
             Legal Information
           </a>
+        </li> -->
+        <li class="legal-info-btn">
+          <a @click="showModal" id="show-modal">
+            <i class="fa fa-balance-scale"/>
+            Legal Information
+          </a>
         </li>
+
+        <div class="modal" v-bind:class="{'is-active':showForm}">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <LegalInformation />
+            </div>
+          </div>
+          <button @click="close" class="modal-close"></button>
+        </div>
+
         <li>
           <a @click="showSettingMenu('Social')">
             <i class="fa fa-comments"/>
@@ -98,10 +115,17 @@ export default {
     return {
       showParentMenu: true,
       currentMenu: "",
-      domain: "example.fuitter.com"
+      domain: "example.fuitter.com",
+      showForm: false,
     };
   },
   methods: {
+    showModal() {
+      this.showForm = true;
+    },
+    close() {
+      this.showForm = false;
+    },
     mainMenu() {
       this.$emit("clicked-main-menu", "");
     },
