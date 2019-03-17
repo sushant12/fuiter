@@ -3,6 +3,9 @@
 class ApplicationController < ActionController::Base
   before_action :set_raven_context
 
+  def after_sign_in_path_for(resource)
+    dashboard_path
+  end
   private
 
   def set_raven_context

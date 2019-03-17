@@ -58,7 +58,11 @@ class SiteController < ApplicationController
   private
 
   def set_fb_page
-    @page = FbPage.find_by(id: params[:fb_page_id]).decorate
+    if(request.subdomain.present?)
+      @page = Setting.find_by(subdomain: request.subdomain).fb_page_template.fb_page.decorate
+    else
+      @page = FbPage.find_by(id: params[:fb_page_id]).decorate
+    end
     @template = @page.fb_page_template
     unless find_setting.nil?
       @editor_setting = find_setting.decorate
