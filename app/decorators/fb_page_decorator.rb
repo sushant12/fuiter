@@ -4,7 +4,7 @@ class FbPageDecorator < Draper::Decorator
   delegate_all
 
   def home_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/"
     else
       h.site_home_url(object.id)
@@ -12,7 +12,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def about_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/about"
     else
       h.site_about_url(object.id)
@@ -20,7 +20,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def events_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/events"
     else
       h.site_events_url(object.id)
@@ -28,7 +28,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def contact_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/contact"
     else
       h.site_contact_url(object.id)
@@ -36,7 +36,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def gallery_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery"
     else
       h.site_gallery_url(object.id)
@@ -44,7 +44,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def news_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/news"
     else
       h.site_news_url(object.id)
@@ -52,7 +52,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def photos_menu(album_id)
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
     else
       h.site_photo_albums_url(object.id, album_id)
@@ -60,7 +60,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def privacy_policy_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/privacy_policy"
     else
       h.site_privacy_policy_url(object.id)
@@ -68,7 +68,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def terms_and_cond_menu
-    if h.request.subdomain.present?
+    if h.request.subdomain.present? && h.request.subdomain != 'apps'
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/terms_and_condition"
     else
       h.site_terms_condition(object.id)
