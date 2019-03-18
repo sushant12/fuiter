@@ -20,6 +20,12 @@
             Settings
           </a>
         </li>
+        <li class="have-children">
+          <a class="parent-link" @click="showMenu('Domain')">
+            <i class="fa fa-cogs"/>
+            Domain
+          </a>
+        </li>
       </ul>
     </div>
     <div v-else>
@@ -41,6 +47,7 @@
 import Design from "./editorMenu/design.vue";
 import Page from "./editorMenu/page.vue";
 import Setting from "./editorMenu/setting.vue";
+import Domain from "./editorMenu/domain.vue";
 
 export default {
   props: ["template", "pages", "fb_page_id", "fb_page_name", "templates_url"],
@@ -63,7 +70,8 @@ export default {
   components: {
     Design,
     Page,
-    Setting
+    Setting,
+    Domain,
   }
 };
 </script>
