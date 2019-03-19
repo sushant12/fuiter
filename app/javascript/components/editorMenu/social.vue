@@ -1,6 +1,6 @@
 <template>
   <section>
-    <a @click="settingMenu" class="back">
+    <a @click="mainMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
     <div class="field">
@@ -40,8 +40,8 @@ export default {
     };
   },
   methods: {
-    settingMenu() {
-      this.$emit("clicked-setting-menu", "");
+    mainMenu() {
+      this.$emit("clicked-main-menu", "");
     },
     updateSetting() {
       this.social.forEach((item, index) => {

@@ -1,15 +1,15 @@
 <template>
   <section>
-    <a @click="settingMenu" class="back">
+    <a @click="mainMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
-    </a>
-    <!-- <p class="menu-label" @click="settingMenu">&larr; Back</p> -->
+    </a>    
     <div class="field">
-      <h1 class="subtitle">Domains</h1>
-      <h6>A domain name is the web address where your website is hosted (For example, yourbusiness.com)</h6>
-      <input class="input" type="text" v-model="domainName" placeholder="example.fuitter.com">
+      <h1 class="subtitle">Add Domain</h1>      
+      <input class="input" type="text" v-model="domain" placeholder="example.fuitter.com">
       <h6>Your website is published at the domain above</h6>
-      <button class="button is-info" @click="updateSetting">Custom URL</button>
+      <h1 class="subtitle">Add Subdomain</h1>      
+      <input class="input" type="text" v-model="subDomain" placeholder="app">
+      <button class="button is-info" @click="updateSetting">Save</button>
     </div>
   </section>
 </template>
@@ -21,28 +21,30 @@ export default {
   props: ["fb_page_id", "template"],
   data() {
     return {
-      domainName: ""
+      domain: "",
+      subDomain: ""
     };
   },
   methods: {
-    settingMenu() {
-      this.$emit("clicked-setting-menu", "");
+    mainMenu() {
+      this.$emit("clicked-main-menu", "");
     },
     updateSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
-        domain: this.domainName,
+        subdomain: this.subDomain,
         fb_page_template_id: this.template.id
       });
       this.clear();
     },
     clear() {
-      this.domainName = "";
+      this.domain = "";
+      this.subDomain = "";
     }
   },
   created() {
     EditorServices.showSetting(this.template.id).then(res => {
       const settingData = res.data;
-      this.domainName = settingData.domain;
+      this.subDomain = settingData.subdomain;
     });
   }
 };
