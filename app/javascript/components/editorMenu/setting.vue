@@ -11,12 +11,30 @@
             Domains
           </a>
         </li>
-        <li class="legal-info-btn">
+        <!-- <li class="legal-info-btn">
           <a @click="showSettingMenu('LegalInformation')">
             <i class="fa fa-balance-scale"/>
             Legal Information
           </a>
+        </li> -->
+        <li class="legal-info-btn">
+          <a  @click="showModal" id="show-modal">
+            <i class="fa fa-balance-scale"/>
+            Legal Information
+          </a>
         </li>
+
+        <div class="modal" v-bind:class="{'is-active':showForm}">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              Helo from the modal
+              <!-- <LegalInformation /> -->
+            </div>
+          </div>
+          <button @click="close" class="modal-close"></button>
+        </div>
+
         <li>
           <a @click="showSettingMenu('Social')">
             <i class="fa fa-comments"/>
@@ -39,6 +57,64 @@
     </div>
   </aside>
 </template>
+
+<script>
+import _ from "lodash";
+import EditorServices from "../../services/index.js";
+import Domain from "../editorSetting/domain.vue";
+import LegalInformation from "../editorSetting/legalInfo.vue";
+import Social from "../editorSetting/social.vue";
+
+export default {
+  props: ["fb_page_id", "template", "fb_page_name"],
+  data() {
+    return {
+      showParentMenu: true,
+      currentMenu: "",
+      domain: "example.fuitter.com",
+      showForm: false,
+    };
+  },
+  methods: {
+    showModal() {
+      this.showForm = true;
+    },
+    close() {
+      this.showForm = false;
+    },
+    mainMenu() {
+      this.$emit("clicked-main-menu", "");
+    },
+    showSettingMenu(settingMenu) {
+      const sidebar = document.getElementById("menu-list");
+      // sidebar.style.width = "420px";
+      this.showParentMenu = false;
+      frame.style.left = "10%";
+      this.currentMenu = settingMenu;
+    },
+    resetSetting() {
+      this.showParentMenu = true;
+      this.currentMenu = "";
+      frame.style.left = "0%";
+    }
+  },
+  created() {
+    EditorServices.showSetting(this.template.id).then(res => {
+      if (!_.isNil(res.data)) {
+        if (!_.isNil(res.data.domain)) {
+          this.domain = res.data.domain;
+        }
+      }
+    });
+  },
+  components: {
+    Domain,
+    LegalInformation,
+    Social
+  }
+};
+</script>
+
 <style scoped>
 .settings .back {
   padding: 20px 25px;
@@ -85,52 +161,3 @@
   width: 100%;
 }
 </style>
-<script>
-import _ from "lodash";
-import EditorServices from "../../services/index.js";
-import Domain from "../editorSetting/domain.vue";
-import LegalInformation from "../editorSetting/legalInfo.vue";
-import Social from "../editorSetting/social.vue";
-
-export default {
-  props: ["fb_page_id", "template", "fb_page_name"],
-  data() {
-    return {
-      showParentMenu: true,
-      currentMenu: "",
-      domain: "example.fuitter.com"
-    };
-  },
-  methods: {
-    mainMenu() {
-      this.$emit("clicked-main-menu", "");
-    },
-    showSettingMenu(settingMenu) {
-      const sidebar = document.getElementById("menu-list");
-      // sidebar.style.width = "420px";
-      this.showParentMenu = false;
-      frame.style.left = "10%";
-      this.currentMenu = settingMenu;
-    },
-    resetSetting() {
-      this.showParentMenu = true;
-      this.currentMenu = "";
-      frame.style.left = "0%";
-    }
-  },
-  created() {
-    EditorServices.showSetting(this.template.id).then(res => {
-      if (!_.isNil(res.data)) {
-        if (!_.isNil(res.data.domain)) {
-          this.domain = res.data.domain;
-        }
-      }
-    });
-  },
-  components: {
-    Domain,
-    LegalInformation,
-    Social
-  }
-};
-</script>
