@@ -18,7 +18,7 @@
           </a>
         </li> -->
         <li class="legal-info-btn">
-          <a @click="showModal" id="show-modal">
+          <a  @click="showModal" id="show-modal">
             <i class="fa fa-balance-scale"/>
             Legal Information
           </a>
@@ -28,7 +28,8 @@
           <div class="modal-background"></div>
           <div class="modal-content">
             <div class="box">
-              <LegalInformation />
+              Helo from the modal
+              <!-- <LegalInformation /> -->
             </div>
           </div>
           <button @click="close" class="modal-close"></button>
@@ -56,52 +57,7 @@
     </div>
   </aside>
 </template>
-<style scoped>
-.settings .back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.settings .back:hover {
-  color: #00b289;
-  background-color: black;
-}
-.legal-info-btn {
-  width: 250px;
-}
-.settings .back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-.settings-list li {
-  position: relative;
-  padding: 20px 25px;
-}
-.settings-list li a {
-  color: #818a97;
-  font-size: 1rem;
-}
-.settings-list li a i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-}
-.settings-list li:hover {
-  background-color: black;
-}
-.settings-list li:hover a {
-  color: #00b289;
-}
-.settings-list li:hover i {
-  color: #00b289;
-}
-#menu-list {
-  width: 100%;
-}
-</style>
+
 <script>
 import _ from "lodash";
 import EditorServices from "../../services/index.js";
@@ -158,3 +114,50 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.settings .back {
+  padding: 20px 25px;
+  display: flex;
+  color: #818a97;
+}
+.settings .back:hover {
+  color: #00b289;
+  background-color: black;
+}
+.legal-info-btn {
+  width: 250px;
+}
+.settings .back i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+.settings-list li {
+  position: relative;
+  padding: 20px 25px;
+}
+.settings-list li a {
+  color: #818a97;
+  font-size: 1rem;
+}
+.settings-list li a i {
+  margin-right: 10px;
+  color: #818a97;
+  font-size: 1.1rem;
+}
+.settings-list li:hover {
+  background-color: black;
+}
+.settings-list li:hover a {
+  color: #00b289;
+}
+.settings-list li:hover i {
+  color: #00b289;
+}
+#menu-list {
+  width: 100%;
+}
+</style>
