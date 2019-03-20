@@ -1,8 +1,8 @@
 <template>
   <section>
-    <a @click="settingMenu" class="back">
+    <!-- <a @click="settingMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
-    </a>
+    </a>-->
     <div class="field">
       <h1 class="subtitle">Legal Information</h1>
       <h6>Terms and Conditions</h6>

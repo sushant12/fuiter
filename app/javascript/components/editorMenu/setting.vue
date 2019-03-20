@@ -16,9 +16,9 @@
             <i class="fa fa-balance-scale"/>
             Legal Information
           </a>
-        </li> -->
+        </li>-->
         <li class="legal-info-btn">
-          <a  @click="showModal" id="show-modal">
+          <a @click="showModal" id="show-modal">
             <i class="fa fa-balance-scale"/>
             Legal Information
           </a>
@@ -27,9 +27,8 @@
         <div class="modal" v-bind:class="{'is-active':showForm}">
           <div class="modal-background"></div>
           <div class="modal-content">
-            <div class="box">
-              Helo from the modal
-              <!-- <LegalInformation /> -->
+            <div class="box">Helo from the modal
+              <LegalInformation/>
             </div>
           </div>
           <button @click="close" class="modal-close"></button>
@@ -72,7 +71,7 @@ export default {
       showParentMenu: true,
       currentMenu: "",
       domain: "example.fuitter.com",
-      showForm: false,
+      showForm: false
     };
   },
   methods: {
@@ -159,5 +158,11 @@ export default {
 }
 #menu-list {
   width: 100%;
+}
+.modal {
+  width: 100vw;
+}
+.modal .modal-close {
+  left: 95vw;
 }
 </style>
