@@ -29,6 +29,9 @@ export default {
   bottom: 0px;
   margin-top: 3.25rem;
   /* z-index: 1; */
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .site-preview iframe {
@@ -36,6 +39,6 @@ export default {
   top: 0;
   left: 0;
   height: 100%;
-  width: 80%;
+  width: 100%;
 }
 </style>

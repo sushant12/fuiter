@@ -3,9 +3,17 @@
     <a @click="pageMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
-    Meta Keywords (Separated by commas ",") 
+    <p class="p-label has-text-white">
+      Meta Keywords
+      <span
+        class="is-primary tooltip is-tooltip-bottom is-tooltip-warning"
+        data-tooltip="Separated by commas ' , ' "
+      >
+        <i class="fa fa-question-circle has-text-grey-lighter"/>
+      </span>
+    </p>
     <textarea rows="8" v-model="metaTags"></textarea>
-    Meta Descriptions
+    <p class="p-label has-text-white">Meta Descriptions</p>
     <textarea rows="8" v-model="metaDescription"></textarea>
     <button class="button is-info" @click="saveSeo()">Save</button>
   </div>
@@ -34,7 +42,7 @@ export default {
     },
     pageMenu() {
       this.$emit("clicked-page-menu", "");
-    },
+    }
   },
   mounted() {
     EditorService.getPage(this.pageId).then(({ data }) => {

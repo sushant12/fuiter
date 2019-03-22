@@ -69,9 +69,9 @@ export default {
 </script>
 <style scoped>
 .child-menu-inner {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* height: 100vh; */
+  /* overflow-x: auto; */
+  /* overflow-y: scroll; */
   padding-right: 5px;
   position: fixed;
   width: 250px;
@@ -83,5 +83,8 @@ export default {
 #menu-list {
   width: 100%;
 }
+/* .child-menu {
+  overflow-y: auto;
+} */
 </style>
 

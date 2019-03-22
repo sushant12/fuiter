@@ -77,7 +77,6 @@ TABLE OF CONTENTS
 /* ==========================================================================
 1. Resets and base setup
 ========================================================================== */
-
 .no-touch .scrollable.hover {
   overflow-y: hidden;
 }
@@ -262,7 +261,8 @@ body {
       }
       .is-primary {
         background-color: #00b289;
-        border-radius: 10px;
+        // border-radius: 10px;
+        font-size: 1rem;
       }
     }
     .condn-single {
@@ -281,7 +281,8 @@ body {
       }
       .is-primary {
         background-color: #00b289;
-        border-radius: 10px;
+        // border-radius: 10px;
+        font-size: 1rem;
       }
     }
   }

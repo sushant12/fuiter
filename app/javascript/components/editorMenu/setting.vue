@@ -27,7 +27,8 @@
         <div class="modal" v-bind:class="{'is-active':showForm}">
           <div class="modal-background"></div>
           <div class="modal-content">
-            <div class="box">Helo from the modal
+            <div class="box">
+              <h1 class="subtitle has-text-grey">Legal Information</h1>
               <LegalInformation/>
             </div>
           </div>
@@ -115,25 +116,6 @@ export default {
 </script>
 
 <style scoped>
-.settings .back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.settings .back:hover {
-  color: #00b289;
-  background-color: black;
-}
-.legal-info-btn {
-  width: 250px;
-}
-.settings .back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
 .settings-list li {
   position: relative;
   padding: 20px 25px;

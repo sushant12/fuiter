@@ -172,11 +172,16 @@ body::-webkit-scrollbar-thumb {
 .main-window {
   display: flex;
   flex-flow: row;
+  width: 100vw;
+  margin-top: 73px;
+  height: calc(100vh - 73px);
 }
 .main-sidebar {
   justify-content: flex-start;
+  width: 250px;
 }
 .main-iframe {
-  justify-content: flex-end;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  width: calc(100vw - 250px);
 }

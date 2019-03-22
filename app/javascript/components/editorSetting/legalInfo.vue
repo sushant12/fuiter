@@ -3,10 +3,9 @@
     <!-- <a @click="settingMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>-->
-    <div class="field">
-      <h1 class="subtitle">Legal Information</h1>
+    <div class="field has-text-grey">
       <h6>Terms and Conditions</h6>
-      <wysiwyg v-model="termsCondition"/>
+      <wysiwyg v-model="termsCondition" class="wysiwyg"/>
       <h6>Privacy Policy</h6>
       <wysiwyg v-model="privacyPolicy"/>
       <button class="button is-info" @click="updateSetting">Save Info</button>
@@ -256,7 +255,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .field {
   color: #fff;
   margin: 20px 15px;
@@ -274,13 +273,14 @@ h6 {
 }
 .editr {
   position: relative;
-  height: 232px;
+  height: 40vh;
+  overflow-y: scroll;
 }
 /* .editr--content a {
 } */
-.editr--content {
-  height: 200px;
-  overflow: scroll;
+section .field .wysiwyg .editr--content {
+  /* height: calc(40vh - 32px); */
+  /* overflow-y: scroll; */
   font-size: 12px;
   position: static;
   width: 360px;
