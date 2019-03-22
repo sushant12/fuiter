@@ -1,8 +1,5 @@
 <template>
   <section>
-    <!-- <a @click="settingMenu" class="back">
-      <i class="fa fa-arrow-circle-left"/>Go back
-    </a>-->
     <div class="field has-text-grey">
       <h6>Terms and Conditions</h6>
       <wysiwyg v-model="termsCondition" class="wysiwyg"/>
