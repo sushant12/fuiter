@@ -4,31 +4,46 @@
       <a @click="mainMenu" class="back">
         <i class="fa fa-arrow-circle-left"/>Go back
       </a>
-      <VueNestable
-        v-model="menus"
-        :max-depth="2"
-        children-prop="nested"
-        @change="updateMenu()"
-      >
+      <p class="has-text-white p-label">
+        Page Menu
+        <span
+          class="is-primary tooltip is-tooltip-top is-tooltip-warning"
+          data-tooltip="Darg & Drop To Reorder"
+        >
+          <i class="fa fa-question-circle has-text-grey-lighter"/>
+        </span>
+      </p>
+      <!-- <span class="is-primary tooltip is-tooltip-top" data-tooltip="Reorder Page Menus">
+        <i class="fa fa-question-circle"/>
+      </span>-->
+
+      <VueNestable v-model="menus" :max-depth="2" children-prop="nested" @change="updateMenu()">
         <template slot-scope="{ item }">
           <VueNestableHandle :item="item">
-            <i class="fa fa-arrows"/>
+            <i class="fa fa-arrows-alt"/>
           </VueNestableHandle>
           <span>{{ item.title }}</span>
           <a @click="pageSeo(item)">
-            <i class="fa fa-search-plus" title="SEO"/>
+            <div
+              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+              data-tooltip="Add Description for SEO "
+            >
+              <i class="fas fa-search"/>
+            </div>
           </a>
           <a @click="pageSetting(item)">
-            <i class="fa fa-cog" title="Settings"/>
+            <div
+              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+              data-tooltip="Rename Page Menu"
+            >
+              <i class="fa fa-cog"/>
+            </div>
           </a>
         </template>
       </VueNestable>
     </div>
     <div v-else>
-      <component v-bind:is="pageOption"
-                :pageId="pageId"
-                @clicked-page-menu="resetPage"
-                ></component>
+      <component v-bind:is="pageOption" :pageId="pageId" @clicked-page-menu="resetPage"></component>
     </div>
   </div>
 </template>
@@ -47,7 +62,7 @@ export default {
       menus: [],
       showPage: true,
       pageOption: "",
-      pageId: "",
+      pageId: ""
     };
   },
   methods: {
@@ -95,10 +110,15 @@ export default {
 /*
 * Style for nestable
 */
+/* .tooltip {
+  margin: 0 0 0 5px;
+  width: 10px;
+} */
+
 .component-example {
   position: relative;
   border-radius: 4px;
-  box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1);
+  /* box-shadow: 0 2px 3px 0 rgba(16, 17, 23, 0.1), 0 0 1px 0 rgba(16, 17, 23, 0.1); */
   background-color: transparent;
   color: #49494d;
   /* padding: 1em; */
@@ -108,31 +128,33 @@ export default {
   width: 250px;
   height: 100vh;
 }
-.component-example .back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.component-example .back:hover {
-  color: #00b289;
-  background-color: black;
-}
-.component-example .back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
+
 .nestable-item {
   position: relative;
-  padding: 20px 25px;
+  padding: 10px 10px;
   color: #ededed;
   /* border: 1px dashed white; */
-  width: 99%;
-  margin-top: 0.8rem;
-  box-shadow: 2px 2px 10px black;
-  background-color: #3d3453;
+  width: 95%;
+  margin: 5px;
+  /* margin-top: 0.8rem; */
+  /* box-shadow: 2px 2px 10px black; */
+  /* background-color: #37414a; */
+  /* border: 1px solid #778899; */
+  border: 1px solid #525f6d;
+}
+.nestable-item ol .nestable-item {
+  /* background-color: #3c4650; */
+  padding: 10px;
+  margin: 10px 0 10px 5px;
+  font-size: 0.7rem;
+}
+
+.nestable-item ol .nestable-item:hover {
+  background-color: #4d5a67;
+  /* padding-left: 20px; */
+}
+.nestable-item ol .nestable-item span {
+  font-size: 0.8rem;
 }
 .nestable-item-content {
   display: flex;
@@ -145,15 +167,18 @@ export default {
   /* justify-content: space-between; */
   align-items: flex-start;
   flex-basis: 50%;
-  color: #818a97;
+  color: white;
   padding-left: 10px;
+  font-size: 0.9rem;
+  font-weight: 200;
+  text-transform: capitalize;
+  font-family: "campton";
+  padding-left: 20px;
 }
 .nestable-item-content .nestable-handle [draggable="true"] {
   padding-right: 1%;
 }
-.nestable-item-content a {
-  color: #818a97;
-}
+
 .nestable-item-content {
   color: #818a97;
 }
@@ -162,20 +187,21 @@ export default {
   display: flex;
   justify-content: flex-end;
   flex-basis: 40%;
-  padding-right: 10px;
+  padding-right: 15px;
 }
 .nestable-item-content .nestable-handle i {
-  color: #818a97;
-  font-size: 1.1rem;
+  color: white;
+  font-size: 1rem;
 }
-.nestable-item-content .nestable-handle i {
-  color: #818a97;
-  font-size: 1.1rem;
+.nestable-item-content a i {
+  color: white;
+  font-size: 1rem;
 }
 .nestable-list li:hover {
-  background-color: black;
+  background-color: #292337;
   cursor: -webkit-grabbing;
   cursor: grabbing;
+  border-color: #00b289;
 }
 
 .nestable-list li .nestable-item-content a i:hover {
@@ -246,7 +272,7 @@ export default {
   padding: 0; */
   box-shadow: 2px 2px 10px black;
   background-color: whitesmoke;
-  padding: 20px 25px;
+  padding: 10px 10px;
 }
 .nestable-drag-layer > .nestable-list span {
   color: #00b289;

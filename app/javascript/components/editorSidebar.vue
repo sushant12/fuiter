@@ -15,9 +15,33 @@
           </a>
         </li>
         <li class="have-children">
-          <a class="parent-link" @click="showMenu('Setting')">
+          <a class="parent-link" @click="showMenu('Domain')">
             <i class="fa fa-cogs"/>
-            Settings
+            Domain
+          </a>
+        </li>
+        <li class="have-children">
+          <!-- <a class="parent-link" @click="showMenu('LegalInformation')"> -->
+          <a @click="showModal" id="show-modal">
+            <i class="fa fa-cogs"/>
+            Legal Information
+          </a>
+        </li>
+        <div class="modal" v-bind:class="{'is-active':showForm}">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <h1 class="subtitle has-text-grey">Legal Information</h1>
+              <LegalInformation/>
+            </div>
+          </div>
+          <button @click="close" class="modal-close"></button>
+        </div>
+
+        <li class="have-children">
+          <a class="parent-link" @click="showMenu('Social')">
+            <i class="fa fa-cogs"/>
+            Social
           </a>
         </li>
       </ul>
@@ -40,17 +64,26 @@
 <script>
 import Design from "./editorMenu/design.vue";
 import Page from "./editorMenu/page.vue";
-import Setting from "./editorMenu/setting.vue";
+import Domain from "./editorMenu/domain.vue";
+import LegalInformation from "./editorMenu/legalInfo.vue";
+import Social from "./editorMenu/social.vue";
 
 export default {
   props: ["template", "pages", "fb_page_id", "fb_page_name", "templates_url"],
   data() {
     return {
       showParentMenu: true,
-      currentMenu: ""
+      currentMenu: "",
+      showForm: false
     };
   },
   methods: {
+    showModal() {
+      this.showForm = true;
+    },
+    close() {
+      this.showForm = false;
+    },
     showMenu(menu) {
       this.showParentMenu = false;
       this.currentMenu = menu;
@@ -63,15 +96,17 @@ export default {
   components: {
     Design,
     Page,
-    Setting
+    Domain,
+    LegalInformation,
+    Social
   }
 };
 </script>
 <style scoped>
 .child-menu-inner {
-  height: 100vh;
-  overflow-x: hidden;
-  overflow-y: auto;
+  /* height: 100vh; */
+  /* overflow-x: auto; */
+  /* overflow-y: scroll; */
   padding-right: 5px;
   position: fixed;
   width: 250px;
@@ -82,6 +117,17 @@ export default {
 }
 #menu-list {
   width: 100%;
+}
+/* .child-menu {
+  overflow-y: auto;
+} */
+</style>
+<style>
+.modal {
+  width: 100vw;
+}
+.modal .modal-close {
+  left: 95vw;
 }
 </style>
 
