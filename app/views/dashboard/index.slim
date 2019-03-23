@@ -27,15 +27,15 @@
       .is-mobile.info-status
         - case(page.status)
         - when 'online'
-          .notch-active
+          .notch-active.online
             i.fa.fa-globe
             | Online
         - when 'in progress'
-          .notch-info
+          .notch-info.in-progress
             i.fa.fa-check-square
-            | Published
+            | In Progress
         - when 'expired'
-          .notch-danger
+          .notch-danger.expired
             i.fa.fa-warning
             | Expired
         - else

@@ -2,9 +2,9 @@ nav.child-menu.is-sidebar-translated style="margin-top:74px;"
   .child-menu-inner  
     ul#dashboard-menu.sidebar-menu.is-active.animated
       li.have-children
-        = link_to root_path, { class: "parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
+        = link_to dashboard_path, { class: "parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
           i.fa.fa-th-large 
-          | Pages
+          | Dashboard
       li.have-children
         = link_to root_path, { class: "parent-link #{controller.action_name == 'stats' ? 'active' : ''}" } do 
           i.fa.fa-line-chart 

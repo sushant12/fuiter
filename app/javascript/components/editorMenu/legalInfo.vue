@@ -297,7 +297,7 @@ section .field .wysiwyg .editr--content {
 }
 .back:hover {
   color: #00b289;
-  background-color: black;
+  background-color: #363636;
 }
 .back i {
   margin-right: 10px;
