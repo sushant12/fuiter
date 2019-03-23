@@ -1,14 +1,16 @@
 <template>
   <section>
-    <a @click="mainMenu" class="back">
-      <i class="fa fa-arrow-circle-left"/>Go back
-    </a>
     <div class="field">
-      <h1 class="subtitle">Legal Information</h1>
-      <h6>Terms and Conditions</h6>
-      <wysiwyg v-model="termsCondition"/>
-      <h6>Privacy Policy</h6>
-      <wysiwyg v-model="privacyPolicy"/>
+      <!-- <h1 class="subtitle has-text-grey">Legal Information</h1> -->
+      <div>
+        <h6>Terms and Conditions</h6>
+        <wysiwyg v-model="termsCondition" class="wysiwyg"/>
+      </div>
+      <div>
+        <h6 class="subtitle has-text-grey">Privacy Policy</h6>
+        <wysiwyg v-model="privacyPolicy"/>
+      </div>
+
       <button class="button is-info" @click="updateSetting">Save Info</button>
     </div>
   </section>
@@ -256,11 +258,11 @@ export default {
 };
 </script>
 
-<style>
-.field {
+<style scoped>
+/* .field {
   color: #fff;
   margin: 20px 15px;
-}
+} */
 .subtitle {
   color: #fff;
   margin-bottom: 20px;
@@ -274,13 +276,13 @@ h6 {
 }
 .editr {
   position: relative;
-  height: 232px;
+  /* height: 40vh;
+  overflow-y: scroll; */
 }
-/* .editr--content a {
-} */
-.editr--content {
-  height: 200px;
-  overflow: scroll;
+
+section .field .wysiwyg .editr--content {
+  /* height: calc(40vh - 32px); */
+  /* overflow-y: scroll; */
   font-size: 12px;
   position: static;
   width: 360px;
@@ -308,4 +310,44 @@ h6 {
   width: 100%;
 }
 </style>
-
+<style>
+.modal {
+  justify-content: flex-start;
+  padding-top: 10px;
+  color: darkgrey;
+}
+.modal-content {
+  width: 80vw;
+  justify-content: flex-start;
+  height: calc(100vh - 79px);
+}
+.modal-content .box {
+  /* height: 90%; */
+  height: calc(100vh - 100px);
+}
+.modal-content .box h1 {
+  padding: 0;
+  margin: 0;
+}
+.modal-content .box section {
+  padding: 0;
+  margin: 0;
+}
+.modal-content .box section .field {
+  padding: 0;
+  margin: 0;
+  color: dimgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 85vh;
+}
+.modal-content .box section .field h6 {
+  padding: 0;
+  margin: 0;
+}
+.editr .editr--content {
+  height: 25vh;
+  overflow-y: scroll;
+}
+</style>

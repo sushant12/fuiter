@@ -29,7 +29,12 @@ export default {
   data() {
     return {
       social: [
-        { name: "", placeholder: "Facebook URL", icon: "fa fa-facebook" },
+        {
+          name: "",
+          placeholder: "&#xf09a; Facebook URL",
+          icon: "fa fa-facebook",
+          class: "fontAwesome"
+        },
         { name: "", placeholder: "Instagram URL", icon: "fa fa-instagram" },
         { name: "", placeholder: "Youtube URL", icon: "fa fa-youtube" },
         { name: "", placeholder: "Twitter URL", icon: "fa fa-twitter" },
@@ -93,8 +98,15 @@ export default {
 
 <style scoped>
 .field {
-  width: 280px;
+  color: #fff;
+  margin: 20px 0;
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 5px;
 }
+
 h6 {
   text-align: justify;
 }
@@ -121,25 +133,8 @@ input {
 .column.is-1 {
   width: 2%;
 }
-i {
-  color: #fff;
-  width: 15px;
-}
-.back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.back:hover {
-  color: #00b289;
-  background-color: black;
-}
-.back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
+.fontAwesome {
+  font-family: Helvetica, "FontAwesome", sans-serif;
 }
 </style>
 

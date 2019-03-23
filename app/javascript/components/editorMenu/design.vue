@@ -3,13 +3,17 @@
     <a @click="mainMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
-    <a class="button" :href="templates_url">
-      Choose templates
-    </a>
+    <a
+      class="button is-marginless has-text-centered level-item is-primary"
+      :href="templates_url"
+    >Choose templates</a>
     <br>
     <span class="p-label">Color</span>
-    <span class="font-icon tooltip is-tooltip-right" data-tooltip="Select color of texts">
-      <i class="fa fa-question-circle" aria-hidden="true" id="icon"></i>
+    <span
+      class="is-primary tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select color of texts"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter"/>
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Colors</p>
@@ -19,20 +23,23 @@
           <div class="dropdown is-hoverable">
             <div class="dropdown-trigger">
               <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
-                <i class="fa fa-angle-down" style="color: white;"></i>
+                <i class="fa fa-angle-down has-text-white"></i>
               </span>
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
               <chrome-picker v-model="color" @input="changeColor"></chrome-picker>
-            </div>
-            &nbsp;<span class="label-color palette">Select a custom color</span>
+            </div>&nbsp;
+            <span class="label-color palette">Select a custom color</span>
           </div>
         </span>
       </div>
     </div>
     <span class="p-label">Site Title</span>
-    <span class="font-icon tooltip is-tooltip-right" data-tooltip="Set title of website">
-      <i class="fa fa-question-circle" aria-hidden="true" id="icon"></i>
+    <span
+      class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
+      data-tooltip="Set title of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
     </span>
     <div class="border-wrap">
       <div class="form-control">
@@ -42,8 +49,11 @@
     </div>
 
     <span class="p-label">Font</span>
-    <span class="font-icon tooltip is-tooltip-right" data-tooltip="Select font of website">
-      <i class="fa fa-question-circle" aria-hidden="true" id="icon"></i>
+    <span
+      class="font-icon tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select font of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Font</p>
@@ -191,6 +201,10 @@ export default {
 };
 </script>
 <style scoped>
+.child-menu-inner {
+  overflow-y: scroll;
+  width: 100%;
+}
 #inner-menu {
   padding: 0 4px;
 }
@@ -291,21 +305,5 @@ input.input {
   margin-bottom: 10px;
   border: 1.5px solid white;
   border-radius: 4px;
-}
-.back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.back:hover {
-  color: #00b289;
-  background-color: black;
-}
-.back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
 }
 </style>

@@ -103,9 +103,9 @@ export default {
       const frame = document.getElementById("frame");
       switch (type) {
         case "monitor":
-          frame.style.width = "1200px";
-          frame.style.left = "50%";
-          frame.style.margin = "0 0 0 -600px";
+          frame.style.width = "1300px";
+          // frame.style.left = "50%";
+          // frame.style.margin = "0 0 0 -600px";
           frame.style.borderTop = "5px solid #fff";
           frame.style.borderBottom = "5px solid #fff";
           frame.style.borderLeft = "5px solid #fff";
@@ -115,8 +115,8 @@ export default {
           break;
         case "tablet":
           frame.style.width = "991px";
-          frame.style.left = "50%";
-          frame.style.margin = "30px 0 0 -496px";
+          // frame.style.left = "50%";
+          // frame.style.margin = "30px 0 0 -496px";
           frame.style.borderTop = "75px solid #555555";
           frame.style.borderBottom = "75px solid #555555";
           frame.style.borderLeft = "15px solid #555555";
@@ -126,8 +126,8 @@ export default {
           break;
         case "phone":
           frame.style.width = "360px";
-          frame.style.left = "50%";
-          frame.style.margin = "30px 0 0 -180px";
+          // frame.style.left = "50%";
+          // frame.style.margin = "30px 0 0 -180px";
           frame.style.borderTop = "50px solid #555555";
           frame.style.borderBottom = "50px solid #555555";
           frame.style.borderLeft = "10px solid #555555";
