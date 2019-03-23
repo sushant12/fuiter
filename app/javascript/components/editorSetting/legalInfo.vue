@@ -270,11 +270,10 @@ h6 {
 }
 .editr {
   position: relative;
-  height: 40vh;
-  overflow-y: scroll;
+  /* height: 40vh;
+  overflow-y: scroll; */
 }
-/* .editr--content a {
-} */
+
 section .field .wysiwyg .editr--content {
   /* height: calc(40vh - 32px); */
   /* overflow-y: scroll; */
@@ -305,4 +304,38 @@ section .field .wysiwyg .editr--content {
   width: 100%;
 }
 </style>
-
+<style>
+.modal {
+  justify-content: flex-start;
+  padding-top: 10px;
+}
+.modal-content {
+  width: 80vw;
+  justify-content: flex-start;
+  height: calc(100vh - 79px);
+}
+.modal-content .box {
+  /* height: 90%; */
+  height: calc(100vh - 100px);
+}
+.modal-content .box h1 {
+  padding: 0;
+  margin: 0;
+}
+.modal-content .box section {
+  padding: 0;
+  margin: 0;
+}
+.modal-content .box section .field {
+  padding: 0;
+  margin: 0;
+}
+.modal-content .box section .field h6 {
+  padding: 0;
+  margin: 0;
+}
+.editr .editr--content {
+  height: 25vh;
+  overflow-y: scroll;
+}
+</style>
