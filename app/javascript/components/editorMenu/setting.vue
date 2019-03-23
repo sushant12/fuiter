@@ -34,7 +34,16 @@
           </div>
           <button @click="close" class="modal-close"></button>
         </div>
-
+        <div class="modal" v-bind:class="{'is-active':showForm}">
+          <div class="modal-background"></div>
+          <div class="modal-content">
+            <div class="box">
+              <h1 class="subtitle has-text-grey">Legal Information</h1>
+              <LegalInformation/>
+            </div>
+          </div>
+          <button @click="close" class="modal-close"></button>
+        </div>
         <li>
           <a @click="showSettingMenu('Social')">
             <i class="fa fa-comments"/>

@@ -25,6 +25,17 @@
           .is-mobile.condn-single
             = link_to 'Start', templates_path(page), class: 'button is-primary is-small'
       .is-mobile.info-status
-        .notch-active
-          i.fa.fa-check-square
-          | publishded
+        - case(page.status)
+        - when 'online'
+          .notch-active
+            i.fa.fa-globe
+            | Online
+        - when 'in progress'
+          .notch-info
+            i.fa.fa-check-square
+            | Published
+        - when 'expired'
+          .notch-danger
+            i.fa.fa-warning
+            | Expired
+        - else

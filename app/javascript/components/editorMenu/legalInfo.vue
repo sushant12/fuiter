@@ -1,10 +1,16 @@
 <template>
   <section>
-    <div class="field has-text-grey">
-      <h6>Terms and Conditions</h6>
-      <wysiwyg v-model="termsCondition" class="wysiwyg"/>
-      <h6>Privacy Policy</h6>
-      <wysiwyg v-model="privacyPolicy"/>
+    <div class="field">
+      <!-- <h1 class="subtitle has-text-grey">Legal Information</h1> -->
+      <div>
+        <h6>Terms and Conditions</h6>
+        <wysiwyg v-model="termsCondition" class="wysiwyg"/>
+      </div>
+      <div>
+        <h6 class="subtitle has-text-grey">Privacy Policy</h6>
+        <wysiwyg v-model="privacyPolicy"/>
+      </div>
+
       <button class="button is-info" @click="updateSetting">Save Info</button>
     </div>
   </section>
@@ -226,8 +232,8 @@ export default {
     };
   },
   methods: {
-    settingMenu() {
-      this.$emit("clicked-setting-menu", "");
+    mainMenu() {
+      this.$emit("clicked-main-menu", "");
     },
     updateSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
@@ -253,10 +259,10 @@ export default {
 </script>
 
 <style scoped>
-.field {
+/* .field {
   color: #fff;
   margin: 20px 15px;
-}
+} */
 .subtitle {
   color: #fff;
   margin-bottom: 20px;
@@ -308,6 +314,7 @@ section .field .wysiwyg .editr--content {
 .modal {
   justify-content: flex-start;
   padding-top: 10px;
+  color: darkgrey;
 }
 .modal-content {
   width: 80vw;
@@ -329,6 +336,11 @@ section .field .wysiwyg .editr--content {
 .modal-content .box section .field {
   padding: 0;
   margin: 0;
+  color: dimgrey;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 85vh;
 }
 .modal-content .box section .field h6 {
   padding: 0;
