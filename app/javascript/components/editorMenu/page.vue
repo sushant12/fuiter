@@ -80,20 +80,29 @@ export default {
       this.$emit("clicked-main-menu", "");
     },
     updateMenu() {
-      EditorServices.updateMenu(this.fb_page_id, this.menus).then(resp => {
-        document.getElementById("frame").contentWindow.location.reload();
+      EditorServices.updateMenu(this.fb_page_id, this.menus)
+        .then(resp => {
+          document.getElementById("frame").contentWindow.location.reload();
+        });
+    },
+    listMenus(){
+      EditorServices.listMenus(this.fb_page_id)
+      .then(({data}) => {
+        _.each(data, page => {
+          this.menus.push(page);
+        });
       });
     },
     resetPage() {
       this.showPage = true;
       this.pageOption = "";
+      this.menus = [];
+      this.listMenus();
     }
   },
 
   created() {
-    _.each(this.pages, page => {
-      this.menus.push(page);
-    });
+    this.listMenus();
   },
   components: {
     VueNestable,

@@ -8,6 +8,12 @@ class EditorController < ApplicationController
     @pages = Page.list_pages(@template)
   end
 
+  def list_pages
+    template = FbPageTemplate.find_by(fb_page_id: params[:fb_page_id])
+    pages = Page.list_pages(template)
+    render json: pages
+  end
+
   def page
     # loop thru menu and set menu's parent id(ancestry) to nil in first loop
     # if menu have nested property then assign parent id for them  

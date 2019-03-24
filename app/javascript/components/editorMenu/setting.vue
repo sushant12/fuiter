@@ -1,7 +1,16 @@
 <template>
-  <section>
+  <div class="component-example">
+    <button class="button is-info" @click="saveSetting()" >Save Info</button>
+
     <div class="field">
-      <!-- <h1 class="subtitle has-text-grey">Legal Information</h1> -->
+      <h1 class="subtitle">Add Domain</h1>
+      <input class="input" v-model="domain" type="text" placeholder="fuitter.com">
+      <h6>Your website is published at the domain above</h6>
+      <h1 class="subtitle">Add Subdomain</h1>
+      <input class="input" v-model="subDomain" type="text" placeholder="subdomain">
+    </div>
+    <div class="field">
+
       <div>
         <h6>Terms and Conditions</h6>
         <wysiwyg v-model="termsCondition" class="wysiwyg"/>
@@ -11,19 +20,19 @@
         <wysiwyg v-model="privacyPolicy"/>
       </div>
 
-      <button class="button is-info" @click="updateSetting">Save Info</button>
-    </div>
-  </section>
+    </div>    
+  </div>
 </template>
 
 <script>
-import _ from "lodash";
 import EditorServices from "../../services/index.js";
 
 export default {
-  props: ["fb_page_id", "template", "fb_page_name", "domain"],
+  props: ["fb_page_id", "template", "fb_page_name"],
   data() {
     return {
+      domain: "",
+      subDomain: "",
       termsCondition: `<p class="pad-10">Terms of Service</p>                       
           <p class="pad-10"><b>1. Terms</b></p>
           <p>By accessing the website at ${
@@ -231,25 +240,27 @@ export default {
           by sending an email to.</p>`
     };
   },
+
   methods: {
-    mainMenu() {
-      this.$emit("clicked-main-menu", "");
-    },
-    updateSetting() {
+    saveSetting(){
       EditorServices.updateSetting(this.fb_page_id, {
-        legal_info: {
-          terms_condition: this.termsCondition,
-          privacy_policy: this.privacyPolicy
-        },
-        fb_page_template_id: this.template.id
+          subdomain: this.subDomain,
+          domain: this.domain,
+          fb_page_template_id: this.template.id,
+          legal_info: {
+            terms_condition: this.termsCondition,
+            privacy_policy: this.privacyPolicy
+          },
       });
-    }
+    },
   },
+
   created() {
     EditorServices.showSetting(this.template.id).then(res => {
       if (!_.isNil(res.data)) {
         const settingData = res.data;
         this.domain = settingData.domain;
+        this.subDomain = settingData.subdomain;
         this.termsCondition = settingData.legal_info.terms_condition;
         this.privacyPolicy = settingData.legal_info.privacy_policy;
       }
@@ -258,96 +269,8 @@ export default {
 };
 </script>
 
-<style scoped>
-/* .field {
-  color: #fff;
-  margin: 20px 15px;
-} */
-.subtitle {
-  color: #fff;
-  margin-bottom: 20px;
-}
-.button {
-  margin: 14px 0;
-}
-h6 {
-  font-size: 13px;
-  margin: 14px 0;
-}
-.editr {
-  position: relative;
-  /* height: 40vh;
-  overflow-y: scroll; */
-}
 
-section .field .wysiwyg .editr--content {
-  /* height: calc(40vh - 32px); */
-  /* overflow-y: scroll; */
-  font-size: 12px;
-  position: static;
-  width: 360px;
-}
-.pad-10 {
-  padding-top: 10px;
-}
-.back {
-  padding: 20px 25px;
-  display: flex;
-  color: #818a97;
-}
-.back:hover {
-  color: #00b289;
-  background-color: #363636;
-}
-.back i {
-  margin-right: 10px;
-  color: #818a97;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-}
-#menu-list {
-  width: 100%;
-}
-</style>
+
 <style>
-.modal {
-  justify-content: flex-start;
-  padding-top: 10px;
-  color: darkgrey;
-}
-.modal-content {
-  width: 80vw;
-  justify-content: flex-start;
-  height: calc(100vh - 79px);
-}
-.modal-content .box {
-  /* height: 90%; */
-  height: calc(100vh - 100px);
-}
-.modal-content .box h1 {
-  padding: 0;
-  margin: 0;
-}
-.modal-content .box section {
-  padding: 0;
-  margin: 0;
-}
-.modal-content .box section .field {
-  padding: 0;
-  margin: 0;
-  color: dimgrey;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 85vh;
-}
-.modal-content .box section .field h6 {
-  padding: 0;
-  margin: 0;
-}
-.editr .editr--content {
-  height: 25vh;
-  overflow-y: scroll;
-}
+
 </style>
