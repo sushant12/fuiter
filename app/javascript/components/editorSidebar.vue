@@ -3,45 +3,27 @@
     <div v-if="showParentMenu" class="child-menu-inner">
       <ul class="sidebar-menu is-active animated" id="dashboard-menu">
         <li class="have-children">
-          <a class="parent-link active" @click="showMenu('Design')">
+          <a class="parent-link active" id="editor-design-menu" @click="showMenu('Design')">
             <i class="fa fa-paint-brush"/>
             Design
           </a>
         </li>
         <li class="have-children">
-          <a class="parent-link" @click="showMenu('Page')">
+          <a class="parent-link" id="editor-page-menu" @click="showMenu('Page')">
             <i class="fa fa-file"/>
             Pages
           </a>
         </li>
         <li class="have-children">
-          <a class="parent-link" @click="showMenu('Domain')">
-            <i class="fa fa-cogs"/>
-            Domain
-          </a>
-        </li>
-        <li class="have-children">
-          <!-- <a class="parent-link" @click="showMenu('LegalInformation')"> -->
-          <a @click="showModal" id="show-modal">
-            <i class="fa fa-cogs"/>
-            Legal Information
-          </a>
-        </li>
-        <div class="modal" v-bind:class="{'is-active':showForm}">
-          <div class="modal-background"></div>
-          <div class="modal-content">
-            <div class="box">
-              <h1 class="subtitle has-text-grey">Legal Information</h1>
-              <LegalInformation/>
-            </div>
-          </div>
-          <button @click="close" class="modal-close"></button>
-        </div>
-
-        <li class="have-children">
-          <a class="parent-link" @click="showMenu('Social')">
+          <a class="parent-link" id="editor-social-menu" @click="showMenu('Social')">
             <i class="fa fa-cogs"/>
             Social
+          </a>
+        </li>
+        <li class="have-children">
+          <a class="parent-link" id="editor-setting-menu" @click="showSetting(true)">
+            <i class="fa fa-file"/>
+            Settings
           </a>
         </li>
       </ul>
@@ -64,8 +46,6 @@
 <script>
 import Design from "./editorMenu/design.vue";
 import Page from "./editorMenu/page.vue";
-import Domain from "./editorMenu/domain.vue";
-import LegalInformation from "./editorMenu/legalInfo.vue";
 import Social from "./editorMenu/social.vue";
 
 export default {
@@ -85,20 +65,29 @@ export default {
       this.showForm = false;
     },
     showMenu(menu) {
+      this.showSetting(false);
       this.showParentMenu = false;
       this.currentMenu = menu;
     },
     resetMenu() {
       this.showParentMenu = true;
       this.currentMenu = "";
-    }
+    },
+    showSetting(state) {
+      const iframe = document.getElementsByClassName("site-preview")[0];
+      iframe.style.display = state ? "none" : "flex";
+      if(state) {
+        const elSetting = document.getElementById("editor-setting-menu");
+        const elDesign = document.getElementById("editor-design-menu");
+        elSetting.className += " active";
+        elDesign.classList.remove("active");
+      }
+    },
   },
   components: {
     Design,
     Page,
-    Domain,
-    LegalInformation,
-    Social
+    Social,
   }
 };
 </script>
