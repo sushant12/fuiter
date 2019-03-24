@@ -31,6 +31,14 @@
               <i class="fas fa-search"/>
             </div>
           </a>
+          <a @click="hidePage(item)">
+            <div
+              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+              data-tooltip="Hide Menu "
+            >
+              <i class="fas fa-eye" :class="[item.display ? 'page-visible' : 'page-hidden']"/>
+            </div>
+          </a>
           <a @click="pageSetting(item)">
             <div
               class="is-primary tooltip is-tooltip-left is-tooltip-warning"
@@ -62,7 +70,7 @@ export default {
       menus: [],
       showPage: true,
       pageOption: "",
-      pageId: ""
+      pageId: "",
     };
   },
   methods: {
@@ -70,6 +78,10 @@ export default {
       this.showPage = false;
       this.pageOption = "SEO";
       this.pageId = page.id;
+    },
+    hidePage(page) {
+      page.display = page.display ? false : true;
+      this.updateMenu();
     },
     pageSetting(page) {
       this.showPage = false;
@@ -202,10 +214,18 @@ export default {
   color: white;
   font-size: 1rem;
 }
+
+.nestable-item-content a .page-hidden {
+  color: grey;
+}
+
 .nestable-item-content a i {
   color: white;
   font-size: 1rem;
 }
+
+
+
 .nestable-list li:hover {
   background-color: #292337;
   cursor: -webkit-grabbing;
