@@ -3,7 +3,8 @@ import Vue from 'vue/dist/vue.esm';
 import Preview from '../components/editorPreview';
 import EditorNav from '../components/editorNav';
 import EditorSidebar from '../components/editorSidebar';
-import wysiwyg from "vue-wysiwyg"
+import Setting from '../components/editorMenu/setting';
+import wysiwyg from "vue-wysiwyg";
 Vue.use(wysiwyg, {
   hideModules: {
     "image": true,
@@ -12,16 +13,16 @@ Vue.use(wysiwyg, {
     "separator": true,
     "code": true,
   }
-})
+});
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     el: '#editor',
 
     components: {
       Preview,
-      // Editor,
       EditorNav,
       EditorSidebar,
+      Setting,
     }
   })
 })
