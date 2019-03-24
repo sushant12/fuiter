@@ -97,7 +97,7 @@ export default {
 </script>
 
 <style scoped>
-.field {
+/* .field {
   color: #fff;
   margin: 20px 0;
   width: 240px;
@@ -105,7 +105,7 @@ export default {
   flex-direction: column;
   align-items: flex-start;
   padding: 0 5px;
-}
+} */
 
 h6 {
   text-align: justify;
