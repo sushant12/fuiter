@@ -19,11 +19,11 @@ class EditorController < ApplicationController
     # if menu have nested property then assign parent id for them  
     page_param[:menu].each_with_index do |menu, index|
       parent = Page.find menu[:id]
-      parent.update_attributes(position: index, parent: nil)
+      parent.update_attributes(position: index, parent: nil, display: menu['display'])
       unless menu[:nested].empty?
         menu[:nested].each_with_index do |sub_menu, index|
           page = Page.find sub_menu[:id]
-          page.update_attributes!(position: index, parent: parent) 
+          page.update_attributes!(position: index, parent: parent, display: sub_menu['display']) 
         end
       end
     end
@@ -44,7 +44,7 @@ class EditorController < ApplicationController
   private
 
   def page_param
-    params.permit(menu: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri, nested: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri]])
+    params.permit(menu: [:id, :title, :display, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri, nested: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri]])
   end
 
   def setting_param
