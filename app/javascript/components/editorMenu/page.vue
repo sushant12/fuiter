@@ -252,8 +252,8 @@ export default {
   bottom: 0;
   background-color: rgba(106, 127, 233, 0.274);
   border: 1px dashed rgb(73, 100, 241);
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  /* -webkit-border-radius: 5px; */
+  /* border-radius: 5px; */
 }
 .nestable-drag-layer {
   position: fixed;

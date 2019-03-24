@@ -13,7 +13,12 @@
           <i :class="option.icon"/>
           <!-- </div> -->
           <!-- <div class="social-link"> -->
-          <input class="input" type="text" v-model="option.name" :placeholder="option.placeholder">
+          <input
+            class="input sidebar-inputs"
+            type="text"
+            v-model="option.name"
+            :placeholder="option.placeholder"
+          >
           <!-- </div> -->
         </div>
       </div>
@@ -31,16 +36,16 @@ export default {
       social: [
         {
           name: "",
-          placeholder: "&#xf09a; Facebook URL",
-          icon: "fa fa-facebook",
+          placeholder: " Facebook URL",
+          icon: "fab fa-facebook",
           class: "fontAwesome"
         },
-        { name: "", placeholder: "Instagram URL", icon: "fa fa-instagram" },
-        { name: "", placeholder: "Youtube URL", icon: "fa fa-youtube" },
-        { name: "", placeholder: "Twitter URL", icon: "fa fa-twitter" },
-        { name: "", placeholder: "LinkedIn URL", icon: "fa fa-linkedin" },
-        { name: "", placeholder: "Pinterest URL", icon: "fa fa-pinterest" },
-        { name: "", placeholder: "Yelp URL", icon: "fa fa-yelp" }
+        { name: "", placeholder: "Instagram URL", icon: "fab fa-instagram" },
+        { name: "", placeholder: "Youtube URL", icon: "fab fa-youtube" },
+        { name: "", placeholder: "Twitter URL", icon: "fab fa-twitter" },
+        { name: "", placeholder: "LinkedIn URL", icon: "fab fa-linkedin" },
+        { name: "", placeholder: "Pinterest URL", icon: "fab fa-pinterest" },
+        { name: "", placeholder: "Yelp URL", icon: "fab fa-yelp" }
       ]
     };
   },
@@ -97,15 +102,10 @@ export default {
 </script>
 
 <style scoped>
-/* .field {
-  color: #fff;
-  margin: 20px 0;
-  width: 240px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 0 5px;
-} */
+.social-link-list {
+  width: 100%;
+  justify-content: space-between;
+}
 
 h6 {
   text-align: justify;
@@ -113,10 +113,14 @@ h6 {
 .social-link-list {
   display: flex;
   flex-flow: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.social-link-list i {
+  color: FloralWhite;
 }
 .field {
-  color: #fff;
-  margin: 20px 15px;
+  width: 100%;
 }
 .subtitle {
   color: #fff;
@@ -127,14 +131,13 @@ h6 {
   margin: 14px 0;
 }
 input {
-  margin-bottom: 10px;
-  margin-left: 20px;
+  width: 90%;
 }
 .column.is-1 {
   width: 2%;
 }
-.fontAwesome {
-  font-family: Helvetica, "FontAwesome", sans-serif;
+.button {
+  width: 100%;
 }
 </style>
 

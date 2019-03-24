@@ -1,26 +1,23 @@
 <template>
   <div class="component-example">
-    <button class="button is-info" @click="saveSetting()" >Save Info</button>
-
-    <div class="field">
-      <h1 class="subtitle">Add Domain</h1>
+    <div class="long-doc-inputs">
+      <h1 class="subtitle mt-2">Add Domain</h1>
       <input class="input" v-model="domain" type="text" placeholder="fuitter.com">
       <h6>Your website is published at the domain above</h6>
-      <h1 class="subtitle">Add Subdomain</h1>
+      <h1 class="subtitle has-text-grey mt-2">Add Subdomain</h1>
       <input class="input" v-model="subDomain" type="text" placeholder="subdomain">
     </div>
-    <div class="field">
-
-      <div>
+    <div>
+      <div class="long-doc-wysiwyg-area">
         <h6>Terms and Conditions</h6>
-        <wysiwyg v-model="termsCondition" class="wysiwyg"/>
+        <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
       </div>
-      <div>
-        <h6 class="subtitle has-text-grey">Privacy Policy</h6>
-        <wysiwyg v-model="privacyPolicy"/>
+      <div class="long-doc-wysiwyg-area">
+        <h6>Privacy Policy</h6>
+        <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
       </div>
-
-    </div>    
+    </div>
+    <button class="button is-info" @click="saveSetting()">Save Info</button>
   </div>
 </template>
 
@@ -242,17 +239,17 @@ export default {
   },
 
   methods: {
-    saveSetting(){
+    saveSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
-          subdomain: this.subDomain,
-          domain: this.domain,
-          fb_page_template_id: this.template.id,
-          legal_info: {
-            terms_condition: this.termsCondition,
-            privacy_policy: this.privacyPolicy
-          },
+        subdomain: this.subDomain,
+        domain: this.domain,
+        fb_page_template_id: this.template.id,
+        legal_info: {
+          terms_condition: this.termsCondition,
+          privacy_policy: this.privacyPolicy
+        }
       });
-    },
+    }
   },
 
   created() {
@@ -271,6 +268,46 @@ export default {
 
 
 
+<style scoped>
+.component-example {
+  width: 100%;
+  /* margin: 20px 5vw; */
+  overflow-y: scroll;
+  height: 100%;
+  padding: 20px 10vw;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.component-example h1 {
+  margin-bottom: 0;
+}
+/* #4CB289 */
+/* 00b289 */
+.long-doc-inputs {
+  margin: 20px;
+  width: 100%;
+}
+.long-doc-wysiwyg-area {
+  margin: 40px 0;
+}
+.button {
+  width: 80%;
+}
+</style>
 <style>
-
+.long-doc-wysiwyg .editr--toolbar {
+  background-color: #00b289;
+  padding: 10px;
+  height: 45px;
+}
+.long-doc-wysiwyg .editr--toolbar a svg {
+  fill: white;
+}
+.long-doc-wysiwyg .editr--content {
+  background-color: white;
+  height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+}
 </style>

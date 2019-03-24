@@ -76,18 +76,18 @@ export default {
     showSetting(state) {
       const iframe = document.getElementsByClassName("site-preview")[0];
       iframe.style.display = state ? "none" : "flex";
-      if(state) {
+      if (state) {
         const elSetting = document.getElementById("editor-setting-menu");
         const elDesign = document.getElementById("editor-design-menu");
         elSetting.className += " active";
         elDesign.classList.remove("active");
       }
-    },
+    }
   },
   components: {
     Design,
     Page,
-    Social,
+    Social
   }
 };
 </script>

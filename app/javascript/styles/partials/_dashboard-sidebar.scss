@@ -224,40 +224,40 @@
 ========================================================================== */
 
 //FAB inside profile image
-.fab {
-  width: 48px;
-  height: 48px;
-  background-color: transparent;
-  border-radius: 50%;
-  position: fixed;
-  bottom: 22px;
-  left: 14px;
-  cursor: pointer;
-  //active state
-  &.is-active {
-    .hamburger {
-      background-color: transparent;
-      transform: translateX(-50%) translateY(-50%) rotate(180deg);
-      &:before {
-        transform: translateY(0) rotate(45deg);
-        background-color: #fff;
-      }
-      &:after {
-        transform: translateY(0) rotate(-45deg);
-        background-color: #fff;
-      }
-    }
-    .fab__ripple {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-      background-color: $secondary;
-    }
-    .profile-container {
-      transform: scale(1);
-      -webkit-transform: scale(1);
-    }
-  }
-}
+// .fab {
+//   width: 48px;
+//   height: 48px;
+//   background-color: transparent;
+//   border-radius: 50%;
+//   position: fixed;
+//   bottom: 22px;
+//   left: 14px;
+//   cursor: pointer;
+//   //active state
+//   &.is-active {
+//     .hamburger {
+//       background-color: transparent;
+//       transform: translateX(-50%) translateY(-50%) rotate(180deg);
+//       &:before {
+//         transform: translateY(0) rotate(45deg);
+//         background-color: #fff;
+//       }
+//       &:after {
+//         transform: translateY(0) rotate(-45deg);
+//         background-color: #fff;
+//       }
+//     }
+//     .fab__ripple {
+//       transform: scale(1);
+//       -webkit-transform: scale(1);
+//       background-color: $secondary;
+//     }
+//     .profile-container {
+//       transform: scale(1);
+//       -webkit-transform: scale(1);
+//     }
+//   }
+// }
 //Ripple effect
 .fab__ripple {
   width: 450vw;
@@ -723,6 +723,7 @@
   padding: 20px 25px;
   display: flex;
   color: #818a97;
+  width: 100%;
 }
 .back:hover {
   color: #00b289;
@@ -741,9 +742,30 @@
 .field {
   color: #fff;
   margin: 20px 0;
-  width: 240px;
+  width: 250px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0 5px;
+  ::placeholder {
+    color: dimgray;
+  }
+}
+
+.sidebar-inputs {
+  background-color: transparent;
+  border: 1px solid dimgrey;
+  color: white;
+}
+.pt-1 {
+  padding-top: 10px;
+}
+.pb-1 {
+  padding-bottom: 10px;
+}
+.mt-2 {
+  margin-top: 20px;
+}
+.mt-1 {
+  margin-top: 10px;
 }
