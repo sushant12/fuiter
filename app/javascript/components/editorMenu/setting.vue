@@ -1,5 +1,5 @@
 <template>
-  <div class="component-example">
+  <div class="component-example" id="editor-setting-component">
     <button class="button is-info" @click="saveSetting()" >Save Info</button>
 
     <div class="field">
