@@ -1,5 +1,5 @@
 <template>
-  <div class="component-example" id="editor-setting-menu">
+  <div class="component-example" id="editor-setting-component ">
     <!-- <div class="long-doc-save-area">
     <!-- <h1>Setting</h1>-->
     <!-- </div> -->
@@ -309,7 +309,7 @@ export default {
 }
 </style>
 <style>
-.long-doc-wysiwyg .editr {
+.long-doc-wysiwyg {
   box-shadow: 5px 5px 5px darkgrey;
 }
 .long-doc-wysiwyg .editr--toolbar {
@@ -328,5 +328,8 @@ export default {
   height: 300px;
   overflow-y: scroll;
   padding: 10px;
+}
+#editor-setting-component {
+  display: none;
 }
 </style>
