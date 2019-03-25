@@ -1,5 +1,8 @@
 <template>
-  <div class="component-example">
+  <div class="component-example" id="editor-setting-menu">
+    <!-- <div class="long-doc-save-area">
+    <!-- <h1>Setting</h1>-->
+    <!-- </div> -->
     <div class="long-doc-inputs">
       <h1 class="subtitle mt-2">Add Domain</h1>
       <input class="input" v-model="domain" type="text" placeholder="fuitter.com">
@@ -294,15 +297,31 @@ export default {
 .button {
   width: 80%;
 }
+.long-doc-save-area {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  width: 100%;
+  align-items: center;
+}
+.long-doc-save-area h1 {
+  font-size: 2.5rem;
+}
 </style>
 <style>
+.long-doc-wysiwyg .editr {
+  box-shadow: 5px 5px 5px darkgrey;
+}
 .long-doc-wysiwyg .editr--toolbar {
   background-color: #00b289;
-  padding: 10px;
+  padding: 5px 10px 20px 10px;
   height: 45px;
 }
 .long-doc-wysiwyg .editr--toolbar a svg {
   fill: white;
+}
+.long-doc-wysiwyg .editr--toolbar a {
+  transform: scale(1.2);
 }
 .long-doc-wysiwyg .editr--content {
   background-color: white;

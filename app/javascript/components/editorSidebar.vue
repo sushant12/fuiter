@@ -76,6 +76,7 @@ export default {
     showSetting(state) {
       const iframe = document.getElementsByClassName("site-preview")[0];
       iframe.style.display = state ? "none" : "flex";
+
       if (state) {
         const elSetting = document.getElementById("editor-setting-menu");
         const elDesign = document.getElementById("editor-design-menu");
