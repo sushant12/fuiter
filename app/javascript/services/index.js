@@ -20,6 +20,10 @@ const EditorServices = {
     return axios.put(`/editor/page/${fb_page_id}`, { "menu": params}, {headers: { 'X-CSRF-Token': csrfToken }});
   },
 
+  listMenus(fb_page_id) {
+    return axios.get(`/editor/template/pages/${fb_page_id}`,'',{headers: { 'X-CSRF-Token': csrfToken}});
+  },
+
   updateSetting(fb_page_id, params) {
     return axios.post(`/editor/setting/${fb_page_id}`, params, {headers: { 'X-CSRF-Token': csrfToken }})
   },
@@ -41,6 +45,7 @@ const EditorServices = {
   getFbPageTemplate(page_id) {
     return axios.get(`/fb_page_template/${page_id}`,'',{headers: { 'X-CSRF-Token': csrfToken}});
   },
+
 }
 
 export default EditorServices;

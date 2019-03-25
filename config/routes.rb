@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
 
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
+  get '/editor/template/pages/:fb_page_id', to: 'editor#list_pages'
   put '/editor/page/:fb_page_id', to: 'editor#page'
   post '/editor/setting/:fb_page_id', to: 'editor#create_setting', as: 'editor_create_setting'
   get '/editor/setting/:fb_page_template_id', to: 'editor#show_setting', as: 'editor_show_setting'
