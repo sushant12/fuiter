@@ -1,5 +1,5 @@
 <template>
-  <div class="site-preview">
+  <div class="site-preview" id="iframe-preview">
     <iframe :src="iframeSrc" scrolling="yes" frameborder="0" id="frame" allowfullscreen></iframe>
   </div>
 </template>

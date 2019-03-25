@@ -23,30 +23,32 @@
             <i class="fa fa-arrows-alt"/>
           </VueNestableHandle>
           <span>{{ item.title }}</span>
-          <a @click="pageSeo(item)">
-            <div
-              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
-              data-tooltip="Add Description for SEO "
-            >
-              <i class="fas fa-search"/>
-            </div>
-          </a>
-          <a @click="hidePage(item)">
-            <div
-              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
-              data-tooltip="Hide Menu "
-            >
-              <i class="fas fa-eye" :class="[item.display ? 'page-visible' : 'page-hidden']"/>
-            </div>
-          </a>
-          <a @click="pageSetting(item)">
-            <div
-              class="is-primary tooltip is-tooltip-left is-tooltip-warning"
-              data-tooltip="Rename Page Menu"
-            >
-              <i class="fa fa-cog"/>
-            </div>
-          </a>
+          <div class="page-fa-icons">
+            <a @click="pageSeo(item)">
+              <div
+                class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+                data-tooltip="Add Description for SEO "
+              >
+                <i class="fas fa-search"/>
+              </div>
+            </a>
+            <a @click="hidePage(item)">
+              <div
+                class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+                data-tooltip="Hide Menu "
+              >
+                <i class="fas fa-eye" :class="[item.display ? 'page-visible' : 'page-hidden']"/>
+              </div>
+            </a>
+            <a @click="pageSetting(item)">
+              <div
+                class="is-primary tooltip is-tooltip-left is-tooltip-warning"
+                data-tooltip="Rename Page Menu"
+              >
+                <i class="fa fa-cog"/>
+              </div>
+            </a>
+          </div>
         </template>
       </VueNestable>
     </div>
@@ -70,7 +72,7 @@ export default {
       menus: [],
       showPage: true,
       pageOption: "",
-      pageId: "",
+      pageId: ""
     };
   },
   methods: {
@@ -92,14 +94,12 @@ export default {
       this.$emit("clicked-main-menu", "");
     },
     updateMenu() {
-      EditorServices.updateMenu(this.fb_page_id, this.menus)
-        .then(resp => {
-          document.getElementById("frame").contentWindow.location.reload();
-        });
+      EditorServices.updateMenu(this.fb_page_id, this.menus).then(resp => {
+        document.getElementById("frame").contentWindow.location.reload();
+      });
     },
-    listMenus(){
-      EditorServices.listMenus(this.fb_page_id)
-      .then(({data}) => {
+    listMenus() {
+      EditorServices.listMenus(this.fb_page_id).then(({ data }) => {
         _.each(data, page => {
           this.menus.push(page);
         });
@@ -128,6 +128,17 @@ export default {
 
 
 <style>
+.nestable-item-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.page-fa-icons {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  width: 30%;
+}
 /*
 * Style for nestable
 */
@@ -203,13 +214,13 @@ export default {
 .nestable-item-content {
   color: #818a97;
 }
-.nestable-item-content a:first-of-type {
+/* .nestable-item-content a:first-of-type {
   color: #818a97;
   display: flex;
   justify-content: flex-end;
   flex-basis: 40%;
   padding-right: 15px;
-}
+} */
 .nestable-item-content .nestable-handle i {
   color: white;
   font-size: 1rem;
@@ -223,8 +234,6 @@ export default {
   color: white;
   font-size: 1rem;
 }
-
-
 
 .nestable-list li:hover {
   background-color: #292337;
