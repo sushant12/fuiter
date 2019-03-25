@@ -74,13 +74,18 @@ export default {
       this.currentMenu = "";
     },
     showSetting(state) {
-      const iframe = document.getElementsByClassName("site-preview")[0];
-      iframe.style.display = state ? "none" : "flex";
+      const iframe = document.getElementById("iframe-preview");
+      const setting = document.getElementById("editor-setting-component");
       if(state) {
+        iframe.style.display = "none";
+        setting.style.display = "flex";
         const elSetting = document.getElementById("editor-setting-menu");
         const elDesign = document.getElementById("editor-design-menu");
         elSetting.className += " active";
         elDesign.classList.remove("active");
+      } else {
+        iframe.style.display = "flex";
+        setting.style.display = "none";
       }
     },
   },
