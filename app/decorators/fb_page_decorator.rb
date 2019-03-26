@@ -7,7 +7,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/"
     else
       h.site_home_url(object.id)
@@ -18,7 +18,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/about"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/about"
     else
       h.site_about_url(object.id)
@@ -29,7 +29,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/events"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/events"
     else
       h.site_events_url(object.id)
@@ -40,7 +40,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/contact"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/contact"
     else
       h.site_contact_url(object.id)
@@ -51,7 +51,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/gallery"
     else
       h.site_gallery_url(object.id)
@@ -62,7 +62,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/news"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/news"
     else
       h.site_news_url(object.id)
@@ -73,7 +73,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
     else
       h.site_photo_albums_url(object.id, album_id)
@@ -84,7 +84,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/privacy_policy"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/privacy_policy"
     else
       h.site_privacy_policy_url(object.id)
@@ -95,7 +95,7 @@ class FbPageDecorator < Draper::Decorator
     reserved_subdomain = ['www', 'apps']
     if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/terms_and_condition"
-    elsif h.request.domain != "fuiter.com"
+    elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/terms_and_condition"
     else
       h.site_terms_condition(object.id)

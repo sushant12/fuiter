@@ -4,7 +4,7 @@ class Subdomain
     if request.subdomain.present? && !reserved_subdomain.include?(request.subdomain)
       true
     else
-      request.domain != "fuiter.com"
+      request.domain != ENV['BASE_URL']
     end
   end
 end
