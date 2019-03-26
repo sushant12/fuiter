@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="field" style="margin-top:0;">
     <a @click="pageMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
@@ -12,9 +12,9 @@
         <i class="fa fa-question-circle has-text-grey-lighter"/>
       </span>
     </p>
-    <textarea rows="8" v-model="metaTags"></textarea>
+    <textarea class="pages-setting-textarea" rows="8" v-model="metaTags"></textarea>
     <p class="p-label has-text-white">Meta Descriptions</p>
-    <textarea rows="8" v-model="metaDescription"></textarea>
+    <textarea class="pages-setting-textarea" rows="8" v-model="metaDescription"></textarea>
     <button class="button is-info" @click="saveSeo()">Save</button>
   </div>
 </template>
@@ -55,15 +55,25 @@ export default {
 };
 </script>
 <style scoped>
-div {
-  display: flex;
-  flex-flow: column;
-}
 textarea {
-  margin: 10px 10px;
+  width: 100%;
+  background-color: transparent;
+  color: white;
   padding: 5px;
 }
-button {
-  margin: 0 20px;
+textarea ::placeholder {
+  color: darkgray;
+}
+/* div {
+  display: flex;
+  flex-flow: column;
+} */
+/* textarea {
+  margin: 10px 10px;
+  padding: 5px;
+} */
+.button {
+  width: 98%;
+  margin: 10px 1%;
 }
 </style>

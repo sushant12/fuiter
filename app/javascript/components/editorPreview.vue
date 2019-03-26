@@ -1,5 +1,5 @@
 <template>
-  <div class="site-preview">
+  <div class="site-preview" id="iframe-preview">
     <iframe :src="iframeSrc" scrolling="yes" frameborder="0" id="frame" allowfullscreen></iframe>
   </div>
 </template>
@@ -27,7 +27,7 @@ export default {
   right: 0px;
   top: 0px;
   bottom: 0px;
-  margin-top: 3.25rem;
+  /* margin-top: 3.25rem; */
   /* z-index: 1; */
   width: 100%;
   display: flex;

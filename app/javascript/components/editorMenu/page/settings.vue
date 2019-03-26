@@ -3,10 +3,20 @@
     <a @click="pageMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
-    <div v-if="page.uri === 'home'" class="page-setting">
-      <h6>Title</h6>
-      <input type="text" v-model="pageData['title']" name="title">
-      <h6>Description</h6>
+    <div v-if="page.uri === 'home'" class="pages-settings field" style="margin-top:0;">
+      <h5 class="pt-1 pb-1">Title</h5>
+      <div>
+        <input type="text" v-model="pageData['title']" name="title" class="input sidebar-inputs">
+      </div>
+      <h5 class="pt-1 pb-1">
+        Description
+        <span
+          class="is-primary tooltip is-tooltip-top is-tooltip-warning"
+          data-tooltip="Select Description Source"
+        >
+          <i class="fa fa-question-circle has-text-grey-lighter"/>
+        </span>
+      </h5>
       <div class="row-radio">
         <input
           type="radio"
@@ -14,9 +24,9 @@
           v-model="pageData['setting']['description']['enable']"
           @click="hideDescription()"
         >
-        <span>Default(Facebook Description)</span>
+        <span>Facebook</span>
       </div>
-      <div>
+      <div class="pt-1 pb-1">
         <input
           type="radio"
           value="true"
@@ -27,40 +37,55 @@
       </div>
 
       <textarea
+        placeholder="Write Custom Description"
+        class="pages-setting-textarea"
         rows="6"
         v-if="pageData['setting']['description']['enable'] === 'true'"
         v-model="pageData['setting']['description']['value']"
       ></textarea>
     </div>
     <!--  -->
-    <div v-else-if="page.uri === 'contact'" class="page-setting">
-      <h6>Title</h6>
-      <input type="text" v-model="pageData['title']" name="title">
+    <div v-else-if="page.uri === 'contact'" class="pages-settings field" style="margin-top:0;">
+      <h5 class="pb-1">Title</h5>
       <div>
-        <input type="checkbox" value="true" v-model="map_enable">
+        <input class="input sidebar-inputs" type="text" v-model="pageData['title']" name="title">
+      </div>
+      <div class="mt-2 page-setting-partition-box">
         <span>Show map?</span>
+        <input type="checkbox" value="true" v-model="map_enable">
       </div>
-      <div>
-        <input type="checkbox" value="true" v-model="email_enable">
+
+      <div class="mt-2 page-setting-partition-box">
         <span>Display email?</span>
+        <input type="checkbox" value="true" v-model="email_enable">
       </div>
-      <input type="email" name="email" v-model="email">
-      <div>
-        <input type="checkbox" value="true" v-model="location_enable">
+      <input class="input sidebar-inputs" type="email" name="email" v-model="email">
+
+      <div class="mt-2 page-setting-partition-box">
         <span>Display address?</span>
+        <input type="checkbox" value="true" v-model="location_enable">
       </div>
-      <input type="text" name="location" v-model="location">
-      <div>
-        <input type="checkbox" value="true" v-model="contact_enable">
+      <input class="input sidebar-inputs" type="text" name="location" v-model="location">
+
+      <div class="mt-2 page-setting-partition-box">
         <span>Display contact?</span>
+        <input type="checkbox" value="true" v-model="contact_enable">
       </div>
-      <input type="number" name="contact" v-model="contact">
+      <input class="input sidebar-inputs" type="number" name="contact" v-model="contact">
     </div>
     <!--  -->
-    <div v-else-if="page.uri === 'about'" class="page-setting">
-      <h6>Title</h6>
-      <input type="text" v-model="pageData['title']" name="title">
-      <h6>Main image</h6>
+    <div v-else-if="page.uri === 'about'" class="page-setting field" style="margin-top:0;">
+      <h5>Title</h5>
+      <input class="input sidebar-inputs" type="text" v-model="pageData['title']" name="title">
+      <h5 class="mt-2">
+        Main Image
+        <span
+          class="is-primary tooltip is-tooltip-top is-tooltip-warning"
+          data-tooltip="Select Profile Picture Source"
+        >
+          <i class="fa fa-question-circle has-text-grey-lighter"/>
+        </span>
+      </h5>
       <div>
         <input
           type="radio"
@@ -69,7 +94,7 @@
           v-model="pageData['setting']['image']['enable']"
           @click="hideImage()"
         >
-        <span>Default(Facebook Profile Picture)</span>
+        <span>Facebook Profile Picture</span>
       </div>
       <div>
         <input
@@ -99,7 +124,15 @@
             drag: 'Drag a 😺 GIF or GTFO'
           }"
       ></picture-input>
-      <h6>Description</h6>
+      <h5 class="mt-2">
+        Description
+        <span
+          class="is-primary tooltip is-tooltip-top is-tooltip-warning"
+          data-tooltip="Select Description in About page"
+        >
+          <i class="fa fa-question-circle has-text-grey-lighter"/>
+        </span>
+      </h5>
       <div>
         <input
           type="radio"
@@ -107,7 +140,7 @@
           v-model="pageData['setting']['description']['enable']"
           @click="hideDescription()"
         >
-        <span>Default(Facebook Description)</span>
+        <span>Facebook Description</span>
       </div>
       <div>
         <input
@@ -126,17 +159,17 @@
       ></textarea>
     </div>
 
-    <div v-else-if="page.uri === 'events'" class="page-setting">
-      <h6>Rename the current menu name</h6>
-      <input type="text" name="title" v-model="pageData['title']">
+    <div v-else-if="page.uri === 'events'" class="page-setting field" style="margin-top:0;">
+      <h5>Title</h5>
+      <input class="input sidebar-inputs" type="text" name="title" v-model="pageData['title']">
     </div>
-    <div v-else-if="page.uri === 'gallery'" class="page-setting">
-      <h6>Rename the current menu name</h6>
-      <input type="text" name="title" v-model="pageData['title']">
+    <div v-else-if="page.uri === 'gallery'" class="page-setting field" style="margin-top:0;">
+      <h5>Title</h5>
+      <input class="input sidebar-inputs" type="text" name="title" v-model="pageData['title']">
     </div>
-    <div v-else-if="page.uri === 'news'" class="page-setting">
-      <h6>Rename the current menu name</h6>
-      <input type="text" v-model="pageData['title']" name="title">
+    <div v-else-if="page.uri === 'news'" class="page-setting field" style="margin-top:0;">
+      <h5>Title</h5>
+      <input class="input sidebar-inputs" type="text" v-model="pageData['title']" name="title">
     </div>
     <button @click="savePageSetting()" class="button is-info">Save</button>
   </section>
@@ -224,11 +257,11 @@ export default {
       this.aboutImage = this.$refs.pictureInput.file;
     },
     onRemoved() {
-      this.aboutImage = '';
+      this.aboutImage = "";
     },
     pageMenu() {
       this.$emit("clicked-page-menu", "");
-    },
+    }
   },
   created() {
     const that = this;
@@ -262,38 +295,57 @@ export default {
 .drag-info {
   display: none;
 }
-.page-setting {
-  display: flex;
-  flex-flow: column;
+textarea {
+  width: 100%;
+  background-color: transparent;
+  color: white;
+  padding: 5px;
+}
+textarea ::placeholder {
+  color: darkgray;
 }
 span {
   color: white;
 }
-textarea {
-  margin: 10px 20px;
-  padding: 5px;
+.input-partion {
+  width: 90%;
 }
-.page-setting input {
+.page-setting-partition-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* .page-setting input {
   padding: 10px 10px;
-  margin: 0 20px;
-  /* border-bottom: 2px dashed #818a97; */
-  color: #878787;
-  background-color: white;
-  /* border-style: none none dashed none; */
-  font-size: 1.2rem;
+  margin: 0 20px; */
+/* border-bottom: 2px dashed #818a97; */
+/* color: #878787; */
+/* background-color: white; */
+/* border-style: none none dashed none; */
+/* font-size: 1.2rem;
   margin-bottom: 10px;
-  border-radius: 5px;
-}
+  border-radius: 5px; */
+/* } */
 input:focus {
   outline: none;
 }
+input[type="checkbox"],
+input[type="radio"] {
+  transform: scale(1.5);
+  margin-right: 10px;
+}
+
 h6 {
   color: white;
   margin: 20px 20px;
   font-weight: inherit;
   font-style: inherit;
 }
-.is-info {
-  margin: 0 40px;
+
+.button {
+  width: 96%;
+  margin: 0 2%;
 }
 </style>
