@@ -15,7 +15,6 @@
           <h1 class="subtitle">Add Subdomain</h1>
           <div class="subdomain">
             <h2>https://</h2>
-
             <input class="sub-input" v-model="subDomain" type="text" placeholder="subdomain">
             <h2>.fuiter.com</h2>
           </div>
