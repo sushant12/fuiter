@@ -1,26 +1,38 @@
 <template>
   <div class="component-example" id="editor-setting-component">
-    <button class="button is-info" @click="saveSetting()" >Save Info</button>
-
-    <div class="field">
-      <h1 class="subtitle">Add Domain</h1>
-      <input class="input" v-model="domain" type="text" placeholder="fuitter.com">
-      <h6>Your website is published at the domain above</h6>
-      <h1 class="subtitle">Add Subdomain</h1>
-      <input class="input" v-model="subDomain" type="text" placeholder="subdomain">
+    <div class="legal-info-save-area">
+      <h1>Settings</h1>
+      <button class="button is-info" @click="saveSetting()">Save Info</button>
     </div>
-    <div class="field">
 
-      <div>
+    <div class="domain-options-box">
+      <div class="one-row-cig">
+        <h1 class="subtitle">Add Domain</h1>
+        <input class="input" v-model="domain" type="text" placeholder="fuiter.com">
+      </div>
+      <h6 class="has-text-grey">Your website is published at the domain above</h6>
+      <div class="one-row-cig mt-2">
+        <h1 class="subtitle">Add Subdomain</h1>
+        <div class="subdomain">
+          <h2>www.</h2>
+
+          <input class="sub-input" v-model="subDomain" type="text" placeholder="subdomain">
+          <h2>.fuiter.com</h2>
+        </div>
+      </div>
+      <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
+    </div>
+    <div>
+      <div class="long-doc-wysiwyg-area">
         <h6>Terms and Conditions</h6>
-        <wysiwyg v-model="termsCondition" class="wysiwyg"/>
+        <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
       </div>
-      <div>
-        <h6 class="subtitle has-text-grey">Privacy Policy</h6>
-        <wysiwyg v-model="privacyPolicy"/>
+      <div class="long-doc-wysiwyg-area">
+        <h6>Privacy Policy</h6>
+        <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
       </div>
-
-    </div>    
+    </div>
+    <!-- <button class="button is-info" @click="saveSetting()">Save Info</button> -->
   </div>
 </template>
 
@@ -242,17 +254,17 @@ export default {
   },
 
   methods: {
-    saveSetting(){
+    saveSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
-          subdomain: this.subDomain,
-          domain: this.domain,
-          fb_page_template_id: this.template.id,
-          legal_info: {
-            terms_condition: this.termsCondition,
-            privacy_policy: this.privacyPolicy
-          },
+        subdomain: this.subDomain,
+        domain: this.domain,
+        fb_page_template_id: this.template.id,
+        legal_info: {
+          terms_condition: this.termsCondition,
+          privacy_policy: this.privacyPolicy
+        }
       });
-    },
+    }
   },
 
   created() {
@@ -269,8 +281,133 @@ export default {
 };
 </script>
 
+.legal-info-save-area{
+  display:flex;
+  justify
+}
 
-
+<style scoped>
+.subdomain {
+  display: flex;
+  flex-flow: row;
+  width: 80%;
+  padding-left: 20px;
+  align-items: flex-end;
+  height: 45px;
+}
+.subdomain h2 {
+  font-size: 1.5rem;
+  padding-bottom: 0;
+}
+.subdomain .sub-input {
+  background-color: transparent;
+  border: 2px dotted darkgray;
+  border-style: none none solid none;
+  font-size: 1.5rem;
+  outline: none;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.legal-info-save-area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.legal-info-save-area h1 {
+  font-size: 2rem;
+}
+.legal-info-save-area .button {
+  width: 200px;
+  border-radius: 0;
+  height: 50px;
+  font-size: 1.5rem;
+}
+.one-row-cig {
+  display: flex;
+  flex-flow: row;
+}
+.one-row-cig h1 {
+  width: 20%;
+  background-color: #00b289;
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+}
+.one-row-cig .input {
+  width: 80%;
+  border: 1px solid #00b289;
+  border-radius: 0;
+  height: 45px;
+  font-size: 1.5rem;
+}
+.one-row-cig .input::placeholder {
+  color: darkgray;
+  font-size: 1.5rem;
+}
+.component-example {
+  width: 100%;
+  /* margin: 20px 5vw; */
+  overflow-y: scroll;
+  height: 100%;
+  padding: 20px 10vw;
+  display: flex;
+  align-items: center;
+  flex-flow: column;
+}
+.component-example h1 {
+  margin-bottom: 0;
+}
+/* #4CB289 */
+/* 00b289 */
+.domain-options-box {
+  margin: 20px;
+  width: 100%;
+}
+.long-doc-wysiwyg-area {
+  margin: 40px 0;
+}
+.long-doc-wysiwyg-area h6 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.button {
+  width: 80%;
+}
+.long-doc-save-area {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: row;
+  width: 100%;
+  align-items: center;
+}
+.long-doc-save-area h1 {
+  font-size: 2.5rem;
+}
+</style>
 <style>
-
+.long-doc-wysiwyg {
+  /* box-shadow: 5px 5px 5px darkgrey; */
+  border: 2px solid #00b289;
+}
+.long-doc-wysiwyg .editr--toolbar {
+  background-color: #00b289;
+  padding: 5px 10px 20px 10px;
+  height: 45px;
+}
+.long-doc-wysiwyg .editr--toolbar a svg {
+  fill: white;
+}
+.long-doc-wysiwyg .editr--toolbar a {
+  transform: scale(1.2);
+}
+.long-doc-wysiwyg .editr--content {
+  background-color: white;
+  height: 300px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+#editor-setting-component {
+  display: none;
+}
 </style>

@@ -76,7 +76,7 @@ export default {
     showSetting(state) {
       const iframe = document.getElementById("iframe-preview");
       const setting = document.getElementById("editor-setting-component");
-      if(state) {
+      if (state) {
         iframe.style.display = "none";
         setting.style.display = "flex";
         const elSetting = document.getElementById("editor-setting-menu");
@@ -87,12 +87,12 @@ export default {
         iframe.style.display = "flex";
         setting.style.display = "none";
       }
-    },
+    }
   },
   components: {
     Design,
     Page,
-    Social,
+    Social
   }
 };
 </script>
