@@ -204,6 +204,7 @@ export default {
 .child-menu-inner {
   overflow-y: scroll;
   width: 100%;
+  padding-bottom: 40px;
 }
 #inner-menu {
   padding: 0 4px;
@@ -286,8 +287,10 @@ input.input {
   text-align: center;
 }
 .file-upload {
-  padding: 10px;
-  margin: 0;
+  /* padding: 10px; */
+  /* margin: 0; */
+  width: 220px;
+  margin: 10px 5px 100px 5px;
 }
 .file-label {
   width: 100%;

@@ -722,19 +722,28 @@
 .back {
   padding: 20px 25px;
   display: flex;
-  color: #818a97;
+  // color: #818a97;
+  color: white;
+  font-family: "campton";
+  font-size: 1.3rem;
   width: 100%;
 }
 .back:hover {
-  color: #00b289;
+  // color: #00b289;
+  color: white;
+  // border-left: 5px solid #00b289;
   background-color: #222233;
 }
 .back i {
   margin-right: 10px;
-  color: #00b289;
+  // color: #00b289;
+  color: white;
   font-size: 1.3rem;
   display: flex;
   align-items: center;
+}
+.back:hover i {
+  color: #00b289;
 }
 .modal-close {
   background-color: red;

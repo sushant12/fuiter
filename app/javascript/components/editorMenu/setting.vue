@@ -1,37 +1,39 @@
 <template>
-  <div class="component-example" id="editor-setting-component">
+  <div id="editor-setting-component">
     <div class="legal-info-save-area">
       <h1>Settings</h1>
       <button class="button is-info" @click="saveSetting()">Save Info</button>
     </div>
+    <div class="component-example">
+      <div class="domain-options-box">
+        <div class="one-row-cig">
+          <h1 class="subtitle">Add Domain</h1>
+          <input class="input" v-model="domain" type="text" placeholder="fuiter.com">
+        </div>
+        <h6 class="has-text-grey">Your website is published at the domain above</h6>
+        <div class="one-row-cig mt-2">
+          <h1 class="subtitle">Add Subdomain</h1>
+          <div class="subdomain">
+            <h2>https://</h2>
 
-    <div class="domain-options-box">
-      <div class="one-row-cig">
-        <h1 class="subtitle">Add Domain</h1>
-        <input class="input" v-model="domain" type="text" placeholder="fuiter.com">
+            <input class="sub-input" v-model="subDomain" type="text" placeholder="subdomain">
+            <h2>.fuiter.com</h2>
+          </div>
+        </div>
+        <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
       </div>
-      <h6 class="has-text-grey">Your website is published at the domain above</h6>
-      <div class="one-row-cig mt-2">
-        <h1 class="subtitle">Add Subdomain</h1>
-        <div class="subdomain">
-          <h2>www.</h2>
-
-          <input class="sub-input" v-model="subDomain" type="text" placeholder="subdomain">
-          <h2>.fuiter.com</h2>
+      <div>
+        <div class="long-doc-wysiwyg-area">
+          <h6>Terms and Conditions</h6>
+          <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
+        </div>
+        <div class="long-doc-wysiwyg-area">
+          <h6>Privacy Policy</h6>
+          <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
         </div>
       </div>
-      <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
     </div>
-    <div>
-      <div class="long-doc-wysiwyg-area">
-        <h6>Terms and Conditions</h6>
-        <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
-      </div>
-      <div class="long-doc-wysiwyg-area">
-        <h6>Privacy Policy</h6>
-        <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
-      </div>
-    </div>
+
     <!-- <button class="button is-info" @click="saveSetting()">Save Info</button> -->
   </div>
 </template>
@@ -310,9 +312,16 @@ export default {
 }
 .legal-info-save-area {
   display: flex;
+  flex-flow: row;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: white;
+  padding: 20px;
 }
 .legal-info-save-area h1 {
   font-size: 2rem;
@@ -409,5 +418,6 @@ export default {
 }
 #editor-setting-component {
   display: none;
+  flex-flow: column;
 }
 </style>
