@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="pages-settings-box">
     <a @click="pageMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
@@ -300,6 +300,7 @@ textarea {
   background-color: transparent;
   color: white;
   padding: 5px;
+  margin-right: 10px;
 }
 textarea ::placeholder {
   color: darkgray;
@@ -347,5 +348,19 @@ h6 {
 .button {
   width: 96%;
   margin: 0 2%;
+  margin-bottom: 100px;
+}
+section:last-child {
+  margin-bottom: 100px;
+  /* height: 100vh; */
+  /* overflow-y: scroll; */
+}
+section {
+  overflow-y: auto;
+  height: 100vh;
+  /* padding-right: 20px; */
+}
+::-webkit-scrollbar {
+  width: 2px;
 }
 </style>
