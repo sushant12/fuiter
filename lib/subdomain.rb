@@ -1,6 +1,10 @@
 class Subdomain 
   def matches?(request)
     reserved_subdomain = ['www', 'apps']
-    request.subdomain.present? && request.subdomain != 'apps'
+    if request.subdomain.present? && !reserved_subdomain.include?(request.subdomain)
+      true
+    else
+      request.domain != "fuiter.com"
+    end
   end
 end
