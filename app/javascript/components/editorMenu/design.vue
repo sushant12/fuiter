@@ -309,4 +309,7 @@ input.input {
   border: 1.5px solid white;
   border-radius: 4px;
 }
+::-webkit-scrollbar {
+  width: 2px;
+}
 </style>
