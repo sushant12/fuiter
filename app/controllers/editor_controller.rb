@@ -44,7 +44,7 @@ class EditorController < ApplicationController
   private
 
   def page_param
-    params.permit(menu: [:id, :title, :display, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri, nested: [:id, :title, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri]])
+    params.permit(menu: [:id, :title, :display, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri, nested: [:id, :title, :display, :position, :seo, :created_at, :updated_at, :fb_page_template_id, :uri]])
   end
 
   def setting_param

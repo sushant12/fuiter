@@ -3,6 +3,6 @@
 class HomeController < ApplicationController
 
   def index
-    render plain: "Hello Stranger"
+    # render plain: "Hello Stranger"
   end
 end
