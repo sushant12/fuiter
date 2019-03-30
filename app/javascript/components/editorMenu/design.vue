@@ -289,7 +289,7 @@ input.input {
 .file-upload {
   /* padding: 10px; */
   /* margin: 0; */
-  width: 220px;
+  width: 233px;
   margin: 10px 5px 100px 5px;
 }
 .file-label {

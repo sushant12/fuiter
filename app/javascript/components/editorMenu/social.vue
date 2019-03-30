@@ -138,6 +138,11 @@ input {
 }
 .button {
   width: 100%;
+  margin-bottom: 100px;
 }
 </style>
-
+<style type="text/css">
+  .child-menu{
+    overflow-y: scroll;
+  }
+</style>
