@@ -61,7 +61,7 @@ class SiteController < ApplicationController
     reserved_subdomain = ['www', 'apps']
     if request.subdomain.present? && !reserved_subdomain.include?(request.subdomain)
       @page = Setting.find_by(subdomain: request.subdomain).fb_page_template.fb_page.decorate
-    elsif request.domain != "fuiter.com"
+    elsif request.domain != ENV['BASE_URL']
       @page = Setting.find_by(domain: request.domain).fb_page_template.fb_page.decorate
     else
       @page = FbPage.find_by(id: params[:fb_page_id]).decorate

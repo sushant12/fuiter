@@ -218,6 +218,7 @@ body {
       img {
         border-radius: 50%;
         margin-left: 20px;
+        margin-top: 6px;
         @media screen and (max-width: 768px) {
           margin-left: 0;
         }
@@ -291,7 +292,7 @@ body {
     justify-content: center;
     flex-basis: 100%;
     height: 30px;
-    transform: translateY(-77px);
+    transform: translateY(-86px);
     .notch-active {
       background-color: #00b289;
       border-radius: 0 0 10px 10px;

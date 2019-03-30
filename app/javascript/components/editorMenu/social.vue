@@ -82,13 +82,13 @@ export default {
     addSocialIcon(settingData) {
       if (!_.isNil(settingData)) {
         this.social = settingData.socail_media.social;
-        this.social[0].icon = "fa fa-facebook";
-        this.social[1].icon = "fa fa-instagram";
-        this.social[2].icon = "fa fa-youtube";
-        this.social[3].icon = "fa fa-twitter";
-        this.social[4].icon = "fa fa-linkedin";
-        this.social[5].icon = "fa fa-pinterest";
-        this.social[6].icon = "fa fa-yelp";
+        this.social[0].icon = "fab fa-facebook";
+        this.social[1].icon = "fab fa-instagram";
+        this.social[2].icon = "fab fa-youtube";
+        this.social[3].icon = "fab fa-twitter";
+        this.social[4].icon = "fab fa-linkedin";
+        this.social[5].icon = "fab fa-pinterest";
+        this.social[6].icon = "fab fa-yelp";
       }
     }
   },
@@ -138,6 +138,11 @@ input {
 }
 .button {
   width: 100%;
+  margin-bottom: 100px;
 }
 </style>
-
+<style type="text/css">
+  .child-menu{
+    overflow-y: scroll;
+  }
+</style>
