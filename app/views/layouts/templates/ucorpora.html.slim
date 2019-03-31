@@ -12,6 +12,7 @@ html.not-ie lang="en"
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" /
+    link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" rel="stylesheet" /
   body data-template="#{@template.to_json}"
     header#header
       .container
@@ -83,33 +84,13 @@ html.not-ie lang="en"
             i.icon-home
             a href="#"  www.example.com
             .row.space20
-            - if @editor_setting&.socail_media.present?
-              - @editor_setting.template_social_icons.each do |url|
-                - if url['name'].include? "facebook"
-                  a.social-network.sn2.facebook href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "linked"
-                  a.social-network.sn2.linkedin href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "twitter"
-                  a.social-network.sn2.twitter href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "youtube"
-                  a.social-network.sn2.youtube href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "instagram"
-                  a.social-network.sn2.instagram href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "pinterest"
-                  a.social-network.sn2.pinterest href="#{url['name']}" target="_blank"
-                - elsif url['name'].include? "yelp"
-                  a.social-network.sn2.yelp href="#{url['name']}" target="_blank"
-                - else
-                  span
-            - else
-              span No social media added
+            - @template_setting.social_icons.each do |social|
+              a class=(social[:icon]) href=(social[:url]) target="__blank"
             .row.space20
             - if @editor_setting&.legal_info.present?
               = link_to 'Terms & Conditions', site_terms_condition_path(@page), target: '_blank'
               br/
               = link_to 'Privacy Policy', site_privacy_policy_path(@page), target: '_blank'
-            - else
-              span No legal information added
         .row.space50
         .row
           .span6
