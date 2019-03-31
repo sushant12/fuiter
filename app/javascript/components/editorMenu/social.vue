@@ -15,7 +15,7 @@
           <!-- <div class="social-link"> -->
           <input
             class="input sidebar-inputs"
-            type="text"
+            type="url"
             v-model="option.name"
             :placeholder="option.placeholder"
           >
@@ -54,48 +54,56 @@ export default {
       this.$emit("clicked-main-menu", "");
     },
     updateSetting() {
-      this.social.forEach((item, index) => {
-        delete item.placeholder;
-        delete item.icon;
-      });
+      // this.social.forEach((item, index) => {
+      //   delete item.placeholder;
+      //   delete item.icon;
+      // });
       EditorServices.updateSetting(this.fb_page_id, {
-        socail_media: { social: this.social },
+        social_media: { social: this.social },
         fb_page_template_id: this.template.id
-      }).then(resp => {
+      })
+      .then(resp => {
         document.getElementById("frame").contentWindow.location.reload();
-        this.addPlaceholder(resp.data);
-        this.addSocialIcon(resp.data);
+        // this.addPlaceholder(resp.data);
+        // this.addSocialIcon(resp.data);
       });
     },
-    addPlaceholder(settingData) {
-      if (!_.isNil(settingData)) {
-        this.social = settingData.socail_media.social;
-        this.social[0].placeholder = "Facebook URL";
-        this.social[1].placeholder = "Instagram URL";
-        this.social[2].placeholder = "Youtube URL";
-        this.social[3].placeholder = "Twitter URL";
-        this.social[4].placeholder = "Linkedin URL";
-        this.social[5].placeholder = "Pinterest URL";
-        this.social[6].placeholder = "Yelp URL";
-      }
-    },
-    addSocialIcon(settingData) {
-      if (!_.isNil(settingData)) {
-        this.social = settingData.socail_media.social;
-        this.social[0].icon = "fab fa-facebook";
-        this.social[1].icon = "fab fa-instagram";
-        this.social[2].icon = "fab fa-youtube";
-        this.social[3].icon = "fab fa-twitter";
-        this.social[4].icon = "fab fa-linkedin";
-        this.social[5].icon = "fab fa-pinterest";
-        this.social[6].icon = "fab fa-yelp";
-      }
-    }
+    // addPlaceholder(settingData) {
+    //   if (!_.isNil(settingData)) {
+    //     this.social = settingData.socail_media.social;
+    //     this.social[0].placeholder = "Facebook URL";
+    //     this.social[1].placeholder = "Instagram URL";
+    //     this.social[2].placeholder = "Youtube URL";
+    //     this.social[3].placeholder = "Twitter URL";
+    //     this.social[4].placeholder = "Linkedin URL";
+    //     this.social[5].placeholder = "Pinterest URL";
+    //     this.social[6].placeholder = "Yelp URL";
+    //   }
+    // },
+    // addSocialIcon(settingData) {
+    //   if (!_.isNil(settingData)) {
+    //     this.social = settingData.socail_media.social;
+    //     this.social[0].icon = "fab fa-facebook";
+    //     this.social[1].icon = "fab fa-instagram";
+    //     this.social[2].icon = "fab fa-youtube";
+    //     this.social[3].icon = "fab fa-twitter";
+    //     this.social[4].icon = "fab fa-linkedin";
+    //     this.social[5].icon = "fab fa-pinterest";
+    //     this.social[6].icon = "fab fa-yelp";
+    //   }
+    // }
   },
   created() {
-    EditorServices.showSetting(this.template.id).then(res => {
-      this.addPlaceholder(res.data);
-      this.addSocialIcon(res.data);
+    let that = this;
+    EditorServices.showSetting(this.template.id)
+    .then(({data}) => {
+      if (!_.isNil(data.social_media)) {
+        data.social_media.social.forEach((item, index) => {
+          that.social[index]["name"] = item['name']
+        });
+      }
+      // this.addPlaceholder(res.data);
+      // this.addSocialIcon(res.data);
     });
   }
 };
