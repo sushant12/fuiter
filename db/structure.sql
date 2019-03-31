@@ -9,6 +9,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -147,7 +161,7 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.settings (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    socail_media jsonb,
+    social_media jsonb,
     legal_info jsonb,
     domain character varying,
     created_at timestamp without time zone NOT NULL,
