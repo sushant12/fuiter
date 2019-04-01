@@ -3,6 +3,7 @@
     <a @click="mainMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
+    Template
     <a
       class="button is-marginless has-text-centered level-item is-primary"
       :href="templates_url"
@@ -11,13 +12,13 @@
     <span class="p-label">Color</span>
     <span
       class="is-primary tooltip is-tooltip-right is-tooltip-warning"
-      data-tooltip="Select color of texts"
+      data-tooltip="Select color for texts, buttons and overlays"
     >
       <i class="fa fa-question-circle has-text-grey-lighter"/>
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Colors</p>
-      <compact-picker v-model="color" @input="changeColor" :palette="palette"></compact-picker>
+      <compact-picker v-model="color" @input="changeColor" :palette="suggestedColor"></compact-picker>
       <div class="custom">
         <span class="palette">
           <div class="dropdown is-hoverable">
@@ -61,7 +62,7 @@
         <option value="null" class="option-font">Choose Font</option>
         <option
           class="option-font"
-          v-for="font in fonts"
+          v-for="font in suggestedFonts"
           :key="font"
           :style="{fontFamily: font }"
         >{{font}}</option>
@@ -102,42 +103,27 @@ import { Chrome, Compact } from "vue-color";
 import EditorServices from "../../services/index.js";
 import FontServices from "../../services/googleFont.js";
 export default {
-  props: ["template", "templates_url"],
+  props: ["template", "templates_url", "default_template_value"],
   data() {
     return {
       image: "http://placehold.it/180",
       color: {
         hex: ""
       },
+      suggestedColor: [],
       logo: null,
-      palette: [
-        "#B0BC00",
-        "#68BC00",
-        "#16A5A5",
-        "#009CE0",
-        "#7B64FF",
-        "#FA28FF"
-      ],
       title: "",
       selectedFont: null,
-      fonts: [
-        "Arial",
-        "Helvetica",
-        "Times New Roman",
-        "Times",
-        "Courier New",
-        "Courier",
-        "Verdana"
-      ],
+      suggestedFonts: [],
       googlefonts: []
     };
   },
   created() {
-    FontServices.getFonts().then(response => {
-      response.data.items.forEach(item => {
-        this.googlefonts.push(item.family);
-      });
-    });
+    // FontServices.getFonts().then(response => {
+    //   response.data.items.forEach(item => {
+    //     this.googlefonts.push(item.family);
+    //   });
+    // });
   },
   methods: {
     mainMenu() {
@@ -185,6 +171,7 @@ export default {
     }
   },
   mounted() {
+<<<<<<< Updated upstream
     if (!_.isNil(this.template["properties"])) {
       this.selectedFont = this.template["properties"]["font"];
       this.color = this.template["properties"]["color"];
@@ -195,6 +182,20 @@ export default {
       }
       this.title = this.template["properties"]["title"];
     }
+=======
+    this.suggestedColor = this.default_template_value["properties"]["suggested_color"];
+    this.suggestedFonts = this.default_template_value["properties"]["suggested_font"];
+    // if (!_.isNil(this.template["properties"])) {
+    //   this.selectedFont = this.template["properties"]["font"];
+    //   this.color = this.template["properties"]["color"];
+    //   if(this.template["logo"].url != null) {
+    //     this.image = this.template["logo"].url;
+    //   } else {
+    //     this.image = "http://placehold.it/180"
+    //   }
+    //   this.title = this.template["properties"]["title"];
+    // }
+>>>>>>> Stashed changes
   },
   components: {
     "chrome-picker": Chrome,

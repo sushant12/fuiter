@@ -2,14 +2,16 @@
   "name": "ucorpora",
   "image": "https://via.placeholder.com/300",
   "properties": {
-    "slider": [{
+    "slider": [
+      {
         "source": "https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis"
       },
       {
         "source": "https://via.placeholder.com/728x90.png"
       }
     ],
-    "pages": [{
+    "pages": [
+      {
         "title": "Home",
         "position": 0,
         "uri": "home",
@@ -102,6 +104,8 @@
         },
         "setting": {}
       }
-    ]
+    ],
+    "suggested_color": ["red", "green", "#4C1F1F"],
+    "suggested_font": ["Helvetica", "Times New Roman"]
   }
 }
