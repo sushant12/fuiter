@@ -71,22 +71,22 @@
             class="mobile-drop is-hidden-desktop"
             style="display:flex; justify-content:flex-end;"
           >
-            <a class="navbar-item is-slide" href="/users/sign_out">Go Live</a>
+            <a class="navbar-item is-slide " href="/users/sign_out">Go Live</a>
             <a class="navbar-item is-slide" href="/users/sign_out">Sync</a>
             <a class="navbar-item is-slide" href="/users/sign_out">preview</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
             <a
               :href="preview"
-              class="button warning-btn btn-outlined rounded"
+              class="button warning-btn"
               target="__BLANK"
             >Preview</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-            <a @click="fbSync" class="button primary-btn btn-outlined rounded">Sync</a>
+            <a @click="fbSync" class="button primary-btn ">Sync</a>
           </div>
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-            <a href="goLive" class="button success-btn btn-outlined rounded">Go Live</a>
+            <a href="goLive" class="button success-btn ">Go Live</a>
           </div>
         </div>
       </div>
@@ -104,6 +104,8 @@ export default {
       switch (type) {
         case "monitor":
           frame.style.width = "1300px";
+          frame.style.marginTop = "0";
+
           // frame.style.left = "50%";
           // frame.style.margin = "0 0 0 -600px";
           frame.style.borderTop = "5px solid #fff";
@@ -115,6 +117,8 @@ export default {
           break;
         case "tablet":
           frame.style.width = "991px";
+                    frame.style.marginTop = "20px";
+
           // frame.style.left = "50%";
           // frame.style.margin = "30px 0 0 -496px";
           frame.style.borderTop = "75px solid #555555";
@@ -126,6 +130,7 @@ export default {
           break;
         case "phone":
           frame.style.width = "360px";
+          frame.style.marginTop = "20px";
           // frame.style.left = "50%";
           // frame.style.margin = "30px 0 0 -180px";
           frame.style.borderTop = "50px solid #555555";
