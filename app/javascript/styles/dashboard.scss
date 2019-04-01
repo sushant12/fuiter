@@ -73,6 +73,7 @@ TABLE OF CONTENTS
 @import "partials/components-tables";
 
 @import "partials/layout-responsive";
+@import "partials/fb-login";
 
 /* ==========================================================================
 1. Resets and base setup
@@ -136,7 +137,7 @@ body {
 }
 // custom
 .main-contain-area {
-  padding: 3rem;
+  padding: 1rem;
   flex-shrink: 0;
   flex-grow: 0;
   overflow-y: scroll;
