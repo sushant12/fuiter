@@ -105,7 +105,6 @@ export default {
         case "monitor":
           frame.style.width = "1300px";
           frame.style.marginTop = "0";
-
           // frame.style.left = "50%";
           // frame.style.margin = "0 0 0 -600px";
           frame.style.borderTop = "5px solid #fff";
@@ -117,8 +116,7 @@ export default {
           break;
         case "tablet":
           frame.style.width = "991px";
-                    frame.style.marginTop = "20px";
-
+          frame.style.marginTop = "20px";
           // frame.style.left = "50%";
           // frame.style.margin = "30px 0 0 -496px";
           frame.style.borderTop = "75px solid #555555";
