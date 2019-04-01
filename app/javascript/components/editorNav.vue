@@ -71,7 +71,7 @@
             class="mobile-drop is-hidden-desktop"
             style="display:flex; justify-content:flex-end;"
           >
-            <a class="navbar-item is-slide " href="/users/sign_out">Go Live</a>
+            <a class="navbar-item is-slide" href="/users/sign_out">Go Live</a>
             <a class="navbar-item is-slide" href="/users/sign_out">Sync</a>
             <a class="navbar-item is-slide" href="/users/sign_out">preview</a>
           </div>
