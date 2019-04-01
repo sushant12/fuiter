@@ -90,7 +90,6 @@
             @change="handleImageUpload"
             ref="file"
           >
-          <span class="has-text-white">{{fileName}}</span>
           <span class="choose-file">Choose a file</span>
         </label>
       </div>
@@ -189,8 +188,11 @@ export default {
     if (!_.isNil(this.template["properties"])) {
       this.selectedFont = this.template["properties"]["font"];
       this.color = this.template["properties"]["color"];
-      // this.logo = this.template['logo'].url;
-      this.image = this.template["logo"].url;
+      if(this.template["logo"].url != null) {
+        this.image = this.template["logo"].url;
+      } else {
+        this.image = "http://placehold.it/180"
+      }
       this.title = this.template["properties"]["title"];
     }
   },
