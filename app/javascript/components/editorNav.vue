@@ -66,7 +66,7 @@
         </a>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item">
+        <div class="page-launch-menu">
           <div
             class="mobile-drop is-hidden-desktop"
             style="display:flex; justify-content:flex-end;"
@@ -214,5 +214,9 @@ export default {
   #editor .navbar-wrapper .navbar-brand .custom-burger {
     display: flex;
   } */
+}
+.page-launch-menu{
+  display: flex;
+  flex-flow: row;
 }
 </style>
