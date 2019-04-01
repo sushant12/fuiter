@@ -19,9 +19,9 @@ class TemplatesController < ApplicationController
     template.save!
     page_name = FbPage.find(params[:fb_page_id]).name
     settings = Setting.find_or_initialize_by(fb_page_template_id: template.id) do |setting|
-      setting.subdomain = page_name.downcase.tr(" ", "-")
+      setting.subdomain = page_name.downcase.gsub(/[^0-9A-Za-z]/, '')
     end
-    settings.save
+    settings.save!
     redirect_to editor_design_path(params[:fb_page_id])
   end
   
