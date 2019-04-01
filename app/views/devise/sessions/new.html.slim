@@ -60,8 +60,9 @@
         .column
           h2.title.light-text User Login
           .mt-30.has-text-centered
-            - resource_class.omniauth_providers.each do |provider|
-              = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
+            = link_to "Sing in with Facebook", user_facebook_omniauth_authorize_url
+            / - resource_class.omniauth_providers.each do |provider|
+            /   = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
           .mt-20.has-text-centered
             p.light-text
               | Don't worry. We will never post to your Facebook profile or page.
