@@ -82,9 +82,12 @@
               target="__BLANK"
             >Preview</a>
           </div>
-          <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-            <a @click="fbSync" class="button primary-btn ">Sync</a>
+          <div v-if="fbSyncLoading" class="navbar-item is-hidden-mobile is-hidden-tablet-only">
+            <Loader />
           </div>
+          <div v-else class="navbar-item is-hidden-mobile is-hidden-tablet-only">
+            <a @click="fbSync" class="button primary-btn">Sync</a>
+          </div>    
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
             <a href="goLive" class="button success-btn ">Go Live</a>
           </div>
@@ -95,8 +98,14 @@
 </template>
 <script>
 import EditorServices from "../services/index.js";
+import Loader from './Shared/Loader.vue';
 
 export default {
+  data() {
+    return {
+      fbSyncLoading: false,
+    }
+  },
   props: ["sync", "goLive", "preview", "url"],
   methods: {
     updateResolution(type) {
@@ -143,10 +152,17 @@ export default {
       }
     },
     fbSync() {
+      this.fbSyncLoading = true
       EditorServices.fbSync(this.sync).then(response => {
+        this.fbSyncLoading = false
         document.getElementById("frame").contentWindow.location.reload();
-      });
+      }).catch(error => {
+        this.fbSyncLoading = false
+      })
     }
+  },
+  components: {
+   Loader,
   }
 };
 </script>
