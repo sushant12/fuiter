@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
   resources :fb_page_template, only: [:show, :update]
+  resources :charges
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
 
