@@ -1,11 +1,11 @@
 class FbPageTemplateController < ApplicationController
   before_action :authenticate_user!
   def show
-    render json: Page.find(params[:id]).fb_page_template
+    render json: FbPageTemplate.find(params[:id])
   end
 
   def update
-    template = Page.find(params[:id]).fb_page_template
+    template = FbPageTemplate.find(params[:id])
     template.update_attributes!(template_param)
     render json: template
   end

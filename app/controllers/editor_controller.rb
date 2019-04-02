@@ -4,8 +4,9 @@ class EditorController < ApplicationController
   def design
     @fb_page_id = params[:fb_page_id]
     @fb_page_name = FbPage.find_by(id: @fb_page_id).name
-    @template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
-    @pages = Page.list_pages(@template)
+    @fb_page_template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
+    @default_template_value = @fb_page_template.template
+    @pages = Page.list_pages(@fb_page_template)
   end
 
   def list_pages

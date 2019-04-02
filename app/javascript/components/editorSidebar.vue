@@ -38,6 +38,7 @@
           :fb_page_id="fb_page_id"
           :fb_page_name="fb_page_name"
           :templates_url="templates_url"
+          :default_template_value="default_template_value"
         ></component>
       </keep-alive>
     </div>
@@ -49,7 +50,7 @@ import Page from "./editorMenu/page.vue";
 import Social from "./editorMenu/social.vue";
 
 export default {
-  props: ["template", "pages", "fb_page_id", "fb_page_name", "templates_url"],
+  props: ["template", "pages", "fb_page_id", "fb_page_name", "templates_url", "default_template_value"],
   data() {
     return {
       showParentMenu: true,

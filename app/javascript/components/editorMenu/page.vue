@@ -53,7 +53,7 @@
       </VueNestable>
     </div>
     <div v-else>
-      <component v-bind:is="pageOption" :pageId="pageId" @clicked-page-menu="resetPage"></component>
+      <component v-bind:is="pageOption" :pageId="pageId" :template="template" @clicked-page-menu="resetPage"></component>
     </div>
   </div>
 </template>
@@ -66,7 +66,7 @@ import PageSettings from "./page/settings.vue";
 import _ from "lodash";
 
 export default {
-  props: ["template", "fb_page_id", "pages"],
+  props: ["fb_page_id", "pages", "template"],
   data() {
     return {
       menus: [],
