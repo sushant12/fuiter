@@ -171,7 +171,6 @@ export default {
     }
   },
   mounted() {
-<<<<<<< Updated upstream
     if (!_.isNil(this.template["properties"])) {
       this.selectedFont = this.template["properties"]["font"];
       this.color = this.template["properties"]["color"];
@@ -182,20 +181,7 @@ export default {
       }
       this.title = this.template["properties"]["title"];
     }
-=======
-    this.suggestedColor = this.default_template_value["properties"]["suggested_color"];
-    this.suggestedFonts = this.default_template_value["properties"]["suggested_font"];
-    // if (!_.isNil(this.template["properties"])) {
-    //   this.selectedFont = this.template["properties"]["font"];
-    //   this.color = this.template["properties"]["color"];
-    //   if(this.template["logo"].url != null) {
-    //     this.image = this.template["logo"].url;
-    //   } else {
-    //     this.image = "http://placehold.it/180"
-    //   }
-    //   this.title = this.template["properties"]["title"];
-    // }
->>>>>>> Stashed changes
+
   },
   components: {
     "chrome-picker": Chrome,
