@@ -180,7 +180,7 @@ import EditorService from "../../../services/index";
 import PictureInput from "vue-picture-input";
 
 export default {
-  props: ["pageId"],
+  props: ["pageId", "template"],
   data() {
     return {
       page: "",
@@ -240,7 +240,7 @@ export default {
       );
 
       EditorService.savePage(this.pageId, formData).then(() => {
-        EditorService.saveFbPageTemplate(this.pageId, {
+        EditorService.saveFbPageTemplate(this.template['id'], {
           email: that.email,
           location: that.location,
           contact: that.contact,
@@ -276,7 +276,7 @@ export default {
         data.setting["image"]["enable"];
       that.aboutImage = data.about_image.url;
     });
-    EditorService.getFbPageTemplate(this.pageId).then(({ data }) => {
+    EditorService.getFbPageTemplate(this.template['id']).then(({ data }) => {
       that.email = data.email;
       that.location = data.location;
       that.contact = data.contact;
