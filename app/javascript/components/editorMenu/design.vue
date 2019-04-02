@@ -18,7 +18,7 @@
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Colors</p>
-      <compact-picker v-model="color" @input="changeColor" :palette="suggestedColor"></compact-picker>
+      <compact-picker v-model="color" :palette="suggestedColor"></compact-picker>
       <div class="custom">
         <span class="palette">
           <div class="dropdown is-hoverable">
@@ -28,24 +28,11 @@
               </span>
             </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
-              <chrome-picker v-model="color" @input="changeColor"></chrome-picker>
+              <chrome-picker v-model="color" ></chrome-picker>
             </div>&nbsp;
             <span class="label-color palette">Select a custom color</span>
           </div>
         </span>
-      </div>
-    </div>
-    <span class="p-label">Site Title</span>
-    <span
-      class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
-      data-tooltip="Set title of website"
-    >
-      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
-    </span>
-    <div class="border-wrap">
-      <div class="form-control">
-        <input class="input" type="text" v-model="title">
-        <button class="button title-button is-link" @click="changeTitle(title)">Save</button>
       </div>
     </div>
 
@@ -58,25 +45,38 @@
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Font</p>
-      <select class="select-font" v-model="selectedFont" @change="changeFont">
+      <select class="select-font" v-model="selectedFont">
         <option value="null" class="option-font">Choose Font</option>
         <option
           class="option-font"
           v-for="font in suggestedFonts"
-          :key="font"
           :style="{fontFamily: font }"
         >{{font}}</option>
       </select>
       <p class="p-inner-label">Google Font</p>
-      <select class="select-font" v-model="selectedFont" @change="changeFont">
+      <select class="select-font" v-model="selectedFont">
         <option value="null" class="option-font">Choose Font</option>
         <option
           class="option-font"
-          v-for="font in googlefonts"
-          :key="font"
+          v-for="font in googleFonts"
           :style="{fontFamily: font }"
         >{{font}}</option>
       </select>
+    </div>
+    <button class="button is-info" @click="updateProperty">Save</button>
+
+    <!-- <span class="p-label">Site Title</span>
+    <span
+      class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
+      data-tooltip="Set title of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
+    </span>
+    <div class="border-wrap">
+      <div class="form-control">
+        <input class="input" type="text" v-model="title">
+        <button class="button title-button is-link" @click="changeTitle(title)">Save</button>
+      </div>
     </div>
 
     <p class="p-label">Logo</p>
@@ -91,10 +91,11 @@
             @change="handleImageUpload"
             ref="file"
           >
+          <span class="has-text-white">{{fileName}}</span>
           <span class="choose-file">Choose a file</span>
         </label>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 <script>
@@ -102,6 +103,8 @@ import _ from "lodash";
 import { Chrome, Compact } from "vue-color";
 import EditorServices from "../../services/index.js";
 import FontServices from "../../services/googleFont.js";
+import Loader from '../Shared/Loader.vue';
+
 export default {
   props: ["template", "templates_url", "default_template_value"],
   data() {
@@ -115,73 +118,85 @@ export default {
       title: "",
       selectedFont: null,
       suggestedFonts: [],
-      googlefonts: []
+      googleFonts: []
     };
-  },
-  created() {
-    // FontServices.getFonts().then(response => {
-    //   response.data.items.forEach(item => {
-    //     this.googlefonts.push(item.family);
-    //   });
-    // });
   },
   methods: {
     mainMenu() {
       this.$emit("clicked-main-menu", "");
     },
-    handleImageUpload(input) {
-      this.logo = this.$refs.file.files[0];
-      // this.fileName = this.logo.name;
-      this.image = URL.createObjectURL(this.logo);
-      const frame = document.getElementById("frame").contentDocument;
-      const fuitterLogo = frame.getElementById("fuitter-logo");
-      fuitterLogo.src = this.image;
-      this.updateProperty();
-    },
-    changeColor(e) {
-      const color = this.color["hex"];
-      const frame = document.getElementById("frame").contentDocument.body;
-      const colorClass = frame.getElementsByClassName("fuitter-color");
-      _.each(colorClass, el => {
-        el.style.color = color;
-      });
-      this.updateProperty();
-    },
-    changeFont(e) {
-      const font = e.target.value;
-      const frame = document.getElementById("frame").contentDocument.body;
-      frame.style.fontFamily = font;
-      this.updateProperty();
-    },
-    changeTitle(title) {
-      const frame = document.getElementById("frame").contentDocument;
-      const titleClass = frame.getElementById("fuitter-title");
-      titleClass.innerHTML = title;
-      this.updateProperty();
-    },
+    // handleImageUpload(input) {
+    //   this.logo = this.$refs.file.files[0];
+    //   // this.fileName = this.logo.name;
+    //   this.image = URL.createObjectURL(this.logo);
+    //   const frame = document.getElementById("frame").contentDocument;
+    //   const fuitterLogo = frame.getElementById("fuitter-logo");
+    //   fuitterLogo.src = this.image;
+    //   this.updateProperty();
+    // },
+    // changeColor(e) {
+    //   const color = this.color["hex"];
+    //   const frame = document.getElementById("frame").contentDocument.body;
+    //   const colorClass = frame.getElementsByClassName("fuitter-color");
+    //   _.each(colorClass, el => {
+    //     el.style.color = color;
+    //   });
+    //   this.updateProperty();
+    // },
+    // changeFont(e) {
+    //   const font = e.target.value;
+    //   const frame = document.getElementById("frame").contentDocument.body;
+    //   frame.style.fontFamily = font;
+    //   this.updateProperty();
+    // },
+    // changeTitle(title) {
+    //   const frame = document.getElementById("frame").contentDocument;
+    //   const titleClass = frame.getElementById("fuitter-title");
+    //   titleClass.innerHTML = title;
+    //   this.updateProperty();
+    // },
     updateProperty() {
       const formData = new FormData();
-      formData.append("template[logo]", this.logo || "");
+      // formData.append("template[logo]", this.logo || "");
       formData.append("template[properties][font]", this.selectedFont || "");
       formData.append("template[properties][color]", this.color["hex"] || "");
-      formData.append("template[properties][title]", this.title || "");
-      const template_id = this.template.id;
-      const fb_page_id = this.template.fb_page_id;
-      EditorServices.updateProperties(formData, template_id, fb_page_id);
+      // formData.append("template[properties][title]", this.title || "");
+      EditorServices.updateProperties(
+        formData, 
+        this.template.id,
+        this.template.fb_page_id
+      );
     }
   },
   mounted() {
-    if (!_.isNil(this.template["properties"])) {
-      this.selectedFont = this.template["properties"]["font"];
-      this.color = this.template["properties"]["color"];
-      if(this.template["logo"].url != null) {
-        this.image = this.template["logo"].url;
-      } else {
-        this.image = "http://placehold.it/180"
-      }
-      this.title = this.template["properties"]["title"];
-    }
+    const that = this;
+    this.suggestedColor = this.default_template_value["properties"]["suggested_color"];
+    this.suggestedFonts = this.default_template_value["properties"]["suggested_font"];
 
+    FontServices.getFonts()
+      .then(({data}) => {
+        data.items.forEach(item => {
+          that.googleFonts.push(item.family);
+        });
+      });
+
+    EditorServices.getFbPageTemplate(this.template['id'])
+      .then(({data}) => {
+        if (!_.isNil(data["properties"])) {
+          that.selectedFont = data["properties"]["font"];
+          that.color = data["properties"]["color"];
+        }
+      });
+    // if (!_.isNil(this.template["properties"])) {
+    //   this.selectedFont = this.template["properties"]["font"];
+    //   this.color = this.template["properties"]["color"];
+    //   if(this.template["logo"].url != null) {
+    //     this.image = this.template["logo"].url;
+    //   } else {
+    //     this.image = "http://placehold.it/180"
+    //   }
+    //   this.title = this.template["properties"]["title"];
+    // }
   },
   components: {
     "chrome-picker": Chrome,
@@ -278,7 +293,7 @@ input.input {
 .file-upload {
   /* padding: 10px; */
   /* margin: 0; */
-  width: 233px;
+  width: 220px;
   margin: 10px 5px 100px 5px;
 }
 .file-label {
