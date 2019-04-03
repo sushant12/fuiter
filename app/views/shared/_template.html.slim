@@ -2,6 +2,7 @@ javascript:
   var body = document.getElementsByTagName('body')[0];
   var template = JSON.parse(body.dataset.template);
   var fuitterColor = body.getElementsByClassName("fuitter-color");
+  var fuitterNavColor = body.getElementsByClassName("fuitter-nav-color");
   var fuitterTitle = document.getElementById("fuitter-title");
   var fuitterLogo = document.getElementById("fuitter-logo");
   
@@ -10,6 +11,9 @@ javascript:
     fuitterTitle.innerHTML = template['properties']['title'];
     for (let item of fuitterColor) {
       item.style.color = template['properties']['color'];
+    }
+    for (let item of fuitterNavColor) {
+      item.style.backgroundColor = template['properties']['color'];
     }
   }
   

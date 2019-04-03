@@ -11,6 +11,7 @@ html.not-ie lang="en"
     meta content="width=device-width, initial-scale=1.0" name="viewport" /
     link href="images/favicon.ico" rel="icon" type="image/png" /
     = stylesheet_pack_tag "templates/ucorpora/ucorpora"
+    link href=("https://fonts.googleapis.com/css?family=#{@template.properties['font']}" if @template.properties) rel="stylesheet"
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet" /
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.min.css" rel="stylesheet" /
   body data-template="#{@template.to_json}"
@@ -25,10 +26,10 @@ html.not-ie lang="en"
               #fuitter-title
           .span9
             .row.space60
-            nav.fuitter-color#nav role="navigation" 
+            nav#nav role="navigation" 
               a href="#nav" title=("Show navigation")  Show navigation
               a href="#" title=("Hide navigation")  Hide navigation
-              ul.clearfix
+              ul.clearfix.fuitter-nav-color
                 - @page.menu.each do |menu|
                   - if menu.display
                     li

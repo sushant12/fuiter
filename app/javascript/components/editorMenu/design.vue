@@ -20,19 +20,21 @@
       <p class="p-inner-label">Suggested Colors</p>
       <compact-picker v-model="color" :palette="suggestedColor"></compact-picker>
       <div class="custom">
-        <span class="palette">
-          <div class="dropdown is-hoverable">
-            <div class="dropdown-trigger">
-              <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
-                <i class="fa fa-angle-down has-text-white"></i>
-              </span>
-            </div>
+        <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
+          <div class="dropdown" id="custom-color">
+          
+          <div class="dropdown-trigger">
+            <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
+              <i class="fa fa-angle-down has-text-white"></i>
+            </span>
+          </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
               <chrome-picker v-model="color" ></chrome-picker>
             </div>&nbsp;
-            <span class="label-color palette">Select a custom color</span>
-          </div>
+          <span class="label-color palette">Select a custom color</span>
+        </div>
         </span>
+        
       </div>
     </div>
 
@@ -103,7 +105,6 @@ import _ from "lodash";
 import { Chrome, Compact } from "vue-color";
 import EditorServices from "../../services/index.js";
 import FontServices from "../../services/googleFont.js";
-import Loader from '../Shared/Loader.vue';
 
 export default {
   props: ["template", "templates_url", "default_template_value"],
@@ -124,6 +125,19 @@ export default {
   methods: {
     mainMenu() {
       this.$emit("clicked-main-menu", "");
+    },
+    showColorPicker(e) {
+      e.stopPropagation();
+      const el = document.getElementById('custom-color');
+      const notColorPicker = e.target.classList.contains("palette") || e.target.classList.contains("fa-angle-down")
+      if(notColorPicker){
+        el.classList.toggle('is-active');
+      }
+    },
+    hideColorPicker(e){
+      console.log(e.target.classList);
+      const el = document.getElementById('custom-color');
+      el.classList.remove("is-active");
     },
     // handleImageUpload(input) {
     //   this.logo = this.$refs.file.files[0];
@@ -165,7 +179,10 @@ export default {
         formData, 
         this.template.id,
         this.template.fb_page_id
-      );
+      )
+      .then(() => {
+        document.getElementById("frame").contentWindow.location.reload();
+      });
     }
   },
   mounted() {
