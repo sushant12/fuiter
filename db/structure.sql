@@ -102,7 +102,8 @@ CREATE TABLE public.fb_page_templates (
     email_enable boolean,
     location_enable boolean,
     contact_enable boolean,
-    map_enable boolean
+    map_enable boolean,
+    favicon character varying
 );
 
 
@@ -445,6 +446,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190223052352'),
 ('20190223083718'),
 ('20190316053932'),
-('20190324122245');
+('20190324122245'),
+('20190404005332');
 
 

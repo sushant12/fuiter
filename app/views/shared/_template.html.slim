@@ -7,13 +7,19 @@ javascript:
   var fuitterLogo = document.getElementById("fuitter-logo");
   
   if(template['properties'] !== null) {
-    body.style.fontFamily = template['properties']['font']
+    // body.style.fontFamily = template['properties']['font']
     fuitterTitle.innerHTML = template['properties']['title'];
-    for (let item of fuitterColor) {
-      item.style.color = template['properties']['color'];
+    if(template['properties']['body'] !== undefined){
+      for (let item of fuitterColor) {
+        item.style.color = template['properties']['body']['color'];
+        item.style.fontFamily = template['properties']['body']['font'];
+      }
     }
-    for (let item of fuitterNavColor) {
-      item.style.backgroundColor = template['properties']['color'];
+    if(template['properties']['nav'] !== undefined){
+      for (let item of fuitterNavColor) {
+        item.style.backgroundColor = template['properties']['nav']['color'];
+        item.style.fontFamily = template['properties']['nav']['font'];
+      }
     }
   }
   
