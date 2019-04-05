@@ -11,37 +11,7 @@
     <br>
     <a @click="designOption('NavbarDesign')">Navbar Color/Font</a>
     <a @click="designOption('BodyDesign')">Body Color/Font</a>
-    
-<!--     <span class="p-label">Site Title</span>
-    <span
-      class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
-      data-tooltip="Set title of website"
-    >
-      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
-    </span>
-    <div class="border-wrap">
-      <div class="form-control">
-        <input class="input" type="text" v-model="title">
-      </div>
-    </div>
-
-    <p class="p-label">Logo</p>
-    <div class="field border-wrap file-upload">
-      <div class="file has-name is-boxed">
-        <label class="file-label">
-          <img id="blah" :src="image" alt="your image">
-          <input
-            class="file-input"
-            type="file"
-            name="resume"
-            @change="handleImageUpload"
-            ref="file"
-          >
-          <span class="has-text-white">{{fileName}}</span>
-          <span class="choose-file">Choose a file</span>
-        </label>
-      </div>
-    </div> -->
+    <a @click="designOption('LogoDesign')">Site Title/Logo</a>
   </div>
   <div v-else>
     <component v-bind:is="designComponent" :template="template" :templatesUrl="templates_url" :defaultTemplateValue="default_template_value"></component>
@@ -50,6 +20,7 @@
 <script>
 import NavbarDesign from './design/navbarDesign';
 import BodyDesign from './design/bodyDesign';
+import LogoDesign from './design/logo';
 
 export default {
   props: ["template", "templates_url", "default_template_value"],
@@ -71,6 +42,7 @@ export default {
   components: {
     NavbarDesign,
     BodyDesign,
+    LogoDesign,
   }
 };
 </script>
