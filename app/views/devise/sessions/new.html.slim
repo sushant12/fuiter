@@ -63,8 +63,10 @@
               img.login-city alt="" src=(asset_pack_path 'images/illustrations/fb.svg')
             / h2.title.light-text User Login
             .mt-30.has-text-centered
-              = link_to '<i class="fab fa-facebook-f"></i> Sing in with Facebook'.html_safe, user_facebook_omniauth_authorize_url, class: 'button'
-
+              = link_to '<i class="fab fa-facebook-f"></i> Connect with Facebook'.html_safe, user_facebook_omniauth_authorize_url, class: 'button'
+            .mt-20.has-text-centered
+              = link_to ' Go Back to Home Page', "http://fuiter.com", class: 'back-home'
+  
 
               / - resource_class.omniauth_providers.each do |provider|
               /   = link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), class: "button btn-align btn-outlined is-bold light-btn rounded"
