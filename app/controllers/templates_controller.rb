@@ -26,10 +26,16 @@ class TemplatesController < ApplicationController
   end
   
   def properties
-    template_properties =  FbPageTemplate.find(params[:id])
-    template_properties.properties = params[:template][:properties]
-    template_properties.logo = params[:template][:logo]
-    template_properties.save!
-    render json: {message: "Success"} 
+    template_properties = FbPageTemplate.find(params[:id])
+    template_properties.remove_logo! if params[:template][:logo] == ''
+    template_properties.remove_favicon! if params[:template][:favicon] == ''
+    template_properties.update_attributes(fb_page_template_param[:template])
+    render json: template_properties
+  end
+
+  private
+
+  def fb_page_template_param
+    params.permit(template: [:title, :logo, :favicon, properties: [body: [:font, :color], nav: [:font, :color]], ])
   end
 end

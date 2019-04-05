@@ -7,4 +7,5 @@ class FbPageTemplate < ApplicationRecord
   has_one :setting, dependent: :destroy
 
   mount_uploader :logo, LogoUploader
+  mount_uploader :favicon, FavicoUploader
 end
