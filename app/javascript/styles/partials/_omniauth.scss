@@ -2,8 +2,10 @@
 	display:flex;
   flex-flow: row;
   justify-content: center;
+  align-items: center;
  	width: 100%;
- 	margin-top: 15vw;
+    height: 100vh;
+ 	// margin-top: 15vw;
   .omniauth-btn{
     background-color:white;
     width:400px;
@@ -16,10 +18,19 @@
     	color:white;
     	padding:20px;
     	height: 40px;
+        border: 3px solid white;
+
     	i{
     		font-size:20px;
     		padding-right: 20px;
     	}
+    }
+    .button:hover{
+        border: 3px solid #00b289;
+    }
+    .back-home{
+        color:gray;
+        font-size:0.9rem;
     }
     p{
     	font-size: 10px;
