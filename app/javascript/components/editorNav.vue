@@ -89,7 +89,11 @@
             <a @click="fbSync" class="button primary-btn">Sync</a>
           </div>    
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
-            <a href="goLive" class="button success-btn ">Go Live</a>
+            <a 
+            :href="go_live"
+            class="button success-btn"
+            target="__BLANK"
+            >Go Live</a>
           </div>
         </div>
       </div>
@@ -99,14 +103,13 @@
 <script>
 import EditorServices from "../services/index.js";
 import Loader from './Shared/Loader.vue';
-
 export default {
   data() {
     return {
       fbSyncLoading: false,
     }
   },
-  props: ["sync", "goLive", "preview", "url"],
+  props: ["sync", "preview", "url", "go_live"],
   methods: {
     updateResolution(type) {
       const frame = document.getElementById("frame");
