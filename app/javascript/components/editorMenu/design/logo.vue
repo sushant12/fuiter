@@ -1,5 +1,8 @@
 <template>
   <div>
+    <a @click="designMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
     <span class="p-label">Site Title</span>
     <span
       class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
@@ -110,6 +113,9 @@ export default{
         document.getElementById("frame").contentWindow.location.reload();
       });
     },
+    designMenu() {
+      this.$emit("clicked-design-menu", "");
+    }
   },
   mounted(){
     EditorServices.getFbPageTemplate(this.template['id'])

@@ -14,7 +14,13 @@
     <a @click="designOption('LogoDesign')">Site Title/Logo</a>
   </div>
   <div v-else>
-    <component v-bind:is="designComponent" :template="template" :templatesUrl="templates_url" :defaultTemplateValue="default_template_value"></component>
+    <component
+      v-bind:is="designComponent"
+      :template="template"
+      :templatesUrl="templates_url"
+      :defaultTemplateValue="default_template_value"
+      @clicked-design-menu="resetDesignPage">
+    </component>
   </div>
 </template>
 <script>
@@ -38,6 +44,9 @@ export default {
       this.showDesign = false;
       this.designComponent = design;
     },
+    resetDesignPage() {
+      this.showDesign = true;
+    }
   },
   components: {
     NavbarDesign,
