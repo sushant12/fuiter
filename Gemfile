@@ -102,3 +102,6 @@ gem 'ancestry'
 
 # used for file/image uploads
 gem 'carrierwave'
+
+# ActiveAdmin
+gem 'activeadmin'

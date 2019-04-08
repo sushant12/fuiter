@@ -5,8 +5,8 @@ class FbPage < ApplicationRecord
   has_one :fb_page_template, dependent: :destroy
   belongs_to :user
   enum status: {
-    active: 'active', 
+    'online': 'online',
     'in progress': 'in progress', 
-    expired: 'expired'
+    'expired': 'expired'
   }
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # require
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   constraints(Subdomain.new) do
     match '/', to: 'site#home', via: [:get]
     get '/about', to: 'site#about'
