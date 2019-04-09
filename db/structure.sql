@@ -9,6 +9,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -30,16 +44,6 @@ CREATE TYPE public.fb_page_status AS ENUM (
     'online',
     'in progress',
     'expired'
-);
-
-
---
--- Name: subscription_type; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE public.subscription_type AS ENUM (
-    'monthly',
-    'yearly'
 );
 
 
@@ -171,6 +175,24 @@ CREATE TABLE public.pages (
 
 
 --
+-- Name: plans; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.plans (
+    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
+    payment_gateway_plan_id character varying,
+    name character varying,
+    price numeric,
+    "interval" integer,
+    interval_count integer,
+    status integer,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -201,12 +223,15 @@ CREATE TABLE public.settings (
 
 CREATE TABLE public.subscriptions (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    amount numeric(8,2),
-    due_date timestamp without time zone,
+    start_date date,
+    end_date date,
+    status integer,
+    payment_gateway character varying,
+    payment_gateway_subscription_id character varying,
+    fb_page_id uuid,
+    plan_id uuid,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    fb_pages_id uuid,
-    category public.subscription_type
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -296,6 +321,14 @@ ALTER TABLE ONLY public.fb_pages
 
 ALTER TABLE ONLY public.pages
     ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plans plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.plans
+    ADD CONSTRAINT plans_pkey PRIMARY KEY (id);
 
 
 --
@@ -409,10 +442,17 @@ CREATE INDEX index_settings_on_fb_page_template_id ON public.settings USING btre
 
 
 --
--- Name: index_subscriptions_on_fb_pages_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_subscriptions_on_fb_page_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_subscriptions_on_fb_pages_id ON public.subscriptions USING btree (fb_pages_id);
+CREATE INDEX index_subscriptions_on_fb_page_id ON public.subscriptions USING btree (fb_page_id);
+
+
+--
+-- Name: index_subscriptions_on_plan_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_subscriptions_on_plan_id ON public.subscriptions USING btree (plan_id);
 
 
 --
@@ -446,6 +486,14 @@ ALTER TABLE ONLY public.fb_page_templates
 
 
 --
+-- Name: subscriptions fk_rails_63d3df128b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT fk_rails_63d3df128b FOREIGN KEY (plan_id) REFERENCES public.plans(id);
+
+
+--
 -- Name: pages fk_rails_6d637dbd7c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -462,11 +510,11 @@ ALTER TABLE ONLY public.settings
 
 
 --
--- Name: subscriptions fk_rails_c157bf4149; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: subscriptions fk_rails_cd2741f029; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.subscriptions
-    ADD CONSTRAINT fk_rails_c157bf4149 FOREIGN KEY (fb_pages_id) REFERENCES public.fb_pages(id);
+    ADD CONSTRAINT fk_rails_cd2741f029 FOREIGN KEY (fb_page_id) REFERENCES public.fb_pages(id);
 
 
 --
@@ -488,7 +536,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181226141917'),
 ('20181226142332'),
 ('20181226142454'),
-('20181226142546'),
 ('20181226143319'),
 ('20181226144035'),
 ('20181229060022'),
@@ -508,6 +555,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190324122245'),
 ('20190404005332'),
 ('20190405081254'),
-('20190408150256');
+('20190408150256'),
+('20190409043329'),
+('20190409043622');
 
 

@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
 class Subscription < ApplicationRecord
-  belongs_to :fb_page, dependent: :destroy
+  belongs_to :fb_page
+  belongs_to :plan
 end
