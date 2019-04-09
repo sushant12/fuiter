@@ -1,5 +1,8 @@
 <template>
-  <div>    
+  <div>
+    <a @click="designMenu" class="back">
+      <i class="fa fa-arrow-circle-left"/>Go back
+    </a>
     <span class="p-label">Color</span>
     <span
       class="is-primary tooltip is-tooltip-right is-tooltip-warning"
@@ -112,6 +115,9 @@ export default {
       .then(() => {
         document.getElementById("frame").contentWindow.location.reload();
       });
+    },
+    designMenu() {
+      this.$emit("clicked-design-menu", "");
     }
   },
   mounted() {
