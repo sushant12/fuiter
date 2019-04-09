@@ -1,6 +1,11 @@
 ActiveAdmin.register FbPage do
   config.clear_action_items!
 
+  filter :name
+  filter :status, as: :select, collection: FbPage.statuses
+  filter :category
+  filter :fb_page_id
+
   index do
     column :name
     column :status
