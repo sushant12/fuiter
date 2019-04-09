@@ -14,6 +14,7 @@ require 'action_view/railtie'
 require 'action_cable/engine'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
+require 'sprockets/railtie'
 
 # require "sprockets/railtie"
 # require "rails/test_unit/railtie"
@@ -52,5 +53,10 @@ module Fuitter
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN']
     end
+
+    config.middleware.use Rack::MethodOverride
+    config.middleware.use ActionDispatch::Flash
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
   end
 end
