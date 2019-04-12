@@ -1,10 +1,18 @@
 ActiveAdmin.register FbPage do
   config.clear_action_items!
 
+  filter :subscriptions
+  filter :fb_page_template
+  filter :user
+  filter :token
+  filter :sub_domain
+  filter :created_at
+  filter :updated_at
   filter :name
+  filter :fb_page
   filter :status, as: :select, collection: FbPage.statuses
   filter :category
-  filter :fb_page_id
+  filter :picture
 
   index do
     column :name
