@@ -6,13 +6,14 @@ ActiveAdmin.register User do
     end
   end
 
-  permit_params :name, :email, :password
+  permit_params :name, :email, :password, :admin
 
   form title: 'User Registration' do |f|
     inputs 'Details' do
       input :name
       input :email
       input :password
+      input :admin, as: :boolean
     end
 
     para "Press cancel to return to the list without saving."

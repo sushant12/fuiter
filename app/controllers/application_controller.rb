@@ -11,6 +11,14 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  def authenticate_admin!
+    if current_user && current_user.admin
+      redirect_to root_url
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
   private
 
   def set_raven_context

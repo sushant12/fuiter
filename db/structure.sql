@@ -9,20 +9,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -272,7 +258,8 @@ CREATE TABLE public.users (
     current_sign_in_ip inet,
     last_sign_in_ip inet,
     provider character varying,
-    uid character varying
+    uid character varying,
+    admin boolean DEFAULT false
 );
 
 
@@ -557,6 +544,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190405081254'),
 ('20190408150256'),
 ('20190409043329'),
-('20190409043622');
+('20190409043622'),
+('20190412062409');
 
 
