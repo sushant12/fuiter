@@ -1,0 +1,22 @@
+section.py-5.bg-grey.roboto.grey
+  .container
+    .row
+      .col-md-12
+        div
+          h1.my-3 style=("color: #FF6347") 
+            b NEWS
+        .row
+          .card-columns
+            - @page.posts.each do |post|
+              .card
+                - if post["image"]
+                  img.card-img-top alt=(post["name"]) src=(post["image"] )
+                .card-block
+                  a href="#" title="#" 
+                  h4.card-title.px-2
+                .card-footer
+                  .text-muted
+                    = post['message']
+                  p.card-text.px-0.pt-4.pb-2.bb-tomato
+                    == post['created_at']&.to_date.strftime('%a, %e %b %Y')
+            
