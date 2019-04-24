@@ -1,0 +1,42 @@
+form{
+	.form-control{
+		background-color: lightgrey;
+		border-radius: 0;
+	}
+	.form-control:focus{
+		background-color: lightgrey;
+		border-radius: 0;
+	}
+	// input[type="text"]{
+	// 	background-color: lightgrey;
+	// 	border-radius: 0;
+	// }
+	// input[type="email"]{
+	// 	background-color: lightgrey;
+	// 	border-radius: 0;
+	// }
+	// input[type="text"]:focus{
+	// 	background-color: lightgrey;
+	// 	border-radius: 0;
+	// }
+	// input[type="email"]:focus{
+	// 	background-color: lightgrey;
+	// 	border-radius: 0;
+	// }
+	// textarea{
+	// 	background-color: lightgrey;
+	// 	border-radius: 0;
+	// }
+	.btn{
+		background-color: tomato;
+		border:none;
+		border-radius: 0;
+		padding: 10px 1px;
+	}
+	.btn:hover{
+		background-color: LightCoral;
+		border:none;
+		border-radius: 0;
+		padding: 10px 1px;
+	}
+}

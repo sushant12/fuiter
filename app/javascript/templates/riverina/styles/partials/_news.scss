@@ -1,0 +1,10 @@
+.card-columns{
+	column-count: 4;
+	.card{
+		border:none;
+		mix-blend-mode: darken;
+	}
+}
+.bb-tomato{
+	border-bottom: 3px solid tomato;
+}
