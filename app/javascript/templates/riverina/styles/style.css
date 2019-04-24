@@ -1,0 +1,105 @@
+body {
+  font-family: 'Lora', serif;
+  font-size: 15px; }
+
+.grey {
+  color: #666666; }
+
+nav {
+  background-color: white; }
+  nav a {
+    height: 61px;
+    color: #666666;
+    display: flex;
+    align-items: center;
+    font-weight: 700; }
+
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: tomato;
+  color: white; }
+
+.navbar-nav .nav-item .nav-link {
+  display: flex;
+  padding-left: 20px;
+  padding-right: 20px; }
+
+.navbar-light .navbar-nav .nav-link.active {
+  background-color: tomato;
+  color: white; }
+
+p {
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-size: 15px; }
+
+.writer {
+  line-height: 1.3;
+  margin-bottom: 1px; }
+
+.head {
+  margin-bottom: 40px;
+  overflow: hidden; }
+
+.roboto {
+  font-family: 'Roboto', sans-serif; }
+
+footer {
+  border-top: 2px solid tomato; }
+
+.img-box {
+  overflow: hidden; }
+  .img-box img {
+    margin-top: -20vw;
+    border-bottom: 8px solid tomato; }
+
+.f-20 {
+  font-size: 20px; }
+
+.tomato {
+  color: tomato; }
+
+.items-list {
+  padding-left: 20px; }
+
+.bb {
+  border-bottom: 2px solid lightgray; }
+
+.w-700 {
+  font-weight: 700; }
+
+.bg-grey {
+  background-color: #F7F7F7; }
+
+.about-image {
+  mix-blend-mode: darken; }
+
+.card-columns {
+  column-count: 4; }
+  .card-columns .card {
+    border: none;
+    mix-blend-mode: darken; }
+
+.bb-tomato {
+  border-bottom: 3px solid tomato; }
+
+form .form-control {
+  background-color: lightgrey;
+  border-radius: 0; }
+
+form .form-control:focus {
+  background-color: lightgrey;
+  border-radius: 0; }
+
+form .btn {
+  background-color: tomato;
+  border: none;
+  border-radius: 0;
+  padding: 10px 1px; }
+
+form .btn:hover {
+  background-color: LightCoral;
+  border: none;
+  border-radius: 0;
+  padding: 10px 1px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,53 @@
+doctype html
+html
+  title 
+    = @page.name
+  = csrf_meta_tags
+  = csp_meta_tag
+  - if @seo
+    meta content=(@seo.dig('metaDescription')) name="description"
+    meta content=(@seo.dig('metaTags')) name="keywords"
+  link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet" /
+  link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css" rel="stylesheet" /
+  = stylesheet_pack_tag "templates/riverina/riverina"
+  link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" /
+  link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /
+  script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+  script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+  script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+  body.fnt-lora data-template="#{@template.to_json}"
+    nav.navbar.navbar-expand-lg.navbar-light.p-0
+      .container
+        a.navbar-brand href=(@page.home_menu) 
+        h1
+          b.grey
+            = @page.name
+        button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button" 
+          span.navbar-toggler-icon
+        #navbarTogglerDemo02.collapse.navbar-collapse
+          ul.navbar-nav.ml-auto
+            - @page.menu.each do |menu|
+              - if menu.display
+                li.nav-item
+                  = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link"
+                  - unless menu.nested.empty?
+                    ul
+                      - menu.nested.each do |sub_menu|
+                        - if sub_menu.display
+                          li
+                            = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu")
+    = yield
+
+    footer
+      .py-3.px-5 style="" 
+        .container
+          .row
+            .col-md-4.text-center.d-md-flex.align-items-center
+              p.text-muted.my-1 POWERED BY
+            .col-md-4
+              p.text-center.m-2.mx-5.px-5 ©James Allen Salon
+            .col-md-4.justify-content-center.d-flex.align-items-center
+              - @template_setting.social_icons.each do |social|
+                a href=(social[:url]) target="__blank"
+                  i class=(social[:icon])
+    = render 'shared/template'
