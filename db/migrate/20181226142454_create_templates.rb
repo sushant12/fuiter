@@ -5,7 +5,7 @@ class CreateTemplates < ActiveRecord::Migration[5.2]
     create_table :templates, id: :uuid do |t|
       t.string :name
       t.string :image
-      t.jsonb  :properties
+      t.jsonb  :properties, default: {}
       t.timestamps
     end
   end

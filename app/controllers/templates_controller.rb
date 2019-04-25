@@ -36,6 +36,6 @@ class TemplatesController < ApplicationController
   private
 
   def fb_page_template_param
-    params.permit(template: [:title, :logo, :favicon, properties: [body: [:font, :color], nav: [:font, :color]], ])
+    params.permit(template: [:title, :logo, :favicon, properties: [body: [:font, :bg_color, :font_size, :font_color], nav: [ :bg_color, :hover_color, :font_color, :font, :font_size]] ])
   end
 end

@@ -5,7 +5,7 @@ class CreatePages < ActiveRecord::Migration[5.2]
     create_table :pages, id: :uuid do |t|
       t.string :title
       t.integer :position
-      t.jsonb :seo
+      t.jsonb :seo, default: {}
       t.timestamps
     end
   end
