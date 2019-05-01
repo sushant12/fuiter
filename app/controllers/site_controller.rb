@@ -66,7 +66,7 @@ class SiteController < ApplicationController
     else
       @page = FbPage.find_by(id: params[:fb_page_id]).decorate
     end
-    @template = @page.fb_page_template
+    @template = @page.fb_page_template.decorate
     @template_setting = template_setting.decorate
   end
 
