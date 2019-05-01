@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <a @click="designMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
@@ -355,3 +355,4 @@ input.input {
 </style>
 
 
+ -->
