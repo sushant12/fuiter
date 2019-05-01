@@ -3,7 +3,7 @@
     <a @click="designMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
-    <span class="p-label">Color</span>
+    <span class="p-label">Background Color</span>
     <span
       class="is-primary tooltip is-tooltip-right is-tooltip-warning"
       data-tooltip="Select color for texts, buttons and overlays"
@@ -12,10 +12,10 @@
     </span>
     <div class="border-wrap">
       <p class="p-inner-label">Suggested Colors</p>
-      <compact-picker :value="color" v-model="color" :palette="suggestedColor"></compact-picker>
+      <compact-picker :value="bgColor" v-model="bgColor" :palette="suggestedBgColor"></compact-picker>
       <div class="custom">
         <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
-          <div class="dropdown" id="custom-color">
+          <div class="dropdown" id="custom-bg-color">
           
           <div class="dropdown-trigger">
             <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
@@ -23,7 +23,35 @@
             </span>
           </div>
             <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
-              <chrome-picker v-model="color" ></chrome-picker>
+              <chrome-picker v-model="bgColor" ></chrome-picker>
+            </div>&nbsp;
+          <span class="label-color palette">Select a custom color</span>
+        </div>
+        </span>        
+      </div>
+    </div>
+
+    <span class="p-label">Hover Color</span>
+    <span
+      class="is-primary tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select color for texts, buttons and overlays"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter"/>
+    </span>
+    <div class="border-wrap">
+      <p class="p-inner-label">Suggested Colors</p>
+      <compact-picker :value="hoverColor" v-model="hoverColor" :palette="suggestedHoverColor"></compact-picker>
+      <div class="custom">
+        <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
+          <div class="dropdown" id="custom-hover-color">
+          
+          <div class="dropdown-trigger">
+            <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
+              <i class="fa fa-angle-down has-text-white"></i>
+            </span>
+          </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
+              <chrome-picker v-model="hoverColor" ></chrome-picker>
             </div>&nbsp;
           <span class="label-color palette">Select a custom color</span>
         </div>
@@ -58,6 +86,46 @@
         >{{font}}</option>
       </select>
     </div>
+
+    <span class="p-label">Font Color</span>
+    <span
+      class="is-primary tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select color for texts, buttons and overlays"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter"/>
+    </span>
+    <div class="border-wrap">
+      <p class="p-inner-label">Suggested Font Colors</p>
+      <compact-picker :value="fontColor" v-model="fontColor" :palette="suggestedFontColor"></compact-picker>
+      <div class="custom">
+        <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
+          <div class="dropdown" id="custom-font-color">
+          
+          <div class="dropdown-trigger">
+            <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
+              <i class="fa fa-angle-down has-text-white"></i>
+            </span>
+          </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
+              <chrome-picker v-model="fontColor" ></chrome-picker>
+            </div>&nbsp;
+          <span class="label-color palette">Select a custom color</span>
+        </div>
+        </span>        
+      </div>
+    </div>
+    <span class="p-label">Font Size</span>
+    <span
+      class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
+      data-tooltip="Set title of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
+    </span>
+    <div class="border-wrap">
+      <div class="form-control">
+        <input class="input" type="text" v-model="fontSize">
+      </div>
+    </div>
     <button class="button is-info" @click="updateProperty">Save</button>
   </div>
 </template>
@@ -72,40 +140,59 @@ export default {
   props: ["template", "defaultTemplateValue"],
   data(){
     return {
-      color: {
-        hex: ""
-      },
-      suggestedColor: [],
+      
+      // suggestedColor: [],
       selectedFont: null,
       suggestedFonts: [],
       googleFonts: [],
       customTemplateProperties: {},
+
+      bgColor: {
+        hex: ""
+      },
+      hoverColor: {
+        hex: ""
+      },
+      fontColor: {
+        hex: ""
+      },
+      suggestedBgColor: [],
+      suggestedHoverColor:  [],
+      suggestedFontColor:  [],
+      fontSize: 12,
     };
   },
 
   methods: {
     showColorPicker(e) {
       e.stopPropagation();
-      const el = document.getElementById('custom-color');
+      const el = document.getElementById(e.currentTarget.firstChild.id);
       const notColorPicker = e.target.classList.contains("palette") || e.target.classList.contains("fa-angle-down")
       if(notColorPicker){
         el.classList.toggle('is-active');
       }
     },
     hideColorPicker(e){
-      const el = document.getElementById('custom-color');
+      const el = document.getElementById(e.currentTarget.firstChild.id);
       el.classList.remove("is-active");
     },
     updateProperty() {
       const formData = new FormData();
       const bodyDesign = !_.isNil(this.customTemplateProperties) && !_.isNil(this.customTemplateProperties['body']);
-
+      // since we are updating the same json
+      // we do not want to overrid the json data for the body
+      // so we are checking it here to make sure it is not overridden
       if(bodyDesign){
+        formData.append("template[properties][body][bg_color]", this.customTemplateProperties['body']['bg_color']);
+        formData.append("template[properties][body][font_color]", this.customTemplateProperties['body']['font_color']);
         formData.append("template[properties][body][font]", this.customTemplateProperties['body']['font']);
-        formData.append("template[properties][body][color]", this.customTemplateProperties['body']['color']);
+        formData.append("template[properties][body][font_size]", this.customTemplateProperties['body']['font_size']);
       }
+      formData.append("template[properties][nav][bg_color]", this.bgColor["hex"] || this.bgColor);
+      formData.append("template[properties][nav][font_color]", this.fontColor["hex"] || this.fontColor);
+      formData.append("template[properties][nav][hover_color]", this.hoverColor["hex"] || this.hoverColor);
+      formData.append("template[properties][nav][font_size]", this.fontSize);
       formData.append("template[properties][nav][font]", this.selectedFont || "");
-      formData.append("template[properties][nav][color]", this.color["hex"] || this.color);
       EditorServices.updateProperties(
         formData, 
         this.template.id,
@@ -121,8 +208,12 @@ export default {
   },
   mounted() {
     const that = this;
-    this.suggestedColor = this.defaultTemplateValue["properties"]["suggested_color"];
-    this.suggestedFonts = this.defaultTemplateValue["properties"]["suggested_font"];
+    // this.suggestedColor = this.defaultTemplateValue["properties"]["suggested_color"];
+    const defaultNavValue = this.defaultTemplateValue["properties"]["nav"];
+    this.suggestedBgColor = defaultNavValue["suggested_bg_color"];
+    this.suggestedHoverColor = defaultNavValue["suggested_hover_color"];
+    this.suggestedFonts = defaultNavValue["suggested_font"];
+    this.suggestedFontColor = defaultNavValue["suggested_font_color"];
 
     FontServices.getFonts()
       .then(({data}) => {
@@ -136,7 +227,10 @@ export default {
         that.customTemplateProperties = data["properties"];
         if (!_.isNil(data["properties"]) && !_.isNil(data["properties"]['nav'])) {
           that.selectedFont = data["properties"]['nav']["font"];
-          that.color = data["properties"]['nav']["color"];
+          that.bgColor = data["properties"]['nav']["bg_color"];
+          that.hoverColor = data["properties"]['nav']["hover_color"];
+          that.fontColor = data["properties"]['nav']["font_color"];
+          that.fontSize = data["properties"]['nav']["font_size"];
         }
       });
   },

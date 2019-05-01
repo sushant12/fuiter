@@ -105,7 +105,16 @@
         "setting": {}
       }
     ],
-    "suggested_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
-    "suggested_font": ["Helvetica", "Times New Roman"]
+    "nav": {
+      "suggested_bg_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "suggested_hover_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "suggested_font_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "suggested_font": ["Helvetica", "Times New Roman"]
+    },
+    "body": {
+      "suggested_bg_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "suggested_font_color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "suggested_font": ["Helvetica", "Times New Roman"]
+    }
   }
 }

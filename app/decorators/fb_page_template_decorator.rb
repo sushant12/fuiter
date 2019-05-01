@@ -10,4 +10,11 @@ class FbPageTemplateDecorator < ApplicationDecorator
   #     end
   #   end
 
+  def body_design
+   "color: #{object.properties.dig('body', 'font_color')}; font-size: #{object.properties.dig('body', 'font_size')}px; font-family: #{object.properties.dig('body', 'font')};"
+  end
+
+  def nav_design
+   "color: #{object.properties.dig('nav', 'font_color')}; font-size: #{object.properties.dig('nav', 'font_size')}px; font-family: #{object.properties.dig('nav', 'font')};"
+  end
 end

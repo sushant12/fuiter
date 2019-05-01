@@ -9,6 +9,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -102,7 +116,7 @@ CREATE TABLE public.ar_internal_metadata (
 
 CREATE TABLE public.fb_page_templates (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    properties jsonb,
+    properties jsonb DEFAULT '{}'::jsonb,
     fb_page_id uuid,
     template_id uuid,
     created_at timestamp without time zone NOT NULL,
@@ -148,7 +162,7 @@ CREATE TABLE public.pages (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     title character varying,
     "position" integer,
-    seo jsonb,
+    seo jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     fb_page_template_id uuid,
@@ -193,8 +207,8 @@ CREATE TABLE public.schema_migrations (
 
 CREATE TABLE public.settings (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    social_media jsonb,
-    legal_info jsonb,
+    social_media jsonb DEFAULT '{}'::jsonb,
+    legal_info jsonb DEFAULT '{}'::jsonb,
     domain character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -229,7 +243,7 @@ CREATE TABLE public.templates (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     name character varying,
     image character varying,
-    properties jsonb,
+    properties jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
