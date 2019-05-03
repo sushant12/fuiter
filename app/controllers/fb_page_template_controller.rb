@@ -13,6 +13,6 @@ class FbPageTemplateController < ApplicationController
   private
 
   def template_param
-    params.permit(:email, :location, :contact, :email_enable, :location_enable, :contact_enable, :map_enable)
+    params.permit(:email, :location, :contact, :email_enable, :location_enable, :contact_enable, :map_enable, properties: [theme: [:font, :color]])
   end
 end

@@ -1,35 +1,35 @@
-javascript:
-  var body = document.getElementsByTagName('body')[0];
-  var template = JSON.parse(body.dataset.template);
-  var fuitterColor = body.getElementsByClassName("fuitter-color");
-  var fuitterNavColor = body.getElementsByClassName("fuitter-nav-color");
-  // var fuitterTitle = document.getElementById("fuitter-title");
-  var fuitterLogo = document.getElementById("fuitter-logo");
+// javascript:
+//   var body = document.getElementsByTagName('body')[0];
+//   var template = JSON.parse(body.dataset.template);
+//   var fuitterColor = body.getElementsByClassName("fuitter-color");
+//   var fuitterNavColor = body.getElementsByClassName("fuitter-nav-color");
+//   // var fuitterTitle = document.getElementById("fuitter-title");
+//   var fuitterLogo = document.getElementById("fuitter-logo");
   
-  if(template['properties'] !== null) {
-    // body.style.fontFamily = template['properties']['font']
-    // fuitterTitle.innerHTML = template['title'];
-    if(template['properties']['body'] !== undefined){
-      for (let item of fuitterColor) {
-        item.style.color = template['properties']['body']['font_color'];
-        item.style.fontFamily = template['properties']['body']['font'];
-      }
-    }
-    if(template['properties']['nav'] !== undefined){
-      for (let item of fuitterNavColor) {
-        item.style.backgroundColor = template['properties']['nav']['color'];
-        item.style.fontFamily = template['properties']['nav']['font'];
-      }
-    }
-  }
+//   if(template['properties'] !== null) {
+//     // body.style.fontFamily = template['properties']['font']
+//     // fuitterTitle.innerHTML = template['title'];
+//     if(template['properties']['body'] !== undefined){
+//       for (let item of fuitterColor) {
+//         item.style.color = template['properties']['body']['font_color'];
+//         item.style.fontFamily = template['properties']['body']['font'];
+//       }
+//     }
+//     if(template['properties']['nav'] !== undefined){
+//       for (let item of fuitterNavColor) {
+//         item.style.backgroundColor = template['properties']['nav']['color'];
+//         item.style.fontFamily = template['properties']['nav']['font'];
+//       }
+//     }
+//   }
   
-  const URL = window.location.protocol+ '//' + window.location.host;
+//   const URL = window.location.protocol+ '//' + window.location.host;
 
-  if(template['logo'].url !== null) {
-    fuitterLogo.src = `${URL}${template['logo'].url}`
-    fuitterLogo.style.maxHeight = '75px'
-    fuitterLogo.style.maxWidth = 'auto'
-  }
+//   if(template['logo'].url !== null) {
+//     fuitterLogo.src = `${URL}${template['logo'].url}`
+//     fuitterLogo.style.maxHeight = '75px'
+//     fuitterLogo.style.maxWidth = 'auto'
+//   }
   
  
   

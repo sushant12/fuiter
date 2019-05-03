@@ -28,7 +28,7 @@
             height="200"
             margin="16"
             accept="image/jpeg, image/png"
-            size="10"
+            size="1"
             :prefill="logo"
             :removable="true"
             button-class="btn"
@@ -54,7 +54,7 @@
             height="200"
             margin="16"
             accept="image/ico, image/png"
-            size="10"
+            size="1"
             :prefill="favicon"
             :removable="true"
             button-class="btn"
@@ -100,10 +100,9 @@ export default{
     },
     updateProperty(){
       const formData = new FormData();
-      formData.append("template[title]", this.siteTitle);
+      formData.append("template[title]", this.siteTitle || '');
       formData.append("template[logo]", this.logo);
       formData.append("template[favicon]", this.favicon);
-      debugger
       EditorServices.updateProperties(
         formData, 
         this.template.id,
@@ -118,11 +117,12 @@ export default{
     }
   },
   mounted(){
+    const that = this;
     EditorServices.getFbPageTemplate(this.template['id'])
       .then(({data}) => {
-        this.siteTitle = data['title'];
-        this.logo = data['logo']['url'];
-        this.favicon = data['favicon']['url'];
+        that.siteTitle = data['title'];
+        that.logo = data['logo']['url'];
+        that.favicon = data['favicon']['url'];
       });
   },
   components: {

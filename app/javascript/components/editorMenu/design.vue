@@ -9,8 +9,50 @@
       :href="templates_url"
     >Choose templates</a>
     <br>
-    <a @click="designOption('NavbarDesign')">Navbar Color/Font</a>
-    <a @click="designOption('BodyDesign')">Body Color/Font</a>
+    <span class="p-label">Font</span>
+    <span
+      class="font-icon tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select font of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
+    </span>
+    <div class="border-wrap">
+      <p class="p-inner-label">Suggested Font</p>
+      <select class="select-font" v-model="selectedFont">
+        <option value="null" class="option-font">Choose Font</option>
+        <option
+          class="option-font"
+          v-for="font in suggestedFonts"
+          :style="{fontFamily: font }"
+        >{{font}}</option>
+      </select>
+      <p class="p-inner-label">Google Font</p>
+      <select class="select-font" v-model="selectedFont">
+        <option value="null" class="option-font">Choose Font</option>
+        <option
+          class="option-font"
+          v-for="font in googleFonts"
+          :style="{fontFamily: font }"
+        >{{font}}</option>
+      </select>
+    </div>
+    <span class="p-label">Theme Color</span>
+    <span
+      class="font-icon tooltip is-tooltip-right is-tooltip-warning"
+      data-tooltip="Select font of website"
+    >
+      <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
+    </span>
+    <div class="border-wrap">
+      <div v-for="themeColor in themeColors">
+        <input type="radio" :value="themeColor['name']" v-model="selectedThemeColor">
+        <label>{{ themeColor['name'] }}</label>
+        <div v-for="colors in themeColor['options']">
+          {{ colors }}
+        </div>
+      </div>
+    </div>
+    <button class="button is-info" @click="updateProperty">Save</button>
     <a @click="designOption('LogoDesign')">Site Title/Logo</a>
   </div>
   <div v-else>
@@ -24,8 +66,8 @@
   </div>
 </template>
 <script>
-import NavbarDesign from './design/navbarDesign';
-import BodyDesign from './design/bodyDesign';
+import EditorServices from "../../services/index.js";
+import FontServices from "../../services/googleFont.js";
 import LogoDesign from './design/logo';
 
 export default {
@@ -34,6 +76,11 @@ export default {
     return {
       showDesign: true,
       designComponent: "",
+      selectedFont: null,
+      suggestedFonts: [],
+      googleFonts: [],
+      themeColors: [],
+      selectedThemeColor: null
     };
   },
   methods: {
@@ -46,11 +93,43 @@ export default {
     },
     resetDesignPage() {
       this.showDesign = true;
+    },
+    updateProperty() {
+      EditorServices.saveFbPageTemplate(
+        this.template['id'],{
+          properties: {
+            theme: {
+              font: this.selectedFont,
+              color: this.selectedThemeColor
+            }
+          }
+        }
+      )
+      .then(() => {
+        document.getElementById("frame").contentWindow.location.reload();
+      });
     }
   },
+  mounted() {
+    const that = this;
+    const themeDefault = this.default_template_value['properties']['theme'];
+    this.themeColors = themeDefault['color'];
+    this.suggestedFonts = themeDefault['font'];
+    FontServices.getFonts()
+      .then(({data}) => {
+        data.items.forEach(item => {
+          that.googleFonts.push(item.family);
+        });
+      });
+
+    EditorServices.getFbPageTemplate(this.template['id'])
+      .then(({data}) => {
+        const theme = data['properties']['theme'];
+        that.selectedFont =  theme['font'];
+        that.selectedThemeColor = theme['color'];
+      });
+  },
   components: {
-    NavbarDesign,
-    BodyDesign,
     LogoDesign,
   }
 };
