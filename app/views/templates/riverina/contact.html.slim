@@ -23,4 +23,6 @@ section.py-5.bg-grey.roboto.grey
                 textarea#form46.form-control placeholder="Message" rows="3" 
               button.btn.btn-secondary.w-100 data-pingendo-transient="" type="submit"  SEND
           .col-md-6.p-md-4.col-3.order-1.order-md-2
-            iframe frameborder="0" height="350" scrolling="no" src="https://maps.google.com/maps?hl=en&amp;q=New%20York&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" width="100%" 
+            #map style=("width: 600px; height: 400px;")
+            / iframe frameborder="0" height="350" scrolling="no" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD55541zy0S7K6fTWzpRGAn7r_NLYstuZY&q=Kaldhara,Nepal;output=embed" width="100%"
+= render 'shared/gmaps'

@@ -15,16 +15,16 @@ html
   script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
   script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
   script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
-  link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('body', 'font').tr(' ', '+')}" if @template.properties.dig('body', 'font')) rel="stylesheet"
-  link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('nav', 'font').tr(' ', '+')}" if @template.properties.dig('nav', 'font')) rel="stylesheet"
-  css:  
-    .nav-link:hover{
-      background-color: #{@template.properties.dig('nav', 'hover_color')} !important; 
+  link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
+  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key
+  / css:  
+  /   .nav-link:hover{
+  /     background-color: #{@template.properties.dig('nav', 'hover_color')} !important; 
+  /   }
+  /   .nav-link {
+  /     color: #{@template.properties.dig('nav', 'font_color')} !important;
     }
-    .nav-link {
-      color: #{@template.properties.dig('nav', 'font_color')} !important;
-    }
-  body.fnt-lora data-template="#{@template.to_json}"
+  body.fnt-lora data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
     nav.navbar.navbar-expand-lg.navbar-light.p-0
       .container
         a.navbar-brand href=(@page.home_menu) 
@@ -34,7 +34,7 @@ html
         button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button" 
           span.navbar-toggler-icon
         #navbarTogglerDemo02.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto style=(@template.nav_design)
+          ul.navbar-nav.ml-auto
             - @page.menu.each do |menu|
               - if menu.display
                 li.nav-item
@@ -59,4 +59,3 @@ html
               - @template_setting.social_icons.each do |social|
                 a href=(social[:url]) target="__blank"
                   i class=(social[:icon])
-    = render 'shared/template'
