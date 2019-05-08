@@ -33,7 +33,7 @@ module Fuitter
     # the framework and any gems in your application.
     load_path_strategy = Rails.env.production? ? :eager_load_paths : :autoload_paths
     config.public_send(load_path_strategy) << Rails.root.join('lib')
-
+    config.assets.precompile += %w( template.js template.css )
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|
