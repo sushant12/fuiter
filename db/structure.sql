@@ -141,7 +141,7 @@ CREATE TABLE public.fb_page_templates (
 CREATE TABLE public.fb_pages (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
     token character varying,
-    content jsonb,
+    content jsonb DEFAULT '{}'::jsonb,
     sub_domain character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,

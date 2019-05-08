@@ -195,7 +195,6 @@ class FbPageDecorator < Draper::Decorator
   def description
     home = object.fb_page_template.pages.where("uri = 'home'").first
     show_custom_description = home.setting.dig('description', 'enable').to_s
-    # binding.pry
     if show_custom_description == 'true'
       home.setting.dig('description', 'value')
     else

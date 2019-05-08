@@ -110,3 +110,4 @@ gem 'carrierwave'
 # ActiveAdmin
 gem 'activeadmin'
 gem 'fog-aws'
+gem 'geocoder'
