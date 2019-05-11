@@ -7,22 +7,30 @@ section.py-5.bg-grey.roboto.grey
             b APPOINTMENT
         .row.py-5
           .col-md-6.d-flex.flex-column.order-2.order-md-1
-            h5.mb-3.tomato.w-700 Phone
-            p.text-muted (312) 878-6325
-            h5.tomato.w-700.mb-3 Address
-            p.text-muted 223 S Clark St, Chicago, IL, United States 60603
+            - contact =  @page.fb_page_template
+            - if contact.contact_enable
+              h5.mb-3.tomato.w-700 Phone
+              p.text-muted
+                = @page.contact['phone']
+            - if contact.location_enable
+              h5.tomato.w-700.mb-3 Address
+              p.text-muted
+                = @page.contact['address']
+            - if contact.email_enable
+              h5.tomato.w-700.mb-3 Email
+              p.text-muted
+                = @page.contact['email']
             form
               h6.text-secondary Message
-              .form-group
-                input#form44.form-control placeholder="Name" type="text" /
-              .form-group
-                input#form45.form-control placeholder="Email" type="email" /
-              .form-group
-                input#form45.form-control placeholder="Phone" type="email" /
-              .form-group
-                textarea#form46.form-control placeholder="Message" rows="3" 
-              button.btn.btn-secondary.w-100 data-pingendo-transient="" type="submit"  SEND
+              = form_for :contact, url: site_contact_post_path(@page.id), method: :post do |f|
+                .form-group
+                  = f.text_field :name, class: 'form-control', id: 'form44', placeholder: 'Name'
+                .form-group
+                  = f.email_field :email, class: 'form-control', id: 'form45', placeholder: 'Email'
+                .form-group
+                  = f.text_area :message, class: 'form-control', id: 'form46', placeholder: 'Message'
+                = f.submit "Contact Us", class: 'btn btn-secondary w-100'
           .col-md-6.p-md-4.col-3.order-1.order-md-2
             #map style=("width: 600px; height: 400px;")
-            / iframe frameborder="0" height="350" scrolling="no" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyD55541zy0S7K6fTWzpRGAn7r_NLYstuZY&q=Kaldhara,Nepal;output=embed" width="100%"
-= render 'shared/gmaps'
+- if contact.map_enable
+  = render 'shared/gmaps'

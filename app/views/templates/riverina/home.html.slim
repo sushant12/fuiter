@@ -1,10 +1,25 @@
 section.bg-grey.roboto.grey
   .row.m-0
-    .p-0.col-12.img-box
-      img.img-fluid.d-block height=("15% 100px") src=(asset_pack_path 'templates/riverina/images/hair.jpg') style=""
-  .py-4.text-center
-    .container
-      .row
-        .col-md-12.p-5
-          p.lead.px-5.f-20
-            = @page.description
+    .slider
+      #carouselExampleSlidesOnly.carousel.slide data-ride="carousel" 
+        .carousel-inner
+          - @page.cover_images.each_with_index do |image, index|
+            .carousel-item class=('active' if index == 0)
+              img.d-block.w-100 alt="..." src=(image['source'])
+              h4.card-text.px-5.py-3 The best pub in all of Central London since 1878. Beer, Food, and Live Music.
+          / .carousel-item
+          /   img.d-block.w-100 alt="..." src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-760937.jpg"
+          /   h4.card-text.px-5.py-3 best pub in all of Central London since 1878. Beer, Food, and Live Music.
+          / .carousel-item
+          /   img.d-block.w-100 alt="..." src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-762032.jpg"
+          /   h4.card-text.px-5.py-3 one of the best pub in all of Central London since 1878. Beer, Food, and Live Music.
+        /!
+          | <div class="p-0 col-12 img-box"
+          | <img class="img-fluid d-block" src="./images/hair.jpg" height="15% 100px" style=""
+          | </div
+      .py-4.text-center
+        .container
+          .row
+            .col-md-12.p-5
+              p.lead.px-5.f-20
+                = @page.description

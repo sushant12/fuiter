@@ -8,7 +8,7 @@ section.py-5.bg-grey.roboto.grey
         .row
           .card-columns
             - @page.posts.each do |post|
-              .card
+              .card style=("max-width: 260px")
                 - if post["image"]
                   img.card-img-top alt=(post["name"]) src=(post["image"] )
                 .card-block
