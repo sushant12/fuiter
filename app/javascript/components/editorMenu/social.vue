@@ -7,19 +7,34 @@
       <h1 class="subtitle">Social</h1>
       <h6>Connecting to social services enables you to push or pull data, and allow visitors to connect with you via those services.</h6>
       <h6>Add social sites URL</h6>
-      <div class="control" v-for="(option, index) in social" :key="index">
+      <div class="control">
         <div class="social-link-list">
-          <!-- <div class="social-icon"> -->
-          <i :class="option.icon"/>
-          <!-- </div> -->
-          <!-- <div class="social-link"> -->
-          <input
-            class="input sidebar-inputs"
-            type="url"
-            v-model="option.name"
-            :placeholder="option.placeholder"
-          >
-          <!-- </div> -->
+          <i class="fab fa-instagram" />
+          <input type="url" placeholder="Instagram URL" class="input sidebar-inputs" v-model="instagram">
+        </div>
+        <div class="social-link-list">
+          <i class="fab fa-youtube" />
+          <input type="url" placeholder="Youtube URL" class="input sidebar-inputs" v-model="youtube">
+        </div>
+        <div class="social-link-list">
+          <i class="fab fa-twitter" />
+          <input type="url" placeholder="Twitter URL" class="input sidebar-inputs" v-model="twitter">
+        </div>
+        <div class="social-link-list">
+          <i class="fab fa-facebook" />
+          <input type="url" placeholder="Facebook URL" class="input sidebar-inputs" v-model="facebook">
+        </div>
+        <div class="social-link-list">
+          <i class="fab fa-linkedin" />
+          <input type="url" placeholder="LinkedIn URL" class="input sidebar-inputs" v-model="linkedin">
+        </div> 
+        <div class="social-link-list">
+          <i class="fab fa-pinterest" />
+          <input type="url" placeholder="Pinterest URL" class="input sidebar-inputs" v-model="pinterest">
+        </div>
+        <div class="social-link-list">
+          <i class="fab fa-yelp" />
+          <input type="url" placeholder="Yepl URL" class="input sidebar-inputs" v-model="yelp">
         </div>
       </div>
       <button class="button is-info" @click="updateSetting">Save</button>
@@ -33,20 +48,13 @@ export default {
   props: ["fb_page_id", "template"],
   data() {
     return {
-      social: [
-        {
-          name: "",
-          placeholder: " Facebook URL",
-          icon: "fab fa-facebook",
-          class: "fontAwesome"
-        },
-        { name: "", placeholder: "Instagram URL", icon: "fab fa-instagram" },
-        { name: "", placeholder: "Youtube URL", icon: "fab fa-youtube" },
-        { name: "", placeholder: "Twitter URL", icon: "fab fa-twitter" },
-        { name: "", placeholder: "LinkedIn URL", icon: "fab fa-linkedin" },
-        { name: "", placeholder: "Pinterest URL", icon: "fab fa-pinterest" },
-        { name: "", placeholder: "Yelp URL", icon: "fab fa-yelp" }
-      ]
+      facebook: '',
+      twitter: '',
+      instagram: '',
+      youtube: '',
+      linkedin: '',
+      yelp: '',
+      pinterest: '',
     };
   },
   methods: {
@@ -54,56 +62,37 @@ export default {
       this.$emit("clicked-main-menu", "");
     },
     updateSetting() {
-      // this.social.forEach((item, index) => {
-      //   delete item.placeholder;
-      //   delete item.icon;
-      // });
       EditorServices.updateSetting(this.fb_page_id, {
-        social_media: { social: this.social },
+        social_media: {
+          facebook: this.facebook,
+          twitter: this.twitter,
+          instagram: this.instagram,
+          youtube: this.youtube,
+          linkedin: this.linkedin,
+          yelp: this.yelp,
+          pinterest: this.pinterest,
+        },
         fb_page_template_id: this.template.id
       })
       .then(resp => {
         document.getElementById("frame").contentWindow.location.reload();
-        // this.addPlaceholder(resp.data);
-        // this.addSocialIcon(resp.data);
       });
     },
-    // addPlaceholder(settingData) {
-    //   if (!_.isNil(settingData)) {
-    //     this.social = settingData.socail_media.social;
-    //     this.social[0].placeholder = "Facebook URL";
-    //     this.social[1].placeholder = "Instagram URL";
-    //     this.social[2].placeholder = "Youtube URL";
-    //     this.social[3].placeholder = "Twitter URL";
-    //     this.social[4].placeholder = "Linkedin URL";
-    //     this.social[5].placeholder = "Pinterest URL";
-    //     this.social[6].placeholder = "Yelp URL";
-    //   }
-    // },
-    // addSocialIcon(settingData) {
-    //   if (!_.isNil(settingData)) {
-    //     this.social = settingData.socail_media.social;
-    //     this.social[0].icon = "fab fa-facebook";
-    //     this.social[1].icon = "fab fa-instagram";
-    //     this.social[2].icon = "fab fa-youtube";
-    //     this.social[3].icon = "fab fa-twitter";
-    //     this.social[4].icon = "fab fa-linkedin";
-    //     this.social[5].icon = "fab fa-pinterest";
-    //     this.social[6].icon = "fab fa-yelp";
-    //   }
-    // }
   },
   created() {
-    let that = this;
+    const that = this;
     EditorServices.showSetting(this.template.id)
     .then(({data}) => {
-      if (!_.isNil(data.social_media)) {
-        data.social_media.social.forEach((item, index) => {
-          that.social[index]["name"] = item['name']
-        });
+      const socialMedia = data.social_media;
+      if (!_.isNil(socialMedia)) {
+        that.facebook = socialMedia['facebook'];
+        that.twitter = socialMedia['twitter'];
+        that.instagram =  socialMedia['instagram'];
+        that.youtube = socialMedia['youtube'];
+        that.linkedin = socialMedia['linkedin'];
+        that.yelp = socialMedia['yelp'];
+        that.pinterest = socialMedia['pinterest'];
       }
-      // this.addPlaceholder(res.data);
-      // this.addSocialIcon(res.data);
     });
   }
 };

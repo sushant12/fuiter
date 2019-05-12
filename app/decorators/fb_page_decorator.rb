@@ -123,7 +123,7 @@ class FbPageDecorator < Draper::Decorator
     object.content.dig('name')
   end
 
-  def address
+  def contact
     contact = object.fb_page_template
     phone = contact.contact_enable ? contact.contact :  object.content.dig('phone')
     email = contact.email_enable ? contact.email : object.content.dig('emails')&.first
@@ -157,6 +157,25 @@ class FbPageDecorator < Draper::Decorator
       about.setting.dig('description', 'value')
     else
       object.content.dig('about')
+    end
+  end
+
+  def description
+    home = object.fb_page_template.pages.where("uri = 'home'").first
+    show_custom_description = home.setting.dig('description', 'enable').to_s
+    if show_custom_description == 'true'
+      home.setting.dig('description', 'value')
+    else
+      object.content.dig('description')
+    end
+  end
+
+  def about_image
+    about = object.fb_page_template.pages.where("uri = 'about'").first
+    if about.setting.dig('image', 'enable') == 'true'
+      about.about_image.url
+    else
+      object.picture
     end
   end
 

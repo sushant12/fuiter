@@ -9,13 +9,13 @@ section.py-5.bg-grey.roboto.grey
           .col-md-6.d-flex.flex-column.order-2.order-md-1
             p.my-3 style=("color: #FF6347;") 
               b Description
-            p Known for his trendsetting vision and incredible skill, James Allen is now one of the most sought-after hairstylists on the planet. He has worked with countless celebrities throughout his career in fashion and film. Through James Allen Salon, he brings downtown Chicago the same quality style and care that the stars expect from James himself.
-            p James salon operates by appointment only so please call in to schedule a time. Our stylists are the cream of the crop in the industry, hand-selected by James. You can schedule appointments with them through our front office number (312-878-6325) or by contacting them individually:
-            p.writer Jenna Simon: 312-667-2552
-            p.writer Damien Garcia: 312-980-7638
-            p.writer Ashley Robins: 312-554-2658
-            p.writer Brittney Kesel: 312-481-2209
-            p.writer
-              | Josh Azlin: 312-744-3409
+            p
+              = @page.about
+            / p.writer Jenna Simon: 312-667-2552
+            / p.writer Damien Garcia: 312-980-7638
+            / p.writer Ashley Robins: 312-554-2658
+            / p.writer Brittney Kesel: 312-481-2209
+            / p.writer
+            /   | Josh Azlin: 312-744-3409
           .col-md-6.p-md-4.col-3.order-1.order-md-2
-            img.img-fluid.d-block.about-image src="./images/about.jpg" style="" width="1500" /
+            img.img-fluid.d-block.about-image src=(@page.about_image)
