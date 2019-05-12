@@ -277,7 +277,7 @@ export default {
       })
         .then( res => {
           this.domains = [];
-          this.domains.push(this.subDomain, `https://www.${this.customDomain}`)
+          this.domains.push(`https://www.${this.subDomain}/fuiter.com`, `https://www.${this.customDomain}`)
         });
     }
   },
