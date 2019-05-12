@@ -213,7 +213,8 @@ CREATE TABLE public.settings (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     fb_page_template_id uuid,
-    subdomain character varying
+    subdomain character varying,
+    fb_messenger boolean DEFAULT true
 );
 
 
@@ -559,6 +560,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190408150256'),
 ('20190409043329'),
 ('20190409043622'),
-('20190412062409');
+('20190412062409'),
+('20190512133838');
 
 
