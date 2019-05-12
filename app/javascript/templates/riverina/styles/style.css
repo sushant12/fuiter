@@ -103,3 +103,12 @@ form .btn:hover {
   padding: 10px 1px; }
 
 /*# sourceMappingURL=style.css.map */
+.slider{
+  width: 100%;
+}
+.slider .carousel-item{
+    height: 600px;
+}
+.slider img{
+  background-size: cover;
+}

@@ -12,9 +12,7 @@ html
   = stylesheet_pack_tag "templates/riverina/riverina"
   link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" /
   link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /
-  script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-  script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-  script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+  
   link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
   = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key
   / css:  
@@ -37,14 +35,16 @@ html
           ul.navbar-nav.ml-auto
             - @page.menu.each do |menu|
               - if menu.display
-                li.nav-item
-                  = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+                li.nav-item class=('dropdown' unless menu.nested.empty? )
+                  - if menu.nested.empty?
+                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+                  - else
+                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
                   - unless menu.nested.empty?
-                    ul
+                    .dropdown-menu aria-labelledby="navbarDropdown"
                       - menu.nested.each do |sub_menu|
                         - if sub_menu.display
-                          li
-                            = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu")
+                          = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
     = yield
 
     footer
@@ -56,6 +56,30 @@ html
             .col-md-4
               p.text-center.m-2.mx-5.px-5 ©James Allen Salon
             .col-md-4.justify-content-center.d-flex.align-items-center
-              - @template_setting.social_icons.each do |social|
-                a href=(social[:url]) target="__blank"
-                  i class=(social[:icon])
+              - @template_setting.social_icons.each do |name, url|
+                - if name == 'facebook'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}-f")
+                - if name == 'twitter'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}")
+                - if name == 'youtube'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}")
+                - if name == 'linkedin'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}-in")
+                - if name == 'yelp'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}")
+                - if name == 'pinterest'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}")
+                - if name == 'instagram'
+                  a href=(url) target="__blank"
+                    i class=("fab fa-#{name}")
+    script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    - if @page.fb_page_template.setting.fb_messenger
+      = render 'shared/messenger' 

@@ -5,15 +5,14 @@ class SettingDecorator < Draper::Decorator
 
   def social_icons
     return [] unless object.social_media.present? 
-    social_links = object.social_media['social'].select do |social|
-      social['name'].length > 0 && h.uri?(social['name'])    
+    object.social_media.select do |name, link|
+      link.length > 0 && h.uri?(link)    
     end
-
-    social_links.map do |social|
-      {
-        url: social["name"],
-        icon: social["icon"],
-      }
-    end        
+    # social_links.map do |name, url|
+    #   {
+    #     name: name,
+    #     url: url
+    #   }
+    # end        
   end
 end

@@ -7,7 +7,7 @@ module Facebook
     end
 
     def list
-      @graph.get_connections('me', '?fields=accounts{category,name,access_token,picture{url}}')
+      @graph.get_connections('me', '?fields=accounts{category,name,access_token,picture.type(large){url}}')
     end
 
     def get_info
