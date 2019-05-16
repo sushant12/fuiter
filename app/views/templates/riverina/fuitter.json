@@ -106,12 +106,7 @@
       }
     ],
     "theme": {
-      "color": [
-        {"name": "name1", "options": ["#4C1F1F", "#F44E3B", "#FA28FF"]},
-        {"name": "name2", "options": ["#4C1F1F", "#F44E3B", "#FA28FF"]},
-        {"name": "name3", "options": ["#4C1F1F", "#F44E3B", "#FA28FF"]},
-        {"name": "name4", "options": ["#4C1F1F", "#F44E3B", "#FA28FF"]}
-      ],
+      "color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
       "font": ["Helvetica", "Times New Roman"]
     }
   }

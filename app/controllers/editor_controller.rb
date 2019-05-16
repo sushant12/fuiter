@@ -52,6 +52,6 @@ class EditorController < ApplicationController
   end
 
   def setting_param
-    params.require(:editor).permit(:domain, :subdomain, :fb_page_template_id, social_media: {}, legal_info: {})
+    params.require(:editor).permit(:domain, :subdomain, :fb_page_template_id, :fb_messenger, social_media: {}, legal_info: {})
   end
 end

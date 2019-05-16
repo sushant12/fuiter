@@ -7,28 +7,52 @@
     <div class="component-example">
       <div class="domain-options-box">
         <div class="one-row-cig">
-          <h1 class="subtitle">Add Domain</h1>
-          <input class="input" v-model="domain" type="text" placeholder="fuiter.com">
+          <h1 class="subtitle"> Domains</h1>
+          <div class="dropdown" id="domain-dropdown" @click="showDomainDropDown">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
+                <span>{{domains[0]}}</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu">
+              <div class="dropdown-content">
+                <a class="dropdown-item" v-for="domain in domains" :href='domain' target='__blank'>
+                  {{domain}}
+                </a>
+                
+              </div>
+            </div>
+          </div>
         </div>
         <h6 class="has-text-grey">Your website is published at the domain above</h6>
         <div class="one-row-cig mt-2">
-          <h1 class="subtitle">Add Subdomain</h1>
+          <h1 class="subtitle">Connect Your Domain</h1>
           <div class="subdomain">
-            <h2>https://</h2>
-            <input class="sub-input" v-model="subDomain" type="text" placeholder="subdomain">
-            <h2>.fuiter.com</h2>
+            <h2>www.</h2>
+            <input class="sub-input" v-model="customDomain" type="text" placeholder="">
+            <!-- <h2>.fuiter.com</h2> -->
           </div>
         </div>
+        <button @click="saveSetting()" class="button is-info">Link domain</button>
         <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
       </div>
+      
       <div>
         <div class="long-doc-wysiwyg-area">
-          <h6>Terms and Conditions</h6>
+          <h6>Terms and Conditions</h6> <input type="checkbox" v-model="enableTermsCondition"> Enable?
           <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
         </div>
         <div class="long-doc-wysiwyg-area">
-          <h6>Privacy Policy</h6>
+          <h6>Privacy Policy</h6> <input type="checkbox" v-model="enablePrivacyPolicy">Enable?
           <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
+        </div>
+      </div>
+      <div>
+        <div class="long-doc-wysiwyg-area">
+          <h6>Facebook Messenger</h6> <input type="checkbox" v-model="enableFbMessenger"> Enable?
         </div>
       </div>
     </div>
@@ -39,95 +63,66 @@
 
 <script>
 import EditorServices from "../../services/index.js";
+import _ from 'lodash';
 
 export default {
   props: ["fb_page_id", "template", "fb_page_name"],
   data() {
     return {
-      domain: "",
-      subDomain: "",
+      domains: [],
+      customDomain: '',
+      subDomain: '',
+      enableTermsCondition: false,
+      enablePrivacyPolicy: false,
+      enableFbMessenger: false,
       termsCondition: `<p class="pad-10">Terms of Service</p>                       
           <p class="pad-10"><b>1. Terms</b></p>
-          <p>By accessing the website at ${
-            this.domain
-          }, you are agreeing to be bound by these terms of 
+          <p>By accessing the website at ${this.domain}, you are agreeing to be bound by these terms of 
           service, all applicable laws and regulations, and agree that you are responsible for compliance with any 
           applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing 
           his site. The materials contained in this website are protected by applicable copyright and trademark law.</p>
           <p class="pad-10"><b>2. Use License</b></p>
           <p>a. Permission is granted to temporarily download one copy of the materials (information or software) on 
-          ${
-            this.fb_page_name
-          }'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a 
+          ${this.fb_page_name}'s website for personal, non-commercial transitory viewing only. This is the grant of a license, not a 
           transfer of title, and under this license you may not:
           <ul>
             <li>1. modify or copy the materials;</li>
             <li>2. use the materials for any commercial purpose, or for any public display (commercial or non-commercial);</li>
-            <li>3. attempt to decompile or reverse engineer any software contained on ${
-              this.fb_page_name
-            }'s website;</li>
+            <li>3. attempt to decompile or reverse engineer any software contained on ${this.fb_page_name}'s website;</li>
             <li>4. remove any copyright or other proprietary notations from the materials; or</li>
             <li>5. transfer the materials to another person or 'mirror' the materials on any other server.</li>
           </ul>
           <p class="pad-10">b. This license shall automatically terminate if you violate any of these restrictions and may be terminated 
-          by ${
-            this.fb_page_name
-          } at any time. Upon terminating your viewing of these materials or upon the termination of this license, 
+          by ${this.fb_page_name} at any time. Upon terminating your viewing of these materials or upon the termination of this license, 
           you must destroy any downloaded materials in your possession whether in electronic or printed format.</p>
           <p class="pad-10"><b>3. Disclaimer</b></p>
-          <p>a. The materials on ${
-            this.fb_page_name
-          }'s website are provided on an 'as is' basis. ${
-        this.fb_page_name
-      } makes no warranties, expressed 
-          or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties 
-          or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property 
-          or other violation of rights.</p>
-          <p class="pad-10">b. Further, ${
-            this.fb_page_name
-          } does not warrant or make any representations concerning the accuracy, likely results, or reliability 
-          of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
-          <p class="pad-10"><b>4. Limitations</b></p>
-          <p>In no event shall ${
-            this.fb_page_name
-          } or its suppliers be liable for any damages (including, without limitation, damages for loss of data 
-          or profit, or due to business interruption) arising out of the use or inability to use the materials on ${
-            this.fb_page_name
-          }'s website, 
-          even if ${this.fb_page_name} or a ${
-        this.fb_page_name
-      } authorized representative has been notified orally or in writing of the possibility 
-          of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of 
-          liability for consequential or incidental damages, these limitations may not apply to you.</p>
-          <p class="pad-10"><b>5. Accuracy of materials</b></p>
-          <p>The materials appearing on ${
-            this.fb_page_name
-          }'s website could include technical, typographical, or photographic errors. 
-          ${
-            this.fb_page_name
-          } does not warrant that any of the materials on its website are accurate, complete or current. ${
-        this.fb_page_name
-      } may make changes to the
-          materials contained on its website at any time without notice. However ${
-            this.fb_page_name
-          } does not make any commitment 
-          to update the materials.</p>
-          <p class="pad-10"><b>6. Links</b></p>
-          <p>${
-            this.fb_page_name
-          } has not reviewed all of the sites linked to its website and is not responsible for the contents of 
-          any such linked site. The inclusion of any link does not imply endorsement by ${
-            this.fb_page_name
-          } of the site. Use of any such 
-          linked website is at the user's own risk.</p>
-          <p class="pad-10"><b>7. Modifications</b></p>
-          <p>${
-            this.fb_page_name
-          } may revise these terms of service for its website at any time without notice. By using this website 
-          you are agreeing to be bound by the then current version of these terms of service.</p>
-          <p class="pad-10"><b>8. Governing Law</b></p>
-          <p>These terms and conditions are governed by and construed in accordance with the laws of United States and 
-          you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>`,
+          <p>a. The materials on ${this.fb_page_name}'s website are provided on an 'as is' basis. ${this.fb_page_name} makes no warranties, expressed 
+            or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties 
+            or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property 
+            or other violation of rights.</p>
+            <p class="pad-10">b. Further, ${this.fb_page_name} does not warrant or make any representations concerning the accuracy, likely results, or reliability 
+            of the use of the materials on its website or otherwise relating to such materials or on any sites linked to this site.</p>
+            <p class="pad-10"><b>4. Limitations</b></p>
+            <p>In no event shall ${this.fb_page_name} or its suppliers be liable for any damages (including, without limitation, damages for loss of data 
+            or profit, or due to business interruption) arising out of the use or inability to use the materials on ${this.fb_page_name}'s website, 
+            even if ${this.fb_page_name} or a ${this.fb_page_name} authorized representative has been notified orally or in writing of the possibility 
+            of such damage. Because some jurisdictions do not allow limitations on implied warranties, or limitations of 
+            liability for consequential or incidental damages, these limitations may not apply to you.</p>
+            <p class="pad-10"><b>5. Accuracy of materials</b></p>
+            <p>The materials appearing on ${this.fb_page_name}'s website could include technical, typographical, or photographic errors. 
+            ${this.fb_page_name} does not warrant that any of the materials on its website are accurate, complete or current. ${this.fb_page_name} may make changes to the
+            materials contained on its website at any time without notice. However ${this.fb_page_name} does not make any commitment 
+            to update the materials.</p>
+            <p class="pad-10"><b>6. Links</b></p>
+            <p>${this.fb_page_name} has not reviewed all of the sites linked to its website and is not responsible for the contents of 
+            any such linked site. The inclusion of any link does not imply endorsement by ${this.fb_page_name} of the site. Use of any such 
+            linked website is at the user's own risk.</p>
+            <p class="pad-10"><b>7. Modifications</b></p>
+            <p>${this.fb_page_name} may revise these terms of service for its website at any time without notice. By using this website 
+            you are agreeing to be bound by the then current version of these terms of service.</p>
+            <p class="pad-10"><b>8. Governing Law</b></p>
+            <p>These terms and conditions are governed by and construed in accordance with the laws of United States and 
+            you irrevocably submit to the exclusive jurisdiction of the courts in that State or location.</p>`,
       privacyPolicy: `<h1>${this.fb_page_name} Privacy Policy</h1>
           <p class="pad-10">${
             this.fb_page_name
@@ -255,16 +250,35 @@ export default {
   },
 
   methods: {
+    showDomainDropDown(e) {
+      let elem = document.getElementById('domain-dropdown');
+      if(_.includes(elem.classList, 'is-active')){
+        elem.classList.remove('is-active');
+      }else{
+        elem.className += " is-active";
+      }
+    },
     saveSetting() {
       EditorServices.updateSetting(this.fb_page_id, {
         subdomain: this.subDomain,
-        domain: this.domain,
+        domain: this.customDomain,
         fb_page_template_id: this.template.id,
+        fb_messenger: this.enableFbMessenger,
         legal_info: {
-          terms_condition: this.termsCondition,
-          privacy_policy: this.privacyPolicy
+          terms_condition: {
+            value: this.termsCondition,
+            enable: this.enableTermsCondition,
+          },
+          privacy_policy: {
+            value: this.privacyPolicy,
+            enable: this.enablePrivacyPolicy,
+          }
         }
-      });
+      })
+        .then( res => {
+          this.domains = [];
+          this.domains.push(`https://www.${this.subDomain}/fuiter.com`, `https://www.${this.customDomain}`)
+        });
     }
   },
 
@@ -272,13 +286,23 @@ export default {
     EditorServices.showSetting(this.template.id).then(res => {
       if (!_.isNil(res.data)) {
         const settingData = res.data;
-        this.domain = settingData.domain;
+        const legalInfo = settingData.legal_info;
+        this.customDomain = settingData.domain;
+
         this.subDomain = settingData.subdomain;
-        this.termsCondition = settingData.legal_info.terms_condition;
-        this.privacyPolicy = settingData.legal_info.privacy_policy;
+        this.enableFbMessenger = settingData.fb_messenger;
+
+        this.domains.push(`https://www.${this.subDomain}.fuiter.com`);
+        if(settingData.domain != null) {
+          this.domains.push(`https://www.${settingData.domain}`);
+        }
+        this.termsCondition = legalInfo.terms_condition.value;
+        this.privacyPolicy = legalInfo.privacy_policy.value;
+        this.enablePrivacyPolicy = legalInfo.privacy_policy.enable;
+        this.enableTermsCondition = legalInfo.terms_condition.enable;
       }
     });
-  }
+  },
 };
 </script>
 
