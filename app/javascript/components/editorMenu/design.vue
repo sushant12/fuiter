@@ -44,12 +44,24 @@
       <i class="fa fa-question-circle has-text-grey-lighter" aria-hidden="true" id="icon"></i>
     </span>
     <div class="border-wrap">
-      <div v-for="themeColor in themeColors">
-        <input type="radio" :value="themeColor['name']" v-model="selectedThemeColor">
-        <label>{{ themeColor['name'] }}</label>
-        <div v-for="colors in themeColor['options']">
-          {{ colors }}
+      <p class="p-inner-label">Suggested Colors</p>
+      <compact-picker :value="selectedThemeColor" v-model="selectedThemeColor" :palette="themeColors"></compact-picker>
+      <div class="custom">
+        <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
+          <div class="dropdown" id="custom-bg-color">
+          
+          <div class="dropdown-trigger">
+            <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
+              <i class="fa fa-angle-down has-text-white"></i>
+            </span>
+          </div>
+            <div class="dropdown-menu" id="dropdown-menu" role="menu" style="min-width: 100px;">
+              <chrome-picker v-model="selectedThemeColor" ></chrome-picker>
+            </div>&nbsp;
+          <span class="label-color palette">Select a custom color</span>
         </div>
+        </span>
+        
       </div>
     </div>
     <button class="button is-info" @click="updateProperty">Save</button>
@@ -69,6 +81,7 @@
 import EditorServices from "../../services/index.js";
 import FontServices from "../../services/googleFont.js";
 import LogoDesign from './design/logo';
+import { Chrome, Compact } from "vue-color";
 
 export default {
   props: ["template", "templates_url", "default_template_value"],
@@ -80,7 +93,9 @@ export default {
       suggestedFonts: [],
       googleFonts: [],
       themeColors: [],
-      selectedThemeColor: null
+      selectedThemeColor: {
+        hex: ""
+      },
     };
   },
   methods: {
@@ -94,13 +109,25 @@ export default {
     resetDesignPage() {
       this.showDesign = true;
     },
+    showColorPicker(e) {
+      e.stopPropagation();
+      const el = document.getElementById(e.currentTarget.firstChild.id);
+      const notColorPicker = e.target.classList.contains("palette") || e.target.classList.contains("fa-angle-down")
+      if(notColorPicker){
+        el.classList.toggle('is-active');
+      }
+    },
+    hideColorPicker(e){
+      const el = document.getElementById(e.currentTarget.firstChild.id);
+      el.classList.remove("is-active");
+    },
     updateProperty() {
       EditorServices.saveFbPageTemplate(
         this.template['id'],{
           properties: {
             theme: {
               font: this.selectedFont,
-              color: this.selectedThemeColor
+              color: this.selectedThemeColor["hex"] || this.selectedThemeColor
             }
           }
         }
@@ -131,6 +158,8 @@ export default {
   },
   components: {
     LogoDesign,
+    "chrome-picker": Chrome,
+    "compact-picker": Compact
   }
 };
 </script>
