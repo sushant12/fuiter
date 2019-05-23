@@ -107,7 +107,7 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def cover_images
-    albums = object.content.dig('albums', 'data').select do |album|
+    albums = object.content.dig('albums', 'data')&.select do |album|
       album['name'] == 'Cover Photos'
     end
     if albums.empty?

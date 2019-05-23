@@ -112,3 +112,5 @@ form .btn:hover {
 .slider img{
   background-size: cover;
 }
+/*.dropdown .dropdown-toggle:hover + .dropdown-menu {
+  display: block; }*/
