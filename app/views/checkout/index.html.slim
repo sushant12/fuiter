@@ -1,0 +1,48 @@
+section.section
+  .columns.is-centered
+    .column.is-6.border.pa5
+      h1.title.is-3
+        | Subscribe
+      p
+        | Choose a plan
+        
+        strong
+          .columns
+            .column.is-6
+              .card.card-content
+                .media
+                  a
+                    .media-content
+                    p.title.is-4 Monthly
+                    p.subtitle.is-6 $19 per month
+                    .content
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      | Phasellus nec iaculis mauris.
+            .column.is-6
+              .card.card-content
+                .media
+                  a
+                    .media-content
+                      p.title.is-4 Annual
+                      p.subtitle.is-6 $190 per year 
+                      .content
+                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        | Phasellus nec iaculis mauris.
+    .column.is-6.border.pa5
+      script src="https://js.stripe.com/v3/" 
+      form#payment-form action="/charge" method="post" 
+        .form-row
+          label
+            span Name
+            input#name-on-card.field placeholder=("Jane Doe") /
+
+        .form-row
+          label for="card-element" 
+            | Credit or debit card
+          #card-element
+            /! A Stripe Element will be inserted here.
+          /! Used to display form errors.
+          #card-errors role="alert" 
+        button Submit Payment
+= javascript_pack_tag 'checkout'
+    

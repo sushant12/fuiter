@@ -90,7 +90,7 @@
           </div>    
           <div class="navbar-item is-hidden-mobile is-hidden-tablet-only">
             <a 
-            :href="go_live"
+            :href="checkout"
             class="button success-btn"
             target="__BLANK"
             >Go Live</a>
@@ -109,7 +109,7 @@ export default {
       fbSyncLoading: false,
     }
   },
-  props: ["sync", "preview", "url", "go_live"],
+  props: ["sync", "preview", "url", "checkout"],
   methods: {
     updateResolution(type) {
       const frame = document.getElementById("frame");

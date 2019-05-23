@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
   resources :fb_page_template, only: [:show, :update]
+  # resources :checkout
+  get '/checkout/:id', to: 'checkout#index', as: 'checkout'
 
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
@@ -28,7 +30,6 @@ Rails.application.routes.draw do
   put '/editor/page/:fb_page_id', to: 'editor#page'
   post '/editor/setting/:fb_page_id', to: 'editor#create_setting', as: 'editor_create_setting'
   get '/editor/setting/:fb_page_template_id', to: 'editor#show_setting', as: 'editor_show_setting'
-  get '/:fb_page_id/go_live', to: 'editor#go_live', as: 'go_live'
   
   get 'site/:fb_page_id/home', to: 'site#home', as: 'site_home'
   get 'site/:fb_page_id/about', to: 'site#about', as: 'site_about'

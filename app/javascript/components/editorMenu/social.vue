@@ -34,7 +34,7 @@
         </div>
         <div class="social-link-list">
           <i class="fab fa-yelp" />
-          <input type="url" placeholder="Yepl URL" class="input sidebar-inputs" v-model="yelp">
+          <input type="url" placeholder="Yelp URL" class="input sidebar-inputs" v-model="yelp">
         </div>
       </div>
       <button class="button is-info" @click="updateSetting">Save</button>
