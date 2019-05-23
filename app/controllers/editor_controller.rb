@@ -15,9 +15,6 @@ class EditorController < ApplicationController
     render json: pages
   end
 
-  def go_live
-  end
-
   def page
     # loop thru menu and set menu's parent id(ancestry) to nil in first loop
     # if menu have nested property then assign parent id for them  
