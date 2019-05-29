@@ -13,6 +13,7 @@ Convert Fb page to website for small businesses.
 
 - Clone the repo
 - Run `bundle install`
+- Run `yarn install`
 - Copy `database.yml.sample` and rename it to `database.yml`
 - Change credentials in database.yml
 - Copy `.env.sample` and rename it to `.env`
@@ -49,6 +50,3 @@ You need to run `rake templates:sync` to list your templates in the web ui.
 # Custom Fuitter Class
 
 When you use the editor to change the font color it will look for `fuitter-color` . It only updates the color if it finds that class.
-
-
-
