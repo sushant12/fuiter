@@ -1,0 +1,22 @@
+- content_for :title do
+  |  Fuitter | Billing
+= render 'shared/dashboard/navbar'
+.grid-flex style= "display:flex;position:fixed;width:100vw;"
+  .is-hidden-mobile.sidebar-modi 
+    = render 'shared/dashboard/sidebar'
+  .is-mobile.main-contain-area
+    .is-centered.main-content-area.thead.is-mobile
+      .is-mobile.name 
+        | billing
+      / .is-mobile.edit 
+      /   |Actions
+    - @bills.each do |bill|
+      | Start 
+      = bill.start_date.to_time.strftime('%B %e , %Y at %l:%M %p')
+      br
+      | Expired on
+      = bill.end_date.to_time.strftime('%B %e , %Y at %l:%M %p')
+      br
+      |Page
+      = bill.fb_page_template.fb_page.name
+    
