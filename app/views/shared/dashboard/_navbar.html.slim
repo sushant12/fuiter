@@ -30,11 +30,12 @@ nav.navbar.navbar-wrapper.is-solid.navbar-inverse.is-reverse
           = link_to destroy_user_session_path, {class: "mobile-menu "} do
             i.sl.sl-icon-lock 
             | Logout
-        .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
-          a.navbar-link href="javascript:void(0);" 
-            = image_tag(current_user.image)
-            | &nbsp
-            = truncate current_user.name, length: 15
-          .navbar-dropdown.is-boxed.is-medium
-            = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
-              | Logout
+        - if current_user
+          .navbar-item.has-dropdown.is-hoverable.is-hidden-mobile.is-hidden-tablet-only
+            a.navbar-link href="javascript:void(0);" 
+              = image_tag(current_user.image)
+              | &nbsp
+              = truncate current_user.name, length: 15
+            .navbar-dropdown.is-boxed.is-medium
+              = link_to destroy_user_session_path, {class: "navbar-item is-menu"} do
+                | Logout

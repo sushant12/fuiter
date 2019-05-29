@@ -30,7 +30,8 @@ section.section
                         | Phasellus nec iaculis mauris.
     .column.is-6.border.pa5
       script src="https://js.stripe.com/v3/" 
-      form#payment-form action="/charge" method="post" 
+      = form_tag subscribe_path, id: "payment-form" do |f|
+        = hidden_field_tag "fb_page_template_id", params[:id] 
         .form-row
           label
             span Name

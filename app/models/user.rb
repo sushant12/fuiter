@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_many :fb_pages, dependent: :destroy
+  has_many :subscriptions
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook]
