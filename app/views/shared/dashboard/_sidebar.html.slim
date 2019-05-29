@@ -2,15 +2,15 @@ nav.child-menu.is-sidebar-translated style="margin-top:74px; width:250px;"
   .child-menu-inner  
     ul#dashboard-menu.sidebar-menu.is-active.animated
       li.have-children
-        = link_to dashboard_path, { class: "parent-link #{controller.action_name == 'index' ? 'active' : ''}" } do
+        = link_to dashboard_path, { class: "parent-link #{controller_name == 'dashboard' ? 'active' : ''}" } do
           i.fa.fa-th-large 
           | Dashboard
       li.have-children
-        = link_to root_path, { class: "parent-link #{controller.action_name == 'stats' ? 'active' : ''}" } do 
+        = link_to root_path, { class: "parent-link #{controller_name == 'stats' ? 'active' : ''}" } do 
           i.fa.fa-line-chart 
           | Statistics
       li.have-children
-        = link_to root_path, { class: "parent-link #{controller.action_name == 'billing' ? 'active' : ''}" } do
+        = link_to billing_path, { class: "parent-link #{controller_name == 'billing' ? 'active' : ''}" } do
           i.fa.fa-money 
           | Billing
       / li.have-children

@@ -2,7 +2,7 @@
 lock "~> 3.11.0"
 
 set :application, "fwitter"
-set :repo_url, "git@bitbucket.org:suss_buzz/fuitter.git"
+set :repo_url, "git@github.com:sushant12/fuiter.git"
 
 set :branch, :master
 set :deploy_to, "/home/deploy/fwitter"

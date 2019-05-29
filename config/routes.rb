@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 # require
 Rails.application.routes.draw do
+  get 'billing/index'
   ActiveAdmin.routes(self)
   constraints(Subdomain.new) do
     match '/', to: 'site#home', via: [:get]
@@ -14,15 +15,14 @@ Rails.application.routes.draw do
     get '/privacy_policy', to: 'site#privacy_policy'
   end
   
-
-
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
   resources :fb_page_template, only: [:show, :update]
   # resources :checkout
-  get '/checkout/:id', to: 'checkout#index', as: 'checkout'
-
+  get '/billing', to: 'billing#index', as: 'billing'
+  get '/checkout/:id', to: 'subscription#index', as: 'checkout'
+  post '/subscribe', to: 'subscription#create', as: 'subscribe'
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
