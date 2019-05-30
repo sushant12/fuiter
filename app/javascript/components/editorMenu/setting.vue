@@ -5,65 +5,77 @@
       <button class="button is-info" @click="saveSetting()">Save Info</button>
     </div>
     <div class="component-example">
-      <div class="domain-search-box">
-        <h1>search for domain</h1>
-        <div class="one-row-cig">
-          <div class="subdomain">
-            <h2>www.</h2>
-            <input class="sub-input" v-model="" type="text" placeholder="">
-            <!-- <h2>.fuiter.com</h2> -->
-          </div>
-          <div class="btn-for-custom-domain">
-            <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
-            <button @click="" class="button is-info">search</button>
-
-          </div>
-          <div class="dropdown" id="domain-dropdown" @click="showDomainDropDown">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>{{domains[0]}}</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
+      <div class="domain-search-box m-40">
+          <h1 class="subtitle">search for domain</h1>
+        <div class="domain-search-row">
+          <div class="one-row-cig">
+            <div class="subdomain">
+              <h2>www.</h2>
+              <input class="sub-input" type="text" placeholder="">
+              <!-- <h2>.fuiter.com</h2> -->
             </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a class="dropdown-item" v-for="domain in domains" :href='domain' target='__blank'>
-                  {{domain}}
-                </a>
 
+            <div class="dropdown btn-for-custom-domain"" id="domain-dropdown" >
+              <div class="dropdown-trigger">
+                <button class="button is-light border-green" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>.com</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
               </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a class="dropdown-item"  :href='domain' target='__blank'>
+                    ok
+                  </a>
+
+                </div>
+              </div>
+            </div>
+            <div class="btn-for-custom-domain">
+              <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
+              <button class="button is-info">search</button>
+
             </div>
           </div>
         </div>
+
       </div>
       <div class="domain-options-box">
-        <div class="one-row-cig">
-          <div>
-            <h1 class="subtitle"> Domains</h1>
+        <div class="m-40">
+          <div class="is-flex">
+            <h1 class="subtitle"> select sub-domain</h1>
+            <span class="icon tooltip is-tooltip-right" data-tooltip="if you don't have any purchased domain build website with subdomain ">
+              <icon class="fas fa-question-circle" ></icon>
+            </span>
           </div>
-          <div class="dropdown" id="domain-dropdown" @click="showDomainDropDown">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                <span>{{domains[0]}}</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
-            </div>
-            <div class="dropdown-menu" id="dropdown-menu" role="menu">
-              <div class="dropdown-content">
-                <a class="dropdown-item" v-for="domain in domains" :href='domain' target='__blank'>
-                  {{domain}}
-                </a>
 
+          <div class="one-row-cig">
+
+            <div class="dropdown" id="domain-dropdown" @click="showDomainDropDown">
+              <div class="dropdown-trigger">
+                <button class="button is-light border-green" aria-haspopup="true" aria-controls="dropdown-menu">
+                  <span>{{domains[0]}}</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                <div class="dropdown-content">
+                  <a class="dropdown-item" v-for="domain in domains" :href='domain' target='__blank'>
+                    {{domain}}
+                  </a>
+
+                </div>
               </div>
             </div>
           </div>
+          <h6 class="has-text-grey">Your website is published at the domain above</h6>
         </div>
-        <h6 class="has-text-grey">Your website is published at the domain above</h6>
-        <div class="one-row-cig mt-2">
+        <h1 class="subtitle">link domain</h1>
+        <div class="one-row-cig ">
 
           <div class="subdomain">
             <h2>www.</h2>
@@ -346,12 +358,27 @@ export default {
 };
 </script>
 
-.legal-info-save-area{
+<!-- .legal-info-save-area{
   display:flex;
-  justify
-}
+
+  <!-- justify -->
+
 
 <style scoped>
+.domain-search-box{
+  display:flex;
+  flex-flow: column;
+  width:100%;
+}
+.border-green{
+  border: 1px solid #00b289;
+}
+.border-green:hover{
+  border: 1px solid #00b289;
+}
+.m-40{
+  margin-bottom: 40px;
+}
 .subdomain {
   display: flex;
   flex-flow: row;
@@ -381,6 +408,8 @@ export default {
   display: flex;
   flex-flow: row;
   align-items: end;
+  padding-right: 10px;
+  background-color: transparent;
 }
 .legal-info-save-area {
   display: flex;
