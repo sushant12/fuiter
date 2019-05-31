@@ -94,18 +94,39 @@
 
       <div>
         <div class="long-doc-wysiwyg-area">
-          <h6>Terms and Conditions</h6> <input type="checkbox" v-model="enableTermsCondition"> Enable?
+          <h6>Terms and Conditions</h6>
+          <div class="field ">
+            <input id="switchRoundedOutlinedDefault" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
+            <label class="has-text-grey"for="switchRoundedOutlinedDefault">Enable?</label>
+          </div>
+          <!-- <input type="checkbox" v-model="enableTermsCondition"  > Enable? -->
           <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
         </div>
         <div class="long-doc-wysiwyg-area">
-          <h6>Privacy Policy</h6> <input type="checkbox" v-model="enablePrivacyPolicy">Enable?
+          <h6>Privacy Policy</h6>
+          <div class="field ">
+            <input id="switchRoundedOutlinedDefault" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
+            <label class="has-text-grey"for="switchRoundedOutlinedDefault">Enable?</label>
+          </div>
+          <!-- <input type="checkbox" v-model="enablePrivacyPolicy">Enable? -->
           <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
         </div>
       </div>
-      <div>
-        <div class="long-doc-wysiwyg-area">
-          <h6>Facebook Messenger</h6> <input type="checkbox" v-model="enableFbMessenger"> Enable?
+      <div class="messenger-toggle-area">
+        <div class="">
+          <h6 class="text-bold">Facebook Messenger</h6>
         </div>
+        <div class="message">
+          <span class="icon has-text-info">
+            <i class="fab fa-facebook-messenger"></i>
+          </span>
+          activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
+        </div>
+        <div class="field ">
+          <input id="switchRoundedOutlinedDefault" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
+          <label class="has-text-grey"for="switchRoundedOutlinedDefault"></label>
+        </div>
+
       </div>
     </div>
 
@@ -365,6 +386,20 @@ export default {
 
 
 <style scoped>
+.messenger-toggle-area{
+  display:flex;
+  width: 100%;
+  margin-bottom: 30px;
+}
+.messenger-toggle-area div{
+  margin-right: 20px;
+}
+.messenger-toggle-area .field{
+  margin: 0;
+}
+.messenger-toggle-area .message{
+  width: 40%;
+}
 .domain-search-box{
   display:flex;
   flex-flow: column;

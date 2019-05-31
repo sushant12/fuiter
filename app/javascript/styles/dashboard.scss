@@ -214,6 +214,7 @@ body {
     align-items: center;
     margin-bottom: 10px;
     border-radius: 20px;
+    position: relative;
     .data-logo {
       flex-shrink: 0;
       flex-grow: 0;
@@ -227,6 +228,16 @@ body {
           margin-left: 0;
         }
       }
+    }
+    .status-show{
+      position: absolute;
+      z-index: 3;
+      left: 50%;
+      top: 0;
+      background-color: yellow;
+      width: 150px;
+      text-align: center;
+      height: 30px;
     }
 
     .text {

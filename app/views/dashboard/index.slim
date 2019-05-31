@@ -17,7 +17,7 @@
           img src=(page.picture)
         .is-mobile.text
           = page.name
-        .is-mobile.info-status
+        .status-show
           - case(page.status)
           - when 'online'
             .notch-active.online

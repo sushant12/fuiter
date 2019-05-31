@@ -5,7 +5,7 @@
     </a>
     <div class="field">
       <h1 class="subtitle">Social</h1>
-      <h6>Connecting to social services enables you to push or pull data, and allow visitors to connect with you via those services.</h6>
+      <h6 class="general-messages">Connect Social Media to your Website for better engagement</h6>
       <h6>Add social sites URL</h6>
       <div class="control">
         <div class="social-link-list">
@@ -27,7 +27,7 @@
         <div class="social-link-list">
           <i class="fab fa-linkedin" />
           <input type="url" placeholder="LinkedIn URL" class="input sidebar-inputs" v-model="linkedin">
-        </div> 
+        </div>
         <div class="social-link-list">
           <i class="fab fa-pinterest" />
           <input type="url" placeholder="Pinterest URL" class="input sidebar-inputs" v-model="pinterest">
@@ -99,6 +99,12 @@ export default {
 </script>
 
 <style scoped>
+.field .subtitle{
+  margin-bottom: 5px;
+}
+.field .general-messages{
+  margin-top: 0;
+}
 .social-link-list {
   width: 100%;
   justify-content: space-between;
