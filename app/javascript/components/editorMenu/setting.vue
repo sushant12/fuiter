@@ -114,18 +114,42 @@
       </div>
       <div class="messenger-toggle-area">
         <div class="">
-          <h6 class="text-bold">Facebook Messenger</h6>
+          <h6 class="text-bold">
+            <span class="icon has-text-info is-large  fas fa-2x ">
+              <i class="fab fa-facebook-messenger"></i>
+            </span>
+            Facebook Messenger
+          </h6>
+
         </div>
-        <div class="message">
-          <span class="icon has-text-info">
-            <i class="fab fa-facebook-messenger"></i>
-          </span>
+        <!-- <div class="message">
+
           activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
-        </div>
+        </div> -->
         <div class="field ">
           <input id="switchRoundedOutlinedDefault" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
           <label class="has-text-grey"for="switchRoundedOutlinedDefault"></label>
         </div>
+
+      </div>
+      <div class="messenger-toggle-area">
+        <!-- <div class="">
+          <h6 class="text-bold">
+            <span class="icon has-text-info is-large  fas fa-2x ">
+              <i class="fab fa-facebook-messenger"></i>
+            </span>
+            Facebook Messenger
+          </h6>
+
+        </div> -->
+        <div class="message">
+
+          activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
+        </div>
+        <!-- <div class="field ">
+          <input id="switchRoundedOutlinedDefault" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
+          <label class="has-text-grey"for="switchRoundedOutlinedDefault"></label>
+        </div> -->
 
       </div>
     </div>
@@ -389,16 +413,17 @@ export default {
 .messenger-toggle-area{
   display:flex;
   width: 100%;
-  margin-bottom: 30px;
+  margin-bottom: 5px;
 }
 .messenger-toggle-area div{
   margin-right: 20px;
 }
 .messenger-toggle-area .field{
-  margin: 0;
+  margin-top: 15px;
 }
 .messenger-toggle-area .message{
-  width: 40%;
+  width: 80%;
+  margin-bottom: 20px;
 }
 .domain-search-box{
   display:flex;
