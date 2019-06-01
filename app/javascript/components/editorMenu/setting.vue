@@ -5,17 +5,16 @@
       <button class="button is-info" @click="saveSetting()">Save Info</button>
     </div>
     <div class="component-example">
-      <div class="domain-search-box m-40">
+<!--       <div class="domain-search-box m-40">
           <h1 class="subtitle">search for domain</h1>
         <div class="domain-search-row">
           <div class="one-row-cig">
             <div class="subdomain">
               <h2>www.</h2>
               <input class="sub-input" type="text" placeholder="">
-              <!-- <h2>.fuiter.com</h2> -->
             </div>
 
-            <div class="dropdown btn-custom-domain"" id="domain-dropdown" >
+            <div class="dropdown btn-custom-domain" id="domain-dropdown" >
               <div class="dropdown-trigger">
                 <button class="button is-light border-green" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span>.com</span>
@@ -34,14 +33,13 @@
               </div>
             </div>
             <div class="btn-custom-domain">
-              <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
               <button class="button is-info">search</button>
 
             </div>
           </div>
         </div>
 
-      </div>
+      </div> -->
       <div class="domain-options-box">
         <div class="m-40">
           <div class="is-flex">
