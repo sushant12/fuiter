@@ -1,6 +1,6 @@
 doctype html
 html
-  title 
+  title
     = @page.name
   = csrf_meta_tags
   = csp_meta_tag
@@ -12,12 +12,12 @@ html
   = stylesheet_pack_tag "templates/riverina/riverina"
   link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" /
   link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /
-  
+
   link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key
-  / css:  
+  /= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key
+  / css:
   /   .nav-link:hover{
-  /     background-color: #{@template.properties.dig('nav', 'hover_color')} !important; 
+  /     background-color: #{@template.properties.dig('nav', 'hover_color')} !important;
   /   }
   /   .nav-link {
   /     color: #{@template.properties.dig('nav', 'font_color')} !important;
@@ -25,11 +25,11 @@ html
   body.fnt-lora data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
     nav.navbar.navbar-expand-lg.navbar-light.p-0
       .container
-        a.navbar-brand href=(@page.home_menu) 
+        a.navbar-brand href=(@page.home_menu)
         h1
           b.grey
             = @page.name
-        button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button" 
+        button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button"
           span.navbar-toggler-icon
         #navbarTogglerDemo02.collapse.navbar-collapse
           ul.navbar-nav.ml-auto
@@ -48,7 +48,7 @@ html
     = yield
 
     footer
-      .py-3.px-5 style="" 
+      .py-3.px-5 style=""
         .container
           .row
             .col-md-4.text-center.d-md-flex.align-items-center
@@ -78,8 +78,8 @@ html
                 - if name == 'instagram'
                   a href=(url) target="__blank"
                     i class=("fab fa-#{name}")
-    script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-    script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     - if @page.fb_page_template.setting.fb_messenger
-      = render 'shared/messenger' 
+      = render 'shared/messenger'
