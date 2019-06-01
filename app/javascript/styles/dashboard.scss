@@ -234,10 +234,21 @@ body {
       z-index: 3;
       left: 50%;
       top: 0;
-      background-color: yellow;
+      // background-color: yellow;
       width: 150px;
       text-align: center;
       height: 30px;
+      .in-progress{
+        background-color: gold;
+      }
+      .online{
+        background-color: #00b289;
+      }
+      .expired{
+        background-color: tomato;
+      }
+
+
     }
 
     .text {
