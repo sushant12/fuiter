@@ -21,6 +21,7 @@ gem 'webpacker'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'stripe'
+gem 'stripe_event'
 
 group :development, :test do
   gem 'sass-rails'

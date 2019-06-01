@@ -398,6 +398,9 @@ GEM
     stripe (4.11.0)
       faraday (~> 0.13)
       net-http-persistent (~> 3.0)
+    stripe_event (2.2.0)
+      activesupport (>= 3.1)
+      stripe (>= 2.8, < 5.0)
     temple (0.8.0)
     thor (0.20.3)
     thread_safe (0.3.6)
@@ -470,6 +473,7 @@ DEPENDENCIES
   spring
   spring-watcher-listen (~> 2.0.0)
   stripe
+  stripe_event
   tzinfo-data
   uglifier
   web-console (>= 3.3.0)

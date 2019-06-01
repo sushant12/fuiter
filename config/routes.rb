@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get '/terms_and_condition', to: 'site#terms_condition'
     get '/privacy_policy', to: 'site#privacy_policy'
   end
-  
+  mount StripeEvent::Engine, at: '/webhook'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   get '/billing', to: 'billing#index', as: 'billing'
   get '/checkout/:id', to: 'subscription#index', as: 'checkout'
   post '/subscribe', to: 'subscription#create', as: 'subscribe'
+  # post '/webhook', to: 'subscription#webhook', as: 'webhook'
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'
