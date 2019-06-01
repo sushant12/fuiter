@@ -15,7 +15,7 @@
               <!-- <h2>.fuiter.com</h2> -->
             </div>
 
-            <div class="dropdown btn-for-custom-domain"" id="domain-dropdown" >
+            <div class="dropdown btn-custom-domain"" id="domain-dropdown" >
               <div class="dropdown-trigger">
                 <button class="button is-light border-green" aria-haspopup="true" aria-controls="dropdown-menu">
                   <span>.com</span>
@@ -33,7 +33,7 @@
                 </div>
               </div>
             </div>
-            <div class="btn-for-custom-domain">
+            <div class="btn-custom-domain">
               <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
               <button class="button is-info">search</button>
 
@@ -82,7 +82,7 @@
             <input class="sub-input" v-model="customDomain" type="text" placeholder="">
             <!-- <h2>.fuiter.com</h2> -->
           </div>
-          <div class="btn-for-custom-domain">
+          <div class="btn-custom-domain">
             <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
             <button @click="saveSetting()" class="button is-info">Link domain</button>
 
@@ -96,8 +96,8 @@
         <div class="long-doc-wysiwyg-area">
           <h6>Terms and Conditions</h6>
           <div class="field ">
-            <input id="switchRoundedOutlinedDefault" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
-            <label class="has-text-grey"for="switchRoundedOutlinedDefault">Enable?</label>
+            <input id="termsConditionToggle" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
+            <label class="has-text-grey"for="termsConditionToggle">Enable?</label>
           </div>
           <!-- <input type="checkbox" v-model="enableTermsCondition"  > Enable? -->
           <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
@@ -105,8 +105,8 @@
         <div class="long-doc-wysiwyg-area">
           <h6>Privacy Policy</h6>
           <div class="field ">
-            <input id="switchRoundedOutlinedDefault" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
-            <label class="has-text-grey"for="switchRoundedOutlinedDefault">Enable?</label>
+            <input id="privacyPolicyToggle" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
+            <label class="has-text-grey"for="privacyPolicyToggle">Enable?</label>
           </div>
           <!-- <input type="checkbox" v-model="enablePrivacyPolicy">Enable? -->
           <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
@@ -127,8 +127,8 @@
           activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
         </div> -->
         <div class="field ">
-          <input id="switchRoundedOutlinedDefault" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
-          <label class="has-text-grey"for="switchRoundedOutlinedDefault"></label>
+          <input id="messengerToggle" type="checkbox" name="enableFbMessenger" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
+          <label class="has-text-grey"for="messengerToggle"></label>
         </div>
 
       </div>
@@ -464,12 +464,13 @@ export default {
   padding-right: 10px;
   border-radius: 5px;
 }
-.one-row-cig .btn-for-custom-domain{
+.one-row-cig .btn-custom-domain{
   display: flex;
   flex-flow: row;
   align-items: end;
   padding-right: 10px;
   background-color: transparent;
+  padding-top: 10px;
 }
 .legal-info-save-area {
   display: flex;
@@ -496,6 +497,7 @@ export default {
 .one-row-cig {
   display: flex;
   flex-flow: row;
+  align-items:center;
 }
 .one-row-cig h1 {
   /* //width: 20%; */
