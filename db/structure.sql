@@ -132,7 +132,8 @@ CREATE TABLE public.fb_page_templates (
     map_enable boolean,
     favicon character varying,
     title character varying,
-    subscribed boolean DEFAULT true
+    subscribed boolean DEFAULT true,
+    payment_gateway_subscription_id character varying
 );
 
 
@@ -540,6 +541,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190412062409'),
 ('20190512133838'),
 ('20190526091542'),
-('20190527125135');
+('20190527125135'),
+('20190601045448');
 
 
