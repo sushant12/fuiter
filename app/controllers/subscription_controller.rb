@@ -25,10 +25,11 @@ class SubscriptionController < ApplicationController
     }
 
     current_user.update(options)
+    UserSubscribeMailer.user_subscribe(current_user).deliver
     page.update({payment_gateway_subscription_id: subscription.id})
 
     page.fb_page.update({status: 'online'})
     redirect_to dashboard_path, notice: " Your subscription was set up successfully!"
-  
+
   end
 end

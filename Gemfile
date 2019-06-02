@@ -22,6 +22,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'stripe'
 gem 'stripe_event'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   gem 'sass-rails'

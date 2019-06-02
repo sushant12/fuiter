@@ -178,24 +178,6 @@ CREATE TABLE public.pages (
 
 
 --
--- Name: plans; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.plans (
-    id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    payment_gateway_plan_id character varying,
-    name character varying,
-    price numeric,
-    "interval" integer,
-    interval_count integer,
-    status integer,
-    description text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -227,13 +209,14 @@ CREATE TABLE public.settings (
 
 CREATE TABLE public.subscriptions (
     id uuid DEFAULT public.gen_random_uuid() NOT NULL,
-    start_date date,
-    end_date date,
+    start_date timestamp without time zone,
+    end_date timestamp without time zone,
     status integer,
-    payment_gateway character varying,
+    payment_gateway integer,
     payment_gateway_subscription_id character varying,
-    fb_page_id uuid,
-    plan_id uuid,
+    meta_data jsonb,
+    fb_page_template_id uuid,
+    user_id uuid,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -327,14 +310,6 @@ ALTER TABLE ONLY public.fb_pages
 
 ALTER TABLE ONLY public.pages
     ADD CONSTRAINT pages_pkey PRIMARY KEY (id);
-
-
---
--- Name: plans plans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.plans
-    ADD CONSTRAINT plans_pkey PRIMARY KEY (id);
 
 
 --
@@ -448,17 +423,17 @@ CREATE INDEX index_settings_on_fb_page_template_id ON public.settings USING btre
 
 
 --
--- Name: index_subscriptions_on_fb_page_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_subscriptions_on_fb_page_template_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_subscriptions_on_fb_page_id ON public.subscriptions USING btree (fb_page_id);
+CREATE INDEX index_subscriptions_on_fb_page_template_id ON public.subscriptions USING btree (fb_page_template_id);
 
 
 --
--- Name: index_subscriptions_on_plan_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_subscriptions_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_subscriptions_on_plan_id ON public.subscriptions USING btree (plan_id);
+CREATE INDEX index_subscriptions_on_user_id ON public.subscriptions USING btree (user_id);
 
 
 --
@@ -484,19 +459,19 @@ ALTER TABLE ONLY public.fb_page_templates
 
 
 --
+-- Name: subscriptions fk_rails_359f85354b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.subscriptions
+    ADD CONSTRAINT fk_rails_359f85354b FOREIGN KEY (fb_page_template_id) REFERENCES public.fb_page_templates(id);
+
+
+--
 -- Name: fb_page_templates fk_rails_5f15bf73e3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.fb_page_templates
     ADD CONSTRAINT fk_rails_5f15bf73e3 FOREIGN KEY (fb_page_id) REFERENCES public.fb_pages(id);
-
-
---
--- Name: subscriptions fk_rails_63d3df128b; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.subscriptions
-    ADD CONSTRAINT fk_rails_63d3df128b FOREIGN KEY (plan_id) REFERENCES public.plans(id);
 
 
 --
@@ -516,11 +491,11 @@ ALTER TABLE ONLY public.settings
 
 
 --
--- Name: subscriptions fk_rails_cd2741f029; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: subscriptions fk_rails_933bdff476; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.subscriptions
-    ADD CONSTRAINT fk_rails_cd2741f029 FOREIGN KEY (fb_page_id) REFERENCES public.fb_pages(id);
+    ADD CONSTRAINT fk_rails_933bdff476 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -562,7 +537,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190404005332'),
 ('20190405081254'),
 ('20190408150256'),
-('20190409043329'),
 ('20190409043622'),
 ('20190412062409'),
 ('20190512133838'),
