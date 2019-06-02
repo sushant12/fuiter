@@ -43,13 +43,13 @@
       <div class="domain-options-box">
         <div class="m-40">
           <div class="is-flex">
-            <h1 class="subtitle"> select sub-domain</h1>
+            <h1 class="subtitle text-bold"> select domain</h1>
             <span class="icon tooltip is-tooltip-right" data-tooltip="if you don't have any purchased domain build website with subdomain ">
-              <icon class="fas fa-question-circle" ></icon>
+              <i class="fas fa-question-circle" ></i>
             </span>
           </div>
 
-          <div class="one-row-cig">
+          <div class="one-row-cig pb-10">
 
             <div class="dropdown" id="domain-dropdown" @click="showDomainDropDown">
               <div class="dropdown-trigger">
@@ -72,7 +72,7 @@
           </div>
           <h6 class="has-text-grey">Your website is published at the domain above</h6>
         </div>
-        <h1 class="subtitle">link domain</h1>
+        <h1 class="subtitle text-bold">link domain</h1>
         <div class="one-row-cig ">
 
           <div class="subdomain">
@@ -89,28 +89,7 @@
 
         <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
       </div>
-
-      <div>
-        <div class="long-doc-wysiwyg-area">
-          <h6>Terms and Conditions</h6>
-          <div class="field ">
-            <input id="termsConditionToggle" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
-            <label class="has-text-grey"for="termsConditionToggle">Enable?</label>
-          </div>
-          <!-- <input type="checkbox" v-model="enableTermsCondition"  > Enable? -->
-          <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
-        </div>
-        <div class="long-doc-wysiwyg-area">
-          <h6>Privacy Policy</h6>
-          <div class="field ">
-            <input id="privacyPolicyToggle" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
-            <label class="has-text-grey"for="privacyPolicyToggle">Enable?</label>
-          </div>
-          <!-- <input type="checkbox" v-model="enablePrivacyPolicy">Enable? -->
-          <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
-        </div>
-      </div>
-      <div class="messenger-toggle-area">
+      <div class="messenger-toggle-area border-top">
         <div class="">
           <h6 class="text-bold">
             <span class="icon has-text-info is-large  fas fa-2x ">
@@ -130,7 +109,7 @@
         </div>
 
       </div>
-      <div class="messenger-toggle-area">
+      <div class="messenger-toggle-area border-btm">
         <!-- <div class="">
           <h6 class="text-bold">
             <span class="icon has-text-info is-large  fas fa-2x ">
@@ -150,6 +129,27 @@
         </div> -->
 
       </div>
+      <div>
+        <div class="long-doc-wysiwyg-area">
+          <h6 class="text-bold">Terms and Conditions</h6>
+          <div class="field ">
+            <input id="termsConditionToggle" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
+            <label class="has-text-grey"for="termsConditionToggle">Enable?</label>
+          </div>
+          <!-- <input type="checkbox" v-model="enableTermsCondition"  > Enable? -->
+          <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
+        </div>
+        <div class="long-doc-wysiwyg-area">
+          <h6 class="text-bold">Privacy Policy</h6>
+          <div class="field ">
+            <input id="privacyPolicyToggle" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
+            <label class="has-text-grey"for="privacyPolicyToggle">Enable?</label>
+          </div>
+          <!-- <input type="checkbox" v-model="enablePrivacyPolicy">Enable? -->
+          <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
+        </div>
+      </div>
+
     </div>
 
     <!-- <button class="button is-info" @click="saveSetting()">Save Info</button> -->
@@ -408,6 +408,20 @@ export default {
 
 
 <style scoped>
+h1{
+  text-transform:capitalize;
+}
+.pb-10{
+  padding-top:10px;
+}
+.border-top{
+  border-top: 1px solid darkgrey;
+  padding-top: 30px;
+}
+.border-btm{
+  padding-bottom: 30px;
+  border-bottom: 1px solid darkgrey;
+}
 .messenger-toggle-area{
   display:flex;
   width: 100%;
@@ -422,6 +436,7 @@ export default {
 .messenger-toggle-area .message{
   width: 80%;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 .domain-search-box{
   display:flex;
