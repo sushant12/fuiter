@@ -146,6 +146,7 @@ input {
 </style>
 <style type="text/css">
   .child-menu{
-    overflow-y: scroll;
+    /* overflow-y: scroll; */
+    overflow-x:hidden;
   }
 </style>
