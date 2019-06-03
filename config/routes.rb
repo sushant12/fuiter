@@ -19,11 +19,13 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
   resources :fb_page_template, only: [:show, :update]
-  # resources :checkout
   get '/billing', to: 'billing#index', as: 'billing'
+  get '/billing/:fb_page_id', to: 'billing#billing_history', as: 'billing_history'
+
   get '/checkout/:id', to: 'subscription#index', as: 'checkout'
   post '/subscribe', to: 'subscription#create', as: 'subscribe'
-  # post '/webhook', to: 'subscription#webhook', as: 'webhook'
+  put '/cancel_subscription/:fb_page_id', to: 'subscription#cancel_subscription', as: 'cancel_subscription'
+  
   get '/dashboard', to: 'dashboard#index', as: 'dashboard'
   post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
   get '/editor/design/:fb_page_id', to: 'editor#design', as: 'editor_design'

@@ -31,4 +31,23 @@ class SubscriptionController < ApplicationController
     redirect_to dashboard_path, notice: " Your subscription was set up successfully!"
   
   end
+
+  def cancel_subscription
+    page = FbPage.find(params[:fb_page_id])
+    fb_page_template = page.fb_page_template
+    subscription_id = fb_page_template.payment_gateway_subscription_id
+    Stripe.api_key = Rails.application.credentials.stripe_api_key
+    customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    subscription = customer.subscriptions.retrieve(subscription_id).delete
+    page.status = "in progress"
+    page.save
+    render json: {
+      page: page,
+      fb_page_template: fb_page_template,
+      customer: customer,
+      subscription: subscription
+    }
+  # rescue
+
+  end
 end
