@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="icon-select" id="inner-menu">
     <a @click="designMenu" class="back">
       <i class="fa fa-arrow-circle-left"/>Go back
     </a>
-    <span class="p-label">Site Title</span>
+    <span class="p-label ">Site Title</span>
     <span
       class="font-icon tooltip is-tooltip-bottom is-tooltip-warning"
       data-tooltip="Set title of website"
@@ -12,12 +12,12 @@
     </span>
     <div class="border-wrap">
       <div class="form-control">
-        <input class="input" type="text" v-model="siteTitle">
+        <input class="input siteTitle" type="text" v-model="siteTitle">
       </div>
     </div>
 
-    <p class="p-label">Logo</p>
-    <div class="field border-wrap file-upload">
+    <p class="p-label pt-10">Add your logo to your site</p>
+    <div class="x border-wrap file-upload">
       <div class="file has-name is-boxed">
         <label class="file-label">
           <picture-input
@@ -37,13 +37,14 @@
                 drag: 'Drag a 😺 GIF or GTFO'
               }"
           ></picture-input>
-          <span class="choose-file">Choose a file</span>
+          <span  class="button is-info choose-file">Choose a file</span>
+          <p class="p-label"> file format: GIF, GTIF </p>
         </label>
       </div>
     </div>
 
-    <p class="p-label">Favico</p>
-    <div class="field border-wrap file-upload">
+    <p class="p-label pt-10">Add your favicon to your site</p>
+    <div class="x border-wrap file-upload">
       <div class="file has-name is-boxed">
         <label class="file-label">
           <picture-input
@@ -63,12 +64,14 @@
                 drag: 'Drag a 😺 GIF or GTFO'
               }"
           ></picture-input>
-          <span class="choose-file">Choose a file</span>
+          <span class="button is-info choose-file">Choose a file</span>
+          <p class="p-label"> file format: GIF, GTIF </p>
+
         </label>
       </div>
     </div>
-    <button class="button is-info" @click="updateProperty">Save</button>
-  </div>  
+    <button class="button is-info submit-btn" @click="updateProperty">Save</button>
+  </div>
 </template>
 
 <script>
@@ -104,7 +107,7 @@ export default{
       formData.append("template[logo]", this.logo);
       formData.append("template[favicon]", this.favicon);
       EditorServices.updateProperties(
-        formData, 
+        formData,
         this.template.id,
         this.template.fb_page_id
       )
@@ -131,6 +134,55 @@ export default{
 };
 </script>
 
+<style scoped>
+
+.siteTitle{
+  width:95%;
+  margin-left: 8px;
+}
+.main-sidebar{
+  width:100%;
+}
+.p-label{
+  color:darkgray;
+  font-size: 14px;
+  text-align:center;
+}
+.pt-10{
+  padding-top:10px;
+}
+.is-boxed{
+  width: 100%;
+}
+label{
+  width: inherit;
+}
+.file-label{
+  padding: 20px;
+
+}
+.file-label .choose-file{
+  margin: 10px 18px 10px 18px;
+  padding-top: 10px;
+}
+
+</style>
 <style>
-  
+.picture-inner .picture-inner-text{
+  color: darkgray;
+}
+.preview-container{
+  width: 128px;
+  height: 128px;
+}
+.choose-file{
+  padding: 20px;
+}
+.submit-btn{
+  width:210px;
+  margin:5px 20px 100px 20px;
+}
+.picture-input{
+  margin-bottom: 10px;
+}
 </style>
