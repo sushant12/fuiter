@@ -113,6 +113,7 @@ export default {
 #menu-list {
   width: 100%;
 }
+
 /* .child-menu {
   overflow-y: auto;
 } */
@@ -125,4 +126,3 @@ export default {
   left: 95vw;
 }
 </style>
-

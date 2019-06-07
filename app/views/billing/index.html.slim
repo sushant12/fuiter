@@ -10,13 +10,17 @@
         | billing
       / .is-mobile.edit 
       /   |Actions
-    - @bills.each do |bill|
-      | Start 
-      = bill.start_date.to_time.strftime('%B %e , %Y at %l:%M %p')
-      br
-      | Expired on
-      = bill.end_date.to_time.strftime('%B %e , %Y at %l:%M %p')
-      br
-      |Page
-      = bill.fb_page_template.fb_page.name
-    
+    #billing
+      <billing :pages="#{@pages.to_json}"> </billing>
+      / - @bills.each do |bill|
+      /   | Start 
+      /   = bill.start_date.to_time.strftime('%B %e , %Y at %l:%M %p')
+      /   br
+      /   | Expired on
+      /   = bill.end_date.to_time.strftime('%B %e , %Y at %l:%M %p')
+      /   br
+      /   |Page
+      /   = bill.fb_page_template.fb_page.name
+
+/ = stylesheet_pack_tag 'billing'
+= javascript_pack_tag 'billing'
