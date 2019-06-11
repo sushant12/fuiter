@@ -14,6 +14,9 @@ html lang="en"
     /! Core CSS
     = stylesheet_pack_tag 'application'
   body
+    - flash.each do |key, value|
+      div class=("flash #{key}")
+        = value
     = yield
 
     = javascript_pack_tag 'application'
