@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :pages, except: [:new, :edit]
   resources :fb_page_template, only: [:show, :update]
+
   get '/billing', to: 'billing#index', as: 'billing'
   get '/billing/:fb_page_id', to: 'billing#billing_history', as: 'billing_history'
-
   get '/checkout/:id', to: 'subscription#index', as: 'checkout'
   post '/subscribe', to: 'subscription#create', as: 'subscribe'
   put '/cancel_subscription/:fb_page_id', to: 'subscription#cancel_subscription', as: 'cancel_subscription'
