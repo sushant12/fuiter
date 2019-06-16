@@ -32,7 +32,7 @@ set :rbenv_ruby, '2.5.3'
 # set :nvm_node, 'v10.7.0'
 
 # files we want symlinking to specific entries in shared
-set :linked_files, %w[config/database.yml config/master.key .env]
+set :linked_files, %w[config/database.yml config/master.key .env config/sidekiq.yml]
 
 # dirs we want symlinking to shared
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system]

@@ -22,6 +22,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'stripe'
 gem 'stripe_event'
+gem 'sendgrid-ruby'
 
 group :development, :test do
   gem 'sass-rails'
@@ -76,6 +77,7 @@ group :development do
   gem 'capistrano3-puma', require: false
   gem 'capistrano-rbenv', '~> 2.1',require: false
   gem 'capistrano-bundler', '~> 1.5', require: false
+  gem 'capistrano-sidekiq', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
