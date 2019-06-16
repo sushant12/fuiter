@@ -11,7 +11,6 @@ class SubscriptionController < ApplicationController
     plan = Stripe::Plan.retrieve(plan_id)
     token = params[:stripeToken]
 
-    # product = Stripe::Product.retrieve(Rails.application.credentials.book_library)
     customer = if current_user.stripe_id?
                  Stripe::Customer.retrieve(current_user.stripe_id)
                else
@@ -26,7 +25,6 @@ class SubscriptionController < ApplicationController
 
     current_user.update(options)
     page.update({payment_gateway_subscription_id: subscription.id})
-    UserSubscriptionWorker.perform_async(current_user.email)
 
     page.fb_page.update({status: 'online'})
     redirect_to dashboard_path, notice: " Your subscription was set up successfully!"

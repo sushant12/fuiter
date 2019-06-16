@@ -27,16 +27,19 @@ module Stripe
     end
 
     def handle_invoice_payment_succeeded(event)
+      current_user = User.find_by(stripe_id: event.data.object.customer)
       subs = ::Subscription.new
       subs.start_date = DateTime.strptime(event.data.object.lines.data.first.period.start.to_s,'%s')
       subs.end_date = DateTime.strptime(event.data.object.lines.data.first.period.end.to_s,'%s')
       subs.status = "success"
       subs.payment_gateway = "stripe"
       subs.payment_gateway_subscription_id = event.data.object.lines.data.first.subscription
-      subs.user_id = User.find_by(stripe_id: event.data.object.customer).id
+      subs.user_id = current_user.id
       subs.fb_page_template_id = FbPageTemplate.find_by(payment_gateway_subscription_id: event.data.object.lines.data.first.subscription).id
       subs.meta_data = event
       subs.save!
+      UserSubscriptionWorker.perform_async(current_user.email)
+    # rescue
     end
   end
 end
