@@ -35,26 +35,26 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options)
   # config.active_storage.service = :local
 
-  config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
-  config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: 'localhost:3000' }
-
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.default_url_options = { host: 'grasruts.com' }
-  # config.action_mailer.smtp_settings = {
-  #   address:              ENV['SMTP_ADDRESS'],
-  #   port:                 ENV['SMTP_PORT'],
-  #   domain:               ENV['SMTP_DOMAIN'],
-  #   user_name:            ENV['SMTP_USER_NAME'],
-  #   password:             ENV['SMTP_PASSWORD'],
-  #   authentication:       'plain',
-  #   enable_starttls_auto: true
-  # }
-  # config.action_mailer.perform_deliveries = true
   # config.action_mailer.raise_delivery_errors = true
-  # config.action_mailer.default_options = { from: 'contact@grasruts.com' }
+  # config.action_mailer.delivery_method = :letter_opener
+  # config.action_mailer.perform_deliveries = true
+  # config.action_mailer.perform_caching = false
+  # config.action_mailer.default_url_options = { host: 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'grasruts.com' }
+  config.action_mailer.smtp_settings = {
+    :user_name => Rails.application.credentials.smtp_username,
+    :password => Rails.application.credentials.smtp_password,
+    :domain => Rails.application.credentials.smtp_domain,
+    :address => 'smtp.sendgrid.net',
+    :port => Rails.application.credentials.smtp_port,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = { from: 'contact@grasruts.com' }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

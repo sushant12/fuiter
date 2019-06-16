@@ -11,7 +11,6 @@ class SubscriptionController < ApplicationController
     plan = Stripe::Plan.retrieve(plan_id)
     token = params[:stripeToken]
 
-    # product = Stripe::Product.retrieve(Rails.application.credentials.book_library)
     customer = if current_user.stripe_id?
                  Stripe::Customer.retrieve(current_user.stripe_id)
                else
@@ -29,7 +28,7 @@ class SubscriptionController < ApplicationController
 
     page.fb_page.update({status: 'online'})
     redirect_to dashboard_path, notice: " Your subscription was set up successfully!"
-  
+
   end
 
   def cancel_subscription

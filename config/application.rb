@@ -43,12 +43,13 @@ module Fuitter
       g.helper false
       g.stylesheets false
     end
+    config.active_job.queue_adapter = :sidekiq
 
     config.active_record.dump_schema_after_migration = true
     config.active_record.schema_format = :sql
 
     config.filter_parameters << :password
-    
+
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN']
     end
