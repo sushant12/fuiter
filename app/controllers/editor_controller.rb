@@ -1,13 +1,13 @@
 class EditorController < ApplicationController
   TRIAL_PERIOD = 15
 
-  before_action :authenticate_user!, :set_fb_page_template ,:check_trial_period
-  
+  # before_action :authenticate_user!, :set_fb_page_template ,:check_trial_period
+
   def design
-    # @fb_page_id = params[:fb_page_id]
-    @fb_page_name = FbPage.find_by(id: @fb_page_id).name
-    # @fb_page_template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
-    @default_template_value = @fb_page_template.template
+    @fb_page_id = params[:fb_page_id]
+    # @fb_page_name = FbPage.find_by(id: @fb_page_id).name
+    @fb_page_template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
+    # @default_template_value = @fb_page_template.template
     @pages = Page.list_pages(@fb_page_template)
   end
 
@@ -19,14 +19,14 @@ class EditorController < ApplicationController
 
   def page
     # loop thru menu and set menu's parent id(ancestry) to nil in first loop
-    # if menu have nested property then assign parent id for them  
+    # if menu have nested property then assign parent id for them
     page_param[:menu].each_with_index do |menu, index|
       parent = Page.find menu[:id]
       parent.update_attributes(position: index, parent: nil, display: menu['display'])
       unless menu[:nested].empty?
         menu[:nested].each_with_index do |sub_menu, index|
           page = Page.find sub_menu[:id]
-          page.update_attributes!(position: index, parent: parent, display: sub_menu['display']) 
+          page.update_attributes!(position: index, parent: parent, display: sub_menu['display'])
         end
       end
     end
