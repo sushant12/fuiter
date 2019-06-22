@@ -1,7 +1,7 @@
 class EditorController < ApplicationController
   TRIAL_PERIOD = 15
 
-  # before_action :authenticate_user!, :set_fb_page_template ,:check_trial_period
+  before_action :authenticate_user!, :set_fb_page_template ,:check_trial_period
 
   def design
     @fb_page_id = params[:fb_page_id]
