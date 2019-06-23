@@ -32,6 +32,8 @@ export default {
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow-y:scroll;
+  overflow-x: hidden;
 }
 
 .site-preview iframe {
