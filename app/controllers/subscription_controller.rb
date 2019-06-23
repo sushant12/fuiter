@@ -5,7 +5,7 @@ class SubscriptionController < ApplicationController
 
   def create
     page = FbPageTemplate.find(params[:fb_page_template_id])
-    Stripe.api_key = Rails.application.credentials.stripe_api_key
+    Stripe.api_key = Fuitter.credentials[:stripe_api_key]
 
     plan_id = 'plan_FAjGZfXAcVNBK0' #params[:plan_id]
     plan = Stripe::Plan.retrieve(plan_id)
