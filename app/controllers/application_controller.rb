@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin!
-    if current_user && current_user.admin
-    else
+    unless current_user && current_user.admin
       redirect_to new_user_session_path
     end
   end

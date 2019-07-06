@@ -79,7 +79,6 @@
             <a
               :href="preview"
               class="button warning-btn"
-              target="__BLANK"
             >Preview</a>
           </div>
           <div v-if="fbSyncLoading" class="navbar-item is-hidden-mobile is-hidden-tablet-only">
@@ -92,7 +91,6 @@
             <a 
             :href="checkout"
             class="button success-btn"
-            target="__BLANK"
             >Go Live</a>
           </div>
         </div>
