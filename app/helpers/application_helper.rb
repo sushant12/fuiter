@@ -9,4 +9,12 @@ module ApplicationHelper
   rescue URI::InvalidURIError
     false
   end
+
+  def check_sub_domain
+    yield if block_given? && request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(request.subdomain)
+  end
+
+  def check_valid_domain
+    yield if block_given? && ENV['BASE_URL'].split(',').exclude?(request.domain)
+  end
 end

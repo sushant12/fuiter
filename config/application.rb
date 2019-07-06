@@ -67,6 +67,10 @@ module Fuitter
     @config ||= Rails.configuration.x
   end
 
+  def self.reserved_subdomains
+    @reserved_subdomains ||= ['www', 'app', 'apps', 'blog', 'blogs', 'help', 'support'].freeze
+  end
+
   def self.credentials
     @credentials ||= Rails.application.credentials[Rails.env.to_sym]
   end

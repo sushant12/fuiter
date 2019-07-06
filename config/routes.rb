@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-# require
 Rails.application.routes.draw do
   get 'billing/index'
   ActiveAdmin.routes(self)
