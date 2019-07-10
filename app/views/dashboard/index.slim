@@ -9,8 +9,6 @@
     .is-centered.main-content-area.thead.is-mobile
       .is-mobile.name
         | your facebook pages
-      / .is-mobile.edit
-      /   |Actions
     - @pages.each do |page|
       .is-mobile.dash-data
         .is-mobile.data-logo
@@ -18,21 +16,11 @@
         .is-mobile.text
           = page.name
         .status-show
-          - case(page.status)
-          - when 'online'
-            .notch-active.online
+          - if page.status
+            .notch-active class=(page.state[page.status][:type])
               i.fa.fa-globe
-              | Online
-          - when 'in progress'
-            .notch-info.in-progress
-              i.fa.fa-check-square
-              | In Progress
-          - when 'expired'
-            .notch-danger.expired
-              i.fa.fa-warning
-              | Expired
-          - else
-        - unless page.state == ""
+                = page.state[page.status][:value]
+        - if page.status
           .is-mobile.condn
             = link_to 'View', site_home_path(page), target: '_blank', class: 'button conditional is-primary is-small'
             = link_to 'Edit', editor_design_path(page.id), class: 'button is-primary is-small'
