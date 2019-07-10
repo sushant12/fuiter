@@ -118,7 +118,7 @@ CREATE TABLE public.fb_page_templates (
     map_enable boolean,
     favicon character varying,
     title character varying,
-    subscribed boolean DEFAULT true,
+    subscribed boolean DEFAULT false,
     payment_gateway_subscription_id character varying,
     trial boolean
 );

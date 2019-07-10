@@ -5,41 +5,6 @@
       <button class="button is-info" @click="saveSetting()">Save Info</button>
     </div>
     <div class="component-example">
-<!--       <div class="domain-search-box m-40">
-          <h1 class="subtitle">search for domain</h1>
-        <div class="domain-search-row">
-          <div class="one-row-cig">
-            <div class="subdomain">
-              <h2>www.</h2>
-              <input class="sub-input" type="text" placeholder="">
-            </div>
-
-            <div class="dropdown btn-custom-domain" id="domain-dropdown" >
-              <div class="dropdown-trigger">
-                <button class="button is-light border-green" aria-haspopup="true" aria-controls="dropdown-menu">
-                  <span>.com</span>
-                  <span class="icon is-small">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </div>
-              <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                <div class="dropdown-content">
-                  <a class="dropdown-item"  :href='domain' target='__blank'>
-                    ok
-                  </a>
-
-                </div>
-              </div>
-            </div>
-            <div class="btn-custom-domain">
-              <button class="button is-info">search</button>
-
-            </div>
-          </div>
-        </div>
-
-      </div> -->
       <div class="domain-options-box">
         <div class="m-40">
           <div class="is-flex">
@@ -65,7 +30,6 @@
                   <a class="dropdown-item" v-for="domain in domains" :href='domain' target='__blank'>
                     {{domain}}
                   </a>
-
                 </div>
               </div>
             </div>
@@ -78,16 +42,13 @@
           <div class="subdomain">
             <h2>www.</h2>
             <input class="sub-input" v-model="customDomain" type="text" placeholder="">
-            <!-- <h2>.fuiter.com</h2> -->
           </div>
           <div class="btn-custom-domain">
-            <!-- <h1 class="subtitle">Connect Your Domain</h1> -->
             <button @click="saveSetting()" class="button is-info">Link domain</button>
 
           </div>
         </div>
 
-        <!-- <h6 class="has-text-grey">Your website is published at the domain above</h6>-->
       </div>
       <div class="messenger-toggle-area border-top">
         <div class="">
@@ -99,10 +60,7 @@
           </h6>
 
         </div>
-        <!-- <div class="message">
 
-          activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
-        </div> -->
         <div class="field ">
           <input id="messengerToggle" type="checkbox" name="enableFbMessenger" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
           <label class="has-text-grey"for="messengerToggle"></label>
@@ -110,23 +68,10 @@
 
       </div>
       <div class="messenger-toggle-area border-btm">
-        <!-- <div class="">
-          <h6 class="text-bold">
-            <span class="icon has-text-info is-large  fas fa-2x ">
-              <i class="fab fa-facebook-messenger"></i>
-            </span>
-            Facebook Messenger
-          </h6>
-
-        </div> -->
         <div class="message">
 
           activate facebook messenger on your website that allows site visiors to send message directly to your facebook page.
         </div>
-        <!-- <div class="field ">
-          <input id="switchRoundedOutlinedDefault" type="checkbox" name="switchRoundedOutlinedDefault" class="switch is-rounded is-outlined" checked="checked" v-model="enableFbMessenger">
-          <label class="has-text-grey"for="switchRoundedOutlinedDefault"></label>
-        </div> -->
 
       </div>
       <div>
@@ -136,7 +81,6 @@
             <input id="termsConditionToggle" type="checkbox" name="enableTermsCondition" class="switch is-rounded is-outlined" checked="checked" v-model="enableTermsCondition">
             <label class="has-text-grey"for="termsConditionToggle">Enable?</label>
           </div>
-          <!-- <input type="checkbox" v-model="enableTermsCondition"  > Enable? -->
           <wysiwyg v-model="termsCondition" class="long-doc-wysiwyg"/>
         </div>
         <div class="long-doc-wysiwyg-area">
@@ -145,14 +89,10 @@
             <input id="privacyPolicyToggle" type="checkbox" name="enablePrivacyPolicy" class="switch is-rounded is-outlined" checked="checked" v-model="enablePrivacyPolicy">
             <label class="has-text-grey"for="privacyPolicyToggle">Enable?</label>
           </div>
-          <!-- <input type="checkbox" v-model="enablePrivacyPolicy">Enable? -->
           <wysiwyg v-model="privacyPolicy" class="long-doc-wysiwyg"/>
         </div>
       </div>
-
     </div>
-
-    <!-- <button class="button is-info" @click="saveSetting()">Save Info</button> -->
   </div>
 </template>
 
@@ -378,7 +318,7 @@ export default {
   },
 
   created() {
-    EditorServices.showSetting(this.template.id).then(res => {
+    EditorServices.showSetting(this.fb_page_id, this.template.id).then(res => {
       if (!_.isNil(res.data)) {
         const settingData = res.data;
         const legalInfo = settingData.legal_info;
@@ -400,12 +340,6 @@ export default {
   },
 };
 </script>
-
-<!-- .legal-info-save-area{
-  display:flex;
-
-  <!-- justify -->
-
 
 <style scoped>
 h1{

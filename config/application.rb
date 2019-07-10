@@ -52,11 +52,26 @@ module Fuitter
 
     Raven.configure do |config|
       config.dsn = ENV['SENTRY_DSN']
-    end
+    end if Rails.env.production?
 
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+
+    # App specific configuration
+    config.x = config_for(:app).with_indifferent_access
+  end
+
+  def self.config
+    @config ||= Rails.configuration.x
+  end
+
+  def self.reserved_subdomains
+    @reserved_subdomains ||= ['www', 'app', 'apps', 'blog', 'blogs', 'help', 'support'].freeze
+  end
+
+  def self.credentials
+    @credentials ||= Rails.application.credentials[Rails.env.to_sym]
   end
 end

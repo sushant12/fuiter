@@ -21,6 +21,9 @@ Convert Fb page to website for small businesses.
 - Run `rake templates:sync`
 - If you are working with js, css then you should run webpacker in a new tab `bin/webpack-dev-server`
 
+# Fetch credentials value
+To fetch value from credentials.yml.enc `Fuiter.credentials[:key]`
+
 # Git workflow
 
 ### Creating a feature branch

@@ -59,8 +59,8 @@ class EditorController < ApplicationController
   end
 
   def check_trial_period
-    trial_exceeded =  Time.now.to_date > @fb_page_template.created_at.to_date + TRIAL_PERIOD
-    if trial_exceeded
+    trial_exceeded =  Time.now.to_date > @fb_page_template.created_at.to_date + TRIAL_PERIOD 
+    if trial_exceeded && !@fb_page_template.subscribed?  
       flash[:notice] = "Your trial is over. Please upgrade to continue using it"
       redirect_to checkout_url(@fb_page_template.id)
     end

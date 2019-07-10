@@ -1,10 +1,9 @@
 class Subdomain 
   def matches?(request)
-    reserved_subdomain = ['www', 'apps']
-    if request.subdomain.present? && !reserved_subdomain.include?(request.subdomain)
+    if request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(request.subdomain)
       true
     else
-      request.domain != ENV['BASE_URL']
+      ENV['BASE_URL'].split(',').exclude?(request.domain)
     end
   end
 end

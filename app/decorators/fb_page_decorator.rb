@@ -4,74 +4,31 @@ class FbPageDecorator < Draper::Decorator
   delegate_all
 
   def home_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/"
-    else
-      h.site_home_url(object.id)
-    end
+    sub_domain_and_domain_checker || h.site_home_url(object.id) 
   end
 
   def about_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/about"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/about"
-    else
-      h.site_about_url(object.id)
-    end
+    sub_domain_and_domain_checker('about') || h.site_about_url(object.id)
   end
 
   def events_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/events"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/events"
-    else
-      h.site_events_url(object.id)
-    end
+    sub_domain_and_domain_checker('events') ||  h.site_events_url(object.id)
   end
 
   def contact_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/contact"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/contact"
-    else
-      h.site_contact_url(object.id)
-    end
+    sub_domain_and_domain_checker('contact') || h.site_contact_url(object.id)
   end
 
   def gallery_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/gallery"
-    else
-      h.site_gallery_url(object.id)
-    end
+    sub_domain_and_domain_checker('gallery') || h.site_gallery_url(object.id)
   end
 
   def news_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/news"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/news"
-    else
-      h.site_news_url(object.id)
-    end
+    sub_domain_and_domain_checker('news') || h.site_news_url(object.id)
   end
 
   def photos_menu(album_id)
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
+    if h.request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
     elsif h.request.domain != ENV['BASE_URL']
       "http://#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
@@ -81,25 +38,11 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def privacy_policy_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/privacy_policy"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/privacy_policy"
-    else
-      h.site_privacy_policy_url(object.id)
-    end
+    sub_domain_and_domain_checker('privacy_policy') ||  h.site_privacy_policy_url(object.id)
   end
 
   def terms_and_cond_menu
-    reserved_subdomain = ['www', 'apps']
-    if h.request.subdomain.present? && !reserved_subdomain.include?(h.request.subdomain)
-      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/terms_and_condition"
-    elsif h.request.domain != ENV['BASE_URL']
-      "http://#{h.request.domain}:#{h.request.port}/terms_and_condition"
-    else
-      h.site_terms_condition(object.id)
-    end
+    sub_domain_and_domain_checker('terms_and_condition') ||  h.site_terms_condition(object.id)
   end
 
   def menu
@@ -230,5 +173,17 @@ class FbPageDecorator < Draper::Decorator
     album_ids.first.dig('photos', 'data')&.map do |photo|
       photo['images']
     end
+  end
+
+  private
+
+  def sub_domain_and_domain_checker(page = '')
+    url_wtih_sub_domain = h.check_sub_domain {
+                        "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/#{page}"
+                       }
+    url_with_domain = h.check_valid_domain {
+                    "http://#{h.request.domain}:#{h.request.port}/#{page}"
+                  }
+    url_wtih_sub_domain || url_with_domain
   end
 end

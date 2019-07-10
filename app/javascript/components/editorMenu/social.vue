@@ -81,7 +81,7 @@ export default {
   },
   created() {
     const that = this;
-    EditorServices.showSetting(this.template.id)
+    EditorServices.showSetting(this.fb_page_id, this.template.id)
     .then(({data}) => {
       const socialMedia = data.social_media;
       if (!_.isNil(socialMedia)) {

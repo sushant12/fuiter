@@ -1,0 +1,19 @@
+shared: &shared
+development:
+  <<: *shared
+  base_url:
+  smpt_domain:
+  smtp_port:
+  sender_email:
+  aws_s3_region:
+  aws_s3_bucket:
+  aws_s3_host_name:
+production:
+  <<: *shared
+  base_url:
+  smpt_domain:
+  smtp_port:
+  sender_email:
+  aws_s3_region:
+  aws_s3_bucket:
+  aws_s3_host_name:    
