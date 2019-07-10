@@ -22,8 +22,8 @@ const BillingServices = {
     return axios.post(`/editor/setting/${fb_page_id}`, params, {headers: { 'X-CSRF-Token': csrfToken }})
   },
 
-  showSetting(fb_page_template_id) {
-    return axios.get(`/editor/setting/${fb_page_template_id}`, {headers: { 'X-CSRF-Token': csrfToken }});
+  showSetting(fb_page_id, fb_page_template_id) {
+    return axios.get(`/editor/${fb_page_template_id}/setting/${fb_page_template_id}`, {headers: { 'X-CSRF-Token': csrfToken }});
   },
   
   cancelSubscription(fb_page_id) {
