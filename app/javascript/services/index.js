@@ -7,7 +7,7 @@ const EditorServices = {
   },
 
   fbSync(url){
-    return axios.post(url,'', {headers: { 'X-CSRF-Token': csrfToken }});
+    return axios.put(url,'', {headers: { 'X-CSRF-Token': csrfToken }});
   },
 
   updateMenu(fb_page_id, params) {

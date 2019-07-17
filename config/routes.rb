@@ -18,16 +18,17 @@ Rails.application.routes.draw do
     get '/privacy_policy', to: 'site#privacy_policy'
   end
   
-  resources :pages, except: [:new, :edit] do
-    put 'sync', to: 'pages#sync', as: 'sync_fb'
+  resources :pages, except: [:new, :edit] 
+  resources :fb_page, only: [:index] do
+    resources :subscription, only: [:new, :create, :destroy]
+    put 'sync', to: 'fb_page#sync', as: 'sync'
+    get '/billing', to: 'billing#billing_history', as: 'billing_history'
   end
   resources :fb_page_template, only: [:show, :update]
-  resources :subscription, only: [:new, :create, :destroy]
-  resources :billing, only: [:index, :show]
+  resources :billing, only: [:index]
   resources :dashboard, only: [:index]
 
   # get '/billing', to: 'billing#index', as: 'billing'
-  # get '/billing/:fb_page_id', to: 'billing#billing_history', as: 'billing_history'
   # get '/checkout/:id', to: 'subscription#index', as: 'checkout'
   # post '/subscribe', to: 'subscription#create', as: 'subscribe'
   # put '/cancel_subscription/:fb_page_id', to: 'subscription#cancel_subscription', as: 'cancel_subscription'

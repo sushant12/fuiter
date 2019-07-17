@@ -3,7 +3,7 @@ const csrfToken = document.getElementsByTagName('meta')['csrf-token'].getAttribu
 const BillingServices = {
 
   getBillingHistory(fb_page_id) {
-    return axios.get(`/billing/${fb_page_id}`,'',{headers: { 'X-CSRF-Token': csrfToken}});
+    return axios.get(`/fb_page/${fb_page_id}/billing`,'',{headers: { 'X-CSRF-Token': csrfToken}});
   },
 
 }

@@ -1,6 +1,6 @@
 class SubscriptionController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :webhook
-  def index
+  def new
   end
 
   def create
