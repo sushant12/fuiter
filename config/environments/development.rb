@@ -42,19 +42,19 @@ Rails.application.configure do
   # config.action_mailer.default_url_options = { host: 'localhost:3000' }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'grasruts.com' }
+  config.action_mailer.default_url_options = { host: 'fuiter.com' }
   config.action_mailer.smtp_settings = {
-    :user_name => Rails.application.credentials.smtp_username,
-    :password => Rails.application.credentials.smtp_password,
-    :domain => Rails.application.credentials.smtp_domain,
+    :user_name => Fuitter.credentials[:smtp_username],
+    :password => Fuitter.credentials[:smtp_password],
+    :domain => 'fuiter.com',
     :address => 'smtp.sendgrid.net',
-    :port => Rails.application.credentials.smtp_port,
+    :port => 587,
     :authentication => :plain,
     :enable_starttls_auto => true
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = { from: 'contact@grasruts.com' }
+  config.action_mailer.default_options = { from: 'contact@fuiter.com' }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
