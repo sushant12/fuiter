@@ -2,7 +2,7 @@
   |  Fuitter | Design
 
 #editor
-  <editor-nav :checkout="#{checkout_url(@fb_page_template.id).to_json}" :sync="#{sync_page_url(@fb_page_id).to_json}" :preview="#{site_home_url(@fb_page_id).to_json}" :url="#{dashboard_url.to_json}"></editor-nav>
+  <editor-nav :checkout="#{new_fb_page_subscription_url(@fb_page_id).to_json}" :sync="#{fb_page_sync_url(@fb_page_id).to_json}" :preview="#{site_home_url(@fb_page_id).to_json}" :url="#{dashboard_index_url.to_json}"></editor-nav>
   .main-window
     .main-sidebar
       <editor-sidebar :templates_url="#{templates_path(@fb_page_id).to_json}" :template="#{@fb_page_template.to_json}" :fb_page_id="#{@fb_page_id.to_json}" :pages="#{@pages.to_json}" :fb_page_name="#{@fb_page_name.to_json}" :default_template_value="#{@default_template_value.to_json}"></editor-sidebar>

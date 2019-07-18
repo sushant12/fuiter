@@ -25,6 +25,7 @@ class Facebook::PageDetailService < ApplicationService
     fb_page = FbPage.find_by(fb_page_id: content['id'])
     fb_page.content = content
     fb_page.save!
+    fb_page
   end
 
   def geocode_address(address)

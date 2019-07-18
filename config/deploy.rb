@@ -26,7 +26,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true # Change to false when not using ActiveRecord
 
 set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.5.3'
+set :rbenv_ruby, '2.6.3'
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :nvm_type, :user # or :system, depends on your nvm setup
 # set :nvm_node, 'v10.7.0'

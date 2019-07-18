@@ -78,6 +78,10 @@ TABLE OF CONTENTS
 /* ==========================================================================
 1. Resets and base setup
 ========================================================================== */
+#subscription-form {
+  display: none;
+}
+
 .no-touch .scrollable.hover {
   overflow-y: hidden;
 }
