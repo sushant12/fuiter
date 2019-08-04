@@ -1,53 +1,59 @@
 class SubscriptionController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :webhook
+  before_action :set_fb_page_template, only: [:create, :cancel_subscription]
+
   def new
   end
 
   def create
-    fb_page = FbPage.find(params[:fb_page_id])
-    page = fb_page.fb_page_template
-    Stripe.api_key = Fuitter.credentials[:stripe_api_key]
+    plan = Stripe::Plan.retrieve(params[:plan_id])
 
-    plan_id = params[:plan_id]
-    plan = Stripe::Plan.retrieve(plan_id)
-    token = params[:stripeToken]
-
-    customer = if current_user.stripe_id?
-                 Stripe::Customer.retrieve(current_user.stripe_id)
-               else
-                 Stripe::Customer.create(email: current_user.email, source: token)
-               end
-
+    customer = find_or_create_customer
     subscription = customer.subscriptions.create(plan: plan.id)
 
-    options = {
-      stripe_id: customer.id
-    }
+    ActiveRecord::Base.transaction do
+      current_user.update!({stripe_id: customer.id})
+      @fb_page_template.update!({payment_gateway_subscription_id: subscription.id})
+      @fb_page_template.fb_page.update!({status: 'online'})
+    end
+    
+    redirect_to dashboard_index_path, notice: " Your subscription was set up successfully!"
 
-    current_user.update(options)
-    page.update({payment_gateway_subscription_id: subscription.id})
-
-    page.fb_page.update({status: 'online'})
-    redirect_to dashboard_path, notice: " Your subscription was set up successfully!"
-
+  rescue Stripe::CardError, Stripe::InvalidRequestError => e
+    redirect_to dashboard_index_path, notice: " Something went wrong! You are not charged"    
   end
 
   def cancel_subscription
-    page = FbPage.find(params[:fb_page_id])
-    fb_page_template = page.fb_page_template
-    subscription_id = fb_page_template.payment_gateway_subscription_id
-    Stripe.api_key = Fuitter.credentials[:stripe_api_key]
+    subscription_id = @fb_page_template.payment_gateway_subscription_id
+
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
+    
     subscription = customer.subscriptions.retrieve(subscription_id).delete
-    page.status = "in progress"
-    page.save
+    
+    @fb_page.status = "in progress"
+    @fb_page.save
+    
     render json: {
-      page: page,
-      fb_page_template: fb_page_template,
+      page: @fb_page,
+      fb_page_template: @fb_page_template,
       customer: customer,
       subscription: subscription
     }
-  # rescue
 
+  end
+
+  private
+
+  def set_fb_page_template
+    @fb_page = FbPage.find(params[:fb_page_id])
+    @fb_page_template = @fb_page.fb_page_template
+  end
+
+  def find_or_create_customer
+    if current_user.stripe_id?
+     Stripe::Customer.retrieve(current_user.stripe_id)
+   else
+     Stripe::Customer.create(email: current_user.email, source: params[:stripeToken])
+   end
   end
 end

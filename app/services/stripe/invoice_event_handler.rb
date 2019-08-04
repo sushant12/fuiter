@@ -1,5 +1,6 @@
 module Stripe
   class InvoiceEventHandler
+    
     def call(event)
       begin
         method = "handle_" + event.type.tr('.', '_')
