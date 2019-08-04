@@ -1,10 +1,13 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   ActiveAdmin.routes(self)
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
- 
-  mount StripeEvent::Engine, at: '/webhook'
+  
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   
   constraints(Subdomain.new) do
     match '/', to: 'site#home', via: [:get]
@@ -20,21 +23,15 @@ Rails.application.routes.draw do
   
   resources :pages, except: [:new, :edit] 
   resources :fb_page, only: [:index] do
-    resources :subscription, only: [:new, :create, :destroy]
+    resources :subscription, only: [:new, :create]
+    delete '/subscription/cancel', to: 'subscription#cancel_subscription', as: 'cancel_subscription'
     put 'sync', to: 'fb_page#sync', as: 'sync'
     get '/billing', to: 'billing#billing_history', as: 'billing_history'
   end
+  mount StripeEvent::Engine, at: '/subscription/stripe/webhook'
   resources :fb_page_template, only: [:show, :update]
   resources :billing, only: [:index]
   resources :dashboard, only: [:index]
-
-  # get '/billing', to: 'billing#index', as: 'billing'
-  # get '/checkout/:id', to: 'subscription#index', as: 'checkout'
-  # post '/subscribe', to: 'subscription#create', as: 'subscribe'
-  # put '/cancel_subscription/:fb_page_id', to: 'subscription#cancel_subscription', as: 'cancel_subscription'
-  
-  # get '/dashboard', to: 'dashboard#index', as: 'dashboard'
-  # post '/dashboard/sync/:id', to: 'dashboard#sync', as: 'sync_page'
 
   scope :editor do
     get 'design/:fb_page_id', to: 'editor#design', as: 'editor_design'

@@ -32,6 +32,10 @@ export default {
       page: '',
       pageStatus: '',
       billingHistory: [],
+      alert: {
+        status: false,
+        message: "",
+      }
     };
   },
   methods: {
@@ -57,6 +61,10 @@ export default {
       BillingService.cancelSubscription(this.page)
         .then(({data}) => {
           this.pageStatus = 'in progress';
+          this.alert = {
+            message: "Subscription successfully canceled",
+            status: true
+          }
         });
     }
   },

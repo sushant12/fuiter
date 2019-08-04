@@ -3,9 +3,7 @@ class EditorController < ApplicationController
 
   before_action :authenticate_user!, :set_fb_page_template ,:check_trial_period
   def design
-    # @fb_page_id = params[:fb_page_id]
     @fb_page_name = FbPage.find_by(id: @fb_page_id).name
-    # @fb_page_template = FbPageTemplate.find_by(fb_page_id: @fb_page_id)
     @default_template_value = @fb_page_template.template
     @pages = Page.list_pages(@fb_page_template)
   end
@@ -62,7 +60,7 @@ class EditorController < ApplicationController
     trial_exceeded =  Time.now.to_date > @fb_page_template.created_at.to_date + TRIAL_PERIOD 
     if trial_exceeded && !@fb_page_template.subscribed?  
       flash[:notice] = "Your trial is over. Please upgrade to continue using it"
-      redirect_to checkout_url(@fb_page_template.id)
+      redirect_to new_fb_page_subscription_url(@fb_page_id)
     end
   end
 end
