@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 Rails.application.routes.draw do
+  require 'sidekiq/web'
   ActiveAdmin.routes(self)
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
   
   constraints(Subdomain.new) do
     match '/', to: 'site#home', via: [:get]

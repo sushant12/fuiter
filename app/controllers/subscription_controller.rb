@@ -28,18 +28,19 @@ class SubscriptionController < ApplicationController
 
     customer = Stripe::Customer.retrieve(current_user.stripe_id)
     
-    subscription = customer.subscriptions.retrieve(subscription_id).delete
+    subscription = customer.subscriptions.retrieve(subscription_id)
     
-    @fb_page.status = "in progress"
-    @fb_page.save
-    
+    if(subscription.delete)
+      @fb_page.status = "in progress"
+      @fb_page.save
+      UserSubscriptionWorker.perform_async(current_user.email, 'remove_subscription')
+    end
     render json: {
       page: @fb_page,
       fb_page_template: @fb_page_template,
       customer: customer,
       subscription: subscription
     }
-
   end
 
   private

@@ -25,6 +25,7 @@ module Stripe
       subs.fb_page_template_id = FbPageTemplate.find_by(payment_gateway_subscription_id: event.data.object.lines.data.first.subscription).id
       subs.meta_data = event
       subs.save!
+      UserSubscriptionWorker.perform_async(current_user.email, 'failed_renewing_subscription')
     end
 
     def handle_invoice_payment_succeeded(event)
@@ -39,8 +40,7 @@ module Stripe
       subs.fb_page_template_id = FbPageTemplate.find_by(payment_gateway_subscription_id: event.data.object.lines.data.first.subscription).id
       subs.meta_data = event
       subs.save!
-      UserSubscriptionWorker.perform_async(current_user.email)
-    # rescue
+      UserSubscriptionWorker.perform_async(current_user.email, 'new_subscription')
     end
   end
 end
