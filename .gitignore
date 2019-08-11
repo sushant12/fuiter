@@ -37,3 +37,6 @@ erd.pdf
 .env
 coverage
 .rake_tasks~
+
+gla.yml
+.gla_db_dumps
