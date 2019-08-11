@@ -1,7 +1,0 @@
-{
-  "name": "your template name in small case. It should match the name of your template directory",
-  "image": "preview image url",
-  "properties": {
-    "you can add any custom properties here that you will need in your template. For eg, slider,etc"
-  }
-}
