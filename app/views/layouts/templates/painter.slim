@@ -7,79 +7,58 @@ html
   - if @seo
     meta content=(@seo.dig('metaDescription')) name="description"
     meta content=(@seo.dig('metaTags')) name="keywords"
-  link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet" /
-  link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.0/css/all.css" rel="stylesheet" /
-  = stylesheet_pack_tag "templates/riverina/riverina"
-  link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" /
-  link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet" /
-
-  link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
-  /= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Rails.application.credentials.google_maps_api_key
-  / css:
-  /   .nav-link:hover{
-  /     background-color: #{@template.properties.dig('nav', 'hover_color')} !important;
-  /   }
-  /   .nav-link {
-  /     color: #{@template.properties.dig('nav', 'font_color')} !important;
-    }
-  body.fnt-lora data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
-    nav.navbar.navbar-expand-lg.navbar-light.p-0
+  head
+    link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet" /
+    link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css" rel="stylesheet" /
+    = stylesheet_pack_tag "templates/painter/painter"
+    link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:400,900" rel="stylesheet" /
+    link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" /
+    link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
+  body data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
+    section
       .container
-        a.navbar-brand href=(@page.home_menu)
-        h1
-          b.grey
-            = @page.name
-        button.navbar-toggler aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button"
-          span.navbar-toggler-icon
-        #navbarTogglerDemo02.collapse.navbar-collapse
-          ul.navbar-nav.ml-auto
-            - @page.menu.each do |menu|
-              - if menu.display
-                li.nav-item class=('dropdown' unless menu.nested.empty? )
-                  - if menu.nested.empty?
-                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
-                  - else
-                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
-                  - unless menu.nested.empty?
-                    .dropdown-menu aria-labelledby="navbarDropdown"
-                      - menu.nested.each do |sub_menu|
-                        - if sub_menu.display
-                          = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
+        nav.navbar.navbar-expand-md.navbar-light
+          a.navbar-brand.bold.capitalize href="#" 
+            /! <img src="./images/logo.png"/
+            | projectx
+          button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+            span.navbar-toggler-icon
+          #navbar4.collapse.navbar-collapse
+            ul.navbar-nav.ml-auto
+              li.px-2.nav-item.normal-border
+                a.nav-link.active href="index.html"  HOME
+              li.px-2.nav-item.normal-border
+                a.nav-link href="services.html"  SERVICES
+              li.px-2.nav-item.normal-border
+                a.nav-link href="gallery.html"  GALLERY
+              li.px-2.nav-item.normal-border
+                a.nav-link href="news.html"  NEWS
+              li.nav-item.dropdown
+                a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                  | Menu
+                .dropdown-menu aria-labelledby="navbarDropdown" 
+                  a.dropdown-item href="#"  One
+                  a.dropdown-item href="#"  Two
+              li.px-2.nav-item.normal-border
+                a.nav-link href="contact.html"  CONTACT
     = yield
-
-    footer
-      .py-3.px-5 style=""
-        .container
-          .row
-            .col-md-4.text-center.d-md-flex.align-items-center
-              p.text-muted.my-1 POWERED BY
-            .col-md-4
-              p.text-center.m-2.mx-5.px-5 ©James Allen Salon
-            .col-md-4.justify-content-center.d-flex.align-items-center
-              - @template_setting.social_icons.each do |name, url|
-                - if name == 'facebook'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}-f")
-                - if name == 'twitter'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}")
-                - if name == 'youtube'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}")
-                - if name == 'linkedin'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}-in")
-                - if name == 'yelp'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}")
-                - if name == 'pinterest'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}")
-                - if name == 'instagram'
-                  a href=(url) target="__blank"
-                    i class=("fab fa-#{name}")
-    script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    - if @page.fb_page_template.setting.fb_messenger
-      = render 'shared/messenger'
+    section
+      .container
+        .media-container-row.mbr-white.row
+          .col-sm-6.copyright.pt-2
+            p.mbr-text.mbr-fonts-style.display-7
+              | © Copyright 2019 - All Rights Reserved
+          .col-md-6.pt-2
+            .social-list.align-right.d-flex.flex-row.justify-content-end
+              .soc-item.px-2
+                a href="#" target="_blank" 
+                  i.fab.fa-twitter
+              .soc-item.px-2
+                a href="#" target="_blank" 
+                  i.fab.fa-facebook-f
+              .soc-item.px-2
+                a href="#" target="_blank" 
+                  i.fab.fa-youtube
+    script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+    script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+    script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
