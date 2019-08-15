@@ -1,0 +1,111 @@
+nav.navbar.navbar-expand-md.navbar-light.container
+  a.navbar-brand.text-primary href=(@page.home_menu)
+    = @page.name
+  button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+    span.navbar-toggler-icon
+  #navbar4.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - @page.menu.each do |menu|
+        - if menu.display
+          li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+            - if menu.nested.empty?
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+            - else
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
+            - unless menu.nested.empty?
+              a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                - menu.nested.each do |sub_menu|
+                  - if sub_menu.display
+                    = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
+.container.services.mt-5
+  .col-6.heading.uppercase.bold
+    | Gallery
+section.py-5.bg-grey.container.grey
+  .row
+    .card-columns
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer px-0"
+          | <div class="text-muted">#TBT to our photoshoot with Sean Braxton. Still, hands down, one of my favorite shoots we've done. Really love working with Sean.</div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted"> Brittney is our make up guru. Look at that focus! Such a perfectionist.</div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted">It's so exciting when we are asked to do bright colors. Loving the purple for our shoot with Prada.</div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted">Ok, it's official, side braids are in. But no one can rock them quite like Gisele!</div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+      .card
+        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
+        /!
+          | <div class="card-block"><a href="#" title="#"
+          | <h4 class="card-title px-2"></h4></a></div
+          | <div class="card-footer"
+          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
+          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
+          | </div
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram
+script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 

@@ -13,7 +13,7 @@ class SubscriptionController < ApplicationController
 
     ActiveRecord::Base.transaction do
       current_user.update!({stripe_id: customer.id})
-      @fb_page_template.update!({payment_gateway_subscription_id: subscription.id})
+      @fb_page_template.update!({payment_gateway_subscription_id: subscription.id, subscribed: true})
       @fb_page_template.fb_page.update!({status: 'online'})
     end
     
