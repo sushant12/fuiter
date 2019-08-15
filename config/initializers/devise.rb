@@ -287,8 +287,8 @@ Devise.setup do |config|
   # ActiveSupport.on_load(:devise_failure_app) do
   #   include Turbolinks::Controller
   # end
-  config.omniauth :facebook, ENV['APP_ID'],
-                  ENV['APP_SECRET'],
+  config.omniauth :facebook, Fuitter.credentials[:fb_app_id],
+                  Fuitter.credentials[:fb_app_secret],
                   callback_url: ENV['CALLBACK_URL'],
                   scope: 'manage_pages, email'
 end

@@ -1,0 +1,63 @@
+section.section
+  .columns.is-centered
+    .column.is-6.border.pa5
+      h1.title.is-3
+        | Subscribe
+      p
+        | Choose a plan
+        
+        strong
+          .columns
+            .column.is-6
+              .card.card-content
+                .media
+                  .media-content
+                    p.title.is-4 Monthly
+                    p.subtitle.is-6 $19 per month
+                    .content
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      | Phasellus nec iaculis mauris.
+                    button#subscription-1 data-price="plan_FAjGZfXAcVNBK0"
+                      | Click me
+            .column.is-6
+              .card.card-content
+                .media
+                  .media-content
+                    p.title.is-4 Annual
+                    p.subtitle.is-6 $190 per year 
+                    .content
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                      | Phasellus nec iaculis mauris.
+                    button#subscription-2 data-price="plan_FAjHRvdASlqw7g"
+                      | Click me
+    .column.is-6.border.pa5#subscription-form
+      script src="https://js.stripe.com/v3/" 
+      = form_tag fb_page_subscription_index_path, id: "payment-form" do |f|
+        / = hidden_field_tag "fb_page_template_id", params[:id]
+        = hidden_field_tag "plan_id"
+        .form-row
+          label
+            span Name
+            input#name-on-card.field placeholder=("Jane Doe") /
+
+        .form-row
+          label for="card-element" 
+            | Credit or debit card
+          #card-element
+            /! A Stripe Element will be inserted here.
+          /! Used to display form errors.
+          #card-errors role="alert" 
+        button Submit Payment
+= javascript_pack_tag 'checkout'
+javascript:
+  var sub1 = document.getElementById('subscription-1');
+  var planId = document.getElementById('plan_id');
+  sub1.onclick = function(e) {
+    e.preventDefault();
+    var subscriptionForm = document.getElementById('subscription-form');
+    subscriptionForm.style.display = 'block';
+    var price = e.currentTarget.dataset.price;
+    planId.value = price;
+  };
+  
+    

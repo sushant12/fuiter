@@ -1,9 +1,18 @@
 class UserSubscribeMailer < ApplicationMailer
-  default :from => Rails.application.credentials.sender_email
+  default :from => Fuitter.credentials[:sender_email]
 
-    # send a signup email to the user, pass in the user object that   contains the user's email address
-    def user_subscribe(email)
-      mail( :to => email,
-      :subject => 'Thanks for subscribing.' )
-    end
+  def new_user_subscription(email)
+    mail( :to => email,
+    :subject => 'Thanks for subscribing.' )
+  end
+
+  def remove_user_subscription(email)
+    mail( :to => email,
+    :subject => 'Your subscription has been canceled.' )
+  end
+
+  def failed_renewing_subscription(email)
+    mail( :to => email,
+    :subject => 'Subscription Renewal failed. Looks like we are not able to charge your card' )
+  end
 end

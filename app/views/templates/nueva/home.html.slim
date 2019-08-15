@@ -1,0 +1,110 @@
+section.parallax-window data-parallax="scroll" style=("height: 80vh;") 
+  .container
+    nav.navbar.navbar-expand-md.navbar-light
+      a.navbar-brand.text-primary href=(@page.home_menu)
+        /! <img src="./images/logo.png"/
+        = @page.name
+      button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+        span.navbar-toggler-icon
+      #navbar4.collapse.navbar-collapse
+        ul.navbar-nav.ml-auto
+          - @page.menu.each do |menu|
+            - if menu.display
+              li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+                - if menu.nested.empty?
+                  = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+                - else
+                  = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
+                - unless menu.nested.empty?
+                  a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                    - menu.nested.each do |sub_menu|
+                      - if sub_menu.display
+                        = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
+          / li.px-2.nav-item.normal-border
+          /   a.nav-link.active href="index.html"  HOME
+          / li.px-2.nav-item.normal-border
+          /   a.nav-link href="services.html"  SERVICES
+          / li.px-2.nav-item.normal-border
+          /   a.nav-link href="gallery.html"  GALLERY
+          / li.px-2.nav-item.normal-border
+          /   a.nav-link href="news.html"  NEWS
+          / li.nav-item.dropdown
+          /   a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+          /     | Menu
+          /   .dropdown-menu aria-labelledby="navbarDropdown" 
+          /     a.dropdown-item href="#"  One
+          /     a.dropdown-item href="#"  Two
+          / li.px-2.nav-item.normal-border
+          /   a.nav-link href="contact.html"  CONTACT
+  .container
+    .row
+      .col-md-12.intro
+        h3
+          | your friendly neighborhood
+        h1.bold.f-5.uppercase
+          | spiderman
+section.bg-light
+  .container
+    .row.pt-4
+      .col-md-9.p-3
+        h6 SERVICES
+        h1.mb-0 Generations of Craftsmanship
+        p.pt-3 Woodwork, painting, electrical, plumbing, and more. My services might be varied, but they all come with the same promise of quality, dedication, and durability. Licensed and insured, I’m an experienced contractor with knowledge passed down from generations. I can offer a 1-year guarantee for all my services, along with free estimates.
+      .col-md-3.align-items-center.d-flex.justify-content-center.p-3
+        p
+          b SCHEDULE APPOINTMENT
+          br/
+          | All estimates are free and flexible according to materials and scheduling.
+          br/
+          br/
+          a.btn.btn-outline-primary.btn-sm href="#"  START NOW
+section.parallax-window-mid data-parallax="scroll" style=("height: 80vh;") 
+section
+  .container
+    .row.pt-3
+      .col-md-8.p-3 style="" 
+        h1.mb-0 Testimonials
+        h4.pt-3.my-3 “Peter has done several small and large projects for my old Victorian home on Grove Street. He’s always incredibly professional and accommodating. I know I can trust him to work diligently even when I’m away on vacation.”
+        p -HELENA PYO
+        h4.pt-3.my-3 “People have been complimenting my bathroom nonstop since Peter remodeled it three years ago. Everything’s still got that new sheen and the tilework is just awesome.”
+        p -OMAR NIEVES
+        h4.pt-3.my-3 “I’ve been hiring the Sweeneys since I first moved into my house over 70 years ago. They did my kitchen cabinets, fixed my drains, and even rewired the lights in my bedroom into a single switch! There’s nothing the Sweeney’s can’t do.”
+        p -ARASH TOUSI
+        h4.pt-3.my-3 “I had this toilet that always had a problem. Either it was a leak or a plug. It was always giving me a headache. I’d hired other plumbers in the neighborhood, but problems would always come back. Since Peter worked on it last year, it’s been working perfectly. I’m so grateful!”
+        p -MIA ROWLAND
+      .col-md-4.align-items-center.justify-content-center.p-3
+        p.py-4.border-bottom.border-primary
+          b MY PROMISE
+          br/
+          | only work with the best materials available and provide a 1 year guarantee on all labor. I never compromise quality for time and give my clients realistic schedules that accommodate their lives. I strive for honest customer service, so contracts are only paid in full when the finished work is to your complete satisfaction.
+          br/
+          br/
+          b SEE MY HANDY WORK
+          br/
+          br/
+          a.btn.btn-outline-primary.btn-sm href="#"  PROJECT GALLERY
+        p.border-bottom.border-primary
+          | About Me
+          br/
+          | NAME IS PETER
+          br/
+          | started apprenticing for my dad, Peter Sweeney, Jr. when I was twelve, but even before that I was watching him work all the time. My grandpa established our company in 1918, back when we specialized in carpentry and woodwork. Dad picked up new trades and expanded our business. I’ve been servicing the greater Wichita area for over 15 years and am about to bring my oldest son in as an assistant.
+          br/
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram
+script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+script src="https://cdn.jsdelivr.net/parallax.js/1.4.2/parallax.min.js" 
+javascript:
+  $('.parallax-window').parallax({imageSrc: "#{asset_pack_url 'templates/nueva/images/p.jpg'}"});
+  $('.parallax-window-mid').parallax({imageSrc: "#{asset_pack_url 'templates/nueva/images/adult.jpg'}"});

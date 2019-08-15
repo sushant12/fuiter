@@ -1,0 +1,18 @@
+doctype html
+html
+  title
+    = @page.name
+  = csrf_meta_tags
+  = csp_meta_tag
+  - if @seo
+    meta content=(@seo.dig('metaDescription')) name="description"
+    meta content=(@seo.dig('metaTags')) name="keywords"
+  head
+    link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet" /
+    link href="https://cdnjs.cloudfla re.com/ajax/libs/font-awesome/5.8.1/css/all.css" rel="stylesheet" /
+    = stylesheet_pack_tag "templates/nueva/nueva"
+    link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:400,900" rel="stylesheet" /
+    link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" /
+    link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
+  body data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
+    = yield

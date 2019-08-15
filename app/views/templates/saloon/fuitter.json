@@ -1,0 +1,113 @@
+{
+  "name": "saloon",
+  "image": "https://via.placeholder.com/300",
+  "properties": {
+    "slider": [
+      {
+        "source": "https://via.placeholder.com/728x90.png?text=Visit+WhoIsHostingThis"
+      },
+      {
+        "source": "https://via.placeholder.com/728x90.png"
+      }
+    ],
+    "pages": [
+      {
+        "title": "Home",
+        "position": 0,
+        "uri": "home",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "description": {
+            "value": "",
+            "enable": false
+          }
+        }
+      },
+      {
+        "title": "About",
+        "position": 1,
+        "uri": "about",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "image": {
+              "value": "",
+              "enable": false
+            },
+          "detail": {
+              "value": "",
+              "enable": false
+            }
+        }
+      },
+      {
+        "title": "Contact",
+        "uri": "contact",
+        "position": 2,
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {
+          "map": {
+            "show": false
+          },
+          "detail": {
+            "email": {
+              "value": "",
+              "enable": false
+            },
+            "location": {
+              "value": "",
+              "enable": false
+            },
+            "contact": {
+              "value": "",
+              "enable": false
+            }
+          }
+
+        }
+      },
+      {
+        "title": "Events",
+        "position": 3,
+        "uri": "events",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      },
+      {
+        "title": "Gallery",
+        "position": 4,
+        "uri": "gallery",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      },
+      {
+        "title": "News",
+        "position": 5,
+        "uri": "news",
+        "seo": {
+          "metaTags": "",
+          "metaDescription": ""
+        },
+        "setting": {}
+      }
+    ],
+    "theme": {
+      "color": ["#4C1F1F", "#F44E3B", "#FA28FF"],
+      "font": ["Helvetica", "Times New Roman"]
+    }
+  }
+}
