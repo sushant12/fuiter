@@ -1,0 +1,94 @@
+nav.navbar.navbar-expand-md.navbar-light.container
+  a.navbar-brand.text-primary href=(@page.home_menu)
+    = @page.name
+  button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+    span.navbar-toggler-icon
+  #navbar4.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - @page.menu.each do |menu|
+        - if menu.display
+          li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+            - if menu.nested.empty?
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+            - else
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
+            - unless menu.nested.empty?
+              a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                - menu.nested.each do |sub_menu|
+                  - if sub_menu.display
+                    = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
+.container.services.mt-5
+  .col-6.heading.uppercase.bold
+    | News
+section.py-5.bg-grey.container.grey
+  .row
+    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
+      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
+      .cal
+        span.date.bold 21
+        br/
+        span.month.uppercase jun
+      h2.capital.mx-5.mt-5 title one
+      h5.capital.mx-5.mt-2.opensans.text-justify
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
+      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
+      .cal
+        span.date.bold 23
+        br/
+        span.month.uppercase apr
+      h2.capital.mx-5.mt-5 title two
+      h5.capital.mx-5.mt-2.opensans.text-justify
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
+      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
+      .cal
+        span.date.bold 24
+        br/
+        span.month.uppercase dec
+      h2.capital.mx-5.mt-5 title three
+      h5.capital.mx-5.mt-2.opensans.text-justify
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
+      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
+      .cal
+        span.date.bold 14
+        br/
+        span.month.uppercase feb
+      h2.capital.mx-5.mt-5 title three
+      h5.capital.mx-5.mt-2.opensans.text-justify
+        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram
+script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 

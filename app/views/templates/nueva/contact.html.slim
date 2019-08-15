@@ -1,0 +1,76 @@
+nav.navbar.navbar-expand-md.navbar-light.container
+  a.navbar-brand.text-primary href=(@page.home_menu)
+    = @page.name
+  button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+    span.navbar-toggler-icon
+  #navbar4.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - @page.menu.each do |menu|
+        - if menu.display
+          li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+            - if menu.nested.empty?
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+            - else
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
+            - unless menu.nested.empty?
+              a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                - menu.nested.each do |sub_menu|
+                  - if sub_menu.display
+                    = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
+.container.services.mt-5
+  .col-6.heading.uppercase.bold
+    | Contacts
+section.py-5.bg-grey.container.grey
+  .row
+    .col-md-7.p-3.pt-5
+      h1.border-bottom.border-primary.bold Schedule Appointment
+      p.pt-3.text-muted Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra cursus quam eu eleifend. Duis volutpat accumsan odio volutpat congue. Ut euismod interdum urna eu tristique. Maecenas ut arcu purus. Vestibulum sit amet dui ac justo varius malesuada. Nulla vitae nulla
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4
+          h4.text-center Date
+        .col-md-6.col-sm-4.col-xs-4
+          h4.text-center Event
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+    .col-md-5.p-3.pt-5
+      h1.border-bottom.border-primary.bold Contact
+      p.pt-3.pb-5.text-muted
+        | Peter Sweeney
+        br/
+        | 777 Broadway Ave.
+        br/
+        | New York, NY 00000
+      p.border-bottom.border-dark.text-muted template.placeholder@gmail.com
+      p.text-muted 212 555 0110
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram
+script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
