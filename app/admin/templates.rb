@@ -1,17 +1,17 @@
 ActiveAdmin.register Template do
-  controller do
-    def update_resource(object, attributes)
-      update_method = attributes.first[:password].present? ? :update_attributes : :update_without_password
-      object.send(update_method, *attributes)
-    end
-  end
 
   index do
     column :name
-    column :status
-    column :category
-    column :fb_page_id
+    column :updated_at
     actions
+  end
+
+  show do
+    attributes_table do
+      row :source_json do |model|
+        pre(JSON.pretty_generate(model.properties))
+      end
+    end
   end
   
   # permit_params :name, :email, :password, :admin
