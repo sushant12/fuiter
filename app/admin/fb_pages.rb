@@ -4,7 +4,6 @@ ActiveAdmin.register FbPage do
   filter :subscriptions
   filter :fb_page_template
   filter :user
-  filter :token
   filter :sub_domain
   filter :created_at
   filter :updated_at
@@ -12,25 +11,34 @@ ActiveAdmin.register FbPage do
   filter :fb_page
   filter :status, as: :select, collection: FbPage.statuses
   filter :category
-  filter :picture
 
   index do
     column :name
     column :status
     column :category
     column :fb_page_id
+    column :sub_domain
     actions
   end
 
-  permit_params :name, :status, :category, :fb_page_id
+  permit_params :name, :status, :category, :fb_page_id, 
+    fb_page_template_attributes: [:id, :subscribed]
 
   form title: 'Facebook page form' do |f|
+    # binding.pry
     inputs 'Details' do
       input :name
       input :status, as: :select, collection: FbPage.statuses
       input :category
-      input :fb_page_id
+      # input :subscribed
     end
+    
+    # f.inputs "subscribed" do
+
+      f.has_many :fb_page_template, new_record: false, allow_destroy: false do |k|
+        k.input :subscribed, as: :boolean
+      end
+    # end
 
     para "Press cancel to return to the list without saving."
     actions

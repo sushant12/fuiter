@@ -1,0 +1,74 @@
+body {
+  font-family: 'Fira Sans Extra Condensed', sans-serif; }
+
+.intro {
+  margin-top: 20vh; }
+
+.bold {
+  font-weight: 900; }
+
+.f-5 {
+  font-size: 5vw; }
+
+.uppercase {
+  text-transform: uppercase; }
+
+.dropdown .dropdown-toggle:hover + .dropdown-menu {
+  display: block; }
+
+.footer-link {
+  color: white;
+  text-decoration: none; }
+
+.footer-link:hover {
+  color: grey;
+  text-decoration: none; }
+
+.services .heading {
+  font-size: 2.5rem;
+  border-bottom: 1px solid tomato; }
+
+.opensans {
+  font-family: 'Open Sans Condensed', sans-serif; }
+
+.cal {
+  display: inline-block;
+  background-color: tomato;
+  width: 164px;
+  margin: -100px 0 0 50px;
+  text-align: center; }
+  .cal .date {
+    font-size: 64px;
+    color: white; }
+  .cal .month {
+    font-size: 32px;
+    color: white; }
+
+.capital {
+  text-transform: capitalize; }
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+.hero-container {
+  height: 90vh; }
+
+.carousel-item.active {
+  height: 300px; }
+  .carousel-item.active img {
+    background-size: auto; }
+
+.carousel-message {
+  background-color: orange; }
+
+.about-page {
+  height: 300px; }
+  .about-page .overlay {
+    height: inherit; }
+    .about-page .overlay .title {
+      height: 100%; }
+
+.news .mbr-figure img {
+  width: 100%; }
+
+/*# sourceMappingURL=style.css.map */

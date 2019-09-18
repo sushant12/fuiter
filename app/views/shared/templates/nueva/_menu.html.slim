@@ -1,0 +1,19 @@
+nav.navbar.navbar-expand-md.navbar-light.container
+  a.navbar-brand.text-primary href=(@page.home_menu)
+    = @page.name
+  button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
+    span.navbar-toggler-icon
+  #navbar4.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      - @page.menu.each do |menu|
+        - if menu.display
+          li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+            - if menu.nested.empty?
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color"
+            - else
+              = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link menu_hover_color dropdown-toggle"
+            - unless menu.nested.empty?
+              a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
+                - menu.nested.each do |sub_menu|
+                  - if sub_menu.display
+                    = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
