@@ -23,6 +23,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'stripe'
 gem 'stripe_event'
 gem 'sendgrid-ruby'
+gem 'activeadmin_json_editor', '~> 0.0.7'
 
 group :development, :test do
   gem 'sass-rails'
