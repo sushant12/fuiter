@@ -4,7 +4,7 @@ class FbPageDecorator < Draper::Decorator
   delegate_all
 
   def home_menu
-    sub_domain_and_domain_checker || h.site_home_url(object.id) 
+    sub_domain_and_domain_checker || h.site_home_url(object.id)
   end
 
   def about_menu
@@ -30,7 +30,7 @@ class FbPageDecorator < Draper::Decorator
   def photos_menu(album_id)
     if h.request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
-    elsif ENV['BASE_URL'].split(",").exclude? h.request.domain 
+    elsif ENV['BASE_URL'].split(',').exclude? h.request.domain
       "http://#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
     else
       h.site_photo_albums_url(object.id, album_id)
@@ -38,15 +38,15 @@ class FbPageDecorator < Draper::Decorator
   end
 
   def privacy_policy_menu
-    sub_domain_and_domain_checker('privacy_policy') ||  h.site_privacy_policy_url(object.id)
+    sub_domain_and_domain_checker('privacy_policy') || h.site_privacy_policy_url(object.id)
   end
 
   def terms_and_cond_menu
-    sub_domain_and_domain_checker('terms_and_condition') ||  h.site_terms_condition(object.id)
+    sub_domain_and_domain_checker('terms_and_condition') || h.site_terms_condition(object.id)
   end
 
   def menu
-     Page.list_pages(object.fb_page_template)
+    Page.list_pages(object.fb_page_template)
   end
 
   def cover_images
@@ -68,15 +68,15 @@ class FbPageDecorator < Draper::Decorator
 
   def contact
     contact = object.fb_page_template
-    phone = contact.contact_enable ? contact.contact :  object.content.dig('phone')
+    phone = contact.contact_enable ? contact.contact : object.content.dig('phone')
     email = contact.email_enable ? contact.email : object.content.dig('emails')&.first
     city = object.content.dig('location', 'city')
     street = object.content.dig('location', 'street')
-    address = contact.location_enable ? contact.location : "#{city}, #{street}" 
+    address = contact.location_enable ? contact.location : "#{city}, #{street}"
     {
       'phone' => phone,
       'email' => email,
-      'address' => address,
+      'address' => address
     }
   end
 
@@ -147,9 +147,9 @@ class FbPageDecorator < Draper::Decorator
         'location' => event.dig('place'),
         'description' => event.dig('description'),
         'date' => event['start_time'].to_date,
-        'start_time' => event['start_time']&.to_time&.strftime("%I:%M %p"),
-        'end_time' => event['end_time']&.to_time&.strftime("%I:%M %p"),
-        'event_times' => event.dig("event_times"),
+        'start_time' => event['start_time']&.to_time&.strftime('%I:%M %p'),
+        'end_time' => event['end_time']&.to_time&.strftime('%I:%M %p'),
+        'event_times' => event.dig('event_times')
       }
     end
   end
@@ -178,12 +178,12 @@ class FbPageDecorator < Draper::Decorator
   private
 
   def sub_domain_and_domain_checker(page = '')
-    url_wtih_sub_domain = h.check_sub_domain {
-                        "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/#{page}"
-                       }
-    url_with_domain = h.check_valid_domain {
-                    "http://#{h.request.domain}:#{h.request.port}/#{page}"
-                  }
+    url_wtih_sub_domain = h.check_sub_domain do
+      "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/#{page}"
+    end
+    url_with_domain = h.check_valid_domain do
+      "http://#{h.request.domain}:#{h.request.port}/#{page}"
+    end
     url_wtih_sub_domain || url_with_domain
   end
 end

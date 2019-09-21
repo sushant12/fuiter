@@ -1,14 +1,15 @@
 # frozen_string_literal: true
+
 Rails.application.routes.draw do
   require 'sidekiq/web'
   ActiveAdmin.routes(self)
-  
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  
-  authenticate :user, lambda { |u| u.admin? } do
+
+  authenticate :user, ->(u) { u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   constraints(Subdomain.new) do
     match '/', to: 'site#home', via: [:get]
     get '/about', to: 'site#about'
@@ -20,16 +21,16 @@ Rails.application.routes.draw do
     get '/terms_and_condition', to: 'site#terms_condition'
     get '/privacy_policy', to: 'site#privacy_policy'
   end
-  
-  resources :pages, except: [:new, :edit] 
+
+  resources :pages, except: %i[new edit]
   resources :fb_page, only: [:index] do
-    resources :subscription, only: [:new, :create]
+    resources :subscription, only: %i[new create]
     delete '/subscription/cancel', to: 'subscription#cancel_subscription', as: 'cancel_subscription'
     put 'sync', to: 'fb_page#sync', as: 'sync'
     get '/billing', to: 'billing#billing_history', as: 'billing_history'
   end
   mount StripeEvent::Engine, at: '/subscription/stripe/webhook'
-  resources :fb_page_template, only: [:show, :update]
+  resources :fb_page_template, only: %i[show update]
   resources :billing, only: [:index]
   resources :dashboard, only: [:index]
 
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
     post 'setting/:fb_page_id', to: 'editor#create_setting', as: 'editor_create_setting'
     get ':fb_page_id/setting/:fb_page_template_id', to: 'editor#show_setting', as: 'editor_show_setting'
   end
-  
+
   scope :site do
     get ':fb_page_id/home', to: 'site#home', as: 'site_home'
     get ':fb_page_id/about', to: 'site#about', as: 'site_about'
@@ -57,6 +58,6 @@ Rails.application.routes.draw do
   put '/:fb_page_id/templates/:id/properties', to: 'templates#properties', as: 'properties'
   get '/:fb_page_id/templates', to: 'templates#index', as: 'templates'
   post '/:fb_page_id/templates/:template_id', to: 'templates#choose', as: 'choose_template'
-  
+
   root to: 'home#index'
 end

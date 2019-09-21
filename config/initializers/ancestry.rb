@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Ancestry
   send :remove_const, :ANCESTRY_PATTERN
   const_set :UUID_PATTERN, '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'

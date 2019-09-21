@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register User do
   controller do
     def update_resource(object, attributes)
@@ -8,7 +10,7 @@ ActiveAdmin.register User do
 
   permit_params :name, :email, :password, :admin
 
-  form title: 'User Registration' do |f|
+  form title: 'User Registration' do |_f|
     inputs 'Details' do
       input :name
       input :email
@@ -16,8 +18,7 @@ ActiveAdmin.register User do
       input :admin, as: :boolean
     end
 
-    para "Press cancel to return to the list without saving."
+    para 'Press cancel to return to the list without saving.'
     actions
   end
 end
-

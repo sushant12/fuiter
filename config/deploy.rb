@@ -1,11 +1,13 @@
-# config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+# frozen_string_literal: true
 
-set :application, "fwitter"
-set :repo_url, "git@github.com:sushant12/fuiter.git"
+# config valid for current version and patch releases of Capistrano
+lock '~> 3.11.0'
+
+set :application, 'fwitter'
+set :repo_url, 'git@github.com:sushant12/fuiter.git'
 
 set :branch, :master
-set :deploy_to, "/home/deploy/fwitter"
+set :deploy_to, '/home/deploy/fwitter'
 
 set :puma_threads,    [4, 16]
 set :puma_workers,    0
@@ -37,7 +39,6 @@ set :linked_files, %w[config/database.yml config/master.key .env config/sidekiq.
 # dirs we want symlinking to shared
 set :linked_dirs, %w[log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system]
 set :bundle_binstubs, nil
-
 
 namespace :deploy do
   # compile assets locally then rsync

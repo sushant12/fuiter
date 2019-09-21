@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class Facebook::PageRequestService < ApplicationService
-
   def initialize(user)
     @fb = Facebook::Page.new(user.token)
     @user = user
@@ -10,7 +9,7 @@ class Facebook::PageRequestService < ApplicationService
   def call
     accounts = @fb.list
     accounts['accounts']['data'].each { |account| save_page(account) }
-  rescue => e
+  rescue StandardError => e
     Raven.capture_exception(e)
   end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BillingController < ApplicationController
   def index
     @pages = current_user.fb_pages

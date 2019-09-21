@@ -58,21 +58,21 @@ class SiteController < ApplicationController
   private
 
   def set_fb_page
-    valid_sub_domain = helpers.check_sub_domain {
-                        Setting.find_by(subdomain: request.subdomain).fb_page_template.fb_page.decorate
-                      }
-    valid_domain = helpers.check_valid_domain {
-                    Setting.find_by(domain: request.domain).fb_page_template.fb_page.decorate
-                  }
+    valid_sub_domain = helpers.check_sub_domain do
+      Setting.find_by(subdomain: request.subdomain).fb_page_template.fb_page.decorate
+    end
+    valid_domain = helpers.check_valid_domain do
+      Setting.find_by(domain: request.domain).fb_page_template.fb_page.decorate
+    end
 
-    @page = valid_sub_domain || valid_domain || FbPage.find_by(id: params[:fb_page_id]).decorate 
+    @page = valid_sub_domain || valid_domain || FbPage.find_by(id: params[:fb_page_id]).decorate
     @template = @page.fb_page_template.decorate
     @template_setting = template_setting.decorate
   end
 
   def set_seo
     current_action = caller[0][/`.*'/][1..-2]
-    page = @page.fb_page_template.pages.find do |menu| 
+    page = @page.fb_page_template.pages.find do |menu|
       menu.uri == current_action
     end
     @seo = page.seo
