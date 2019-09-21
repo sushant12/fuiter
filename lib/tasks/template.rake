@@ -45,6 +45,6 @@ namespace :templates do
     assets_dirs.each do |asset_dir|
       FileUtils.mkdir_p("#{template_asset_path}#{asset_dir}")
     end
-
+    exit
   end
 end
