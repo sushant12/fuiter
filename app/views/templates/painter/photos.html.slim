@@ -1,0 +1,12 @@
+section.about-page style=("background-image: url(#{@page.about_image})") 
+  .overlay
+    .container.d-flex.align-items-center.title
+      .mbr-white.col-md-10
+        h1.display-4.text-light.bold.text-center
+          | Gallery
+section.py-5.bg-grey.container.grey
+  .row
+    .card-columns
+      - @page.photos(@album_id).each do |album|
+        .card
+          img.card-img-top src="#{ album.first["source"]}"

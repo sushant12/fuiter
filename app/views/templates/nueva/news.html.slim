@@ -4,62 +4,20 @@
     | News
 section.py-5.bg-grey.container.grey
   .row
-    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
-      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
-      .cal
-        span.date.bold 21
-        br/
-        span.month.uppercase jun
-      h2.capital.mx-5.mt-5 title one
-      h5.capital.mx-5.mt-2.opensans.text-justify
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
-      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
-      .cal
-        span.date.bold 23
-        br/
-        span.month.uppercase apr
-      h2.capital.mx-5.mt-5 title two
-      h5.capital.mx-5.mt-2.opensans.text-justify
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
-      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
-      .cal
-        span.date.bold 24
-        br/
-        span.month.uppercase dec
-      h2.capital.mx-5.mt-5 title three
-      h5.capital.mx-5.mt-2.opensans.text-justify
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;") 
-      img src="#{asset_pack_url 'templates/nueva/images/n1.jpg'}" width="100%" /
-      .cal
-        span.date.bold 14
-        br/
-        span.month.uppercase feb
-      h2.capital.mx-5.mt-5 title three
-      h5.capital.mx-5.mt-2.opensans.text-justify
-        | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        | tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        | quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        | consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        | cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        | proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    - @page.posts.each do |post|
+      .px-5.pb-5.mt-3 style=("border-bottom: 1px dashed grey;")
+        - if post["image"] 
+          img alt=(post["name"]) src=(post["image"] ) width="100%" /
+        .cal
+          span.date.bold
+            = post['created_at']&.to_date&.day
+          br/
+          span.month.uppercase
+            = post['created_at']&.to_date&.strftime("%b") 
+        / h2.capital.mx-5.mt-5 title one
+        h5.capital.mx-5.mt-2.opensans.text-justify
+          = post['message']
+    
 section.bg-dark
   .py-5.text-center.text-white.align-items-center.d-flex.h-50
     .container.py-5

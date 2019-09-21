@@ -9,19 +9,26 @@ class TemplatesController < ApplicationController
   end
 
   def choose
-    template = FbPageTemplate.find_or_initialize_by(fb_page_id: params[:fb_page_id]) do |tmpl|
+    if FbPageTemplate.exists?(fb_page_id: params[:fb_page_id])
+      fb_page_template = FbPageTemplate.find_by(fb_page_id: params[:fb_page_id])
+      fb_page_template.update_attributes(template_id: params[:template_id])
+    else
       template_properties = Template.find(params[:template_id]).properties
-      tmpl.pages.new(template_properties['pages'])
-      tmpl.fb_page.update(status: 'in progress')
-      Facebook::PageDetailService.call(tmpl.fb_page.token)
+      fb_page = FbPage.find(params[:fb_page_id])
+      ActiveRecord::Base.transaction do
+        fb_page_template = fb_page.build_fb_page_template(template_id: params[:template_id])
+        fb_page_template.pages.build(template_properties['pages'])
+        fb_page_template.save!
+        fb_page.update_attributes(status: 'in progress')
+        Facebook::PageDetailService.call(fb_page.token)
+      end
     end
-    template.template_id = params[:template_id]
-    template.save!
-    page_name = FbPage.find(params[:fb_page_id]).name
-    settings = Setting.find_or_initialize_by(fb_page_template_id: template.id) do |setting|
-      setting.subdomain = page_name.downcase.gsub(/[^0-9A-Za-z]/, '')
+
+    unless Setting.exists?(fb_page_template_id: fb_page_template.id)
+      page_name = FbPage.find(params[:fb_page_id]).name
+      setting = fb_page_template.create_setting(subdomain: page_name.downcase.gsub(/[^0-9A-Za-z]/, ''))
     end
-    settings.save!
+
     redirect_to editor_design_path(params[:fb_page_id])
   end
   

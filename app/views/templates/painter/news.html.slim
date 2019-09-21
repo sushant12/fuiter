@@ -1,0 +1,18 @@
+section.about-page style=("background-image: url(#{@page.about_image})") 
+  .overlay
+    .container.d-flex.align-items-center.title
+      .mbr-white.col-md-10
+        h1.display-4.text-light.bold.text-center
+          | News
+section.news
+  .container
+    - @page.posts.each do |post|
+      .media-container-row.row.my-5
+        .col-md-8
+          .media-container-row
+            .media-content
+              .mbr-section-text
+                p.mbr-text.align-right.mb-0.mbr-fonts-style.display-7
+                  = post['message']
+        .col-md-4.mbr-figure
+          img alt=("post['name']") src=("#{post['image']}")

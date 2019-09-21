@@ -1,0 +1,45 @@
+section.about-page style=("background-image: url(#{@page.about_image})") 
+  .overlay
+    .container.d-flex.align-items-center.title
+      .mbr-white.col-md-10
+        h1.display-4.text-light.bold.text-center
+          | contact
+section.py-5.bg-grey.container.grey
+  .row.mx-0.bg-light.pb-0
+    .col-md-6.p-5
+      .border.border-muted
+        - contact =  @page.fb_page_template
+        - if contact.location_enable
+          h6.text-center.pt-2.text-muted Address
+          p
+            = @page.contact['address']
+        - if contact.contact_enable
+          h6.text-center.pt-2.text-muted Telephone
+          p
+            = @page.contact['phone']
+        - if contact.email_enable
+          h6.text-center.pt-2.text-muted Email
+          p
+            = @page.contact['email']
+
+        / h6.text-center.pt-2.text-muted Hours
+        / p
+        /   | Monday - Saturday
+        /   br/
+        /   | 10:00 am - 2:00 am
+        h6.text-center.pt-2.text-muted Message
+        form
+          .form-group
+            input#form44.form-control placeholder="Name" type="text" /
+          .form-group
+            input#form45.form-control placeholder="Email" type="email" /
+          .form-group
+            input#form45.form-control placeholder="Phone" type="email" /
+          .form-group
+            textarea#form46.form-control placeholder="Message" rows="3" 
+            .form-group
+            button.btn.btn-dark.w-100 data-pingendo-transient="" type="submit"  SEND
+    .col-md-6.p-5
+      #map style=("height: 75%; width=100%")
+- if contact.map_enable
+  = render 'shared/gmaps'
