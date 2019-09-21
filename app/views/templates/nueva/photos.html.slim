@@ -1,0 +1,25 @@
+= render 'shared/templates/nueva/menu'
+.container.services.mt-5
+  .col-6.heading.uppercase.bold
+    | Gallery
+section.py-5.bg-grey.container.grey
+  .row
+    .card-columns
+      - @page.photos(@album_id).each do |album|
+        .card
+          img.card-img-top alt=("Card image cap") src="#{ album.first["source"]}"
+
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram
+script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 

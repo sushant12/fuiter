@@ -5,78 +5,13 @@
 section.py-5.bg-grey.container.grey
   .row
     .card-columns
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer px-0"
-          | <div class="text-muted">#TBT to our photoshoot with Sean Braxton. Still, hands down, one of my favorite shoots we've done. Really love working with Sean.</div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted"> Brittney is our make up guru. Look at that focus! Such a perfectionist.</div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted">It's so exciting when we are asked to do bright colors. Loving the purple for our shoot with Prada.</div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted">Ok, it's official, side braids are in. But no one can rock them quite like Gisele!</div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
-      .card
-        img.card-img-top alt=("Card image cap") src="#{asset_pack_url 'templates/nueva/images/news2.jpg'}" /
-        /!
-          | <div class="card-block"><a href="#" title="#"
-          | <h4 class="card-title px-2"></h4></a></div
-          | <div class="card-footer"
-          | <div class="text-muted"> Our beautiful stylists Jenna and Ashley at the red carpet premier of The Great Gatsby. Have fun ladies! </div
-          | <p class="card-text px-0 pt-4 pb-2 bb-tomato">Sep 11, 2014</p
-          | </div
+      - @page.albums.each do |album|
+        .card
+          = link_to @page.photos_menu(album['id']) do
+            img.card-img-top alt=("Card image cap") src="#{album["preview"]}"
+            / h3 
+            /   = album['name']
+
 section.bg-dark
   .py-5.text-center.text-white.align-items-center.d-flex.h-50
     .container.py-5
