@@ -35,13 +35,16 @@ section.py-5.bg-grey.container.grey
     .col-md-5.p-3.pt-5
       h1.border-bottom.border-primary.bold Contact
       p.pt-3.pb-5.text-muted
-        | Peter Sweeney
-        br/
-        | 777 Broadway Ave.
-        br/
-        | New York, NY 00000
-      p.border-bottom.border-dark.text-muted template.placeholder@gmail.com
-      p.text-muted 212 555 0110
+        - contact =  @page.fb_page_template
+        - if contact.location_enable
+            = @page.contact['address']
+      p.border-bottom.border-dark.text-muted
+        - if contact.email_enable
+            = @page.contact['email']
+      
+      p.text-muted
+        - if contact.contact_enable
+            = @page.contact['phone']
 section.bg-dark
   .py-5.text-center.text-white.align-items-center.d-flex.h-50
     .container.py-5
@@ -53,6 +56,3 @@ section.bg-dark
             .d-flex.justify-content-between style="width:130px;" 
               a.footer-link href=""  facebook
               a.footer-link href=""  instagram
-script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
-script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 

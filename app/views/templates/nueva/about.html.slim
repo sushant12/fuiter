@@ -1,1 +1,58 @@
 = render 'shared/templates/nueva/menu'
+.container.services.mt-5
+  .col-6.heading.uppercase.bold
+    | Contacts
+section.py-5.bg-grey.container.grey
+  .row
+    .col-md-7.p-3.pt-5
+      h1.border-bottom.border-primary.bold Schedule Appointment
+      p.pt-3.text-muted Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce viverra cursus quam eu eleifend. Duis volutpat accumsan odio volutpat congue. Ut euismod interdum urna eu tristique. Maecenas ut arcu purus. Vestibulum sit amet dui ac justo varius malesuada. Nulla vitae nulla
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4
+          h4.text-center Date
+        .col-md-6.col-sm-4.col-xs-4
+          h4.text-center Event
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+      .row.divider_row
+        .col-md-4.col-sm-4.col-xs-4.text-center
+          | 11 - 12 March 2017
+        .col-md-6.col-sm-4.col-xs-4
+          | Anatomy of True North Alignment: 2 Day Yoga Anatomy Training
+    .col-md-5.p-3.pt-5
+      h1.border-bottom.border-primary.bold Contact
+      p.pt-3.pb-5.text-muted
+        - contact =  @page.fb_page_template
+        - if contact.location_enable
+            = @page.contact['address']
+      p.border-bottom.border-dark.text-muted
+        - if contact.email_enable
+            = @page.contact['email']
+      
+      p.text-muted
+        - if contact.contact_enable
+            = @page.contact['phone']
+section.bg-dark
+  .py-5.text-center.text-white.align-items-center.d-flex.h-50
+    .container.py-5
+      .row
+        .mx-auto.col-lg-8.col-md-10
+          h2 Schedule Appointment
+          a.btn.btn-lg.mx-1.btn-outline-danger href="#"  START NOW
+          .d-flex.justify-content-center
+            .d-flex.justify-content-between style="width:130px;" 
+              a.footer-link href=""  facebook
+              a.footer-link href=""  instagram

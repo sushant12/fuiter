@@ -17,11 +17,11 @@ class Facebook::PageRequestService < ApplicationService
   private
 
   def save_page(account)
-    @user.fb_pages.where(fb_page_id: account['id']).first_or_create do |fb_page| 
-      fb_page.name = account['name']
-      fb_page.token = account['access_token']
-      fb_page.picture = account['picture']['data']['url']
-      fb_page.category = account['category']
-    end
+    fb_page = @user.fb_pages.find_or_initialize_by(fb_page_id: account['id'])
+    fb_page.name = account['name']
+    fb_page.token = account['access_token']
+    fb_page.picture = account['picture']['data']['url']
+    fb_page.category = account['category']
+    fb_page.save
   end
 end

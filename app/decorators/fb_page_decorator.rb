@@ -30,7 +30,7 @@ class FbPageDecorator < Draper::Decorator
   def photos_menu(album_id)
     if h.request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(h.request.subdomain)
       "http://#{h.request.subdomain}.#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
-    elsif h.request.domain != ENV['BASE_URL']
+    elsif ENV['BASE_URL'].split(",").exclude? h.request.domain 
       "http://#{h.request.domain}:#{h.request.port}/gallery/#{album_id}"
     else
       h.site_photo_albums_url(object.id, album_id)
