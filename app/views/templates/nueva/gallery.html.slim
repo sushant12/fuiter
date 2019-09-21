@@ -8,7 +8,7 @@ section.py-5.bg-grey.container.grey
       - @page.albums.each do |album|
         .card
           = link_to @page.photos_menu(album['id']) do
-            img.card-img-top alt=("Card image cap") src="#{album["preview"]}"
+            img.card-img-top alt=("#{album_name}") src="#{album["preview"]}"
             / h3 
             /   = album['name']
 

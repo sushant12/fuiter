@@ -14,33 +14,31 @@ html
     link href="https://fonts.googleapis.com/css?family=Fira+Sans+Extra+Condensed:400,900" rel="stylesheet" /
     link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet" /
     link href=("https://fonts.googleapis.com/css?family=#{@template.properties.dig('theme', 'font').tr(' ', '+')}" if @template.properties.dig('theme', 'font')) rel="stylesheet"
+    = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?key='+Fuitter.credentials[:google_maps_api_key]
+
   body data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
     section
       .container
         nav.navbar.navbar-expand-md.navbar-light
           a.navbar-brand.bold.capitalize href="#" 
             /! <img src="./images/logo.png"/
-            | projectx
+            = @page.name
           button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
             span.navbar-toggler-icon
           #navbar4.collapse.navbar-collapse
             ul.navbar-nav.ml-auto
-              li.px-2.nav-item.normal-border
-                a.nav-link.active href="index.html"  HOME
-              li.px-2.nav-item.normal-border
-                a.nav-link href="services.html"  SERVICES
-              li.px-2.nav-item.normal-border
-                a.nav-link href="gallery.html"  GALLERY
-              li.px-2.nav-item.normal-border
-                a.nav-link href="news.html"  NEWS
-              li.nav-item.dropdown
-                a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-hover="dropdown" data-toggle="dropdown" href="#" role="button" 
-                  | Menu
-                .dropdown-menu aria-labelledby="navbarDropdown" 
-                  a.dropdown-item href="#"  One
-                  a.dropdown-item href="#"  Two
-              li.px-2.nav-item.normal-border
-                a.nav-link href="contact.html"  CONTACT
+              - @page.menu.each do |menu|
+                - if menu.display
+                  li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+                    - if menu.nested.empty?
+                      = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link"
+                    - else
+                      = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link dropdown-toggle", id: "navbarDropdown"
+                    - unless menu.nested.empty?
+                      .dropdown-menu aria-labelledby="navbarDropdown"
+                        - menu.nested.each do |sub_menu|
+                          - if sub_menu.display
+                            = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
     = yield
     section
       .container
@@ -50,15 +48,29 @@ html
               | © Copyright 2019 - All Rights Reserved
           .col-md-6.pt-2
             .social-list.align-right.d-flex.flex-row.justify-content-end
-              .soc-item.px-2
-                a href="#" target="_blank" 
-                  i.fab.fa-twitter
-              .soc-item.px-2
-                a href="#" target="_blank" 
-                  i.fab.fa-facebook-f
-              .soc-item.px-2
-                a href="#" target="_blank" 
-                  i.fab.fa-youtube
+              - @template_setting.social_icons.each do |name, url|
+                .soc-item.px-2
+                  - if name == 'facebook'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}-f")
+                  - if name == 'twitter'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}")
+                  - if name == 'youtube'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}")
+                  - if name == 'linkedin'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}-in")
+                  - if name == 'yelp'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}")
+                  - if name == 'pinterest'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}")
+                  - if name == 'instagram'
+                    a href=(url) target="__blank"
+                      i class=("fab fa-#{name}")
     script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
     script crossorigin="anonymous" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
     script crossorigin="anonymous" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 

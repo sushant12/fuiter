@@ -1,4 +1,4 @@
-section.hero style=("background-image: url('./images/hero.jpg')") 
+section.hero style=("background-image: url(#{@page.about_image})") 
   .overlay
     .mbr-overlay style=("opacity: 0.5; background-color: rgb(35, 35, 35);") 
     .container.hero-container.d-flex.align-items-center
@@ -19,11 +19,11 @@ section.bg-light
         #carouselExampleIndicators.carousel.slide data-ride="carousel" 
           .carousel-inner
             .carousel-item.active
-              img.d-block.w-100 alt=("First slide") src="./images/news4.jpg" /
+              img.d-block.w-100 alt=("First slide") src="#{@page.about_image}" /
             .carousel-item
-              img.d-block.w-100 alt=("Second slide") src="./images/news5.jpg" /
+              img.d-block.w-100 alt=("Second slide") src="#{@page.about_image}" /
             .carousel-item
-              img.d-block.w-100 alt=("Third slide") src="./images/news6.jpg" /
+              img.d-block.w-100 alt=("Third slide") src="#{@page.about_image}" /
         .carousel-message.text-center.py-2.mb-2
           h4 project x
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -31,22 +31,22 @@ section.bg-light
         #carouselExampleIndicators.carousel.slide data-ride="carousel" 
           .carousel-inner
             .carousel-item.active
-              img.d-block.w-100 alt=("First slide") src="./images/news1.jpg" /
+              img.d-block.w-100 alt=("First slide") src="#{@page.about_image}" /
             .carousel-item
-              img.d-block.w-100 alt=("Second slide") src="./images/news2.jpg" /
+              img.d-block.w-100 alt=("Second slide") src="#{@page.about_image}" /
             .carousel-item
-              img.d-block.w-100 alt=("Third slide") src="./images/news3.jpg" /
+              img.d-block.w-100 alt=("Third slide") src="#{@page.about_image}" /
         .carousel-message.text-center.py-2.mb-2
           h4 project x
           p Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-section.about-section style=("background-image: url('./images/footer.jpg')") 
+section.about-section style=("background-image: url(#{@page.about_image})") 
   .container.d-flex.align-items-center
     .row.d-flex.justify-content-center style="width:100%;" 
       .mbr-white.col-md-6.bg-light style="height:100%;" 
         h2.text-dark.bold.p-3.text-center.mt-5
           | Projects Are a Brush Stroke Away
         h4.text-muted.p-3.text-center
-          | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          = @page.description
   .mbr-arrow.hidden-sm-down aria-hidden="true" 
     a href="#next" 
       i.mbri-down.mbr-iconfont

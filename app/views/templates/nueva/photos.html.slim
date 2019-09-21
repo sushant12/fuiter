@@ -7,7 +7,7 @@ section.py-5.bg-grey.container.grey
     .card-columns
       - @page.photos(@album_id).each do |album|
         .card
-          img.card-img-top alt=("Card image cap") src="#{ album.first["source"]}"
+          img.card-img-top src="#{ album.first["source"]}"
 
 section.bg-dark
   .py-5.text-center.text-white.align-items-center.d-flex.h-50

@@ -1,0 +1,14 @@
+section.about-page style=("background-image: url(#{@page.about_image})") 
+  .overlay
+    .container.d-flex.align-items-center.title
+      .mbr-white.col-md-10
+        h1.display-4.text-light.bold.text-center
+          | About Us
+section.container
+  .row
+    .col-6
+      h5.mb-0.pt-3
+        = @page.name
+      p.pt-3.opensans
+        = @page.about
+      
