@@ -53,12 +53,12 @@ class FbPageDecorator < Draper::Decorator
     albums = object.content.dig('albums', 'data')&.select do |album|
       album['name'] == 'Cover Photos'
     end
-    if albums.empty?
-      object.fb_page_template.template.properties.dig('slider')
-    else
+    if albums
       albums.first.dig('photos', 'data').map do |img|
         img['images'].first
       end
+    else
+      object.fb_page_template.template.properties.dig('slider')
     end
   end
 
@@ -82,6 +82,8 @@ class FbPageDecorator < Draper::Decorator
 
   def albums
     albums = object.content.dig('albums', 'data')
+    # binding.pry
+    return [] unless albums
     albums = albums.select { |album| album['photo_count'] > 0 }
     albums.map do |album|
       preview = photos(album.dig('id')).first.first.dig('source')
