@@ -1,4 +1,6 @@
-class Subdomain 
+# frozen_string_literal: true
+
+class Subdomain
   def matches?(request)
     if request.subdomain.present? && Fuitter.reserved_subdomains.exclude?(request.subdomain)
       true

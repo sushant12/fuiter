@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FbPageController < ApplicationController
   before_action :authenticate_user!
 
@@ -7,6 +9,6 @@ class FbPageController < ApplicationController
     render json: {
       message: synced_fb_page
     },
-    status: 200
+           status: :ok
   end
 end

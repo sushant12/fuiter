@@ -44,13 +44,13 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = { host: 'fuiter.com' }
   config.action_mailer.smtp_settings = {
-    :user_name => Fuitter.credentials[:smtp_username],
-    :password => Fuitter.credentials[:smtp_password],
-    :domain => 'fuiter.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    user_name: Fuitter.credentials[:smtp_username],
+    password: Fuitter.credentials[:smtp_password],
+    domain: 'fuiter.com',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
   }
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true

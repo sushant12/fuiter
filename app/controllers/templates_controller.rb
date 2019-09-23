@@ -11,7 +11,7 @@ class TemplatesController < ApplicationController
   def choose
     if FbPageTemplate.exists?(fb_page_id: params[:fb_page_id])
       fb_page_template = FbPageTemplate.find_by(fb_page_id: params[:fb_page_id])
-      fb_page_template.update_attributes(template_id: params[:template_id])
+      fb_page_template.update(template_id: params[:template_id])
     else
       template_properties = Template.find(params[:template_id]).properties
       fb_page = FbPage.find(params[:fb_page_id])
@@ -19,7 +19,7 @@ class TemplatesController < ApplicationController
         fb_page_template = fb_page.build_fb_page_template(template_id: params[:template_id])
         fb_page_template.pages.build(template_properties['pages'])
         fb_page_template.save!
-        fb_page.update_attributes(status: 'in progress')
+        fb_page.update(status: 'in progress')
         Facebook::PageDetailService.call(fb_page.token)
       end
     end
@@ -31,18 +31,18 @@ class TemplatesController < ApplicationController
 
     redirect_to editor_design_path(params[:fb_page_id])
   end
-  
+
   def properties
     template_properties = FbPageTemplate.find(params[:id])
     template_properties.remove_logo! if params[:template][:logo] == ''
     template_properties.remove_favicon! if params[:template][:favicon] == ''
-    template_properties.update_attributes(fb_page_template_param[:template])
+    template_properties.update(fb_page_template_param[:template])
     render json: template_properties
   end
 
   private
 
   def fb_page_template_param
-    params.permit(template: [:title, :logo, :favicon, properties: [theme: [:font, :color]] ])
+    params.permit(template: [:title, :logo, :favicon, properties: [theme: %i[font color]]])
   end
 end

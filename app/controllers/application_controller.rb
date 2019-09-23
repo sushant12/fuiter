@@ -3,18 +3,16 @@
 class ApplicationController < ActionController::Base
   before_action :set_raven_context
 
-  def after_sign_in_path_for(resource)
+  def after_sign_in_path_for(_resource)
     dashboard_index_path
   end
 
-  def after_sign_out_path_for(resource)
+  def after_sign_out_path_for(_resource)
     new_user_session_path
   end
 
   def authenticate_admin!
-    unless current_user && current_user.admin
-      redirect_to new_user_session_path
-    end
+    redirect_to new_user_session_path unless current_user&.admin
   end
 
   private

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register FbPage do
   config.clear_action_items!
 
@@ -21,8 +23,8 @@ ActiveAdmin.register FbPage do
     actions
   end
 
-  permit_params :name, :status, :category, :fb_page_id, 
-    fb_page_template_attributes: [:id, :subscribed]
+  permit_params :name, :status, :category, :fb_page_id,
+                fb_page_template_attributes: %i[id subscribed]
 
   form title: 'Facebook page form' do |f|
     # binding.pry
@@ -32,15 +34,15 @@ ActiveAdmin.register FbPage do
       input :category
       # input :subscribed
     end
-    
+
     # f.inputs "subscribed" do
 
-      f.has_many :fb_page_template, new_record: false, allow_destroy: false do |k|
-        k.input :subscribed, as: :boolean
-      end
+    f.has_many :fb_page_template, new_record: false, allow_destroy: false do |k|
+      k.input :subscribed, as: :boolean
+    end
     # end
 
-    para "Press cancel to return to the list without saving."
+    para 'Press cancel to return to the list without saving.'
     actions
   end
 end

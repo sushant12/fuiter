@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
 class Facebook::PageDetailService < ApplicationService
-
   def initialize(access_token)
     @page = Facebook::Page.new(access_token)
   end
 
   def call
     save_page_info
-  rescue => e
+  rescue StandardError => e
     Raven.capture_exception(e)
   end
 
@@ -16,7 +15,7 @@ class Facebook::PageDetailService < ApplicationService
 
   def save_page_info
     content = @page.get_info
-    unless(content.dig('location', 'latitude'))
+    unless content.dig('location', 'latitude')
       address = "#{content.dig('location', 'street')}, #{content.dig('location', 'city')}, #{content.dig('location', 'country')}"
       latitude, longitude = geocode_address(address)
       content['location']['latitude'] = latitude
@@ -30,6 +29,6 @@ class Facebook::PageDetailService < ApplicationService
 
   def geocode_address(address)
     location = Geocoder.search(address)
-    location.first.coordinates unless(location.empty?)
+    location.first.coordinates unless location.empty?
   end
 end
