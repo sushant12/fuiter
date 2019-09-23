@@ -2,7 +2,7 @@
 
 class Setting < ApplicationRecord
   belongs_to :fb_page_template
-  RESERVED_SUBDOMAINS = %w(www apps support blogs)
+  RESERVED_SUBDOMAINS = %w[www apps support blogs].freeze
 
   validates :subdomain, presence: true, uniqueness: true
   validates :subdomain, format: /\A[a-z]+[a-z\d\-]*\z/

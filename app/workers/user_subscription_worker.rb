@@ -1,4 +1,6 @@
-  class UserSubscriptionWorker
+# frozen_string_literal: true
+
+class UserSubscriptionWorker
   include Sidekiq::Worker
 
   def perform(email, type)
@@ -9,7 +11,6 @@
       UserSubscribeMailer.remove_user_subscription(email).deliver
     when 'failed_renewing_subscription'
       UserSubscribeMailer.failed_renewing_subscription(email).deliver
-    else
     end
   end
 end

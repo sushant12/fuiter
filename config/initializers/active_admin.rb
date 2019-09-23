@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 ActiveAdmin.setup do |config|
   # == Site Title
   #
   # Set the title that is displayed on the main layout
   # for each of the active admin pages.
   #
-  config.site_title = "Fuitter"
+  config.site_title = 'Fuitter'
   config.register_stylesheet 'active_admin/json_editor.css'
   config.register_javascript 'active_admin/json_editor.js'
 

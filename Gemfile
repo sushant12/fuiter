@@ -73,10 +73,10 @@ group :development do
 
   # Used to generate a diagram based on your application's Active Record models
   gem 'rails-erd'
-  gem "capistrano", "~> 3.10", require: false
-  gem "capistrano-rails", "~> 1.3", require: false
+  gem 'capistrano', '~> 3.10', require: false
+  gem 'capistrano-rails', '~> 1.3', require: false
   gem 'capistrano3-puma', require: false
-  gem 'capistrano-rbenv', '~> 2.1',require: false
+  gem 'capistrano-rbenv', '~> 2.1', require: false
   gem 'capistrano-bundler', '~> 1.5', require: false
   gem 'capistrano-sidekiq', require: false
   gem 'rack-mini-profiler'

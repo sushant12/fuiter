@@ -33,7 +33,7 @@ module Fuitter
     # the framework and any gems in your application.
     load_path_strategy = Rails.env.production? ? :eager_load_paths : :autoload_paths
     config.public_send(load_path_strategy) << Rails.root.join('lib')
-    config.assets.precompile += %w( template.js template.css )
+    config.assets.precompile += %w[template.js template.css]
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.generators do |g|
@@ -50,9 +50,11 @@ module Fuitter
 
     config.filter_parameters << :password
 
-    Raven.configure do |config|
-      config.dsn = ENV['SENTRY_DSN']
-    end if Rails.env.production?
+    if Rails.env.production?
+      Raven.configure do |config|
+        config.dsn = ENV['SENTRY_DSN']
+      end
+    end
 
     config.middleware.use Rack::MethodOverride
     config.middleware.use ActionDispatch::Flash
@@ -68,7 +70,7 @@ module Fuitter
   end
 
   def self.reserved_subdomains
-    @reserved_subdomains ||= ['www', 'app', 'apps', 'blog', 'blogs', 'help', 'support'].freeze
+    @reserved_subdomains ||= %w[www app apps blog blogs help support].freeze
   end
 
   def self.credentials
