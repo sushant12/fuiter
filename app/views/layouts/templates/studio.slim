@@ -22,46 +22,59 @@ html
   /   .nav-link {
   /     color: #{@template.properties.dig('nav', 'font_color')} !important;
     }
-  body
+  body data-template="#{@template.to_json}" style=("font-family: #{@template.properties.dig('theme', 'font')}")
     .container.pt-4
       .row.mx-0.d-flex.align-items-center.social-link-bar
         .col-9.social-link-li
           ul.pt-1
             li
-              | 18 Bateman Street, London, United Kingdom
+              = @page.contact['address']
             li
-              | 020 7394 0797
+              = @page.contact['phone']
         .col-3.d-flex.justify-content-end.social-link-icons.pr-4
-          a href="#" 
-            i.d-block.fab.fa-facebook-f.text-muted.fa-lg.px-1
-          a href="#" 
-            i.d-block.fab.fa-instagram.text-muted.fa-lg.px-1
-          a href="#" 
-            i.d-block.fab.fa-twitter.text-muted.fa-lg.px-1
+          - @template_setting.social_icons.each do |name, url|
+            - if name == 'facebook'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name}-f text-muted.fa-lg.px-1")
+            - if name == 'twitter'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name} text-muted.fa-lg.px-1")
+            - if name == 'youtube'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name} text-muted.fa-lg.px-1")
+            - if name == 'linkedin'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name}-in text-muted.fa-lg.px-1")
+            - if name == 'yelp'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name} text-muted.fa-lg.px-1")
+            - if name == 'pinterest'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name} text-muted.fa-lg.px-1")
+            - if name == 'instagram'
+              a href=(url) target="__blank"
+                i class=("d-block fab fa-#{name} text-muted.fa-lg.px-1")
     .container
       nav.navbar.navbar-expand-md.navbar-light.bg-light
         a.navbar-brand.text-primary href="#" 
-          img src="./images/logo.png" /
+          / img src="./images/logo.png" /
+          = @page.name
         button.navbar-toggler.navbar-toggler-right.border-0 data-target="#navbar4" data-toggle="collapse" type="button" 
           span.navbar-toggler-icon
         #navbar4.collapse.navbar-collapse
           ul.navbar-nav.ml-auto
-            li.px-2.nav-item.normal-border
-              a.nav-link.active href="index.html"  HOME
-            li.px-2.nav-item.normal-border
-              a.nav-link href="about.html"  ABOUT
-            li.px-2.nav-item.normal-border
-              a.nav-link href="gallery.html"  GALLERY
-            li.px-2.nav-item.normal-border
-              a.nav-link href="news.html"  NEWS
-            li.nav-item.dropdown
-              a#navbarDropdown.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button" 
-                | Menu
-              .dropdown-menu aria-labelledby="navbarDropdown" 
-                a.dropdown-item href="menus.html"  One
-                a.dropdown-item href="#"  Two
-            li.px-2.nav-item.normal-border
-              a.nav-link href="contact.html"  CONTACT
+            - @page.menu.each do |menu|
+              - if menu.display
+                li.px-2.nav-item.normal-border class=('dropdown' unless menu.nested.empty? )
+                  - if menu.nested.empty?
+                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link"
+                  - else
+                    = link_to menu.title, @page.send("#{menu.uri}_menu"), class: "nav-link dropdown-toggle", id: "navbarDropdown"
+                  - unless menu.nested.empty?
+                    .dropdown-menu aria-labelledby="navbarDropdown"
+                      - menu.nested.each do |sub_menu|
+                        - if sub_menu.display
+                          = link_to sub_menu.title, @page.send("#{sub_menu.uri}_menu"), class: 'dropdown-item'
           a.btn.navbar-btn.ml-md-2.text-white.btn-dark ORDER ONLINE
     = yield
     script crossorigin="anonymous" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
