@@ -1,0 +1,13 @@
+.container
+  .row
+    .col-md-12.slider
+      #carouselExampleSlidesOnly.carousel.slide data-ride="carousel" 
+        .carousel-inner
+          - @page.cover_images.each_with_index do |image, index|
+            - if index == 3
+              - break
+            .carousel-item class=('active' if index == 0)
+              img.d-block.w-100 alt="..." src=(image['source'])
+              h4.card-text.px-5.py-3 The best pub in all of Central London since 1878. Beer, Food, and Live Music.
+    = render 'shared/templates/studio/footer'
+    

@@ -1,0 +1,15 @@
+.container
+  .row.pagename.mx-0
+    h2.pagename Gallery
+.container
+  .row.mx-0.pt-3.p-5.bg-light.gallery
+    .card-columns
+      - @page.albums.each do |album|
+        .card
+          = link_to @page.photos_menu(album['id']) do
+            img.card-img-top alt=("#{album['name']}") src="#{album["preview"]}"
+          .card-block.text-center.text-muted
+            = link_to @page.photos_menu(album['id']) do
+              h4.card-title.px-2
+                = album['name']
+  = render 'shared/templates/studio/footer'

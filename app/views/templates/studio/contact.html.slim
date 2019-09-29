@@ -1,0 +1,36 @@
+.container
+  .row.mx-0.bg-light.pb-0
+    .col-md-6.p-5
+      .border.border-muted
+        - contact =  @page.fb_page_template
+        - if contact.location_enable
+          h6.text-center.pt-2.text-muted Address
+          p
+            = @page.contact['address']
+        - if contact.contact_enable
+          h6.text-center.pt-2.text-muted Telephone
+          p
+            = @page.contact['phone']
+        - if contact.email_enable
+          h6.text-center.pt-2.text-muted Email
+          p
+            = @page.contact['email']
+        h6.text-center.pt-2.text-muted Message
+        form
+          .form-group
+            input#form44.form-control placeholder="Name" type="text" /
+          .form-group
+            input#form45.form-control placeholder="Email" type="email" /
+          .form-group
+            input#form45.form-control placeholder="Phone" type="email" /
+          .form-group
+            textarea#form46.form-control placeholder="Message" rows="3" 
+            .form-group
+            p I'm not a robot
+            button.btn.btn-dark.w-100 data-pingendo-transient="" type="submit"  SEND
+    .col-md-6.p-5
+      #map style=("height: 75%; width=100%")
+    = render 'shared/templates/studio/footer'
+- if contact.map_enable
+  = render 'shared/gmaps'
+    
