@@ -4,19 +4,12 @@
 .container
   .row.mx-0.pt-3.p-5.bg-light.gallery
     .card-columns
-      .card
-        img.card-img-top alt=("Card image cap") src="./images/bar.jpg" /
-        .card-block.text-center.text-muted
-          a href="#" title="#" 
-          h4.card-title.px-2 bar
-      .card
-        img.card-img-top alt=("Card image cap") src="./images/hotel.jpg" /
-        .card-block.text-center.text-muted
-          a href="#" title="#" 
-          h4.card-title.px-2 bar
-      .card
-        img.card-img-top alt=("Card image cap") src="./images/pub.jpg" /
-        .card-block.text-center.text-muted
-          a href="#" title="#" 
-          h4.card-title.px-2 bar
+      - @page.albums.each do |album|
+        .card
+          = link_to @page.photos_menu(album['id']) do
+            img.card-img-top alt=("#{album['name']}") src="#{album["preview"]}"
+          .card-block.text-center.text-muted
+            = link_to @page.photos_menu(album['id']) do
+              h4.card-title.px-2
+                = album['name']
   = render 'shared/templates/studio/footer'
