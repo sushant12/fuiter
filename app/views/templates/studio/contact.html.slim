@@ -2,15 +2,19 @@
   .row.mx-0.bg-light.pb-0
     .col-md-6.p-5
       .border.border-muted
-        h6.text-center.pt-2.text-muted Address
-        p 18 Bateman Street, London, United Kingdom
-        h6.text-center.pt-2.text-muted Telephone
-        p 020 7394 0797
-        h6.text-center.pt-2.text-muted Hours
-        p
-          | Monday - Saturday
-          br/
-          | 10:00 am - 2:00 am
+        - contact =  @page.fb_page_template
+        - if contact.location_enable
+          h6.text-center.pt-2.text-muted Address
+          p
+            = @page.contact['address']
+        - if contact.contact_enable
+          h6.text-center.pt-2.text-muted Telephone
+          p
+            = @page.contact['phone']
+        - if contact.email_enable
+          h6.text-center.pt-2.text-muted Email
+          p
+            = @page.contact['email']
         h6.text-center.pt-2.text-muted Message
         form
           .form-group
@@ -25,6 +29,8 @@
             p I'm not a robot
             button.btn.btn-dark.w-100 data-pingendo-transient="" type="submit"  SEND
     .col-md-6.p-5
-      iframe frameborder="0" height="75%" scrolling="no" src="https://maps.google.com/maps?hl=en&amp;q=New%20York&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed" width="100%" 
+      #map style=("height: 75%; width=100%")
     = render 'shared/templates/studio/footer'
+- if contact.map_enable
+  = render 'shared/gmaps'
     
