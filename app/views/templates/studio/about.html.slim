@@ -4,16 +4,10 @@
 .container
   .row.mx-0.aboutpage.pt-3.p-5
     .col-3.about-brand-image.pr-0.float-right
-      img.float-right src="./images/about.png" /
+      img.float-right src=(@page.about_image)
     .col-9.border-dark.mt-5
       h4.pt-5.pl-5.pb-3.text-muted DESCRIPTION
       p.mb-3.pl-5.pr-5.pb-5.text-muted
-        | In 1878, Thomas O'Brien had the idea to create a pub in Central London that not only served great beer, but also had the food and lively atmosphere to keep clients coming back time and time again. Over a 100 years later, his legacy still lives on at Stone Street Pub.
-        br/
-        br/
-        | Nestled into a corner on narrow Bateman Street in Central London, the Stone Street Pub is a neighborhood favorite. With live music every Thursday through Saturday and award-winning pub fare, Stone Street Pub is sure to deliver an all around enjoyable experience. Come for a pint of Guinness, or maybe a full dinner. We are a "Pub", but there is fun for the whole family.
-        br/
-        br/
-        | In the words of our founder Thomas O'Brien, "My house is where I live, but Stone Street is my home." We look forward to making you feel at home on your next visit to Central London!
+        = @page.about
   = render 'shared/templates/studio/footer'
 
