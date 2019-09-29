@@ -1,0 +1,134 @@
+body{
+	background: url("../images/bg.jpg") center top fixed no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  font-family: 'Open Sans', sans-serif;
+}
+.navbar-brand{
+	img{
+		max-height: 90px;
+	}
+}
+.navbar-nav{
+	.normal-border .active{
+		border-bottom: 5px solid darkslategray;
+	}
+	a{
+		font-size: 15px;
+	}
+}
+.social-link-bar{
+	height: 36px;
+	border-radius: 10px 10px 0 0;
+	background-color: #17272B;
+	.social-link-li{
+		li::before{
+			content: "•";
+			color: gray;
+		}
+		li{
+			color: gray;
+			display: inline;
+			font-size: 15px;
+			padding-left: 10px;
+		}
+	}
+}
+.dropdown{
+	.dropdown-toggle:hover + .dropdown-menu{
+		display: block;
+	}
+}
+.card-text{
+	background-color: white;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 2rem;
+	color: #343a40;
+	text-align: center;
+	font-weight: 700;
+}
+.carousel-item{
+	img{
+		height: 60vh;
+	}
+}
+.pagename{
+	background:radial-gradient(black 15%, transparent 16%) 0 0,
+	radial-gradient(black 15%, transparent 16%) 8px 8px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+	radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+	background-color:#282828;
+	background-size:16px 16px;
+	color: white;
+	padding: 	15px 0 15px 20px;
+	font-size: 2.5rem;
+}
+
+.aboutpage{
+	background-color: white;
+	// padding: 50px;
+	.about-brand-image{
+			img{
+				width: 196px;
+				padding: 10px;
+				border: 1.5px solid #343a40;
+				border-style: none none solid solid;
+			}
+
+	}
+	.border-dark{
+		padding: 10px;
+		border: 1.5px solid #343a40;
+		p{
+
+		}
+	}
+}
+.gallery{
+	.card{
+		img{
+			height: 256px;
+			background-size: cover;
+		}
+		a{
+			color: #343a40;
+			text-transform: capitalize;
+		}
+		a:hover{
+			color: black;
+			text-decoration: none;
+			h4{
+				border-bottom: 5px solid black;
+				margin: 0 20px 5px 20px;
+				outline: none;
+			}
+		}
+	}
+
+}
+.news{
+	.col-12{
+		justify-content: center;
+		align-items: flex-start;
+		p{
+			padding: 10px 40px ;
+		}
+	}
+	.col-12:nth-child(odd){
+		display: flex;
+		flex-direction: row;
+		.col-4{
+			align-items:flex-start;
+		}
+	}
+	.col-12:nth-child(even){
+		display: flex;
+		flex-direction: row-reverse;
+		.col-4{
+			align-items:flex-end;
+		}
+	}
+}
+
