@@ -1,0 +1,10 @@
+.container
+  .row.pagename.mx-0
+    h2.pagename Gallery
+.container
+  .row.mx-0.pt-3.p-5.bg-light.gallery
+    .card-columns
+      - @page.photos(@album_id).each do |album|
+        .card
+          img.card-img-top src="#{ album.first["source"]}"
+  = render 'shared/templates/studio/footer'
