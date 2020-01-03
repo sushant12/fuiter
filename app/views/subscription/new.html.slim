@@ -51,8 +51,17 @@ section.section
 = javascript_pack_tag 'checkout'
 javascript:
   var sub1 = document.getElementById('subscription-1');
+  var sub2 = document.getElementById('subscription-2');
   var planId = document.getElementById('plan_id');
   sub1.onclick = function(e) {
+    e.preventDefault();
+    var subscriptionForm = document.getElementById('subscription-form');
+    subscriptionForm.style.display = 'block';
+    var price = e.currentTarget.dataset.price;
+    planId.value = price;
+  };
+
+  sub2.onclick = function(e) {
     e.preventDefault();
     var subscriptionForm = document.getElementById('subscription-form');
     subscriptionForm.style.display = 'block';
