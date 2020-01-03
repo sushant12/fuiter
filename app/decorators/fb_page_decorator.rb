@@ -53,8 +53,8 @@ class FbPageDecorator < Draper::Decorator
     albums = object.content.dig('albums', 'data')&.select do |album|
       album['name'] == 'Cover Photos'
     end
-    if albums
-      albums.first.dig('photos', 'data').map do |img|
+    if albums.present?
+      albums.first.dig('photos', 'data')&.map do |img|
         img['images'].first
       end
     else
@@ -82,7 +82,6 @@ class FbPageDecorator < Draper::Decorator
 
   def albums
     albums = object.content.dig('albums', 'data')
-    # binding.pry
     return [] unless albums
     albums = albums.select { |album| album['photo_count'] > 0 }
     albums.map do |album|
@@ -97,21 +96,21 @@ class FbPageDecorator < Draper::Decorator
 
   def about
     about = object.fb_page_template.pages.where("uri = 'about'").first
-    show_custom_description = about.setting.dig('description', 'enable').to_s
-    if show_custom_description == 'true'
-      about.setting.dig('description', 'value')
-    else
+    show_custom_description = about.setting.dig('description', 'enable')
+    if show_custom_description.nil? || show_custom_description == "false" 
       object.content.dig('about')
+    else
+      about.setting.dig('description', 'value')
     end
   end
 
   def description
     home = object.fb_page_template.pages.where("uri = 'home'").first
-    show_custom_description = home.setting.dig('description', 'enable').to_s
-    if show_custom_description == 'true'
-      home.setting.dig('description', 'value')
-    else
+    show_custom_description = home.setting.dig('description', 'enable')
+    if show_custom_description.nil? || show_custom_description == "false" 
       object.content.dig('description')
+    else
+      home.setting.dig('description', 'value')
     end
   end
 
