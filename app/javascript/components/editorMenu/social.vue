@@ -111,7 +111,7 @@ export default {
 }
 
 h6 {
-  text-align: justify;
+  text-align: center;
 }
 .social-link-list {
   display: flex;
