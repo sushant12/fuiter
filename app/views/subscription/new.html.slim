@@ -1,13 +1,13 @@
 section.section
-  .columns.is-centered
-    .column.is-6.border.pa5
-      h1.title.is-3
+  .columns.is-centered.is-multiline
+    .column.is-12.border.pa5.is-two-thirds
+      h1.title.is-3.has-text-centered
         | Subscribe
-      p
+      p.has-text-centered
         | Choose a plan
-        
+      .column.is-half.is-offset-one-quarter
         strong
-          .columns
+          .columns.is
             .column.is-6
               .card.card-content
                 .media
@@ -17,37 +17,41 @@ section.section
                     .content
                       | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       | Phasellus nec iaculis mauris.
-                    button#subscription-1 data-price="plan_FAjGZfXAcVNBK0"
-                      | Click me
+                    button.button.is-success#subscription-1 data-price="plan_FAjGZfXAcVNBK0"
+                      strong
+                        | Click me
             .column.is-6
               .card.card-content
                 .media
                   .media-content
                     p.title.is-4 Annual
-                    p.subtitle.is-6 $190 per year 
+                    p.subtitle.is-6 $190 per year
                     .content
                       | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       | Phasellus nec iaculis mauris.
-                    button#subscription-2 data-price="plan_FAjHRvdASlqw7g"
-                      | Click me
-    .column.is-6.border.pa5#subscription-form
-      script src="https://js.stripe.com/v3/" 
-      = form_tag fb_page_subscription_index_path, id: "payment-form" do |f|
-        / = hidden_field_tag "fb_page_template_id", params[:id]
-        = hidden_field_tag "plan_id"
-        .form-row
-          label
-            span Name
-            input#name-on-card.field placeholder=("Jane Doe") /
+                    button.button.is-success#subscription-2 data-price="plan_FAjHRvdASlqw7g"
+                      strong
+                        | Click me
+    .column.is-12.border.pa5#subscription-form
+      .column.is-half.is-offset-one-quarter
+        .card.card-content
+          script src="https://js.stripe.com/v3/"
+          = form_tag fb_page_subscription_index_path, id: "payment-form" do |f|
+            / = hidden_field_tag "fb_page_template_id", params[:id]
+            = hidden_field_tag "plan_id"
+            .form-row
+              label
+                p Name
+                input.input#name-on-card.field placeholder=("Jane Doe") /
 
-        .form-row
-          label for="card-element" 
-            | Credit or debit card
-          #card-element
-            /! A Stripe Element will be inserted here.
-          /! Used to display form errors.
-          #card-errors role="alert" 
-        button Submit Payment
+            .form-row
+              label.label for="card-element"
+                | Credit or debit card
+              #card-element.label
+                /! A Stripe Element will be inserted here.
+              /! Used to display form errors.
+              #card-errors role="alert"
+            button.button.is-success Submit Payment
 = javascript_pack_tag 'checkout'
 javascript:
   var sub1 = document.getElementById('subscription-1');
@@ -68,5 +72,3 @@ javascript:
     var price = e.currentTarget.dataset.price;
     planId.value = price;
   };
-  
-    
