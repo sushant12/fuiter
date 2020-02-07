@@ -49,7 +49,7 @@
       <div class="custom">
         <span class="palette" @click="showColorPicker" tabindex="0" @blur="hideColorPicker">
           <div class="dropdown" id="custom-bg-color">
-          
+
           <div class="dropdown-trigger">
             <span aria-hidden="true" aria-haspopup="true" aria-controls="dropdown-menu">
               <i class="fa fa-angle-down has-text-white"></i>
@@ -61,11 +61,13 @@
           <span class="label-color palette">Select a custom color</span>
         </div>
         </span>
-        
+
       </div>
     </div>
-    <button class="button is-info" @click="updateProperty">Save</button>
-    <a @click="designOption('LogoDesign')">Site Title/Logo</a>
+    <div class="save-button">
+      <a @click="designOption('LogoDesign')">Site Title/Logo</a>
+      <button class="button is-info" @click="updateProperty">Save</button>
+    </div>
   </div>
   <div v-else>
     <component
@@ -274,5 +276,14 @@ input.input {
 }
 ::-webkit-scrollbar {
   width: 2px;
+}
+.save-button{
+  display:flex;
+  flex-flow:column;
+}
+.save-button a{
+  color: #c6cdd4;
+  margin-left: 5px;
+  margin-botton: 5px;
 }
 </style>
